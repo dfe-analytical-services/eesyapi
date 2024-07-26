@@ -1,0 +1,5 @@
+^renv$
+^renv\.lock$
+^eesyapi\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
