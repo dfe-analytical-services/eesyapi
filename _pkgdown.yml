@@ -1,4 +1,6 @@
-url: ~
+url: https://dfe-analytical-services.github.io/eesyapi
 template:
   bootstrap: 5
-
+  bootswatch: cyborg
+  bslib:
+    pkgdown-nav-height: 81.4468px
