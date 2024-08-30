@@ -13,7 +13,6 @@ RoxygenNote: 7.3.2
 URL: https://dfe-analytical-services.github.io/eesyapi
 Suggests: 
     testthat (>= 3.0.0)
-    styler
 Config/testthat/edition: 3
 Imports: 
     httr
