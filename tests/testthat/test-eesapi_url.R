@@ -4,6 +4,16 @@ test_that("eesapi_url", {
     "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/"
   )
   expect_error(
-    eesapi_url("1.x")
+    eesapi_url(api_version = "1.x")
+  )
+  expect_error(
+    eesapi_url(endpoint = 'query', dataset_id = "dummy:dataset:id")
+  )
+  expect_error(
+    eesapi_url(endpoint = 'query-data')
+  )
+  expect_equal(
+    eesapi_url(endpoint = 'query-data', dataset_id = "dummy:dataset:id"),
+    "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/dummy:dataset:id/query"
   )
 })
