@@ -1,4 +1,4 @@
-url: https://dfe-analytical-services.github.io/eesyapi
+url: https://dfe-analytical-services.github.io/eesyapi/
 template:
   bootstrap: 5
   bootswatch: cyborg
