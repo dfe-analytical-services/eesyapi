@@ -68,6 +68,10 @@ eesapi_url <- function(
       endpoint %in% c("get-summary", "get-meta", "query-data"),
       paste0("/", gsub("get-|-data", "", endpoint)),
       ""
+    ),
+    ifelse(
+      !is.null(data_version),
+      paste0("?data-version=",dataset_version)
     )
   )
 }
