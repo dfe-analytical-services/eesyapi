@@ -4,10 +4,21 @@
 \alias{eesapi_url}
 \title{eesapi_url}
 \usage{
-eesapi_url(api_version = "1.0")
+eesapi_url(
+  api_version = "1.0",
+  endpoint = NULL,
+  dataset_id = NULL,
+  dataset_version = NULL
+)
 }
 \arguments{
 \item{api_version}{EES API version}
+
+\item{endpoint}{Name of endpoint, can be get-summary, get-meta, get-data, query-data}
+
+\item{dataset_id}{ID of dataset to be connected to}
+
+\item{dataset_version}{Verson of dataset to be connected to}
 }
 \value{
 The EES URL for connecting to the API
