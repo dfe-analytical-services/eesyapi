@@ -71,7 +71,8 @@ eesapi_url <- function(
     ),
     ifelse(
       !is.null(dataset_version),
-      paste0("?data-version=",dataset_version)
+      paste0("?data-version=",dataset_version),
+      ""
     )
   )
 }
