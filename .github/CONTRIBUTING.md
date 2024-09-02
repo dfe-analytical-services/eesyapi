@@ -61,7 +61,6 @@ You should run the following lines to test the package locally:
 ``` 
 # To check functionality
 devtools::check() # Ctrl-Shft-E
-shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks
 
 # For code styling
 styler::style_pkg()
