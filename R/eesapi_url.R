@@ -47,10 +47,23 @@ eesapi_url <- function(
     }
   }
 
+  is_valid_dataset_info <- function(dataset_id, dataset_version) {
+    !is.null(dataset_id) & (is.numeric(dataset_version) | is.null(dataset_version))
+  }
+
   # Check that if endpoint is not NULL then neither is dataset_id
   if (!is.null(endpoint)) {
-    if (is.null(dataset_id)) {
-      stop("If an endpoint is set, then daatset_id should not be NULL")
+    if (is_valid_dataset_info(dataset_id, dataset_version) == FALSE) {
+      stop(
+        paste(
+          "You have entered invalid dataset info. The following rules must be",
+          "met:\n",
+          " - dataset_id must not be NULL\n",
+          " - dataset_version should either be:\n",
+          "   - NULL (gives latest version) or\n",
+          "   - a numeric"
+        )
+      )
     }
   }
 
