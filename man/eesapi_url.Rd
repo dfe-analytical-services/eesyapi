@@ -14,7 +14,8 @@ eesapi_url(
 \arguments{
 \item{api_version}{EES API version}
 
-\item{endpoint}{Name of endpoint, can be get-summary, get-meta, get-data, query-data}
+\item{endpoint}{Name of endpoint, can be get-summary, get-meta, get-data,
+query-data}
 
 \item{dataset_id}{ID of dataset to be connected to}
 
