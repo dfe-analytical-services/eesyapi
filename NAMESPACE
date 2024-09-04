@@ -2,3 +2,4 @@
 
 export(eesapi_url)
 export(get_meta)
+export(http_request_error)
