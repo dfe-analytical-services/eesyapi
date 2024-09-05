@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_meta.R
 \name{get_meta}
 \alias{get_meta}
-\title{Title}
+\title{get_meta}
 \usage{
 get_meta(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE)
 }
@@ -19,7 +19,7 @@ get_meta(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE)
 Results of query to meta data
 }
 \description{
-Title
+get_meta
 }
 \examples{
 get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")

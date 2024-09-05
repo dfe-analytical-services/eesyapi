@@ -1,4 +1,4 @@
-#' Title
+#' get_meta
 #'
 #' @param dataset_id ID of data set to be connected to
 #' @param dataset_version Version of data set to be connected to
