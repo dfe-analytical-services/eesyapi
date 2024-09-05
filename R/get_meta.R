@@ -11,11 +11,22 @@
 #' @examples
 #' get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
 get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE) {
+  # Check that the parse flag is valid
+  if (is.logical(parse) == FALSE) {
+    stop(
+      "You have entered an invalid parse argument, this should be a logical TRUE or FALSE only."
+    )
+  }
+
+  # Use eesyapi_url to retrieve the relevant api url - note that this will perform
+  # validation checks on dataset_id, dataset_version and api_version, so haven't
+  # added any explicit validation of those to the current function.
   meta_url <- eesyapi::eesapi_url(
     endpoint = "get-meta",
     dataset_id = dataset_id,
     dataset_version = dataset_version
   )
+
   response <- httr::GET(meta_url)
   if (response$status_code < 300) {
     if (parse) {
