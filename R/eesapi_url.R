@@ -2,8 +2,8 @@
 #'
 #' @param api_version EES API version
 #' @param endpoint Name of endpoint, can be "get-summary", "get-meta", "get-data", "query-data"
-#' @param dataset_id ID of dataset to be connected to
-#' @param dataset_version Verson of dataset to be connected to
+#' @param dataset_id ID of data set to be connected to
+#' @param dataset_version Version of data set to be connected to
 #'
 #' @return A string containing the URL for connecting to the EES API
 #' @export
@@ -56,7 +56,7 @@ eesapi_url <- function(
     if (is_valid_dataset_info(dataset_id, dataset_version) == FALSE) {
       stop(
         paste(
-          "You have entered invalid dataset info. The following rules must be",
+          "You have entered invalid data set info. The following rules must be",
           "met:\n",
           " - dataset_id must not be NULL\n",
           " - dataset_version should either be:\n",
