@@ -31,7 +31,7 @@ test_that("eesapi_url", {
     ),
     paste0(
       "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/",
-      "dummy:dataset:id/query?data-version=2.1"
+      "dummy:dataset:id/query?dataSetVersion=2.1"
     )
   )
 })
