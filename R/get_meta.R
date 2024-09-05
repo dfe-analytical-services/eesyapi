@@ -11,7 +11,7 @@
 #' @examples
 #' get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
 get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE) {
-  meta_url <- eesapi_url(
+  meta_url <- eesyapi::eesapi_url(
     endpoint = "get-meta",
     dataset_id = dataset_id,
     dataset_version = dataset_version
@@ -31,7 +31,7 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, par
       "Query returned error, status: ",
       response$status,
       "\n      ",
-      http_request_error(response$status)
+      eesyapi::http_request_error(response$status)
     ))
   }
 }
