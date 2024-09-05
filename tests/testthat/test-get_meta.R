@@ -11,5 +11,5 @@ test_that("Meta query runs successfully", {
   expect_equal(
     get_meta("d7329101-f275-d277-bbfe-d8cfaa709833", parse = FALSE)$status,
     200
-    )
+  )
 })

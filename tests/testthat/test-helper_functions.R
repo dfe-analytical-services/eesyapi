@@ -6,7 +6,7 @@ test_that("Bad URL / query message", {
   expect_equal(
     http_request_error(404),
     "Invalid query, data set ID, data set version or API version submitted to API."
-    )
+  )
 })
 
 test_that("Server error message", {
