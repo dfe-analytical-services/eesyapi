@@ -7,7 +7,7 @@
 <!-- badges: end -->
 
 An R package to support analysts in connecting to and processing data from 
-the DfE's Explore Education Statistics API endpoints.
+the DfE's explore education statistics API endpoints.
 
 ## Installation
 
@@ -31,8 +31,8 @@ devtools::install_github("dfe-analytical-services/eesyapi")
 
 ## Potential errors when installing
 
-If you get `ERROR [curl: (22) The requested URL returned error: 401]`, and don't 
-know why, try running `Sys.unsetenv("GITHUB_PAT")` to temporarily clear your 
+For internal DfE users, if you get `ERROR [curl: (22) The requested URL returned error: 401]`, 
+and don't know why, try running `Sys.unsetenv("GITHUB_PAT")` to temporarily clear your 
 GitHub PAT variable.
 
 Then try to install again. 

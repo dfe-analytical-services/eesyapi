@@ -29,6 +29,9 @@ test_that("eesapi_url", {
       dataset_id = "dummy:dataset:id",
       dataset_version = 2.1
     ),
-    "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/dummy:dataset:id/query?data-version=2.1"
+    paste0(
+      "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/",
+      "dummy:dataset:id/query?dataSetVersion=2.1"
+    )
   )
 })
