@@ -4,16 +4,16 @@
 \alias{get_meta}
 \title{Title}
 \usage{
-get_meta(dataset_id, dataset_version = NULL, api_version = NULL, parsed = TRUE)
+get_meta(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE)
 }
 \arguments{
-\item{dataset_id}{ID of dataset to be connected to}
+\item{dataset_id}{ID of data set to be connected to}
 
-\item{dataset_version}{Version of dataset to be connected to}
+\item{dataset_version}{Version of data set to be connected to}
 
 \item{api_version}{EES API version}
 
-\item{parsed}{}
+\item{parse}{Parse result into structured list}
 }
 \value{
 Results of query to meta data

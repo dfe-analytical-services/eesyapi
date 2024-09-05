@@ -13,7 +13,7 @@
 http_request_error <- function(response_status) {
   status_lookup <- list(
     "200" = "Successful API request.",
-    "400" = "Invalid query submitted to API.",
+    "400" = "Invalid query, data set ID, data set version or API version submitted to API.",
     "500" = "Internal server error encountered."
   )
   status_lookup[format(round(response_status, -1))][[1]]
