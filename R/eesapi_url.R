@@ -5,6 +5,9 @@
 #' "get-summary", "get-meta", "get-data" or "query-data"
 #' @param dataset_id ID of data set to be connected to
 #' @param dataset_version Version of data set to be connected to
+#' @param page_size Number of results to return in a single query
+#' @param page Page number of query results to return
+#' @param environment EES environment to connect to: "dev" or "prod"
 #'
 #' @return A string containing the URL for connecting to the EES API
 #' @export
@@ -13,9 +16,12 @@
 #' eesapi_url()
 eesapi_url <- function(
     api_version = "1.0",
-    endpoint = NULL,
+    endpoint = "get-publications",
     dataset_id = NULL,
-    dataset_version = NULL) {
+    dataset_version = NULL,
+    page_size = NULL,
+    page = NULL,
+    environment = "dev") {
   # Check that the API version is valid
   is_valid_api_version <- function(vapi) {
     !grepl(
@@ -34,7 +40,11 @@ eesapi_url <- function(
 
   # Check that the endpoint is either NULL or valid
   is_valid_endpoint <- function(endpoint) {
-    endpoint %in% c("get-summary", "get-meta", "get-data", "query-data")
+    endpoint %in% c(
+      "get-publications", "get-data-catalogue",
+      "get-summary", "get-meta",
+      "get-data", "query-data"
+    )
   }
 
   if (!is.null(endpoint)) {
@@ -52,8 +62,8 @@ eesapi_url <- function(
     !is.null(dataset_id) & (is.numeric(dataset_version) | is.null(dataset_version))
   }
 
-  # Check that if endpoint is not NULL then neither is dataset_id
-  if (!is.null(endpoint)) {
+  # Check that if endpoint requires a data set then dataset_id is not null
+  if (endpoint %in% c("get-summary", "get-meta", "get-data", "query-data")) {
     if (is_valid_dataset_info(dataset_id, dataset_version) == FALSE) {
       stop(
         paste(
@@ -68,8 +78,11 @@ eesapi_url <- function(
     }
   }
 
-
-  api_stub <- "https://dev.statistics.api.education.gov.uk/api/"
+  if (environment == "dev") {
+    api_stub <- "https://dev.statistics.api.education.gov.uk/api/"
+  } else {
+    api_stub <- "https://statistics.api.education.gov.uk/api/"
+  }
   api_stub_vers <- paste0(
     "https://dev.statistics.api.education.gov.uk/api/",
     "v", api_version, "/"
@@ -77,19 +90,24 @@ eesapi_url <- function(
 
   if (endpoint == "get-publications") {
     url <- paste0(
-      api_stub_wv,
-      "publications"
+      api_stub_vers,
+      "publications",
+      ifelse(
+        !is.null(page_size),
+        paste0("?pageSize=", page_size),
+        ""
+      )
     )
-  } else if (endpoint == "get-data-catalogue"){
+  } else if (endpoint == "get-data-catalogue") {
     url <- paste0(
-      api_stub_wv,
+      api_stub_vers,
       "publications/",
       publication_id,
       "/data-sets"
     )
   } else {
     url <- paste0(
-      api_stub_wv,
+      api_stub_vers,
       "data-sets/",
       ifelse(
         endpoint %in% c("get-summary", "get-meta", "get-data", "query-data"),

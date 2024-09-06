@@ -6,20 +6,28 @@
 #' @export
 #'
 #' @examples
-get_data_catalogue <- function(publication = NULL) {
-  if (is.null(publication)) {
-    message("I'm going to get a listing of all data sets from all publications...")
+#' get_data_catalogue()
+get_data_catalogue <- function(publication_id = NULL) {
+  if (is.null(publication_id)) {
+    "I'm going to get a listing of all data sets from all publications..."
   } else {
-    message("I'm going to get a listing of all data sets from a single publication...")
+    "I'm going to get a listing of all data sets from a single publication..."
   }
 }
 
 #' Get publications
 #'
+#' @param page_size Number of results to return in a single query
+#'
 #' @return Data frame listing all available publications
 #' @export
 #'
 #' @examples
-get_publications <- function() {
-
+#' get_publications()
+get_publications <- function(page_size = 40) {
+  httr::GET(
+    eesapi_url(page_size = page_size)
+  ) |>
+    httr::content("text") |>
+    jsonlite::fromJSON()
 }

@@ -6,19 +6,29 @@
 \usage{
 eesapi_url(
   api_version = "1.0",
-  endpoint = NULL,
+  endpoint = "get-publications",
   dataset_id = NULL,
-  dataset_version = NULL
+  dataset_version = NULL,
+  page_size = NULL,
+  page = NULL,
+  environment = "dev"
 )
 }
 \arguments{
 \item{api_version}{EES API version}
 
-\item{endpoint}{Name of endpoint, can be "get-summary", "get-meta", "get-data", "query-data"}
+\item{endpoint}{Name of endpoint, can be "get-publications", "get-data-catalogue",
+"get-summary", "get-meta", "get-data" or "query-data"}
 
 \item{dataset_id}{ID of data set to be connected to}
 
 \item{dataset_version}{Version of data set to be connected to}
+
+\item{page_size}{Number of results to return in a single query}
+
+\item{page}{Page number of query results to return}
+
+\item{environment}{EES environment to connect to: "dev" or "prod"}
 }
 \value{
 A string containing the URL for connecting to the EES API
