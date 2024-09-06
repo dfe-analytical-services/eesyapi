@@ -145,8 +145,8 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
       api_meta_filters$options[i]
     ) |>
       dplyr::rename(
-        item_id = id,
-        item_label = label
+        item_id = "id",
+        item_label = "label"
       ) |>
       dplyr::mutate(col_name = api_meta_filters$id[i])
     if (!("isAggregate" %in% names(filter_items_i))) {
@@ -156,7 +156,7 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
     filter_items <- filter_items |>
       rbind(
         filter_items_i |>
-          dplyr::select(col_name, item_label, item_id, default_item = isAggregate)
+          dplyr::select("col_name", "item_label", "item_id", default_item = "isAggregate")
       )
   }
   return(filter_items)
@@ -189,7 +189,7 @@ parse_meta_location_ids <- function(api_meta_locations) {
     location_items <- location_items |>
       rbind(
         location_items_i |>
-          dplyr::select(geographic_level, code, label, item_id = id)
+          dplyr::select("geographic_level", "code", "label", item_id = "id")
       )
   }
   return(location_items)
