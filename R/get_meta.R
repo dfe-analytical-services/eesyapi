@@ -22,7 +22,11 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
     parse = TRUE
   )
   meta_data <- list(
-    filter_items = parse_meta_filter_item_codes(meta_data_response$filters)
+    time_periods = meta_data_response$timePeriods,
+    locations = parse_meta_location_ids(meta_data_response$locations),
+    filter_columns = parse_meta_filter_columns(meta_data_response$filters),
+    filter_items = parse_meta_filter_item_ids(meta_data_response$filters),
+    indicators = parse_meta_filter_columns(meta_data_response$indicators)
   )
   return(meta_data)
 }
@@ -96,7 +100,24 @@ get_meta_response <- function(
 parse_meta_filter_columns <- function(api_meta_filters) {
   data.frame(
     col_name = api_meta_filters$id,
-    col_label = api_meta_filters$label
+    label = api_meta_filters$label
+  )
+}
+
+#' Parse API meta to give the indicator columns
+#'
+#' @param api_meta_indicators Filter information provided by the API output
+#'
+#' @return data frame containing indicator column names and labels
+#' @export
+#'
+#' @examples
+#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$indicators |>
+#'   parse_meta_indicator_columns()
+parse_meta_indicator_columns <- function(api_meta_indicators) {
+  data.frame(
+    col_name = api_meta_indicators$id,
+    label = api_meta_indicators$label
   )
 }
 
@@ -109,12 +130,12 @@ parse_meta_filter_columns <- function(api_meta_filters) {
 #'
 #' @examples
 #' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$filters |>
-#'   parse_meta_filter_item_codes()
-parse_meta_filter_item_codes <- function(api_meta_filters) {
+#'   parse_meta_filter_item_ids()
+parse_meta_filter_item_ids <- function(api_meta_filters) {
   nfilters <- length(api_meta_filters$id)
   filter_items <- data.frame(
     col_name = NA,
-    item_code = NA,
+    item_id = NA,
     item_label = NA,
     isAggregate = NA
   ) |>
@@ -124,7 +145,7 @@ parse_meta_filter_item_codes <- function(api_meta_filters) {
       api_meta_filters$options[i]
     ) |>
       dplyr::rename(
-        item_code = id,
+        item_id = id,
         item_label = label
       ) |>
       dplyr::mutate(col_name = api_meta_filters$id[i])
@@ -135,8 +156,41 @@ parse_meta_filter_item_codes <- function(api_meta_filters) {
     filter_items <- filter_items |>
       rbind(
         filter_items_i |>
-          dplyr::select(col_name, item_label, item_code, isAggregate)
+          dplyr::select(col_name, item_label, item_id, default_item = isAggregate)
       )
   }
   return(filter_items)
+}
+
+#' Parse API meta to give the locations
+#'
+#' @param api_meta_locations Locations information provided by the API output
+#'
+#' @return Data frame containing location item codes matched
+#' @export
+#'
+#' @examples
+#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$locations |>
+#'   parse_meta_location_ids()
+parse_meta_location_ids <- function(api_meta_locations) {
+  nlevels <- length(api_meta_locations$level)
+  location_items <- data.frame(
+    geographic_level = NA,
+    code = NA,
+    label = NA,
+    item_id = NA
+  ) |>
+    dplyr::filter(!is.na(geographic_level))
+  for (i in 1:nlevels) {
+    location_items_i <- as.data.frame(
+      api_meta_locations$options[i]
+    ) |>
+      dplyr::mutate(geographic_level = api_meta_locations$level$label[i])
+    location_items <- location_items |>
+      rbind(
+        location_items_i |>
+          dplyr::select(geographic_level, code, label, item_id = id)
+      )
+  }
+  return(location_items)
 }
