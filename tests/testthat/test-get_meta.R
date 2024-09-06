@@ -3,7 +3,10 @@ test_that("Dataset ID not found", {
 })
 
 test_that("Non-logical parse flag given", {
-  expect_error(get_meta("this-is-not-a-dataset", parse = 1))
+  expect_error(
+    get_meta("this-is-not-a-dataset", parse = 1),
+    "You have entered an invalid parse argument, this should be a logical TRUE or FALSE only."
+  )
 })
 
 

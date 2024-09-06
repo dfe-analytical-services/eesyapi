@@ -1,4 +1,9 @@
-#' get_meta
+#' Get a data set's metadata
+#'
+#' @description
+#' Get a list of metadata information for a data set available from the EES API. Provides either
+#' look-up tables from human readable labels to ids used in the API, or the raw response from the
+#' meta endpoint.
 #'
 #' @param dataset_id ID of data set to be connected to
 #' @param dataset_version Version of data set to be connected to
@@ -28,7 +33,14 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, par
   )
 
   response <- httr::GET(meta_url)
-  if (response$status_code < 300) {
+  if (response$status_code > 299) {
+    stop(paste0(
+      "Query returned error, status: ",
+      response$status,
+      "\n      ",
+      eesyapi::http_request_error(response$status)
+    ))
+  } else {
     if (parse) {
       result <- response |>
         httr::content("text") |>
@@ -37,12 +49,5 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, par
       result <- response
     }
     return(result)
-  } else {
-    stop(paste0(
-      "Query returned error, status: ",
-      response$status,
-      "\n      ",
-      eesyapi::http_request_error(response$status)
-    ))
   }
 }
