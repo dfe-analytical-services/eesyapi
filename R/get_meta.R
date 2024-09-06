@@ -1,4 +1,4 @@
-#' Get a data set's metadata
+#' Get the base API response for a data set's meta data
 #'
 #' @description
 #' Get a list of metadata information for a data set available from the EES API. Provides either
@@ -8,14 +8,45 @@
 #' @param dataset_id ID of data set to be connected to
 #' @param dataset_version Version of data set to be connected to
 #' @param api_version EES API version
-#' @param parse Parse result into structured list
 #'
-#' @return Results of query to meta data
+#' @return List of data frames containing a data set's meta data
 #' @export
 #'
 #' @examples
 #' get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
-get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE) {
+get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
+  meta_data_response <- get_meta_response(
+    dataset_id,
+    dataset_version = dataset_version,
+    api_version = api_version,
+    parse = TRUE
+  )
+  meta_data <- list(
+    filter_items = parse_meta_filter_item_codes(meta_data_response$filters)
+  )
+  return(meta_data)
+}
+
+#' Get the base API response for a data set's meta data
+#'
+#' @description
+#' Get the metadata information for a data set available from the EES API.
+#'
+#' @param dataset_id ID of data set to be connected to
+#' @param dataset_version Version of data set to be connected to
+#' @param api_version EES API version
+#' @param parse Parse result into structured list
+#'
+#' @return Results of query to API meta data endpoint
+#' @export
+#'
+#' @examples
+#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")
+get_meta_response <- function(
+    dataset_id,
+    dataset_version = NULL,
+    api_version = NULL,
+    parse = TRUE) {
   # Check that the parse flag is valid
   if (is.logical(parse) == FALSE) {
     stop(
@@ -35,9 +66,9 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, par
   response <- httr::GET(meta_url)
   if (response$status_code > 299) {
     stop(paste0(
-      "Query returned error, status: ",
+      "Query returned error, status ",
       response$status,
-      "\n      ",
+      ": ",
       eesyapi::http_request_error(response$status)
     ))
   } else {
@@ -60,6 +91,8 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL, par
 #' @export
 #'
 #' @examples
+#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$filters |>
+#'   parse_meta_filter_columns()
 parse_meta_filter_columns <- function(api_meta_filters) {
   data.frame(
     col_name = api_meta_filters$id,
@@ -75,6 +108,8 @@ parse_meta_filter_columns <- function(api_meta_filters) {
 #' @export
 #'
 #' @examples
+#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$filters |>
+#'   parse_meta_filter_item_codes()
 parse_meta_filter_item_codes <- function(api_meta_filters) {
   nfilters <- length(api_meta_filters$id)
   filter_items <- data.frame(
@@ -91,7 +126,7 @@ parse_meta_filter_item_codes <- function(api_meta_filters) {
       dplyr::rename(
         item_code = id,
         item_label = label
-      ) %>%
+      ) |>
       dplyr::mutate(col_name = api_meta_filters$id[i])
     if (!("isAggregate" %in% names(filter_items_i))) {
       filter_items_i <- filter_items_i |>

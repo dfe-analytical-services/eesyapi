@@ -2,4 +2,7 @@
 
 export(eesapi_url)
 export(get_meta)
+export(get_meta_response)
 export(http_request_error)
+export(parse_meta_filter_columns)
+export(parse_meta_filter_item_codes)

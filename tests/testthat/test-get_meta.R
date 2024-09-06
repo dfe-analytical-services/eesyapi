@@ -1,10 +1,26 @@
 test_that("Dataset ID not found", {
-  expect_error(get_meta("this-is-not-a-dataset"))
+  expect_error(
+    get_meta("this-is-not-a-dataset"),
+    paste0(
+      "Query returned error, status 404: ",
+      "Invalid query, data set ID, data set version or API version submitted to API."
+    )
+  )
+})
+
+test_that("Dataset ID not found", {
+  expect_error(
+    get_meta_response("this-is-not-a-dataset"),
+    paste0(
+      "Query returned error, status 404: ",
+      "Invalid query, data set ID, data set version or API version submitted to API."
+    )
+  )
 })
 
 test_that("Non-logical parse flag given", {
   expect_error(
-    get_meta("this-is-not-a-dataset", parse = 1),
+    get_meta_response("this-is-not-a-dataset", parse = 1),
     "You have entered an invalid parse argument, this should be a logical TRUE or FALSE only."
   )
 })
@@ -17,7 +33,7 @@ test_that("Non-logical parse flag given", {
 # of the above collectively.
 test_that("Meta query runs successfully", {
   expect_equal(
-    get_meta("d7329101-f275-d277-bbfe-d8cfaa709833", parse = FALSE)$status,
+    get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833", parse = FALSE)$status,
     200
   )
 })

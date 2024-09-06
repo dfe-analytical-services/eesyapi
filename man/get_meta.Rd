@@ -2,9 +2,9 @@
 % Please edit documentation in R/get_meta.R
 \name{get_meta}
 \alias{get_meta}
-\title{get_meta}
+\title{Get the base API response for a data set's meta data}
 \usage{
-get_meta(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE)
+get_meta(dataset_id, dataset_version = NULL, api_version = NULL)
 }
 \arguments{
 \item{dataset_id}{ID of data set to be connected to}
@@ -12,14 +12,14 @@ get_meta(dataset_id, dataset_version = NULL, api_version = NULL, parse = TRUE)
 \item{dataset_version}{Version of data set to be connected to}
 
 \item{api_version}{EES API version}
-
-\item{parse}{Parse result into structured list}
 }
 \value{
-Results of query to meta data
+List of data frames containing a data set's meta data
 }
 \description{
-get_meta
+Get a list of metadata information for a data set available from the EES API. Provides either
+look-up tables from human readable labels to ids used in the API, or the raw response from the
+meta endpoint.
 }
 \examples{
 get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
