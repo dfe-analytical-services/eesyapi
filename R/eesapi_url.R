@@ -1,7 +1,8 @@
 #' eesapi_url
 #'
 #' @param api_version EES API version
-#' @param endpoint Name of endpoint, can be "get-summary", "get-meta", "get-data", "query-data"
+#' @param endpoint Name of endpoint, can be "get-publications", "get-data-catalogue",
+#' "get-summary", "get-meta", "get-data" or "query-data"
 #' @param dataset_id ID of data set to be connected to
 #' @param dataset_version Version of data set to be connected to
 #'
@@ -68,24 +69,44 @@ eesapi_url <- function(
   }
 
 
-  paste0(
-    "https://dev.statistics.api.education.gov.uk/api/v",
-    api_version,
-    "/data-sets/",
-    ifelse(
-      endpoint %in% c("get-summary", "get-meta", "get-data", "query-data"),
-      dataset_id,
-      ""
-    ),
-    ifelse(
-      endpoint %in% c("get-summary", "get-meta", "query-data"),
-      paste0("/", gsub("get-|-data", "", endpoint)),
-      ""
-    ),
-    ifelse(
-      !is.null(dataset_version),
-      paste0("?dataSetVersion=", dataset_version),
-      ""
-    )
+  api_stub <- "https://dev.statistics.api.education.gov.uk/api/"
+  api_stub_vers <- paste0(
+    "https://dev.statistics.api.education.gov.uk/api/",
+    "v", api_version, "/"
   )
+
+  if (endpoint == "get-publications") {
+    url <- paste0(
+      api_stub_wv,
+      "publications"
+    )
+  } else if (endpoint == "get-data-catalogue"){
+    url <- paste0(
+      api_stub_wv,
+      "publications/",
+      publication_id,
+      "/data-sets"
+    )
+  } else {
+    url <- paste0(
+      api_stub_wv,
+      "data-sets/",
+      ifelse(
+        endpoint %in% c("get-summary", "get-meta", "get-data", "query-data"),
+        dataset_id,
+        ""
+      ),
+      ifelse(
+        endpoint %in% c("get-summary", "get-meta", "query-data"),
+        paste0("/", gsub("get-|-data", "", endpoint)),
+        ""
+      ),
+      ifelse(
+        !is.null(dataset_version),
+        paste0("?dataSetVersion=", dataset_version),
+        ""
+      )
+    )
+  }
+  return(url)
 }
