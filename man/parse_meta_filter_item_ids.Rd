@@ -16,6 +16,6 @@ Data frame containing filter item codes matched to filter item labels and col_na
 Parse API meta to give the filter item codes
 }
 \examples{
-get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$filters |>
+get_meta_response(example_id())$filters |>
   parse_meta_filter_item_ids()
 }

@@ -1,12 +1,13 @@
 #' eesapi_url
 #'
-#' @param api_version EES API version
 #' @param endpoint Name of endpoint, can be "get-publications", "get-data-catalogue",
 #' "get-summary", "get-meta", "get-data" or "query-data"
+#' @param publication_id ID of the publication to be connected to
 #' @param dataset_id ID of data set to be connected to
 #' @param dataset_version Version of data set to be connected to
 #' @param page_size Number of results to return in a single query
 #' @param page Page number of query results to return
+#' @param api_version EES API version
 #' @param environment EES environment to connect to: "dev" or "prod"
 #'
 #' @return A string containing the URL for connecting to the EES API
@@ -15,12 +16,13 @@
 #' @examples
 #' eesapi_url()
 eesapi_url <- function(
-    api_version = "1.0",
     endpoint = "get-publications",
+    publication_id = NULL,
     dataset_id = NULL,
     dataset_version = NULL,
     page_size = NULL,
     page = NULL,
+    api_version = "1.0",
     environment = "dev") {
   # Check that the API version is valid
   is_valid_api_version <- function(vapi) {

@@ -27,5 +27,5 @@ Results of query to API meta data endpoint
 Get the metadata information for a data set available from the EES API.
 }
 \examples{
-get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")
+get_meta_response(example_id())
 }

@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
+#' get_meta(example_id())
 get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
   meta_data_response <- get_meta_response(
     dataset_id,
@@ -45,7 +45,7 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
 #' @export
 #'
 #' @examples
-#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")
+#' get_meta_response(example_id())
 get_meta_response <- function(
     dataset_id,
     dataset_version = NULL,
@@ -95,7 +95,7 @@ get_meta_response <- function(
 #' @export
 #'
 #' @examples
-#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$filters |>
+#' get_meta_response(example_id())$filters |>
 #'   parse_meta_filter_columns()
 parse_meta_filter_columns <- function(api_meta_filters) {
   data.frame(
@@ -112,7 +112,7 @@ parse_meta_filter_columns <- function(api_meta_filters) {
 #' @export
 #'
 #' @examples
-#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$indicators |>
+#' get_meta_response(example_id())$indicators |>
 #'   parse_meta_indicator_columns()
 parse_meta_indicator_columns <- function(api_meta_indicators) {
   data.frame(
@@ -129,7 +129,7 @@ parse_meta_indicator_columns <- function(api_meta_indicators) {
 #' @export
 #'
 #' @examples
-#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$filters |>
+#' get_meta_response(example_id())$filters |>
 #'   parse_meta_filter_item_ids()
 parse_meta_filter_item_ids <- function(api_meta_filters) {
   nfilters <- length(api_meta_filters$id)
@@ -170,7 +170,7 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
 #' @export
 #'
 #' @examples
-#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$locations |>
+#' get_meta_response(example_id())$locations |>
 #'   parse_meta_location_ids()
 parse_meta_location_ids <- function(api_meta_locations) {
   nlevels <- length(api_meta_locations$level)

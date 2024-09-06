@@ -22,5 +22,5 @@ look-up tables from human readable labels to ids used in the API, or the raw res
 meta endpoint.
 }
 \examples{
-get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
+get_meta(example_id())
 }

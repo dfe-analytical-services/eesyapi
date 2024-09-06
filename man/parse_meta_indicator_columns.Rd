@@ -16,6 +16,6 @@ data frame containing indicator column names and labels
 Parse API meta to give the indicator columns
 }
 \examples{
-get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$indicators |>
+get_meta_response(example_id())$indicators |>
   parse_meta_indicator_columns()
 }

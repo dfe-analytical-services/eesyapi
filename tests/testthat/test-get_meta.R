@@ -33,7 +33,7 @@ test_that("Non-logical parse flag given", {
 # of the above collectively.
 test_that("Meta query runs successfully", {
   expect_equal(
-    get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833", parse = FALSE)$status,
+    get_meta_response(example_id(), parse = FALSE)$status,
     200
   )
 })
