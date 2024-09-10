@@ -2,7 +2,7 @@
 % Please edit documentation in R/http_request_error.R
 \name{http_request_error}
 \alias{http_request_error}
-\title{http request error}
+\title{Contextualise http request errors}
 \usage{
 http_request_error(response_status)
 }
@@ -17,4 +17,6 @@ Translate a http error code into an error message.
 }
 \examples{
 http_request_error(200)
+http_request_error(400)
+http_request_error(504)
 }

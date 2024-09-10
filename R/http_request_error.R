@@ -1,4 +1,4 @@
-#' http request error
+#' Contextualise http request errors
 #'
 #' @description
 #' Translate a http error code into an error message.
@@ -10,6 +10,8 @@
 #'
 #' @examples
 #' http_request_error(200)
+#' http_request_error(400)
+#' http_request_error(504)
 http_request_error <- function(response_status) {
   status_lookup <- data.frame(
     response_group = c(

@@ -1,4 +1,4 @@
-#' Get the base API response for a data set's meta data
+#' Get a parsed version of the API response for a data set's meta data
 #'
 #' @description
 #' Get a list of metadata information for a data set available from the EES API. Provides either
