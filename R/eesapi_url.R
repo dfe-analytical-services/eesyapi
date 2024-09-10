@@ -86,7 +86,7 @@ eesapi_url <- function(
     api_stub <- "https://statistics.api.education.gov.uk/api/"
   }
   api_stub_vers <- paste0(
-    "https://dev.statistics.api.education.gov.uk/api/",
+    api_stub,
     "v", api_version, "/"
   )
 

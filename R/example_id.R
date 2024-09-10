@@ -10,24 +10,27 @@
 #'
 #' @examples
 #' example_id()
-example_id <- function(level = "data set", environment = "dev"){
+example_id <- function(level = "data set", environment = "dev") {
   examples <- data.frame(
     type = c(
       "publication",
       "data set"
-      ),
+    ),
     environment = c(
       "dev",
       "dev"
-      ),
+    ),
     example = c(
       "b6d9ed96-be68-4791-abc3-08dcaba68c04",
       "d7329101-f275-d277-bbfe-d8cfaa709833"
-      )
+    )
   )
   return(
     examples |>
-      dplyr::filter(type == level, environment == environment) |>
+      dplyr::filter(
+        examples$type == level,
+        examples$environment == environment
+      ) |>
       dplyr::pull("example")
   )
 }

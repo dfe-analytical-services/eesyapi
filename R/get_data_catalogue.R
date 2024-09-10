@@ -24,7 +24,7 @@ get_data_catalogue <- function(publication_id = NULL) {
 #'
 #' @examples
 #' get_publication_dataset_list(example_id("publication"))
-get_publication_dataset_list <- function(publication_id){
+get_publication_dataset_list <- function(publication_id) {
 
 }
 
