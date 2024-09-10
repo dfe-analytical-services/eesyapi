@@ -37,3 +37,12 @@ test_that("Meta query runs successfully", {
     200
   )
 })
+
+test_that("Time period parsing works as expected", {
+ expect_equal(
+   readRDS("testdata/example_meta_unparsed.rds")$timePeriods |>
+     parse_meta_time_periods(),
+   readRDS("testdata/example_meta_parsed.rds")$time_periods
+ )
+}
+)
