@@ -16,6 +16,6 @@ Data frame containing location item codes matched
 Parse API meta to give the time periods
 }
 \examples{
-get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$timePeriods |>
+get_meta_response(example_id())$timePeriods |>
   parse_meta_time_periods()
 }

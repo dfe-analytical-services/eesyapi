@@ -16,6 +16,6 @@ Data frame containing location item codes matched
 Parse API meta to give the locations
 }
 \examples{
-get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$locations |>
+get_meta_response(example_id())$locations |>
   parse_meta_location_ids()
 }

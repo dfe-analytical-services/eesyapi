@@ -87,82 +87,6 @@ get_meta_response <- function(
   }
 }
 
-#' Parse API meta to give the filter columns
-#'
-#' @param api_meta_filters Filter information provided by the API output
-#'
-#' @return data frame containing column names and labels
-#' @export
-#'
-#' @examples
-#' get_meta_response(example_id())$filters |>
-#'   parse_meta_filter_columns()
-parse_meta_filter_columns <- function(api_meta_filters) {
-  data.frame(
-    col_name = api_meta_filters$id,
-    label = api_meta_filters$label
-  )
-}
-
-#' Parse API meta to give the indicator columns
-#'
-#' @param api_meta_indicators Filter information provided by the API output
-#'
-#' @return data frame containing indicator column names and labels
-#' @export
-#'
-#' @examples
-#' get_meta_response(example_id())$indicators |>
-#'   parse_meta_indicator_columns()
-parse_meta_indicator_columns <- function(api_meta_indicators) {
-  data.frame(
-    col_name = api_meta_indicators$id,
-    label = api_meta_indicators$label
-  )
-}
-
-#' Parse API meta to give the filter item codes
-#'
-#' @param api_meta_filters Filter information provided by the API output
-#'
-#' @return Data frame containing filter item codes matched to filter item labels and col_name
-#' @export
-#'
-#' @examples
-#' get_meta_response(example_id())$filters |>
-#'   parse_meta_filter_item_ids()
-parse_meta_filter_item_ids <- function(api_meta_filters) {
-  nfilters <- length(api_meta_filters$id)
-  filter_items <- data.frame(
-    col_name = NA,
-    item_id = NA,
-    item_label = NA,
-    isAggregate = NA
-  )
-  filter_items <- filter_items |>
-    dplyr::filter(!is.na(filter_items$col_name))
-  for (i in 1:nfilters) {
-    filter_items_i <- as.data.frame(
-      api_meta_filters$options[i]
-    ) |>
-      dplyr::rename(
-        item_id = "id",
-        item_label = "label"
-      ) |>
-      dplyr::mutate(col_name = api_meta_filters$id[i])
-    if (!("isAggregate" %in% names(filter_items_i))) {
-      filter_items_i <- filter_items_i |>
-        dplyr::mutate(isAggregate = NA)
-    }
-    filter_items <- filter_items |>
-      rbind(
-        filter_items_i |>
-          dplyr::select("col_name", "item_label", "item_id", default_item = "isAggregate")
-      )
-  }
-  return(filter_items)
-}
-
 #' Parse API meta to give the time periods
 #'
 #' @param api_meta_time_periods Time periods information provided by the API output
@@ -215,4 +139,80 @@ parse_meta_location_ids <- function(api_meta_locations) {
       )
   }
   return(location_items)
+}
+
+#' Parse API meta to give the filter columns
+#'
+#' @param api_meta_filters Filter information provided by the API output
+#'
+#' @return data frame containing column names and labels
+#' @export
+#'
+#' @examples
+#' get_meta_response(example_id())$filters |>
+#'   parse_meta_filter_columns()
+parse_meta_filter_columns <- function(api_meta_filters) {
+  data.frame(
+    col_name = api_meta_filters$id,
+    label = api_meta_filters$label
+  )
+}
+
+#' Parse API meta to give the filter item codes
+#'
+#' @param api_meta_filters Filter information provided by the API output
+#'
+#' @return Data frame containing filter item codes matched to filter item labels and col_name
+#' @export
+#'
+#' @examples
+#' get_meta_response(example_id())$filters |>
+#'   parse_meta_filter_item_ids()
+parse_meta_filter_item_ids <- function(api_meta_filters) {
+  nfilters <- length(api_meta_filters$id)
+  filter_items <- data.frame(
+    col_name = NA,
+    item_id = NA,
+    item_label = NA,
+    isAggregate = NA
+  )
+  filter_items <- filter_items |>
+    dplyr::filter(!is.na(filter_items$col_name))
+  for (i in 1:nfilters) {
+    filter_items_i <- as.data.frame(
+      api_meta_filters$options[i]
+    ) |>
+      dplyr::rename(
+        item_id = "id",
+        item_label = "label"
+      ) |>
+      dplyr::mutate(col_name = api_meta_filters$id[i])
+    if (!("isAggregate" %in% names(filter_items_i))) {
+      filter_items_i <- filter_items_i |>
+        dplyr::mutate(isAggregate = NA)
+    }
+    filter_items <- filter_items |>
+      rbind(
+        filter_items_i |>
+          dplyr::select("col_name", "item_label", "item_id", default_item = "isAggregate")
+      )
+  }
+  return(filter_items)
+}
+
+#' Parse API meta to give the indicator columns
+#'
+#' @param api_meta_indicators Indicator information provided by the API output
+#'
+#' @return data frame containing indicator column names and labels
+#' @export
+#'
+#' @examples
+#' get_meta_response(example_id())$indicators |>
+#'   parse_meta_indicator_columns()
+parse_meta_indicator_columns <- function(api_meta_indicators) {
+  data.frame(
+    col_name = api_meta_indicators$id,
+    label = api_meta_indicators$label
+  )
 }
