@@ -1,0 +1,19 @@
+---
+title: "EES API workflow"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EES API workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(eesyapi)
+```
