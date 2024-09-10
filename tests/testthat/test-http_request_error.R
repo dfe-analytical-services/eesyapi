@@ -12,3 +12,15 @@ test_that("Bad URL / query message", {
 test_that("Server error message", {
   expect_equal(http_request_error(503), "Internal server error encountered.")
 })
+
+test_that("Server error message", {
+  expect_equal(http_request_error(399), "API http response code not recognised.")
+})
+
+test_that("Server error message", {
+  expect_equal(http_request_error(2001), "API http response code not recognised.")
+})
+
+test_that("Server error message", {
+  expect_equal(http_request_error(-200), "API http response code not recognised.")
+})
