@@ -22,7 +22,7 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
     parse = TRUE
   )
   meta_data <- list(
-    time_periods = meta_data_response$timePeriods,
+    time_periods = parse_meta_time_periods(meta_data_response$timePeriods),
     locations = parse_meta_location_ids(meta_data_response$locations),
     filter_columns = parse_meta_filter_columns(meta_data_response$filters),
     filter_items = parse_meta_filter_item_ids(meta_data_response$filters),
@@ -162,6 +162,26 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
   }
   return(filter_items)
 }
+
+#' Parse API meta to give the time periods
+#'
+#' @param api_meta_time_periods Time periods information provided by the API output
+#'
+#' @return Data frame containing location item codes matched
+#' @export
+#'
+#' @examples
+#' get_meta_response("d7329101-f275-d277-bbfe-d8cfaa709833")$timePeriods |>
+#'   parse_meta_time_periods()
+parse_meta_time_periods <- function(api_meta_time_periods) {
+  time_periods <- api_meta_time_periods |>
+    dplyr::mutate(code_num = as.numeric(gsub("[a-zA-Z]","",x$timePeriods$code)))
+  time_periods <- time_periods |>
+    dplyr::arrange(time_periods$code_num) |>
+    dplyr::select(-c("code_num"))
+  return(time_periods)
+}
+
 
 #' Parse API meta to give the locations
 #'
