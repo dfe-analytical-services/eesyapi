@@ -2,7 +2,7 @@
 % Please edit documentation in R/eesapi_url.R
 \name{eesapi_url}
 \alias{eesapi_url}
-\title{eesapi_url}
+\title{Generate an EES API URL}
 \usage{
 eesapi_url(
   api_version = "1.0",
@@ -16,15 +16,15 @@ eesapi_url(
 
 \item{endpoint}{Name of endpoint, can be "get-summary", "get-meta", "get-data", "query-data"}
 
-\item{dataset_id}{ID of dataset to be connected to}
+\item{dataset_id}{ID of data set to be connected to}
 
-\item{dataset_version}{Verson of dataset to be connected to}
+\item{dataset_version}{Version of data set to be connected to}
 }
 \value{
 A string containing the URL for connecting to the EES API
 }
 \description{
-eesapi_url
+Generate an EES API URL
 }
 \examples{
 eesapi_url()

@@ -1,4 +1,4 @@
-#' eesapi_url
+#' Generate an EES API URL
 #'
 #' @param api_version EES API version
 #' @param endpoint Name of endpoint, can be "get-summary", "get-meta", "get-data", "query-data"

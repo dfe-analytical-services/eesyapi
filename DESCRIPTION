@@ -1,11 +1,13 @@
 Package: eesyapi
 Title: EES-y API
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
+    c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-9070-9969"))
+           comment = c(ORCID = "0000-0001-9070-9969")),
+    person("Cam", "Race", , "cameron.race@education.gov.uk", role = "aut"))
 Description: An R package with useful utility functions for connecting to, and
-    processing data from, the DfE's Explore Education Statistics API.
+    processing data from, the DfE's explore education statistics API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -15,4 +17,6 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
-    httr
+    httr,
+    jsonlite,
+    dplyr
