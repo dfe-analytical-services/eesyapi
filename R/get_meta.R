@@ -175,7 +175,7 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
 #'   parse_meta_time_periods()
 parse_meta_time_periods <- function(api_meta_time_periods) {
   time_periods <- api_meta_time_periods |>
-    dplyr::mutate(code_num = as.numeric(gsub("[a-zA-Z]","",x$timePeriods$code)))
+    dplyr::mutate(code_num = as.numeric(gsub("[a-zA-Z]", "", api_meta_time_periods$code)))
   time_periods <- time_periods |>
     dplyr::arrange(time_periods$code_num) |>
     dplyr::select(-c("code_num"))
