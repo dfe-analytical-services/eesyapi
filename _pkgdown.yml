@@ -4,3 +4,22 @@ template:
   bootswatch: cyborg
   bslib:
     pkgdown-nav-height: 81.4468px
+
+reference:
+- title: Primary API workflow tools for analysts
+  desc: These are the functions we expect analysts will most likely want to use to connect to the EES API.
+  contents:
+  - get_meta
+
+- title: Support for handling URLs and http responses
+  desc: These functions are helpful for deriving urls and handling http responses and are used widely by the API workflow functions
+  contents:
+  - example_id
+  - eesapi_url
+  - http_request_error
+
+- title: Support for handling meta data from the API
+  desc: These functions are used by `get_meta()` and included here for completeness
+  contents:
+  - get_meta_response
+  - starts_with("parse_meta_")
