@@ -11,7 +11,7 @@ reference:
   contents:
   - get_meta
 
-- title: Support for handling URLs and http responses
+- title: Support for generating API URLs and interpreting responses
   desc: These functions are helpful for deriving urls and handling http responses and are used widely by the API workflow functions
   contents:
   - example_id
