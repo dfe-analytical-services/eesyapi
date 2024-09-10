@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,6 +16,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
       </ul></div>
@@ -30,9 +31,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="primary-api-workflow-tools-for-analysts">Primary API workflow tools for analysts<a class="anchor" aria-label="anchor" href="#primary-api-workflow-tools-for-analysts"></a></h2>
 
-
+      <div class="section-desc"><p>These are the functions we expect analysts will most likely want to use to connect to the EES API.</p></div>
 
 
     </div><div class="section level2">
@@ -42,16 +43,93 @@
 
       <dl><dt>
 
+          <code><a href="get_meta.html">get_meta()</a></code>
+
+        </dt>
+        <dd>Get a parsed version of the API response for a data set's meta data</dd>
+      </dl></div><div class="section level2">
+      <h2 id="support-for-generating-api-urls-and-interpreting-responses">Support for generating API URLs and interpreting responses<a class="anchor" aria-label="anchor" href="#support-for-generating-api-urls-and-interpreting-responses"></a></h2>
+
+      <div class="section-desc"><p>These functions are helpful for deriving urls and handling http responses and are used widely by the API workflow functions.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="example_id.html">example_id()</a></code>
+
+        </dt>
+        <dd>Example ID</dd>
+      </dl><dl><dt>
+
           <code><a href="eesapi_url.html">eesapi_url()</a></code>
 
         </dt>
-        <dd>eesapi_url</dd>
+        <dd>Generate an EES API URL</dd>
+      </dl><dl><dt>
+
+          <code><a href="http_request_error.html">http_request_error()</a></code>
+
+        </dt>
+        <dd>Contextualise http request errors</dd>
+      </dl></div><div class="section level2">
+      <h2 id="support-for-handling-meta-data-from-the-api">Support for handling meta data from the API<a class="anchor" aria-label="anchor" href="#support-for-handling-meta-data-from-the-api"></a></h2>
+
+      <div class="section-desc"><p>These functions are used by <code><a href="../reference/get_meta.html">get_meta()</a></code> and included here for completeness.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="get_meta_response.html">get_meta_response()</a></code>
+
+        </dt>
+        <dd>Get the base API response for a data set's meta data</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_meta_filter_columns.html">parse_meta_filter_columns()</a></code>
+
+        </dt>
+        <dd>Parse API meta to give the filter columns</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_meta_filter_item_ids.html">parse_meta_filter_item_ids()</a></code>
+
+        </dt>
+        <dd>Parse API meta to give the filter item codes</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_meta_indicator_columns.html">parse_meta_indicator_columns()</a></code>
+
+        </dt>
+        <dd>Parse API meta to give the indicator columns</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_meta_location_ids.html">parse_meta_location_ids()</a></code>
+
+        </dt>
+        <dd>Parse API meta to give the locations</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_meta_time_periods.html">parse_meta_time_periods()</a></code>
+
+        </dt>
+        <dd>Parse API meta to give the time periods</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Rich Bielby.</p>
+  <p>Developed by Rich Bielby, Cam Race.</p>
 </div>
 
 <div class="pkgdown-footer-right">
