@@ -138,8 +138,9 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
     item_id = NA,
     item_label = NA,
     isAggregate = NA
-  ) |>
-    dplyr::filter(!is.na(col_name))
+  )
+  filter_items <- filter_items |>
+    dplyr::filter(!is.na(filter_items$col_name))
   for (i in 1:nfilters) {
     filter_items_i <- as.data.frame(
       api_meta_filters$options[i]
@@ -179,8 +180,9 @@ parse_meta_location_ids <- function(api_meta_locations) {
     code = NA,
     label = NA,
     item_id = NA
-  ) |>
-    dplyr::filter(!is.na(geographic_level))
+  )
+  location_items <- location_items |>
+    dplyr::filter(!is.na(location_items$geographic_level))
   for (i in 1:nlevels) {
     location_items_i <- as.data.frame(
       api_meta_locations$options[i]
