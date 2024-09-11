@@ -30,16 +30,23 @@ get_publication_dataset_list <- function(publication_id) {
 
 #' Get publications
 #'
-#' @param page_size Number of results to return in a single query
+#' @param page_size Number of results to return in a single query (max 40)
+#' @param page
+#' @param verbose
 #'
 #' @return Data frame listing all available publications
 #' @export
 #'
 #' @examples
 #' get_publications()
-get_publications <- function(page_size = 40) {
+get_publications <- function(page_size = 40, page = NULL, verbose = FALSE) {
+  if(!(dplyr::between(page_size, 1,40))){
+    stop(
+      "The page size can only be within the range 1 <= page_size <= 40."
+    )
+  }
   httr::GET(
-    eesapi_url(page_size = page_size)
+    eesapi_url(page_size = page_size, page = page, verbose=verbose)
   ) |>
     httr::content("text") |>
     jsonlite::fromJSON()
