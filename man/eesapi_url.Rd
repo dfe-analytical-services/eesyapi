@@ -12,7 +12,8 @@ eesapi_url(
   page_size = NULL,
   page = NULL,
   api_version = "1.0",
-  environment = "dev"
+  environment = "dev",
+  verbose = FALSE
 )
 }
 \arguments{

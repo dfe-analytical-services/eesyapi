@@ -1,20 +1,3 @@
-#' Get data set catalogue
-#'
-#' @param publication_id The publication ID, leave as NULL to query across all publications
-#'
-#' @return Data frame listing data sets
-#' @export
-#'
-#' @examples
-#' get_data_catalogue()
-get_data_catalogue <- function(publication_id = NULL) {
-  if (is.null(publication_id)) {
-    "I'm going to get a listing of all data sets from all publications..."
-  } else {
-    "I'm going to get a listing of all data sets from a single publication..."
-  }
-}
-
 #' Get publication specific data set catalogue
 #'
 #' @param publication_id The publication ID as used by the API
@@ -31,8 +14,8 @@ get_publication_dataset_list <- function(publication_id) {
 #' Get publications
 #'
 #' @param page_size Number of results to return in a single query (max 40)
-#' @param page
-#' @param verbose
+#' @param page Page number to return
+#' @param verbose Add extra contextual information whilst running
 #'
 #' @return Data frame listing all available publications
 #' @export
@@ -40,14 +23,12 @@ get_publication_dataset_list <- function(publication_id) {
 #' @examples
 #' get_publications()
 get_publications <- function(page_size = 40, page = NULL, verbose = FALSE) {
-  if(!(dplyr::between(page_size, 1,40))){
-    stop(
-      "The page size can only be within the range 1 <= page_size <= 40."
-    )
-  }
-  httr::GET(
-    eesapi_url(page_size = page_size, page = page, verbose=verbose)
+  validate_page_size(page_size)
+  result <- httr::GET(
+    eesapi_url(page_size = page_size, page = page, verbose = verbose)
   ) |>
     httr::content("text") |>
     jsonlite::fromJSON()
+  result |> warning_max_pages()
+  return(result)
 }

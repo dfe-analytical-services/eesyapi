@@ -24,8 +24,7 @@ eesapi_url <- function(
     page = NULL,
     api_version = "1.0",
     environment = "dev",
-    verbose = FALSE
-    ) {
+    verbose = FALSE) {
   # Check that the API version is valid
   is_valid_api_version <- function(vapi) {
     !grepl(
@@ -102,7 +101,7 @@ eesapi_url <- function(
         ""
       ),
       ifelse(
-        !is.null(page_size),
+        !is.null(page),
         paste0("page=", page),
         ""
       ),
@@ -145,9 +144,9 @@ eesapi_url <- function(
       )
     )
   }
-  if(verbose){
-    cat("Generated the following query url:", fill=TRUE)
-    cat(url, fill=TRUE)
-    }
+  if (verbose) {
+    cat("Generated the following query url:", fill = TRUE)
+    cat(url, fill = TRUE)
+  }
   return(url)
 }

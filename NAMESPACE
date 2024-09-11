@@ -2,7 +2,6 @@
 
 export(eesapi_url)
 export(example_id)
-export(get_data_catalogue)
 export(get_meta)
 export(get_meta_response)
 export(get_publication_dataset_list)

@@ -4,10 +4,14 @@
 \alias{get_publications}
 \title{Get publications}
 \usage{
-get_publications(page_size = 40)
+get_publications(page_size = 40, page = NULL, verbose = FALSE)
 }
 \arguments{
-\item{page_size}{Number of results to return in a single query}
+\item{page_size}{Number of results to return in a single query (max 40)}
+
+\item{page}{Page number to return}
+
+\item{verbose}{Add extra contextual information whilst running}
 }
 \value{
 Data frame listing all available publications
