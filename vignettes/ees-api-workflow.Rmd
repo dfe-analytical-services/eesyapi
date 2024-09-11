@@ -17,3 +17,97 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(eesyapi)
 ```
+
+The following article presents an example workflow of how, as an analyst, someone might
+connect to the explore education statistics (EES) API to collect data with the help of
+`eesyapi` in R.
+
+As an overview, the stages you will likely need to follow are:
+
+- Find the data set ID
+- Query the data set meta data to identify filter and indicator IDs
+- Design a query using the relevant IDs
+- Post the query to the API
+- Perform some post processing of the data
+
+## Finding a data set ID
+
+Only some data sets on EES are available via the EES API. This is to maintain 
+minimum standards around the API data catalogue.
+
+Assuming you know the data set within a publication that you would like to query, 
+you will first need to identify the data set ID code. There are two methods to do 
+this, either a) via the data set's page on the EES website or b) by querying the 
+API itself.
+
+### Finding a data set ID on the EES website
+
+### Finding a data set ID via the EES API
+
+## Getting the data set meta data
+
+When querying a data set via the API, indicator and filter items are referenced 
+using auto-generated ID codes. Therefore, in order to construct a query that 
+involves selecting a subset of filter items or indicators, you'll need to obtain
+the codes associated with those elements.
+
+All those filter item and indicator codes are stored in a data sets meta data, 
+which can also be queried via the API. To get those codes as well as details on
+what time periods and geographic levels and locations are available in a given
+data set, you can use the function `eesyapi::get_meta()`, providing it with your 
+data set's ID:
+
+```
+eesyapi::get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
+```
+
+This function returns a list of 5 data frames:
+
+- `$time_periods`: label, code and period of all available time periods in the data set
+- `$locations`: geographic_level, code, label and item_id of all available locations in the data set
+- `$filter_columns`: col_name and label of all filters in the data set
+- `$filter_items`: col_name, item_label, item_id and default_item for all filter items in the data set
+- `$indicators`: col_name and label of all indicators in the data set
+
+The item_id values provided in `$locations` and `$filter_items` are required to 
+construct queries for filtering a given data set, whilst time periods can be 
+filtered on the values in the `$time_period` code column.
+
+In this example, let's say we've run `eesyapi::get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")`
+and we want to filter our data set to obtain data for:
+
+- the Week 51 time period, 
+- York and England from the locations,
+- Absence from Attendance status
+- Approved educational activity, Authorised  and Unauthorised from Attendance type
+- And we want to see Number of sessions data values.
+
+For this we would need the following codes / item_ids:
+
+- "W51"
+- "HV9zL" and "BT7J3"
+- "uRBo4"
+- "G7Kgr", "3Km8u" and "RWdka"
+- "session_count"
+
+We'll use these codes / item_ids in the following section to build a demo data 
+query.
+
+## Posting a query of a data set
+
+### Get the entirety of a single data set
+
+### Post a simple query of a single data set
+
+### Post a more complex query of a single data set
+
+## Useful notes on handling the data once you've got it
+
+## FAQs
+
+### Are there any bandwidth / repeat connection constraints that I should know about?
+
+### Why do you use IDs rather than the actual labels used in the data?
+
+
+
