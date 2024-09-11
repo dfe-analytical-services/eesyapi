@@ -45,7 +45,7 @@ get_publication_datasets <- function(
   eesyapi::validate_page_size(page_size)
   # Send the GET call to the API
   response <- httr::GET(
-    eesapi_url(
+    eesyapi::eesapi_url(
       endpoint = "get-data-catalogue",
       publication_id = publication_id,
       page_size = page_size,
@@ -56,6 +56,6 @@ get_publication_datasets <- function(
     httr::content("text") |>
     jsonlite::fromJSON()
   # Check that the query hasn't tried to retrieve results beyond the final page of results
-  response |> warning_max_pages()
+  response |> eesyapi::warning_max_pages()
   return(response)
 }
