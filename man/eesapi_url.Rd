@@ -33,6 +33,8 @@ eesapi_url(
 \item{api_version}{EES API version}
 
 \item{environment}{EES environment to connect to: "dev" or "prod"}
+
+\item{verbose}{Add extra contextual information whilst running}
 }
 \value{
 A string containing the URL for connecting to the EES API

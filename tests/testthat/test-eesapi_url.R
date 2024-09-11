@@ -1,7 +1,7 @@
 test_that("eesapi_url", {
   expect_equal(
     eesapi_url(),
-    "https://dev.statistics.api.education.gov.uk/api/v1.0/publications"
+    "https://dev.statistics.api.education.gov.uk/api/v1.0/publications?"
   )
   expect_error(
     eesapi_url(api_version = "1.x")

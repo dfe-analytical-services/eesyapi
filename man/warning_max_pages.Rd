@@ -13,5 +13,5 @@ warning_max_pages(api_result)
 Overshot maximum pages in results
 }
 \examples{
-get_publications(40,4) |> warning_max_pages()
+get_publications(40, 4) |> warning_max_pages()
 }

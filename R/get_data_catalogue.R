@@ -9,7 +9,10 @@
 #'
 #' @examples
 #' get_publications()
-get_publications <- function(page_size = 40, page = NULL, verbose = FALSE) {
+get_publications <- function(
+    page_size = 40,
+    page = NULL,
+    verbose = FALSE) {
   validate_page_size(page_size)
   response <- httr::GET(
     eesapi_url(page_size = page_size, page = page, verbose = verbose)
@@ -31,8 +34,16 @@ get_publications <- function(page_size = 40, page = NULL, verbose = FALSE) {
 #' @export
 #'
 #' @examples
-#' get_publication_dataset_list(example_id("publication"))
-get_publication_dataset_list <- function(publication_id, page_size = NULL, page = NULL, verbose = FALSE) {
+#' get_publication_datasets(example_id("publication"))
+get_publication_datasets <- function(
+    publication_id,
+    page_size = NULL,
+    page = NULL,
+    verbose = FALSE) {
+  # Validate input parameters
+  validate_ees_id(publication_id)
+  validate_page_size(page_size)
+  # Send the GET call to the API
   response <- httr::GET(
     eesapi_url(
       endpoint = "get-data-catalogue",
@@ -44,7 +55,7 @@ get_publication_dataset_list <- function(publication_id, page_size = NULL, page 
   ) |>
     httr::content("text") |>
     jsonlite::fromJSON()
+  # Check that the query hasn't tried to retrieve results beyond the final page of results
   response |> warning_max_pages()
   return(response)
 }
-

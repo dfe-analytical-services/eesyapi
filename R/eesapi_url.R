@@ -9,6 +9,7 @@
 #' @param page Page number of query results to return
 #' @param api_version EES API version
 #' @param environment EES environment to connect to: "dev" or "prod"
+#' @param verbose Add extra contextual information whilst running
 #'
 #' @return A string containing the URL for connecting to the EES API
 #' @export
@@ -135,8 +136,8 @@ eesapi_url <- function(
 
 #' EES API URL paging
 #'
-#' @param page_size
-#' @param page
+#' @param page_size Number of results to return in a single query (max 40)
+#' @param page Page number to return
 #'
 #' @return String containing pages query
 #' @export

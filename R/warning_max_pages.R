@@ -3,6 +3,7 @@
 #' @param api_result Output from an API get query
 #'
 #' @return NULL
+#' @export
 #'
 #' @examples
 #' get_publications(40, 4) |> warning_max_pages()
