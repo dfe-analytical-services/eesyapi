@@ -76,11 +76,11 @@ filtered on the values in the `$time_period` code column.
 In this example, let's say we've run `eesyapi::get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")`
 and we want to filter our data set to obtain data for:
 
-- the Week 51 time period, 
-- York and England from the locations,
-- Absence from Attendance status
-- Approved educational activity, Authorised  and Unauthorised from Attendance type
-- And we want to see Number of sessions data values.
+- the "Week 51" time period, 
+- "York" and "England" from the locations,
+- "Absence" from Attendance status
+- "Approved educational activity", "Authorised" and "Unauthorised" from Attendance type
+- And we want to see "Number of sessions" data values.
 
 For this we would need the following codes / item_ids:
 
