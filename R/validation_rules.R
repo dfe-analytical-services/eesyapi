@@ -61,7 +61,9 @@ validate_ees_id <- function(element_id, level = "publication") {
 
     if (stringr::str_length(element_id) != stringr::str_length(eesyapi::example_id(level))) {
       stop(err_string)
-    } else if (gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", eesyapi::example_id(level))) {
+    } else if (
+      gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", eesyapi::example_id(level))
+    ) {
       stop(err_string)
     }
   }
