@@ -8,8 +8,8 @@
 #' @export
 #'
 #' @examples
-#' get_publications()
-get_publications <- function(
+#' get_publication_catalogue()
+get_publication_catalogue <- function(
     page_size = 40,
     page = NULL,
     verbose = FALSE) {
