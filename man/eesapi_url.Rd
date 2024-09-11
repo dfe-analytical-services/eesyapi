@@ -2,7 +2,7 @@
 % Please edit documentation in R/eesapi_url.R
 \name{eesapi_url}
 \alias{eesapi_url}
-\title{eesapi_url}
+\title{Generate an EES API URL}
 \usage{
 eesapi_url(
   endpoint = "get-publications",
@@ -37,7 +37,7 @@ eesapi_url(
 A string containing the URL for connecting to the EES API
 }
 \description{
-eesapi_url
+Generate an EES API URL
 }
 \examples{
 eesapi_url()

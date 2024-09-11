@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_meta.R
 \name{get_meta}
 \alias{get_meta}
-\title{Get the base API response for a data set's meta data}
+\title{Get a parsed version of the API response for a data set's meta data}
 \usage{
 get_meta(dataset_id, dataset_version = NULL, api_version = NULL)
 }

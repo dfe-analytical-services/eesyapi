@@ -1,4 +1,4 @@
-#' eesapi_url
+#' Generate an EES API URL
 #'
 #' @param endpoint Name of endpoint, can be "get-publications", "get-data-catalogue",
 #' "get-summary", "get-meta", "get-data" or "query-data"

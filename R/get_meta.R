@@ -1,4 +1,4 @@
-#' Get the base API response for a data set's meta data
+#' Get a parsed version of the API response for a data set's meta data
 #'
 #' @description
 #' Get a list of metadata information for a data set available from the EES API. Provides either
@@ -22,7 +22,7 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
     parse = TRUE
   )
   meta_data <- list(
-    time_periods = meta_data_response$timePeriods,
+    time_periods = parse_meta_time_periods(meta_data_response$timePeriods),
     locations = parse_meta_location_ids(meta_data_response$locations),
     filter_columns = parse_meta_filter_columns(meta_data_response$filters),
     filter_items = parse_meta_filter_item_ids(meta_data_response$filters),
@@ -87,6 +87,60 @@ get_meta_response <- function(
   }
 }
 
+#' Parse API meta to give the time periods
+#'
+#' @param api_meta_time_periods Time periods information provided by the API output
+#'
+#' @return Data frame containing location item codes matched
+#' @export
+#'
+#' @examples
+#' get_meta_response(example_id())$timePeriods |>
+#'   parse_meta_time_periods()
+parse_meta_time_periods <- function(api_meta_time_periods) {
+  time_periods <- api_meta_time_periods |>
+    dplyr::mutate(code_num = as.numeric(gsub("[a-zA-Z]", "", api_meta_time_periods$code)))
+  time_periods <- time_periods |>
+    dplyr::arrange(time_periods$code_num) |>
+    dplyr::select(-c("code_num"))
+  return(time_periods)
+}
+
+
+#' Parse API meta to give the locations
+#'
+#' @param api_meta_locations Locations information provided by the API output
+#'
+#' @return Data frame containing location item codes matched
+#' @export
+#'
+#' @examples
+#' get_meta_response(example_id())$locations |>
+#'   parse_meta_location_ids()
+parse_meta_location_ids <- function(api_meta_locations) {
+  nlevels <- length(api_meta_locations$level)
+  location_items <- data.frame(
+    geographic_level = NA,
+    code = NA,
+    label = NA,
+    item_id = NA
+  )
+  location_items <- location_items |>
+    dplyr::filter(!is.na(location_items$geographic_level))
+  for (i in 1:nlevels) {
+    location_items_i <- as.data.frame(
+      api_meta_locations$options[i]
+    ) |>
+      dplyr::mutate(geographic_level = api_meta_locations$level$label[i])
+    location_items <- location_items |>
+      rbind(
+        location_items_i |>
+          dplyr::select("geographic_level", "code", "label", item_id = "id")
+      )
+  }
+  return(location_items)
+}
+
 #' Parse API meta to give the filter columns
 #'
 #' @param api_meta_filters Filter information provided by the API output
@@ -101,23 +155,6 @@ parse_meta_filter_columns <- function(api_meta_filters) {
   data.frame(
     col_name = api_meta_filters$id,
     label = api_meta_filters$label
-  )
-}
-
-#' Parse API meta to give the indicator columns
-#'
-#' @param api_meta_indicators Filter information provided by the API output
-#'
-#' @return data frame containing indicator column names and labels
-#' @export
-#'
-#' @examples
-#' get_meta_response(example_id())$indicators |>
-#'   parse_meta_indicator_columns()
-parse_meta_indicator_columns <- function(api_meta_indicators) {
-  data.frame(
-    col_name = api_meta_indicators$id,
-    label = api_meta_indicators$label
   )
 }
 
@@ -163,36 +200,19 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
   return(filter_items)
 }
 
-#' Parse API meta to give the locations
+#' Parse API meta to give the indicator columns
 #'
-#' @param api_meta_locations Locations information provided by the API output
+#' @param api_meta_indicators Indicator information provided by the API output
 #'
-#' @return Data frame containing location item codes matched
+#' @return data frame containing indicator column names and labels
 #' @export
 #'
 #' @examples
-#' get_meta_response(example_id())$locations |>
-#'   parse_meta_location_ids()
-parse_meta_location_ids <- function(api_meta_locations) {
-  nlevels <- length(api_meta_locations$level)
-  location_items <- data.frame(
-    geographic_level = NA,
-    code = NA,
-    label = NA,
-    item_id = NA
+#' get_meta_response(example_id())$indicators |>
+#'   parse_meta_indicator_columns()
+parse_meta_indicator_columns <- function(api_meta_indicators) {
+  data.frame(
+    col_name = api_meta_indicators$id,
+    label = api_meta_indicators$label
   )
-  location_items <- location_items |>
-    dplyr::filter(!is.na(location_items$geographic_level))
-  for (i in 1:nlevels) {
-    location_items_i <- as.data.frame(
-      api_meta_locations$options[i]
-    ) |>
-      dplyr::mutate(geographic_level = api_meta_locations$level$label[i])
-    location_items <- location_items |>
-      rbind(
-        location_items_i |>
-          dplyr::select("geographic_level", "code", "label", item_id = "id")
-      )
-  }
-  return(location_items)
 }
