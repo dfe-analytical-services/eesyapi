@@ -94,34 +94,16 @@ eesapi_url <- function(
   if (endpoint == "get-publications") {
     url <- paste0(
       api_stub_vers,
-      "publications",
-      ifelse(
-        !is.null(page) | !is.null(page_size),
-        paste0("?"),
-        ""
-      ),
-      ifelse(
-        !is.null(page),
-        paste0("page=", page),
-        ""
-      ),
-      ifelse(
-        !is.null(page) & !is.null(page_size),
-        paste0("&"),
-        ""
-      ),
-      ifelse(
-        !is.null(page),
-        paste0("pageSize=", page_size),
-        ""
-      )
+      "publications?",
+      eesapi_url_pages(page_size = page_size, page = page)
     )
   } else if (endpoint == "get-data-catalogue") {
     url <- paste0(
       api_stub_vers,
       "publications/",
       publication_id,
-      "/data-sets"
+      "/data-sets?",
+      eesapi_url_pages(page_size = page_size, page = page)
     )
   } else {
     url <- paste0(
@@ -149,4 +131,35 @@ eesapi_url <- function(
     cat(url, fill = TRUE)
   }
   return(url)
+}
+
+#' EES API URL paging
+#'
+#' @param page_size
+#' @param page
+#'
+#' @return String containing pages query
+#' @export
+#'
+#' @examples
+#' eesapi_url_pages()
+#' eesapi_url_pages(page_size = 20, page = 2)
+eesapi_url_pages <- function(page_size = 40, page = NULL) {
+  paste0(
+    ifelse(
+      !is.null(page),
+      paste0("page=", page),
+      ""
+    ),
+    ifelse(
+      !is.null(page) & !is.null(page_size),
+      paste0("&"),
+      ""
+    ),
+    ifelse(
+      !is.null(page_size),
+      paste0("pageSize=", page_size),
+      ""
+    )
+  )
 }

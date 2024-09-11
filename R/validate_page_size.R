@@ -14,7 +14,7 @@ validate_page_size <- function(page_size, min = 1, max = 40) {
   } else {
     valid <- FALSE
   }
-  if(!valid){
+  if (!valid) {
     stop(
       "The page size can only be a numeric value within the range 1 <= page_size <= 40."
     )
