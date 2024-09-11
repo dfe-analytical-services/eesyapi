@@ -54,14 +54,14 @@ validate_ees_id <- function(element_id, level = "publication") {
       "The ", level,
       "_id provided (", element_id,
       ") is expected to be a 36 character string in the format:\n    ",
-      example_id(level),
+      eesyapi::example_id(level),
       "\n  Please double check your ", level,
       "_id."
     )
 
-    if (stringr::str_length(element_id) != stringr::str_length(example_id(level))) {
+    if (stringr::str_length(element_id) != stringr::str_length(eesyapi::example_id(level))) {
       stop(err_string)
-    } else if (gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", example_id(level))) {
+    } else if (gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", eesyapi::example_id(level))) {
       stop(err_string)
     }
   }

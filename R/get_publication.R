@@ -13,13 +13,13 @@ get_publication_catalogue <- function(
     page_size = 40,
     page = NULL,
     verbose = FALSE) {
-  validate_page_size(page_size)
+  eesyapi::validate_page_size(page_size)
   response <- httr::GET(
-    eesapi_url(page_size = page_size, page = page, verbose = verbose)
+    eesyapi::eesapi_url(page_size = page_size, page = page, verbose = verbose)
   ) |>
     httr::content("text") |>
     jsonlite::fromJSON()
-  response |> warning_max_pages()
+  response |> eesyapi::warning_max_pages()
   return(response)
 }
 
@@ -41,8 +41,8 @@ get_publication_datasets <- function(
     page = NULL,
     verbose = FALSE) {
   # Validate input parameters
-  validate_ees_id(publication_id)
-  validate_page_size(page_size)
+  eesyapi::validate_ees_id(publication_id)
+  eesyapi::validate_page_size(page_size)
   # Send the GET call to the API
   response <- httr::GET(
     eesapi_url(
