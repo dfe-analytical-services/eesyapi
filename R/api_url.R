@@ -15,8 +15,8 @@
 #' @export
 #'
 #' @examples
-#' eesapi_url()
-eesapi_url <- function(
+#' api_url()
+api_url <- function(
     endpoint = "get-publications",
     publication_id = NULL,
     dataset_id = NULL,
@@ -96,7 +96,7 @@ eesapi_url <- function(
     url <- paste0(
       api_stub_vers,
       "publications?",
-      eesapi_url_pages(page_size = page_size, page = page)
+      api_url_pages(page_size = page_size, page = page)
     )
   } else if (endpoint == "get-data-catalogue") {
     url <- paste0(
@@ -104,7 +104,7 @@ eesapi_url <- function(
       "publications/",
       publication_id,
       "/data-sets?",
-      eesapi_url_pages(page_size = page_size, page = page)
+      api_url_pages(page_size = page_size, page = page)
     )
   } else {
     url <- paste0(
@@ -143,9 +143,9 @@ eesapi_url <- function(
 #' @export
 #'
 #' @examples
-#' eesapi_url_pages()
-#' eesapi_url_pages(page_size = 20, page = 2)
-eesapi_url_pages <- function(page_size = 40, page = NULL) {
+#' api_url_pages()
+#' api_url_pages(page_size = 20, page = 2)
+api_url_pages <- function(page_size = 40, page = NULL) {
   paste0(
     ifelse(
       !is.null(page),

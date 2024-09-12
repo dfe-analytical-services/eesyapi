@@ -15,7 +15,7 @@ get_publication_catalogue <- function(
     verbose = FALSE) {
   eesyapi::validate_page_size(page_size)
   response <- httr::GET(
-    eesyapi::eesapi_url(page_size = page_size, page = page, verbose = verbose)
+    eesyapi::api_url(page_size = page_size, page = page, verbose = verbose)
   ) |>
     httr::content("text") |>
     jsonlite::fromJSON()
@@ -45,7 +45,7 @@ get_publication_datasets <- function(
   eesyapi::validate_page_size(page_size)
   # Send the GET call to the API
   response <- httr::GET(
-    eesyapi::eesapi_url(
+    eesyapi::api_url(
       endpoint = "get-data-catalogue",
       publication_id = publication_id,
       page_size = page_size,

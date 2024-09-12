@@ -1,10 +1,6 @@
 # Check the get_publication_catalogue() function returns the expected data
 # WARNING: This depends on live data, so may fail due to real-life changes.
-#          If that's the case, take a new snapshot by running:
-# saveRDS(
-#   get_publication_catalogue(),
-#   file = 'tests/testthat/testdata/example_publication_catalogue.rds'
-# )
+#          If that's the case, take a new snapshot by running seed_tests()
 test_that("Filter columns parsing works as expected", {
   expect_equal(
     get_publication_catalogue(),
@@ -14,11 +10,7 @@ test_that("Filter columns parsing works as expected", {
 
 # Check the get_publication_datasets() function returns the expected data
 # WARNING: This depends on live data, so may fail due to real-life changes.
-#          If that's the case, take a new snapshot by running:
-# saveRDS(
-#   get_publication_datasets(example_id("publication")),
-#   file = 'tests/testthat/testdata/example_publication_datasets.rds'
-# )
+#          If that's the case, take a new snapshot by running seed_tests()
 test_that("Filter columns parsing works as expected", {
   expect_equal(
     get_publication_datasets(example_id("publication")),

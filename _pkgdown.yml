@@ -16,7 +16,7 @@ reference:
   desc: These functions are helpful for deriving urls and handling http responses and are used widely by the API workflow functions.
   contents:
   - example_id
-  - starts_with("eesapi_url")
+  - starts_with("api_url")
   - http_request_error
 
 - title: Support for handling meta data from the API
