@@ -20,9 +20,11 @@ api_url(
 \item{endpoint}{Name of endpoint, can be "get-publications", "get-data-catalogue",
 "get-summary", "get-meta", "get-data" or "query-data"}
 
-\item{publication_id}{ID of the publication to be connected to}
+\item{publication_id}{ID of the publication to be connected to. This is required if the
+endpoint is "get-data-catalogue"}
 
-\item{dataset_id}{ID of data set to be connected to}
+\item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
+of "get-summary", "get-meta", "get-data" or "query-data"}
 
 \item{dataset_version}{Version of data set to be connected to}
 
@@ -44,4 +46,10 @@ Generate an EES API URL
 }
 \examples{
 api_url()
+api_url("get-publications")
+api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))
+api_url("get-summary", dataset_id = eesyapi::example_id("dataset"))
+api_url("get-meta", dataset_id = eesyapi::example_id("dataset"))
+api_url("get-data", dataset_id = eesyapi::example_id("dataset"))
+api_url("query-data", dataset_id = eesyapi::example_id("dataset"))
 }

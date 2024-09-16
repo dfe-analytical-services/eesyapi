@@ -2,8 +2,10 @@
 #'
 #' @param endpoint Name of endpoint, can be "get-publications", "get-data-catalogue",
 #' "get-summary", "get-meta", "get-data" or "query-data"
-#' @param publication_id ID of the publication to be connected to
-#' @param dataset_id ID of data set to be connected to
+#' @param publication_id ID of the publication to be connected to. This is required if the
+#' endpoint is "get-data-catalogue"
+#' @param dataset_id ID of data set to be connected to. This is required if the endpoint is one
+#' of "get-summary", "get-meta", "get-data" or "query-data"
 #' @param dataset_version Version of data set to be connected to
 #' @param page_size Number of results to return in a single query
 #' @param page Page number of query results to return
@@ -16,6 +18,12 @@
 #'
 #' @examples
 #' api_url()
+#' api_url("get-publications")
+#' api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))
+#' api_url("get-summary", dataset_id = eesyapi::example_id("dataset"))
+#' api_url("get-meta", dataset_id = eesyapi::example_id("dataset"))
+#' api_url("get-data", dataset_id = eesyapi::example_id("dataset"))
+#' api_url("query-data", dataset_id = eesyapi::example_id("dataset"))
 api_url <- function(
     endpoint = "get-publications",
     publication_id = NULL,
@@ -87,7 +95,7 @@ api_url <- function(
     test = "https://test.statistics.api.education.gov.uk/api/",
     preprod = "https://pre-production.statistics.api.education.gov.uk/api/",
     prod = "https://statistics.api.education.gov.uk/api/"
-    )
+  )
 
   endpoint_base_version <- paste0(
     endpoint_base[[environment]],
