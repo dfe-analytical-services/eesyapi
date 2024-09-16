@@ -14,9 +14,10 @@ get_publication_datasets(
 \arguments{
 \item{publication_id}{The publication ID as used by the API}
 
-\item{page_size}{Number of results to return in a single query (max 40)}
+\item{page_size}{Number of results to collect in a single query to the API (max 40)}
 
-\item{page}{Page number to return}
+\item{page}{Page number to return (Default is NULL which will loop through until all
+pages of the query are collated).}
 
 \item{verbose}{Add extra contextual information whilst running}
 }
