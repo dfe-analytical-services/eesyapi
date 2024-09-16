@@ -118,7 +118,7 @@ api_url <- function(
     url <- paste0(
       endpoint_base_version,
       "publications?",
-      api_url_pages(page_size = page_size, page = page)
+      eesyapi::api_url_pages(page_size = page_size, page = page)
     )
   } else if (endpoint == "get-data-catalogue") {
     url <- paste0(
@@ -126,7 +126,7 @@ api_url <- function(
       "publications/",
       publication_id,
       "/data-sets?",
-      api_url_pages(page_size = page_size, page = page)
+      eesyapi::api_url_pages(page_size = page_size, page = page)
     )
   } else {
     url <- paste0(
