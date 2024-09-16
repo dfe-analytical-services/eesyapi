@@ -42,7 +42,16 @@ of "get-summary", "get-meta", "get-data" or "query-data"}
 A string containing the URL for connecting to the EES API
 }
 \description{
-Generate an EES API URL
+This function returns a single URL to connect to a chosen EES API endpoint. The resulting URL can
+be used with GET or POST (as appropriate) in order to connect. Whether the publication_id or
+dataset_id (or neither) parameter are required depends on the endpoint chose.
+
+\tabular{lr}{
+\strong{Endpoints} \tab \strong{id required} \cr
+get-publications \tab Neither  \cr
+get-data-catalogue \tab publication_id  \cr
+get-summary, get-meta, get-data, query-data \tab dataset_id  \cr
+}
 }
 \examples{
 api_url()
