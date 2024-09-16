@@ -19,6 +19,20 @@ get_publication_catalogue <- function(
   ) |>
     httr::content("text") |>
     jsonlite::fromJSON()
+  # Unless the user specifies a specific page of results to get, loop through all available pages.
+  if(is.null(page)){
+    if(response$paging$totalPages > 1){
+      for(page in c(2:response$paging$totalPages)){
+        response_page <- httr::GET(
+          eesyapi::api_url(page_size = page_size, page = page, verbose = verbose)
+        ) |>
+          httr::content("text") |>
+          jsonlite::fromJSON()
+        response$results <- response$results |>
+          rbind(response_page$results)
+      }
+    }
+  }
   response |> eesyapi::warning_max_pages()
   return(response)
 }
