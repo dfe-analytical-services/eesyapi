@@ -15,7 +15,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-
 ```
 
 The following article presents an example workflow of how, as an analyst, someone might
