@@ -1,5 +1,12 @@
 #' EES API URL paging
 #'
+#' @description
+#' EES API results are paged, such that only one page is returned by a single request submitted
+#' to the API. This function creates the URL query syntax to specify the number of results to be
+#' returned per page and the page number to retrieve. This is largely used by api_url() to
+#' automatically generate API request URLs, but is exported as part of the package for any users
+#' who wish to generate their own URLs.
+#'
 #' @param page_size Number of results to return in a single query (max 40)
 #' @param page Page number to return
 #'
