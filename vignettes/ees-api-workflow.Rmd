@@ -61,7 +61,7 @@ For example from the test list, we can pick out **"Attendance API data"**, which
 id of **"b6d9ed96-be68-4791-abc3-08dcaba68c04"**. We can now use this in the function `eesyapi::get_publication_datasets()` to find all the data sets within that publication:
 
 ```
-eesyapi::get_publication_catalogue("b6d9ed96-be68-4791-abc3-08dcaba68c04")
+eesyapi::get_publication_datasets("b6d9ed96-be68-4791-abc3-08dcaba68c04")
 ```
 
 This returns a data frame containing data set ids and titles (along with a summary, the status and information on what's in the latest version). This data set id can now be used as shown in the following sections to get a given data set's summary and meta data, and to query the data set itself.
