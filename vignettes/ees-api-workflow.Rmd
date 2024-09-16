@@ -42,7 +42,29 @@ API itself.
 
 ### Finding a data set ID on the EES website
 
-### Finding a data set ID via the EES API
+
+### Identifying a data set ID via the API
+
+Finding a data set ID via the API is a two step process. First, you'll need to find the parent publication ID and second, you'll need to search the data catalogue within that publication for the data set.
+
+Querying the publication list:
+
+```
+eesyapi::get_publication_catalogue()
+```
+
+This returns a list of all publications by id and title (along with slug, summary and date last published). 
+From this list, you can find the title of the publication that you're interested in and pick out the 
+associated publication ID.
+
+For example from the test list, we can pick out **"Attendance API data"**, which has an 
+id of **"b6d9ed96-be68-4791-abc3-08dcaba68c04"**. We can now use this in the function `eesyapi::get_publication_datasets()` to find all the data sets within that publication:
+
+```
+eesyapi::get_publication_catalogue("b6d9ed96-be68-4791-abc3-08dcaba68c04")
+```
+
+This returns a data frame containing data set ids and titles (along with a summary, the status and information on what's in the latest version). This data set id can now be used as shown in the following sections to get a given data set's summary and meta data, and to query the data set itself.
 
 ## Getting the data set meta data
 

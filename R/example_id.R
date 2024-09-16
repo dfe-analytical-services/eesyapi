@@ -10,11 +10,11 @@
 #'
 #' @examples
 #' example_id()
-example_id <- function(level = "data set", environment = "dev") {
+example_id <- function(level = "dataset", environment = "dev") {
   examples <- data.frame(
     type = c(
       "publication",
-      "data set"
+      "dataset"
     ),
     environment = c(
       "dev",

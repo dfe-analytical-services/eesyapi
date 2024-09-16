@@ -61,7 +61,7 @@ get_meta_response <- function(
   # Use eesyapi_url to retrieve the relevant api url - note that this will perform
   # validation checks on dataset_id, dataset_version and api_version, so haven't
   # added any explicit validation of those to the current function.
-  meta_url <- eesyapi::eesapi_url(
+  meta_url <- eesyapi::api_url(
     endpoint = "get-meta",
     dataset_id = dataset_id,
     dataset_version = dataset_version
