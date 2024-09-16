@@ -82,25 +82,27 @@ api_url <- function(
     }
   }
 
-  if (environment == "dev") {
-    api_stub <- "https://dev.statistics.api.education.gov.uk/api/"
-  } else {
-    api_stub <- "https://statistics.api.education.gov.uk/api/"
-  }
-  api_stub_vers <- paste0(
-    api_stub,
+  endpoint_base <- list(
+    dev = "https://dev.statistics.api.education.gov.uk/api/",
+    test = "https://test.statistics.api.education.gov.uk/api/",
+    preprod = "https://pre-production.statistics.api.education.gov.uk/api/",
+    prod = "https://statistics.api.education.gov.uk/api/"
+    )
+
+  endpoint_base_version <- paste0(
+    endpoint_base[[environment]],
     "v", api_version, "/"
   )
 
   if (endpoint == "get-publications") {
     url <- paste0(
-      api_stub_vers,
+      endpoint_base_version,
       "publications?",
       api_url_pages(page_size = page_size, page = page)
     )
   } else if (endpoint == "get-data-catalogue") {
     url <- paste0(
-      api_stub_vers,
+      endpoint_base_version,
       "publications/",
       publication_id,
       "/data-sets?",
@@ -108,7 +110,7 @@ api_url <- function(
     )
   } else {
     url <- paste0(
-      api_stub_vers,
+      endpoint_base_version,
       "data-sets/",
       ifelse(
         endpoint %in% c("get-summary", "get-meta", "get-data", "query-data"),
