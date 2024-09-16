@@ -18,7 +18,7 @@ warning_max_pages <- function(api_result) {
         api_result$paging$page,
         ") greater than the available number of result pages (",
         api_result$paging$totalPages,
-        ")."
+        "). The API will have returned an empty array to this query."
       )
     )
   }

@@ -155,4 +155,3 @@ api_url <- function(
   }
   return(url)
 }
-

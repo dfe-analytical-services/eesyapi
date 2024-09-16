@@ -15,7 +15,11 @@ api_url_pages(page_size = 40, page = NULL)
 String containing pages query
 }
 \description{
-EES API URL paging
+EES API results are paged, such that only one page is returned by a single request submitted
+to the API. This function creates the URL query syntax to specify the number of results to be
+returned per page and the page number to retrieve. This is largely used by api_url() to
+automatically generate API request URLs, but is exported as part of the package for any users
+who wish to generate their own URLs.
 }
 \examples{
 api_url_pages()
