@@ -1,7 +1,8 @@
 #' Get publications
 #'
-#' @param page_size Number of results to return in a single query (max 40)
-#' @param page Page number to return
+#' @param page_size Number of results to return in a single query to the API (max 40)
+#' @param page Page number to return (Default is NULL which will loop through until all
+#' pages of the query are collated).
 #' @param verbose Add extra contextual information whilst running
 #'
 #' @return Data frame listing all available publications
