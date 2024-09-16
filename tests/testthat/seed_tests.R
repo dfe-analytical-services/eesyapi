@@ -12,7 +12,7 @@ seed_get_publication <- function() {
 
 seed_get_publication_datasets <- function() {
   saveRDS(
-    eesyapi::get_publication_datasets(example_id("publication")),
+    eesyapi::get_publication_datasets(eesyapi::example_id("publication")),
     file = "tests/testthat/testdata/example_publication_datasets.rds"
   )
 }
