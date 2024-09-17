@@ -30,7 +30,7 @@ query_dataset_get <- function(
       indicators = indicators,
       time_periods = time_periods,
       geographic_levels = geographic_levels
-      )
+    )
   ) |>
     httr::content("text") |>
     jsonlite::fromJSON()
