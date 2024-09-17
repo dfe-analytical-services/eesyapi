@@ -34,7 +34,7 @@ of "get-summary", "get-meta", "get-data" or "query-data"}
 
 \item{api_version}{EES API version}
 
-\item{environment}{EES environment to connect to: "dev" or "prod"}
+\item{environment}{EES environment to connect to: "dev", "test", "preprod" or "prod"}
 
 \item{verbose}{Add extra contextual information whilst running}
 }
