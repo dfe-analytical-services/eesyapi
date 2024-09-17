@@ -34,4 +34,13 @@ test_that("api_url", {
       "dummy:dataset:id/query?dataSetVersion=2.1"
     )
   )
+  expect_error(
+    api_url(
+      environment = "invalid-endpoint"
+    ),
+    paste(
+      "You have entered invalid EES environment. The environment should be one of:\n",
+      "   - dev, test, preprod or prod"
+    )
+  )
 })

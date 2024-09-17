@@ -2,7 +2,8 @@
 
 Try and make use of the [usethis](https://usethis.r-lib.org/) package wherever possible.
 
-When you initially clone the package, the first thing you'll need to do is install [devtools](https://devtools.r-lib.org/):
+When you initially clone the package, the first thing you'll need to do is install 
+[devtools](https://devtools.r-lib.org/):
 
 ```
 install.packages("devtools")
@@ -14,15 +15,24 @@ Then to load in the package in its current form:
 devtools::load_all()
 ```
 
+## Documenting
+
+Please always document as you develop. Always add a description to functions, alongside working
+examples (see [the section on `example_id()`](#using-example_id()-with-examples-and-tests) for 
+generating functional IDs and codes). For extended processes / workflows, we recommend starting
+a vignette explaining the workflow as you're creating the functions underpinning it.
+
 ## Adding a package/dependency
 
 `usethis::use_package(<package_name>)`
 
-Note that when adding a function from another package into one of the eesyapi functions you will need to explicitly state the package in the function call, e.g.:
+Note that when adding a function from another package into one of the eesyapi functions you will need to 
+explicitly state the package in the function call, e.g.:
 
 ```package::function()```
 
-Alternatively, if there's a lot of uses of a single function within one of our R scripts, you can call that function once at the top of the R script, e.g:
+Alternatively, if there's a lot of uses of a single function within one of our R scripts, you can call that 
+function once at the top of the R script, e.g:
 
 ```
 @' importFrom package function
@@ -41,6 +51,23 @@ This will create a new script within the package [R/](R/) folder.
 `usethis::use_test(name = <script_name>)`
 
 This will create a new blank test script within the package [testthat/](testthat/) folder.
+
+## Using `example_id()` with examples and tests
+
+As the functionality of eesyapi is heavily tied to the EES API content and a variety of associated IDs and codes,
+we have created the function `example_id()` to create a go to reference point for example IDs and codes that 
+work with the API. `example_id()` should be used to generate IDs and codes whenever writing function tests or 
+examples that require a connection to the API. For example in `api_url()`, we give the functioning example:
+
+`api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))`
+
+which connects to an actual publication on EES and retrieves a list of data sets within that publication.
+
+`example_id()` is especially useful, and should always be used, as part of creating test data as part of tests
+that require it.
+
+By using `example_id()`, we can easily update all tests and examples if a given ID or code becomes unusable
+in the context of the package for any reason.
 
 ## Updating the package version
 

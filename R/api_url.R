@@ -22,7 +22,7 @@
 #' @param page_size Number of results to return in a single query
 #' @param page Page number of query results to return
 #' @param api_version EES API version
-#' @param environment EES environment to connect to: "dev" or "prod"
+#' @param environment EES environment to connect to: "dev", "test", "preprod" or "prod"
 #' @param verbose Add extra contextual information whilst running
 #'
 #' @return A string containing the URL for connecting to the EES API
@@ -93,14 +93,25 @@ api_url <- function(
         paste(
           "You have entered invalid data set info. The following rules must be",
           "met:\n",
-          " - dataset_id must not be NULL\n",
-          " - dataset_version should either be:\n",
-          "   - NULL (gives latest version) or\n",
-          "   - a numeric"
+          "   - dataset_id must not be NULL\n",
+          "   - dataset_version should either be:\n",
+          "     - NULL (gives latest version) or\n",
+          "     - a numeric"
         )
       )
     }
   }
+
+  # Check the environment param is valid
+  if (!(environment %in% c("dev", "test", "preprod", "prod"))) {
+    stop(
+      paste(
+        "You have entered invalid EES environment. The environment should be one of:\n",
+        "   - dev, test, preprod or prod"
+      )
+    )
+  }
+  # End of validation
 
   endpoint_base <- list(
     dev = "https://dev.statistics.api.education.gov.uk/api/",
