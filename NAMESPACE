@@ -2,6 +2,7 @@
 
 export(api_url)
 export(api_url_pages)
+export(api_url_query)
 export(example_id)
 export(get_meta)
 export(get_meta_response)

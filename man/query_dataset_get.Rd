@@ -4,11 +4,35 @@
 \alias{query_dataset_get}
 \title{Query a data set using GET and a query URL}
 \usage{
-query_dataset_get(dataset_id, dataset_version = NULL, api_version = NULL)
+query_dataset_get(
+  dataset_id,
+  indicators,
+  time_periods = NULL,
+  geographic_levels = NULL,
+  dataset_version = NULL,
+  api_version = NULL
+)
 }
 \arguments{
-\item{api_version}{}
+\item{dataset_id}{ID of data set to be connected to}
+
+\item{indicators}{Indicators required as a string or vector of strings}
+
+\item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
+
+\item{geographic_levels}{Geographic levels required as a string or vector of strings}
+
+\item{dataset_version}{Version of data set to be connected to}
+
+\item{api_version}{EES API version}
+}
+\value{
+Data frame containing query results of an API data set
 }
 \description{
-Query a data set using GET and a query URL
+This function provides a method for generating and sending a URL based data query to the
+EES API. As a minimum, it requires the dataset_id and indicators flags to be provided.
+}
+\examples{
+query_dataset_get(example_id(), indicators = "session_count")
 }

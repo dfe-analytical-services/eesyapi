@@ -18,6 +18,9 @@
 #' endpoint is "get-data-catalogue"
 #' @param dataset_id ID of data set to be connected to. This is required if the endpoint is one
 #' of "get-summary", "get-meta", "get-data" or "query-data"
+#' @param indicators Indicators required as a string or vector of strings (required)
+#' @param time_periods Time periods required as a string ("period|code") or vector of strings
+#' @param geographic_levels Geographic levels required as a string or vector of strings
 #' @param dataset_version Version of data set to be connected to
 #' @param page_size Number of results to return in a single query
 #' @param page Page number of query results to return
@@ -40,6 +43,9 @@ api_url <- function(
     endpoint = "get-publications",
     publication_id = NULL,
     dataset_id = NULL,
+    indicators = NULL,
+    time_periods = NULL,
+    geographic_levels = NULL,
     dataset_version = NULL,
     page_size = NULL,
     page = NULL,
@@ -163,6 +169,16 @@ api_url <- function(
           ""
         )
       )
+    }
+    if (endpoint == "get-data") {
+      url <- url |>
+        paste0(
+          eesyapi::api_url_query(
+            indicators = indicators,
+            time_periods = time_periods,
+            geographic_levels = geographic_levels
+          )
+        )
     }
   }
   if (verbose) {
