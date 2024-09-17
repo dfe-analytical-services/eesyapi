@@ -136,18 +136,23 @@ api_url <- function(
         endpoint %in% c("get-summary", "get-meta", "get-data", "query-data"),
         dataset_id,
         ""
-      ),
-      ifelse(
-        endpoint %in% c("get-summary", "get-meta", "query-data"),
-        paste0("/", gsub("get-|-data", "", endpoint)),
-        ""
-      ),
-      ifelse(
-        !is.null(dataset_version),
-        paste0("?dataSetVersion=", dataset_version),
-        ""
       )
     )
+    if (endpoint != "get-summary") {
+      url <- paste0(
+        url,
+        ifelse(
+          endpoint == "get-meta",
+          paste0("/", "meta"),
+          paste0("/", "query")
+        ),
+        ifelse(
+          !is.null(dataset_version),
+          paste0("?dataSetVersion=", dataset_version),
+          ""
+        )
+      )
+    }
   }
   if (verbose) {
     cat("Generated the following query url:", fill = TRUE)
