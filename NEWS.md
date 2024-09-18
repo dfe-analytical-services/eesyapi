@@ -8,6 +8,7 @@
   - `eesapi_url()` -> `api_url()`: Name change to function and updated to allow publication and data set URLs
   - `warning_max_pages()`: Check for the query page number exceeding the total query pages available
   - Added some test data and a process for maintaining that data
+  - Added the `validate_` family of validation helpers
 
 # eesyapi 0.1.0
 
