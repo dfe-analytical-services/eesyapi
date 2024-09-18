@@ -69,6 +69,22 @@ that require it.
 By using `example_id()`, we can easily update all tests and examples if a given ID or code becomes unusable
 in the context of the package for any reason.
 
+## Using test data in the tests and seeding / refreshing
+
+Any data used by the package test suite should be stored in rds format in the 
+**tests/testthat/testdata/** folder. The code required to obtain the test data should always be
+added to the **tests/testthat/seed_tests.R** script:
+
+- Add an individual function for creating an individual test data file
+- Add that function as a call in `seed_tests()` to make sure it is refreshed as part of any
+bulk refresh
+
+Note that the `example_id()` function is especially useful in creating test data and should be
+used for creating test data wherever possible.
+
+To refresh all test data run `seed_tests()`. Or to refresh individual test data sets, find the
+relevant see function and run that.
+
 ## Updating the package version
 
 Once changes have been completed, reviewed and are ready for use in the wild, you

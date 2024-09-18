@@ -3,8 +3,8 @@
 #
 # Refreshing test data
 # ====================
-# To refresh all test data, run seed_tests() or to refresh individual test data sets, find the
-# relevant see function and run that.
+# To refresh all test data, run devtools::load_all() and then seed_tests(). Or to refresh
+# individual test data sets, find the relevant see function and run that.
 #
 # Adding extra seeds
 # ==================
