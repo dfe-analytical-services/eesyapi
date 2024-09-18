@@ -20,8 +20,19 @@ api_url_query <- function(
   if (is.null(indicators)) {
     stop("The keyword indicators must be supplied")
   }
-  query_geographic_levels <- "geographicLevels.in=NAT%2CREG"
-  query_time_periods <- "timePeriods.in=2024%7CW23%2C2024%7CW24"
+  query_geographic_levels <- paste0(
+    "geographicLevels.in=",
+    geographic_levels |>
+      paste0(collapse = "%2C")
+  )
+  if (!is.null(time_periods)) {
+    time_periods <- gsub("\\|", "%7C", time_periods)
+    query_time_periods <- paste0(
+      "timePeriods.in=",
+      time_periods |>
+        paste0(collapse = "%2C")
+    )
+  }
   query_indicators <- paste0(
     "indicators=",
     paste0(indicators, collapse = "%2C%20")
@@ -30,11 +41,14 @@ api_url_query <- function(
     "?",
     ifelse(
       !is.null(geographic_levels),
-      paste(query_geographic_levels, "&"),
+      paste0(query_geographic_levels, "&"),
       ""
     ),
-    query_time_periods,
-    "&",
+    ifelse(
+      !is.null(time_periods),
+      paste0(query_time_periods, "&"),
+      ""
+    ),
     query_indicators
   )
   return(query)
