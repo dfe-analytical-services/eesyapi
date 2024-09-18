@@ -8,10 +8,13 @@
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/authors.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/index.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/news/index.html</loc></url>
-<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/eesapi_url.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/api_url.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/api_url_pages.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/example_id.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/get_meta.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/get_meta_response.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/get_publication_catalogue.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/get_publication_datasets.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/http_request_error.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/index.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_meta_filter_columns.html</loc></url>
@@ -19,5 +22,8 @@
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_meta_indicator_columns.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_meta_location_ids.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_meta_time_periods.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/validate_ees_id.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/validate_page_size.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/warning_max_pages.html</loc></url>
 </urlset>
 

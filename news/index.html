@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,25 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="eesyapi-020">eesyapi 0.2.0<a class="anchor" aria-label="anchor" href="#eesyapi-020"></a></h2>
+<ul><li>Creating publication querying functions:
+<ul><li>
+<code><a href="../reference/get_publication_catalogue.html">get_publication_catalogue()</a></code>: Retrieve the list of available publications</li>
+<li>
+<code><a href="../reference/get_publication_datasets.html">get_publication_datasets()</a></code>: Retrieve the list of available data sets in a given publication</li>
+<li>
+<code><a href="../reference/example_id.html">example_id()</a></code>: Provide example publication and data set IDs (largely for example code and testing)</li>
+<li>
+<code><a href="../reference/api_url_pages.html">api_url_pages()</a></code>: Render string to set paging on API query results</li>
+<li>
+<code>eesapi_url()</code> -&gt; <code><a href="../reference/api_url.html">api_url()</a></code>: Name change to function and updated to allow publication and data set URLs</li>
+<li>
+<code><a href="../reference/warning_max_pages.html">warning_max_pages()</a></code>: Check for the query page number exceeding the total query pages available</li>
+<li>Added some test data and a process for maintaining that data</li>
+<li>Added the <code>validate_</code> family of validation helpers</li>
+</ul></li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="eesyapi-010">eesyapi 0.1.0<a class="anchor" aria-label="anchor" href="#eesyapi-010"></a></h2>
 <ul><li>Creating meta data retrieval and parsing functions:
 <ul><li>
@@ -39,7 +58,7 @@
 <li>
 <code><a href="../reference/get_meta_response.html">get_meta_response()</a></code>: underlying function for retrieving meta data without full parsing</li>
 <li>
-<code><a href="../reference/parse_meta_location_ids.html">parse_meta_location_ids()</a></code>: convert lcoation data from initial meta response to simple data frame</li>
+<code><a href="../reference/parse_meta_location_ids.html">parse_meta_location_ids()</a></code>: convert location data from initial meta response to simple data frame</li>
 <li>
 <code><a href="../reference/parse_meta_filter_columns.html">parse_meta_filter_columns()</a></code>: create data frame of filter col_name and label from initial meta response</li>
 <li>
@@ -50,7 +69,8 @@
 <code><a href="../reference/http_request_error.html">http_request_error()</a></code>: render the API url for a give endpoint / data set combination</li>
 </ul></li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

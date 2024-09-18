@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,10 @@
 <p>Then to load in the package in its current form:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">load_all</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 <div class="section level2">
+<h2 id="documenting">Documenting<a class="anchor" aria-label="anchor" href="#documenting"></a></h2>
+<p>Please always document as you develop. Always add a description to functions, alongside working examples (see <a href="#using-example_id()-with-examples-and-tests">the section on <code>example_id()</code></a> for generating functional IDs and codes). For extended processes / workflows, we recommend starting a vignette explaining the workflow as you’re creating the functions underpinning it.</p>
+</div>
+<div class="section level2">
 <h2 id="adding-a-packagedependency">Adding a package/dependency<a class="anchor" aria-label="anchor" href="#adding-a-packagedependency"></a></h2>
 <p><code>usethis::use_package(&lt;package_name&gt;)</code></p>
 <p>Note that when adding a function from another package into one of the eesyapi functions you will need to explicitly state the package in the function call, e.g.:</p>
@@ -56,6 +60,21 @@
 <h2 id="creating-a-new-function-test-script">Creating a new function test script<a class="anchor" aria-label="anchor" href="#creating-a-new-function-test-script"></a></h2>
 <p><code>usethis::use_test(name = &lt;script_name&gt;)</code></p>
 <p>This will create a new blank test script within the package <a href="testthat/">testthat/</a> folder.</p>
+</div>
+<div class="section level2">
+<h2 id="using-example_id-with-examples-and-tests">Using <code>example_id()</code> with examples and tests<a class="anchor" aria-label="anchor" href="#using-example_id-with-examples-and-tests"></a></h2>
+<p>As the functionality of eesyapi is heavily tied to the EES API content and a variety of associated IDs and codes, we have created the function <code><a href="reference/example_id.html">example_id()</a></code> to create a go to reference point for example IDs and codes that work with the API. <code><a href="reference/example_id.html">example_id()</a></code> should be used to generate IDs and codes whenever writing function tests or examples that require a connection to the API. For example in <code><a href="reference/api_url.html">api_url()</a></code>, we give the functioning example:</p>
+<p><code>api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))</code></p>
+<p>which connects to an actual publication on EES and retrieves a list of data sets within that publication.</p>
+<p>By using <code><a href="reference/example_id.html">example_id()</a></code>, we can easily update all tests and examples if a given ID or code becomes unusable in the context of the package for any reason.</p>
+</div>
+<div class="section level2">
+<h2 id="using-test-data-in-the-tests-and-seeding--refreshing">Using test data in the tests and seeding / refreshing<a class="anchor" aria-label="anchor" href="#using-test-data-in-the-tests-and-seeding--refreshing"></a></h2>
+<p>Any data used by the package test suite should be stored in rds format in the <strong>tests/testthat/testdata/</strong> folder. The code required to obtain the test data should always be added to the <strong>tests/testthat/seed_tests.R</strong> script:</p>
+<ul><li>Add an individual function for creating an individual test data file</li>
+<li>Add that function as a call in <code>seed_tests()</code> to make sure it is refreshed as part of any bulk refresh</li>
+</ul><p>Note that the <code><a href="reference/example_id.html">example_id()</a></code> function is especially useful in creating test data and should be used for creating test data wherever possible.</p>
+<p>To refresh all test data run <code>seed_tests()</code>. Or to refresh individual test data sets, find the relevant see function and run that.</p>
 </div>
 <div class="section level2">
 <h2 id="updating-the-package-version">Updating the package version<a class="anchor" aria-label="anchor" href="#updating-the-package-version"></a></h2>

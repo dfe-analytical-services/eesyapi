@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,18 @@
 
       <dl><dt>
 
+          <code><a href="get_publication_catalogue.html">get_publication_catalogue()</a></code>
+
+        </dt>
+        <dd>Get publications</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_publication_datasets.html">get_publication_datasets()</a></code>
+
+        </dt>
+        <dd>Get publication specific data set catalogue</dd>
+      </dl><dl><dt>
+
           <code><a href="get_meta.html">get_meta()</a></code>
 
         </dt>
@@ -50,7 +62,7 @@
       </dl></div><div class="section level2">
       <h2 id="support-for-generating-api-urls-and-interpreting-responses">Support for generating API URLs and interpreting responses<a class="anchor" aria-label="anchor" href="#support-for-generating-api-urls-and-interpreting-responses"></a></h2>
 
-      <div class="section-desc"><p>These functions are helpful for deriving urls and handling http responses and are used widely by the API workflow functions.</p></div>
+      <div class="section-desc"><p>These functions are helpful for deriving urls and handling HTTP responses and are used widely by the API workflow functions.</p></div>
 
 
     </div><div class="section level2">
@@ -66,10 +78,16 @@
         <dd>Example ID</dd>
       </dl><dl><dt>
 
-          <code><a href="eesapi_url.html">eesapi_url()</a></code>
+          <code><a href="api_url.html">api_url()</a></code>
 
         </dt>
         <dd>Generate an EES API URL</dd>
+      </dl><dl><dt>
+
+          <code><a href="api_url_pages.html">api_url_pages()</a></code>
+
+        </dt>
+        <dd>EES API URL paging</dd>
       </dl><dl><dt>
 
           <code><a href="http_request_error.html">http_request_error()</a></code>
@@ -123,6 +141,46 @@
 
         </dt>
         <dd>Parse API meta to give the time periods</dd>
+      </dl></div><div class="section level2">
+      <h2 id="validation-functions">Validation functions<a class="anchor" aria-label="anchor" href="#validation-functions"></a></h2>
+
+      <div class="section-desc"><p>These functions are used across the package to validate elements being passed as part of an API url or query.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="validate_ees_id.html">validate_ees_id()</a></code>
+
+        </dt>
+        <dd>Validate element IDs</dd>
+      </dl><dl><dt>
+
+          <code><a href="validate_page_size.html">validate_page_size()</a></code>
+
+        </dt>
+        <dd>Validate page size</dd>
+      </dl></div><div class="section level2">
+      <h2 id="warning-functions">Warning functions<a class="anchor" aria-label="anchor" href="#warning-functions"></a></h2>
+
+      <div class="section-desc"><p>These functions are used across the package to flag potential issues in data retrieval from the API (may switch to these being non-exported functions in the future).</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="warning_max_pages.html">warning_max_pages()</a></code>
+
+        </dt>
+        <dd>Overshot maximum pages in results</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
