@@ -8,6 +8,9 @@ api_url(
   endpoint = "get-publications",
   publication_id = NULL,
   dataset_id = NULL,
+  indicators = NULL,
+  time_periods = NULL,
+  geographic_levels = NULL,
   dataset_version = NULL,
   page_size = NULL,
   page = NULL,
@@ -25,6 +28,12 @@ endpoint is "get-data-catalogue"}
 
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
 of "get-summary", "get-meta", "get-data" or "query-data"}
+
+\item{indicators}{Indicators required as a string or vector of strings (required)}
+
+\item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
+
+\item{geographic_levels}{Geographic levels required as a string or vector of strings}
 
 \item{dataset_version}{Version of data set to be connected to}
 
