@@ -4,7 +4,7 @@
 \alias{example_id}
 \title{Example ID}
 \usage{
-example_id(level = "data set", environment = "dev")
+example_id(level = "dataset", environment = "dev")
 }
 \arguments{
 \item{level}{Level of ID example to return: "publication" or "data set"}

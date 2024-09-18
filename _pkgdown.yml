@@ -9,13 +9,14 @@ reference:
 - title: Primary API workflow tools for analysts
   desc: These are the functions we expect analysts will most likely want to use to connect to the EES API.
   contents:
+  - starts_with("get_publication")
   - get_meta
 
 - title: Support for generating API URLs and interpreting responses
-  desc: These functions are helpful for deriving urls and handling http responses and are used widely by the API workflow functions.
+  desc: These functions are helpful for deriving urls and handling HTTP responses and are used widely by the API workflow functions.
   contents:
   - example_id
-  - eesapi_url
+  - starts_with("api_url")
   - http_request_error
 
 - title: Support for handling meta data from the API
@@ -23,3 +24,13 @@ reference:
   contents:
   - get_meta_response
   - starts_with("parse_meta_")
+
+- title: Validation functions
+  desc: These functions are used across the package to validate elements being passed as part of an API url or query.
+  contents:
+  - starts_with("validate_")
+
+- title: Warning functions
+  desc: These functions are used across the package to flag potential issues in data retrieval from the API (may switch to these being non-exported functions in the future).
+  contents:
+  - starts_with("warning_")
