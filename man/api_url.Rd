@@ -68,6 +68,14 @@ api_url("get-publications")
 api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))
 api_url("get-summary", dataset_id = eesyapi::example_id("dataset"))
 api_url("get-meta", dataset_id = eesyapi::example_id("dataset"))
-api_url("get-data", dataset_id = eesyapi::example_id("dataset"))
-api_url("query-data", dataset_id = eesyapi::example_id("dataset"))
+api_url(
+  "get-data",
+  dataset_id = eesyapi::example_id("dataset"),
+  indicators = example_id("indicators")
+)
+api_url(
+  "query-data",
+  dataset_id = eesyapi::example_id("dataset"),
+  indicators = example_id("indicators")
+)
 }

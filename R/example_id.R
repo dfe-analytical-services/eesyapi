@@ -14,15 +14,18 @@ example_id <- function(level = "dataset", environment = "dev") {
   examples <- data.frame(
     type = c(
       "publication",
-      "dataset"
+      "dataset",
+      "indicators"
     ),
     environment = c(
+      "dev",
       "dev",
       "dev"
     ),
     example = c(
       "b6d9ed96-be68-4791-abc3-08dcaba68c04",
-      "d7329101-f275-d277-bbfe-d8cfaa709833"
+      "a3ff9101-bce1-9774-b1f5-b698f3311168",
+      "session_count"
     )
   )
   return(

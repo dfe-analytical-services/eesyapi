@@ -18,7 +18,7 @@ api_url_query <- function(
     time_periods = NULL,
     geographic_levels = NULL) {
   if (is.null(indicators)) {
-    stop("The keyword inidcators must be supplied")
+    stop("The keyword indicators must be supplied")
   }
   query_geographic_levels <- "geographicLevels.in=NAT%2CREG"
   query_time_periods <- "timePeriods.in=2024%7CW23%2C2024%7CW24"
