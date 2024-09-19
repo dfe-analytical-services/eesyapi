@@ -16,6 +16,9 @@ parse_filter_in <- function(
     items = NULL,
     type = "filters") {
   type_string <- gsub("_(\\w?)", "\\U\\1", type, perl = T)
+  print(items)
+  print(items |>
+    paste0(collapse = "%2C"))
   if (!is.null(items)) {
     if (type == "time_period") {
       items <- gsub("\\|", "%7C", items)
@@ -24,7 +27,8 @@ parse_filter_in <- function(
       type_string,
       ".in=",
       items |>
-        paste0(collapse = "%2C")
+        paste0(collapse = "%2C"),
+      "&"
     )
   }
 }

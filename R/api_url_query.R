@@ -34,7 +34,20 @@ api_url_query <- function(
     query_locations <- parse_filter_in(locations, type = "locations")
   }
   if (!is.null(filter_items)) {
-    query_filter_items <- parse_filter_in(filter_items)
+    if (filter_items |> typeof() == "list") {
+      query_filter_items <- ""
+      for (filter_set in filter_items) {
+        query_filter_items <- paste0(
+          query_filter_items,
+          parse_filter_in(filter_set)
+        )
+        print(filter_set)
+        print(filter_set |> typeof())
+        message(query_filter_items)
+      }
+    } else {
+      query_filter_items <- parse_filter_in(filter_items)
+    }
   }
   query_indicators <- paste0(
     "indicators=",
@@ -44,22 +57,22 @@ api_url_query <- function(
     "?",
     ifelse(
       !is.null(time_periods),
-      paste0(query_time_periods, "&"),
+      query_time_periods,
       ""
     ),
     ifelse(
       !is.null(geographic_levels),
-      paste0(query_geographic_levels, "&"),
+      query_geographic_levels,
       ""
     ),
     ifelse(
       !is.null(locations),
-      paste0(query_locations, "&"),
+      query_locations,
       ""
     ),
     ifelse(
       !is.null(filter_items),
-      paste0(query_filter_items, "&"),
+      query_filter_items,
       ""
     ),
     query_indicators

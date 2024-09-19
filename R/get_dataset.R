@@ -19,7 +19,9 @@ get_dataset <- function(
     locations = NULL,
     filter_items = NULL,
     dataset_version = NULL,
-    api_version = NULL) {
+    api_version = NULL,
+    verbose = FALSE
+    ) {
   response <- api_url(
     "get-data",
     dataset_id = dataset_id,
@@ -27,7 +29,8 @@ get_dataset <- function(
     time_periods = time_periods,
     geographic_levels = geographic_levels,
     locations = locations,
-    filter_items = filter_items
+    filter_items = filter_items,
+    verbose = verbose
   ) |>
     httr::GET()
   if (response$status != 200) {
