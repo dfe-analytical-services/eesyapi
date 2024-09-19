@@ -4,7 +4,12 @@
 \alias{api_url_query}
 \title{Generate URL code for API data query}
 \usage{
-api_url_query(indicators, time_periods = NULL, geographic_levels = NULL)
+api_url_query(
+  indicators,
+  time_periods = NULL,
+  geographic_levels = NULL,
+  filter_items = NULL
+)
 }
 \arguments{
 \item{indicators}{Indicators required as a string or vector of strings (required)}
@@ -12,6 +17,8 @@ api_url_query(indicators, time_periods = NULL, geographic_levels = NULL)
 \item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
 
 \item{geographic_levels}{Geographic levels required as a string or vector of strings}
+
+\item{filter_items}{Filter items required as a string or vector of strings}
 }
 \value{
 String containing data query string to append to GET data query URL

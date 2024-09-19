@@ -11,6 +11,7 @@ api_url(
   indicators = NULL,
   time_periods = NULL,
   geographic_levels = NULL,
+  filter_items = NULL,
   dataset_version = NULL,
   page_size = NULL,
   page = NULL,
@@ -34,6 +35,8 @@ of "get-summary", "get-meta", "get-data" or "query-data"}
 \item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
 
 \item{geographic_levels}{Geographic levels required as a string or vector of strings}
+
+\item{filter_items}{Filter items required as a string or vector of strings}
 
 \item{dataset_version}{Version of data set to be connected to}
 
