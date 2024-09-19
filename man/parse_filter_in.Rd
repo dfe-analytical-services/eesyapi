@@ -9,8 +9,8 @@ parse_filter_in(items = NULL, type = "filters")
 \arguments{
 \item{items}{items to be included in the "in" statement}
 
-\item{type}{type of filter items being queried: "time_periods", "geographic_levels", "locations" or
-"filters"}
+\item{type}{type of filter items being queried: "time_periods", "geographic_levels",
+"locations" or "filters"}
 }
 \value{
 Query string for use in URL based API queries
@@ -19,5 +19,5 @@ Query string for use in URL based API queries
 A short description...
 }
 \examples{
-parse_standard_filter_in(c("2024|W11", "2024|W12"), type = "time_period")
+parse_filter_in(c("2024|W11", "2024|W12"), type = "time_period")
 }

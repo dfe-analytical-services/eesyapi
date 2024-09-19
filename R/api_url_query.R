@@ -28,7 +28,7 @@ api_url_query <- function(
     query_time_periods <- parse_filter_in(time_periods, "time_periods")
   }
   if (!is.null(geographic_levels)) {
-    query_geographic_levels <- query_geographic_levels <- parse_filter_in(geographic_levels, type = "geographic_levels")
+    query_geographic_levels <- parse_filter_in(geographic_levels, type = "geographic_levels")
   }
   if (!is.null(locations)) {
     query_locations <- parse_filter_in(locations, type = "locations")
@@ -41,9 +41,6 @@ api_url_query <- function(
           query_filter_items,
           parse_filter_in(filter_set)
         )
-        print(filter_set)
-        print(filter_set |> typeof())
-        message(query_filter_items)
       }
     } else {
       query_filter_items <- parse_filter_in(filter_items)

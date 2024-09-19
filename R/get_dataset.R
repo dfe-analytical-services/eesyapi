@@ -4,6 +4,11 @@
 #' This function provides a method for generating and sending a URL based data query to the
 #' EES API. As a minimum, it requires the dataset_id and indicators flags to be provided.
 #'
+#' Note that the GET command is very limited on the level of logic it can process. For example
+#' there is no way of using GET to make a query that combines different filters with AND logic.
+#' So if you give GET a set of filter items to search on, it can only return all rows containing
+#' any of those items.
+#'
 #' @inheritParams api_url
 #'
 #' @return Data frame containing query results of an API data set
@@ -20,8 +25,7 @@ get_dataset <- function(
     filter_items = NULL,
     dataset_version = NULL,
     api_version = NULL,
-    verbose = FALSE
-    ) {
+    verbose = FALSE) {
   response <- api_url(
     "get-data",
     dataset_id = dataset_id,
