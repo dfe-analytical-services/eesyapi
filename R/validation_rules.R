@@ -54,7 +54,7 @@ validate_ees_id <- function(element_id, level = "publication") {
       "The ", level,
       "_id(s) provided (", paste0(element_id, collapse = ", "),
       ") is expected to be a ",
-      stringr::str_length(example_id(level)),
+      stringr::str_length(eesyapi::example_id(level)),
       " character string in the format:\n    ",
       eesyapi::example_id(level),
       "\n  Please double check your ", level,

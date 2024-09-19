@@ -26,7 +26,7 @@ get_dataset <- function(
     dataset_version = NULL,
     api_version = NULL,
     verbose = FALSE) {
-  response <- api_url(
+  response <- eesyapi::api_url(
     "get-data",
     dataset_id = dataset_id,
     indicators = indicators,

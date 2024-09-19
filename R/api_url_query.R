@@ -26,30 +26,30 @@ api_url_query <- function(
   }
   # Create the appropriate query strings for each level provided
   if (!is.null(time_periods)) {
-    query_time_periods <- parse_filter_in(time_periods, "time_periods")
+    query_time_periods <- eesyapi::parse_filter_in(time_periods, "time_periods")
   }
   if (!is.null(geographic_levels)) {
-    query_geographic_levels <- parse_filter_in(geographic_levels, type = "geographic_levels")
+    query_geographic_levels <- eesyapi::parse_filter_in(geographic_levels, type = "geographic_levels")
   }
   if (!is.null(locations)) {
-    query_locations <- parse_filter_in(locations, type = "locations")
+    query_locations <- eesyapi::parse_filter_in(locations, type = "locations")
   }
   if (!is.null(filter_items)) {
     # Note the idea below was to differentiate the logic between AND / OR based on whether
     # a list of vectors is provided or a single vector. Due to limitations with GET, this
     # set up doesn't make a blind bit of difference to the result, the query just performs
     # an OR combination regardless.
-    validate_ees_id(filter_items, level = "filter_item")
+    eesyapi::validate_ees_id(filter_items, level = "filter_item")
     if (filter_items |> typeof() == "list") {
       query_filter_items <- ""
       for (filter_set in filter_items) {
         query_filter_items <- paste0(
           query_filter_items,
-          parse_filter_in(filter_set)
+          eesyapi::parse_filter_in(filter_set)
         )
       }
     } else {
-      query_filter_items <- parse_filter_in(filter_items)
+      query_filter_items <- eesyapi::parse_filter_in(filter_items)
     }
   }
   query_indicators <- paste0(
