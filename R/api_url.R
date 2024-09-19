@@ -52,6 +52,7 @@ api_url <- function(
     indicators = NULL,
     time_periods = NULL,
     geographic_levels = NULL,
+    locations = NULL,
     filter_items = NULL,
     dataset_version = NULL,
     page_size = NULL,
@@ -184,6 +185,7 @@ api_url <- function(
             indicators = indicators,
             time_periods = time_periods,
             geographic_levels = geographic_levels,
+            locations = locations,
             filter_items = filter_items
           )
         )

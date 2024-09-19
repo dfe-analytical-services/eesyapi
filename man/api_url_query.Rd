@@ -8,6 +8,7 @@ api_url_query(
   indicators,
   time_periods = NULL,
   geographic_levels = NULL,
+  locations = NULL,
   filter_items = NULL
 )
 }
@@ -17,6 +18,8 @@ api_url_query(
 \item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
 
 \item{geographic_levels}{Geographic levels required as a string or vector of strings}
+
+\item{locations}{Location code required as a string or vector of strings}
 
 \item{filter_items}{Filter items required as a string or vector of strings}
 }

@@ -16,6 +16,7 @@ get_dataset <- function(
     indicators,
     time_periods = NULL,
     geographic_levels = NULL,
+    locations = NULL,
     filter_items = NULL,
     dataset_version = NULL,
     api_version = NULL) {
@@ -25,12 +26,17 @@ get_dataset <- function(
     indicators = indicators,
     time_periods = time_periods,
     geographic_levels = geographic_levels,
+    locations = locations,
     filter_items = filter_items
   ) |>
-    httr::GET() |>
+    httr::GET()
+  if (response$status != 200) {
+    print(response$errors)
+  }
+  response_json <- response |>
     httr::content("text") |>
     jsonlite::fromJSON()
-  result <- response$results
+  result <- response_json$results
   dplyr::bind_cols(
     result$timePeriod,
     data.frame(geographic_level = result$geographicLevel),

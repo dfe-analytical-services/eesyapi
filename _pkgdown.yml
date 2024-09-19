@@ -11,7 +11,7 @@ reference:
   contents:
   - starts_with("get_publication")
   - get_meta
-  - query_get_dataset
+  - get_dataset
 
 - title: Support for generating API URLs and interpreting responses
   desc: These functions are helpful for deriving urls and handling HTTP responses and are used widely by the API workflow functions.
@@ -19,6 +19,7 @@ reference:
   - example_id
   - starts_with("api_url")
   - http_request_error
+  - parse_standard_filter_in
 
 - title: Support for handling meta data from the API
   desc: These functions are used by `get_meta()` and included here for completeness.

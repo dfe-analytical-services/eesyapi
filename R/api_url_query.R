@@ -6,6 +6,7 @@
 #' @param indicators Indicators required as a string or vector of strings (required)
 #' @param time_periods Time periods required as a string ("period|code") or vector of strings
 #' @param geographic_levels Geographic levels required as a string or vector of strings
+#' @param locations Location code required as a string or vector of strings
 #' @param filter_items Filter items required as a string or vector of strings
 #'
 #' @return String containing data query string to append to GET data query URL
@@ -18,29 +19,22 @@ api_url_query <- function(
     indicators,
     time_periods = NULL,
     geographic_levels = NULL,
+    locations = NULL,
     filter_items = NULL) {
   if (is.null(indicators)) {
     stop("The keyword indicators must be supplied")
   }
   if (!is.null(time_periods)) {
-    time_periods <- gsub("\\|", "%7C", time_periods)
-    query_time_periods <- paste0(
-      "timePeriods.in=",
-      time_periods |>
-        paste0(collapse = "%2C")
-    )
+    query_time_periods <- parse_filter_in(time_periods, "time_periods")
   }
-  query_geographic_levels <- paste0(
-    "geographicLevels.in=",
-    geographic_levels |>
-      paste0(collapse = "%2C")
-  )
+  if (!is.null(geographic_levels)) {
+    query_geographic_levels <- query_geographic_levels <- parse_filter_in(geographic_levels, type = "geographic_levels")
+  }
+  if (!is.null(locations)) {
+    query_locations <- parse_filter_in(locations, type = "locations")
+  }
   if (!is.null(filter_items)) {
-    query_filter_items <- paste0(
-      "filters.in=",
-      filter_items |>
-        paste0(collapse = "%2C")
-    )
+    query_filter_items <- parse_filter_in(filter_items)
   }
   query_indicators <- paste0(
     "indicators=",
@@ -56,6 +50,11 @@ api_url_query <- function(
     ifelse(
       !is.null(geographic_levels),
       paste0(query_geographic_levels, "&"),
+      ""
+    ),
+    ifelse(
+      !is.null(locations),
+      paste0(query_locations, "&"),
       ""
     ),
     ifelse(
