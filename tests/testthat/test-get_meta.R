@@ -8,16 +8,6 @@ test_that("Dataset ID not found", {
   )
 })
 
-test_that("Dataset ID not found", {
-  expect_error(
-    get_meta_response("this-is-not-a-dataset"),
-    paste0(
-      "Query returned error, status 404: ",
-      "Invalid query, data set ID, data set version or API version submitted to API."
-    )
-  )
-})
-
 test_that("Non-logical parse flag given", {
   expect_error(
     get_meta_response("this-is-not-a-dataset", parse = 1),
