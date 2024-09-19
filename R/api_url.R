@@ -9,15 +9,15 @@
 #' \strong{Endpoints} \tab \strong{id required} \cr
 #' get-publications \tab Neither  \cr
 #' get-data-catalogue \tab publication_id  \cr
-#' get-summary, get-meta, get-data, query-data \tab dataset_id  \cr
+#' get-summary, get-meta, get-data, post-data \tab dataset_id  \cr
 #' }
 #'
 #' @param endpoint Name of endpoint, can be "get-publications", "get-data-catalogue",
-#' "get-summary", "get-meta", "get-data" or "query-data"
+#' "get-summary", "get-meta", "get-data" or "post-data"
 #' @param publication_id ID of the publication to be connected to. This is required if the
 #' endpoint is "get-data-catalogue"
 #' @param dataset_id ID of data set to be connected to. This is required if the endpoint is one
-#' of "get-summary", "get-meta", "get-data" or "query-data"
+#' of "get-summary", "get-meta", "get-data" or "post-data"
 #' @inheritParams api_url_query
 #' @param dataset_version Version of data set to be connected to
 #' @param page_size Number of results to return in a single query
@@ -44,7 +44,7 @@
 #'   filter_items = example_id("filter_items")
 #' )
 #' api_url(
-#'   "query-data",
+#'   "post-data",
 #'   dataset_id = eesyapi::example_id("dataset"),
 #'   indicators = example_id("indicators")
 #' )
@@ -84,7 +84,7 @@ api_url <- function(
     endpoint %in% c(
       "get-publications", "get-data-catalogue",
       "get-summary", "get-meta",
-      "get-data", "query-data"
+      "get-data", "post-data"
     )
   }
 
@@ -93,7 +93,7 @@ api_url <- function(
       stop(
         paste(
           "You have entered an invalid endpoint, this should one of:",
-          "get-summary, get-meta, get-data or query-data"
+          "get-summary, get-meta, get-data or post-data"
         )
       )
     }
@@ -104,7 +104,7 @@ api_url <- function(
   }
 
   # Check that if endpoint requires a data set then dataset_id is not null
-  if (endpoint %in% c("get-summary", "get-meta", "get-data", "query-data")) {
+  if (endpoint %in% c("get-summary", "get-meta", "get-data", "post-data")) {
     validate_ees_id(dataset_id, level = "dataset")
     if (is_valid_dataset_info(dataset_id, dataset_version) == FALSE) {
       stop(
@@ -162,7 +162,7 @@ api_url <- function(
       endpoint_base_version,
       "data-sets/",
       ifelse(
-        endpoint %in% c("get-summary", "get-meta", "get-data", "query-data"),
+        endpoint %in% c("get-summary", "get-meta", "get-data", "post-data"),
         dataset_id,
         ""
       )
