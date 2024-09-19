@@ -1,7 +1,8 @@
-#' Create "filter in" query string for url queries
+#' Create <filter>.in query string for URL queries
 #'
 #' @description
-#' A short description...
+#' Outputs a URL query string containing timePeriods.in=..., geographicLevels.in=..., etc for
+#' use with querying a data set via GET.
 #'
 #' @param items items to be included in the "in" statement
 #' @param type type of filter items being queried: "time_periods", "geographic_levels",
@@ -15,6 +16,9 @@
 parse_filter_in <- function(
     items = NULL,
     type = "filters") {
+  if (!(type %in% c("time_periods", "geographic_levels", "locations", "filters"))) {
+    stop("type keyword should be one of time_periods, geographic_levels, locations or filters")
+  }
   type_string <- gsub("_(\\w?)", "\\U\\1", type, perl = TRUE)
   if (!is.null(items)) {
     if (type == "time_period") {

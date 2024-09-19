@@ -35,34 +35,38 @@ validate_page_size <- function(page_size, min = 1, max = 40) {
 #' @examples
 #' validate_ees_id(example_id("publication"), level = "publication")
 validate_ees_id <- function(element_id, level = "publication") {
-  if (!(level %in% c("publication", "dataset"))) {
+  if (!(level %in% c("publication", "dataset", "filter_item"))) {
     stop(
       paste0(
         "Non-valid element level received by validate_id.\n",
-        'Should be one of "publication" or "dataset".'
+        'Should be one of "publication", "dataset" or "filter_item".'
       )
     )
   }
-  if (is.null(element_id) || is.na(element_id)) {
+  if (is.null(element_id)) {
     stop(
       "The variable ", level,
-      "_id is NULL or NA, please provide a valid ", level,
+      "_id is NULL, please provide a valid ", level,
       "_id."
     )
-  } else if (level %in% c("publication", "dataset")) {
+  } else {
     err_string <- paste0(
       "The ", level,
-      "_id provided (", element_id,
-      ") is expected to be a 36 character string in the format:\n    ",
+      "_id(s) provided (", paste0(element_id, collapse = ", "),
+      ") is expected to be a ",
+      stringr::str_length(example_id(level)),
+      " character string in the format:\n    ",
       eesyapi::example_id(level),
       "\n  Please double check your ", level,
       "_id."
     )
 
-    if (stringr::str_length(element_id) != stringr::str_length(eesyapi::example_id(level))) {
+    if (any(stringr::str_length(element_id) != stringr::str_length(eesyapi::example_id(level)))) {
       stop(err_string)
     } else if (
-      gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", eesyapi::example_id(level))
+      any(
+        gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", eesyapi::example_id(level))
+      )
     ) {
       stop(err_string)
     }

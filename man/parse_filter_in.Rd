@@ -2,7 +2,7 @@
 % Please edit documentation in R/api_url_query_utils.R
 \name{parse_filter_in}
 \alias{parse_filter_in}
-\title{Create "filter in" query string for url queries}
+\title{Create \if{html}{\out{<filter>}}.in query string for URL queries}
 \usage{
 parse_filter_in(items = NULL, type = "filters")
 }
@@ -16,7 +16,8 @@ parse_filter_in(items = NULL, type = "filters")
 Query string for use in URL based API queries
 }
 \description{
-A short description...
+Outputs a URL query string containing timePeriods.in=..., geographicLevels.in=..., etc for
+use with querying a data set via GET.
 }
 \examples{
 parse_filter_in(c("2024|W11", "2024|W12"), type = "time_period")

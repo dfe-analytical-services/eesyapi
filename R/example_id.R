@@ -15,9 +15,11 @@ example_id <- function(level = "dataset", environment = "dev") {
     type = c(
       "publication",
       "dataset",
+      "filter_item",
       "indicators"
     ),
     environment = c(
+      "dev",
       "dev",
       "dev",
       "dev"
@@ -25,6 +27,7 @@ example_id <- function(level = "dataset", environment = "dev") {
     example = c(
       "b6d9ed96-be68-4791-abc3-08dcaba68c04",
       "a3ff9101-bce1-9774-b1f5-b698f3311168",
+      "hl2Gy",
       "session_count"
     )
   )

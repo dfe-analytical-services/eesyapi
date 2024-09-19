@@ -24,6 +24,7 @@ api_url_query <- function(
   if (is.null(indicators)) {
     stop("The keyword indicators must be supplied")
   }
+  # Create the appropriate query strings for each level provided
   if (!is.null(time_periods)) {
     query_time_periods <- parse_filter_in(time_periods, "time_periods")
   }
@@ -34,6 +35,11 @@ api_url_query <- function(
     query_locations <- parse_filter_in(locations, type = "locations")
   }
   if (!is.null(filter_items)) {
+    # Note the idea below was to differentiate the logic between AND / OR based on whether
+    # a list of vectors is provided or a single vector. Due to limitations with GET, this
+    # set up doesn't make a blind bit of difference to the result, the query just performs
+    # an OR combination regardless.
+    validate_ees_id(filter_items, level = "filter_item")
     if (filter_items |> typeof() == "list") {
       query_filter_items <- ""
       for (filter_set in filter_items) {
@@ -50,6 +56,7 @@ api_url_query <- function(
     "indicators=",
     paste0(indicators, collapse = "%2C%20")
   )
+  # Splice together the individual query strings
   query <- paste0(
     "?",
     ifelse(
