@@ -54,7 +54,7 @@ validate_ees_id <- function(element_id, level = "publication") {
     if (level == "location") {
       locations <- element_id |>
         stringr::str_split("\\|")
-      if (any(locations |> sapply(length)) < 3) {
+      if (any(locations |> sapply(length) < 3)) {
         stop('Invalid location IDs found, these should be of the form "XXX|xxxx|1b3d5".')
       } else {
         # Extract the individual 5 digit location IDs

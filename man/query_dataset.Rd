@@ -14,6 +14,8 @@ query_dataset(
   method = "GET",
   dataset_version = NULL,
   api_version = NULL,
+  page_size = 1000,
+  page = NULL,
   verbose = FALSE
 )
 }
@@ -37,6 +39,10 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{api_version}{EES API version}
 
+\item{page_size}{Number of results to return in a single query}
+
+\item{page}{Page number of query results to return}
+
 \item{verbose}{Add extra contextual information whilst running}
 }
 \value{
@@ -46,5 +52,5 @@ Data frame containing query results
 A short description...
 }
 \examples{
-query_dataset(example_id(), indicators = example_id("indicator"))
+query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size=10)
 }

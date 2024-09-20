@@ -14,9 +14,14 @@
 example_id <- function(
     level = "dataset",
     environment = "dev",
-    group = "attendance") {
+    group = "public-api-testing") {
   example_ids <- data.frame(
     levels = c(
+      "publication",
+      "dataset",
+      "location",
+      "filter_item",
+      "indicator",
       "publication",
       "dataset",
       "location",
@@ -28,6 +33,11 @@ example_id <- function(
       "dev",
       "dev",
       "dev",
+      "dev",
+      "dev",
+      "dev",
+      "dev",
+      "dev",
       "dev"
     ),
     example_group = c(
@@ -35,14 +45,24 @@ example_id <- function(
       "attendance",
       "attendance",
       "attendance",
-      "attendance"
+      "attendance",
+      "public-api-testing",
+      "public-api-testing",
+      "public-api-testing",
+      "public-api-testing",
+      "public-api-testing"
     ),
     examples = c(
       "b6d9ed96-be68-4791-abc3-08dcaba68c04",
       "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
       "NAT|id|dP0Zw",
       "hl2Gy",
-      "bqZtT"
+      "bqZtT",
+      "d823e4df-626f-4450-9b21-08dc8b95fc02",
+      "830f9201-9e11-ad75-8dcd-d2efe2834457",
+      "LA|id|ml79K",
+      "kKOhs",
+      "mRj9K"
     )
   )
   if (!(level %in% example_ids$levels)) {

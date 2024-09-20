@@ -16,7 +16,12 @@
 #' @export
 #'
 #' @examples
-#' get_dataset(example_id(), indicators = example_id("indicator"))
+#' get_dataset(
+#' example_id(),
+#' geographic_level = "NAT",
+#' filter_items = example_id("filter_item"),
+#' indicators = example_id("indicator")
+#' )
 get_dataset <- function(
     dataset_id,
     indicators,
@@ -26,6 +31,8 @@ get_dataset <- function(
     filter_items = NULL,
     dataset_version = NULL,
     api_version = NULL,
+    page = NULL,
+    page_size = 1000,
     parse = TRUE,
     verbose = FALSE) {
   response <- eesyapi::api_url(
@@ -36,17 +43,50 @@ get_dataset <- function(
     geographic_levels = geographic_levels,
     locations = locations,
     filter_items = filter_items,
+    page_size = page_size,
+    page = page,
     verbose = verbose
   ) |>
     httr::GET()
   eesyapi::http_request_error(response)
+  # Unless the user specifies a specific page of results to get, loop through all available pages.
   response_json <- response |>
     httr::content("text") |>
     jsonlite::fromJSON()
-  if (parse) {
-    response_json$results |>
-      eesyapi::parse_api_dataset()
-  } else {
-    response_json$results
+  if (verbose) {
+    message(paste("Total number of pages: ", response_json$paging$totalPages))
   }
+  dfresults <- response_json$results |>
+    eesyapi::parse_api_dataset()
+  # Unless the user has requested a specific page, then assume they'd like all pages collated and
+  # recursively run the query.
+  if (is.null(page)) {
+    if (response_json$paging$totalPages > 1) {
+      for (page in c(2:response_json$paging$totalPages)) {
+        response_page <-
+          response <- eesyapi::api_url(
+            "get-data",
+            dataset_id = dataset_id,
+            indicators = indicators,
+            time_periods = time_periods,
+            geographic_levels = geographic_levels,
+            locations = locations,
+            filter_items = filter_items,
+            page_size = page_size,
+            page = page,
+            verbose = verbose
+          ) |>
+          httr::GET() |>
+          httr::content("text") |>
+          jsonlite::fromJSON()
+        response_page |> eesyapi::warning_max_pages()
+        dfresults <- dfresults |>
+          rbind(
+            response_page$results |>
+              eesyapi::parse_api_dataset()
+          )
+      }
+    }
+  }
+  return(dfresults)
 }

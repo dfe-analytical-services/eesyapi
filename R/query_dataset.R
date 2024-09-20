@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' query_dataset(example_id(), indicators = example_id("indicator"))
+#' query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size=10)
 query_dataset <- function(
     dataset_id,
     indicators,
@@ -21,6 +21,8 @@ query_dataset <- function(
     method = "GET",
     dataset_version = NULL,
     api_version = NULL,
+    page_size = 1000,
+    page = NULL,
     verbose = FALSE) {
   if (method != "GET") {
     stop(
@@ -47,6 +49,8 @@ query_dataset <- function(
       filter_items = filter_items,
       dataset_version = dataset_version,
       api_version = api_version,
+      page_size = page_size,
+      page = page,
       verbose = verbose
     )
   }

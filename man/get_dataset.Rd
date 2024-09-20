@@ -13,6 +13,8 @@ get_dataset(
   filter_items = NULL,
   dataset_version = NULL,
   api_version = NULL,
+  page = NULL,
+  page_size = 1000,
   parse = TRUE,
   verbose = FALSE
 )
@@ -35,6 +37,10 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{api_version}{EES API version}
 
+\item{page}{Page number of query results to return}
+
+\item{page_size}{Number of results to return in a single query}
+
 \item{parse}{Logical flag to activate parsing of the results. Default: TRUE}
 
 \item{verbose}{Add extra contextual information whilst running}
@@ -52,5 +58,10 @@ So if you give GET a set of filter items to search on, it can only return all ro
 any of those items.
 }
 \examples{
-get_dataset(example_id(), indicators = example_id("indicator"))
+get_dataset(
+example_id(),
+geographic_level = "NAT",
+filter_items = example_id("filter_item"),
+indicators = example_id("indicator")
+)
 }

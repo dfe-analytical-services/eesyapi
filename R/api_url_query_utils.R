@@ -21,7 +21,7 @@ parse_filter_in <- function(
   }
   type_string <- gsub("_(\\w?)", "\\U\\1", type, perl = TRUE)
   if (!is.null(items)) {
-    if (type == "time_period") {
+    if (type %in% c("time_period", "locations")) {
       items <- gsub("\\|", "%7C", items)
     }
     paste0(

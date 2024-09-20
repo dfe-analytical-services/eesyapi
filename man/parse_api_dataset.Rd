@@ -25,6 +25,9 @@ jsonlite::fromJSON() |>
 parse_api_dataset()
 }
 \examples{
-get_dataset(example_id(), indicators = example_id("indicator"), parse = FALSE) |>
+api_url("get-data", dataset_id = example_id(), indicators = example_id("indicator"), page_size=10) |>
+  httr::GET() |>
+  httr::content("text") |>
+  jsonlite::fromJSON() |>
   parse_api_dataset()
 }

@@ -17,7 +17,10 @@
 #' @export
 #'
 #' @examples
-#' get_dataset(example_id(), indicators = example_id("indicator"), parse = FALSE) |>
+#' api_url("get-data", dataset_id = example_id(), indicators = example_id("indicator"), page_size=10) |>
+#'   httr::GET() |>
+#'   httr::content("text") |>
+#'   jsonlite::fromJSON() |>
 #'   parse_api_dataset()
 parse_api_dataset <- function(
     api_data_result,
@@ -28,18 +31,13 @@ parse_api_dataset <- function(
   if ("results" %in% names(api_data_result)) {
     api_data_result <- api_data_result$results
   }
-  api_data_result |>
-    dplyr::bind_cols(
-      api_data_result$timePeriod,
-      data.frame(geographic_level = api_data_result$geographicLevel),
-      data.frame(location_code = api_data_result$locations),
-      api_data_result$filters,
-      api_data_result$values
-    ) |>
-    dplyr::rename(
-      time_identifier = "code",
-      time_period = "period"
-    )
+  dplyr::bind_cols(
+    api_data_result$timePeriod,
+    data.frame(geographic_level = api_data_result$geographicLevel),
+    api_data_result$locations,
+    api_data_result$filters,
+    api_data_result$values
+  )
   # Next aim here is to pull in the meta data automatically at this point to translate
   # all the API codes...
 }

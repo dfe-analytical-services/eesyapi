@@ -183,6 +183,17 @@ api_url <- function(
       )
     }
     if (endpoint == "get-data") {
+      # Force default page size if page is given by user and page_size isn't
+      if (!is.null(page) && is.null(page_size)) {
+        page_size <- 1000
+      }
+      # Force first page if page size is given by user and page isn't
+      if (!is.null(page_size) && is.null(page)) {
+        page <- 1
+      }
+      if (verbose) {
+        message(paste("paging:", page, page_size))
+      }
       url <- url |>
         paste0(
           eesyapi::api_url_query(
@@ -191,6 +202,11 @@ api_url <- function(
             geographic_levels = geographic_levels,
             locations = locations,
             filter_items = filter_items
+          ),
+          ifelse(
+            !is.null(page) & !is.null(page_size),
+            paste0("&", eesyapi::api_url_pages(page_size = page_size, page = page)),
+            ""
           )
         )
     }
