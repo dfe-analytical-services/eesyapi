@@ -46,7 +46,8 @@ get_dataset <- function(
     httr::content("text") |>
     jsonlite::fromJSON()
   if (parse) {
-    response_json$results |> parse_api_dataset()
+    response_json$results |>
+      eesyapi::parse_api_dataset()
   } else {
     response_json$results
   }
