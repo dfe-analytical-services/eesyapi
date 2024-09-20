@@ -1,13 +1,13 @@
 test_that("Successful connection message", {
   expect_equal(
-    http_request_error(response <- list(status = 200)),
+    http_request_error(list(status = 200)),
     "Successful API request."
   )
 })
 
 test_that("Bad URL / query message", {
   expect_error(
-    http_request_error(response <- list(status = 404, errors = "Demo error")),
+    http_request_error(list(status = 404, errors = "Demo error")),
     paste0(
       "HTTP connection error: ",
       404,
@@ -21,7 +21,7 @@ test_that("Bad URL / query message", {
 
 test_that("Server error message", {
   expect_error(
-    http_request_error(response <- list(status = 503)),
+    http_request_error(list(status = 503)),
     paste0(
       "HTTP connection error: ",
       503,

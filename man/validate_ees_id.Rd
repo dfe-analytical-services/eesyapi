@@ -9,7 +9,7 @@ validate_ees_id(element_id, level = "publication")
 \arguments{
 \item{element_id}{ID for publication or a data set}
 
-\item{level}{ID level: "publication", "dataset", "filter_item" or "indicator"}
+\item{level}{ID level: "publication", "dataset", "location", "filter_item" or "indicator"}
 }
 \description{
 Validate element IDs

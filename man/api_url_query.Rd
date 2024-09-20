@@ -30,6 +30,5 @@ String containing data query string to append to GET data query URL
 Generates the query code to append to the base API query URL for use by query_dataset_get().
 }
 \examples{
-api_url_query("session_count")
-api_url_query(c("session_count", "session_percent"))
+api_url_query(example_id("indicator"))
 }

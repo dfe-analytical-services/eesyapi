@@ -13,8 +13,7 @@
 #' @export
 #'
 #' @examples
-#' api_url_query("session_count")
-#' api_url_query(c("session_count", "session_percent"))
+#' api_url_query(example_id("indicator"))
 api_url_query <- function(
     indicators,
     time_periods = NULL,
@@ -37,6 +36,7 @@ api_url_query <- function(
     )
   }
   if (!is.null(locations)) {
+    eesyapi::validate_ees_id(locations, level = "location")
     query_locations <- eesyapi::parse_filter_in(locations, type = "locations")
   }
   if (!is.null(filter_items)) {

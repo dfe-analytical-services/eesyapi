@@ -11,9 +11,7 @@
 #' @export
 #'
 #' @examples
-#' http_request_error(200)
-#' http_request_error(400)
-#' http_request_error(504)
+#' http_request_error(list(status = 200))
 http_request_error <- function(
     response,
     verbose = FALSE) {
@@ -44,7 +42,6 @@ http_request_error <- function(
           "\n",
           paste(response$errors, collapse = ". ")
         )
-      print(response$errors)
     }
   } else {
     status_response_text <- "API http response code not recognised."

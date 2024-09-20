@@ -18,7 +18,5 @@ Translation of the response code
 Translate a http error code into an error message.
 }
 \examples{
-http_request_error(200)
-http_request_error(400)
-http_request_error(504)
+http_request_error(list(status = 200))
 }
