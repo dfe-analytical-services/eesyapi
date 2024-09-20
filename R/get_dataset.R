@@ -39,9 +39,7 @@ get_dataset <- function(
     verbose = verbose
   ) |>
     httr::GET()
-  if (response$status != 200) {
-    print(response$errors)
-  }
+  eesyapi::http_request_error(response)
   response_json <- response |>
     httr::content("text") |>
     jsonlite::fromJSON()

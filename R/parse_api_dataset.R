@@ -22,8 +22,8 @@
 parse_api_dataset <- function(
     api_data_result,
     dataset_id = NULL) {
-  if (!is.null(dataset_id)){
-    eesyapi::validate_ees_id(indicators, level = "dataset")
+  if (!is.null(dataset_id)) {
+    eesyapi::validate_ees_id(dataset_id, level = "dataset")
   }
   if ("results" %in% names(api_data_result)) {
     api_data_result <- api_data_result$results

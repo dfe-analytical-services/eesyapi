@@ -4,10 +4,12 @@
 \alias{http_request_error}
 \title{Contextualise http request errors}
 \usage{
-http_request_error(response_status)
+http_request_error(response, verbose = FALSE)
 }
 \arguments{
-\item{response_status}{Response code from an API request}
+\item{response}{HTTP response from the API}
+
+\item{verbose}{Run in verbose mode, logical, default = FALSE}
 }
 \value{
 Translation of the response code
