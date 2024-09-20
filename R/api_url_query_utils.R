@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' parse_filter_in(c("2024|W11", "2024|W12"), type = "time_period")
+#' parse_filter_in(c("2024|W11", "2024|W12"), type = "time_periods")
 parse_filter_in <- function(
     items = NULL,
     type = "filters") {

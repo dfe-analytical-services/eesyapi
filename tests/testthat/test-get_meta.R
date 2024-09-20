@@ -1,6 +1,7 @@
 test_that("Dataset ID not found", {
   expect_error(
-    get_meta("this-is-not-a-dataset"),
+    get_meta(example_id("publication")), # Using the publication ID as this passes the dataset_id
+    # validation, but will definitely not be am actual dataset_id
     paste0(
       "Query returned error, status 404: ",
       "Invalid query, data set ID, data set version or API version submitted to API."

@@ -38,15 +38,15 @@
 #' api_url(
 #'   "get-data",
 #'   dataset_id = eesyapi::example_id("dataset"),
-#'   indicators = example_id("indicators"),
+#'   indicators = example_id("indicator"),
 #'   time_periods = c("2024|W12", "2024|W13"),
 #'   geographic_levels = c("NAT"),
-#'   filter_items = example_id("filter_items")
+#'   filter_items = example_id("filter_item")
 #' )
 #' api_url(
 #'   "post-data",
 #'   dataset_id = eesyapi::example_id("dataset"),
-#'   indicators = example_id("indicators")
+#'   indicators = example_id("indicator")
 #' )
 api_url <- function(
     endpoint = "get-publications",

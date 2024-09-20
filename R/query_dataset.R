@@ -26,7 +26,7 @@ query_dataset <- function(
     stop(
       paste(
         "Invalid method selected. The keyword method should be set to GET",
-        "(an option to use POST is being developed.)"
+        "(an option to use POST is being developed)."
       )
     )
   }
@@ -38,7 +38,7 @@ query_dataset <- function(
         "  - query_dataset(..., method = 'POST')"
       )
     )
-    get_dataset(
+    eesyapi::get_dataset(
       dataset_id = dataset_id,
       indicators = indicators,
       time_periods = time_periods,

@@ -29,7 +29,10 @@ api_url_query <- function(
     query_time_periods <- eesyapi::parse_filter_in(time_periods, "time_periods")
   }
   if (!is.null(geographic_levels)) {
-    query_geographic_levels <- eesyapi::parse_filter_in(geographic_levels, type = "geographic_levels")
+    query_geographic_levels <- eesyapi::parse_filter_in(
+      geographic_levels,
+      type = "geographic_levels"
+    )
   }
   if (!is.null(locations)) {
     query_locations <- eesyapi::parse_filter_in(locations, type = "locations")

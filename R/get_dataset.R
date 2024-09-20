@@ -10,12 +10,13 @@
 #' any of those items.
 #'
 #' @inheritParams api_url
+#' @param parse Logical flag to activate parsing of the results. Default: TRUE
 #'
 #' @return Data frame containing query results of an API data set
 #' @export
 #'
 #' @examples
-#' get_dataset(example_id(), indicators = "session_count")
+#' get_dataset(example_id(), indicators = example_id("indicator"))
 get_dataset <- function(
     dataset_id,
     indicators,
@@ -25,6 +26,7 @@ get_dataset <- function(
     filter_items = NULL,
     dataset_version = NULL,
     api_version = NULL,
+    parse = TRUE,
     verbose = FALSE) {
   response <- eesyapi::api_url(
     "get-data",
@@ -43,16 +45,9 @@ get_dataset <- function(
   response_json <- response |>
     httr::content("text") |>
     jsonlite::fromJSON()
-  result <- response_json$results
-  dplyr::bind_cols(
-    result$timePeriod,
-    data.frame(geographic_level = result$geographicLevel),
-    data.frame(location_code = result$locations),
-    result$filters,
-    result$values
-  ) |>
-    dplyr::rename(
-      time_identifier = "code",
-      time_period = "period"
-    )
+  if (parse) {
+    response_json$results |> parse_api_dataset()
+  } else {
+    response_json$results
+  }
 }

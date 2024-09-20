@@ -27,7 +27,7 @@ validate_page_size <- function(page_size, min = 1, max = 40) {
 #' Validate element IDs
 #'
 #' @param element_id ID for publication or a data set
-#' @param level ID level: "publication" or "dataset"
+#' @param level ID level: "publication", "dataset", "filter_item" or "indicator"
 #'
 #' @return NULL
 #' @export
@@ -35,11 +35,11 @@ validate_page_size <- function(page_size, min = 1, max = 40) {
 #' @examples
 #' validate_ees_id(example_id("publication"), level = "publication")
 validate_ees_id <- function(element_id, level = "publication") {
-  if (!(level %in% c("publication", "dataset", "filter_item"))) {
+  if (!(level %in% c("publication", "dataset", "filter_item", "indicator"))) {
     stop(
       paste0(
         "Non-valid element level received by validate_id.\n",
-        'Should be one of "publication", "dataset" or "filter_item".'
+        'Should be one of "publication", "dataset", "filter_item" or indicator.'
       )
     )
   }

@@ -11,32 +11,40 @@
 #' @examples
 #' example_id()
 example_id <- function(level = "dataset", environment = "dev") {
-  examples <- data.frame(
-    type = c(
+  example_ids <- data.frame(
+    levels = c(
       "publication",
       "dataset",
       "filter_item",
-      "indicators"
+      "indicator"
     ),
-    environment = c(
+    environments = c(
       "dev",
       "dev",
       "dev",
       "dev"
     ),
-    example = c(
+    examples = c(
       "b6d9ed96-be68-4791-abc3-08dcaba68c04",
-      "a3ff9101-bce1-9774-b1f5-b698f3311168",
+      "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
       "hl2Gy",
-      "session_count"
+      "bqZtT"
     )
   )
+  if (!(level %in% example_ids$levels)) {
+    stop(
+      paste0(
+        "Non-valid element level received by validate_id.\n",
+        'Should be one of "publication", "dataset", "filter_item" or indicator.'
+      )
+    )
+  }
   return(
-    examples |>
+    example_ids |>
       dplyr::filter(
-        examples$type == level,
-        examples$environment == environment
+        example_ids$levels == level,
+        example_ids$environments == environment
       ) |>
-      dplyr::pull("example")
+      dplyr::pull("examples")
   )
 }

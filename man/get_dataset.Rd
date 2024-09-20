@@ -13,12 +13,13 @@ get_dataset(
   filter_items = NULL,
   dataset_version = NULL,
   api_version = NULL,
+  parse = TRUE,
   verbose = FALSE
 )
 }
 \arguments{
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "query-data"}
+of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{indicators}{Indicators required as a string or vector of strings (required)}
 
@@ -33,6 +34,8 @@ of "get-summary", "get-meta", "get-data" or "query-data"}
 \item{dataset_version}{Version of data set to be connected to}
 
 \item{api_version}{EES API version}
+
+\item{parse}{Logical flag to activate parsing of the results. Default: TRUE}
 
 \item{verbose}{Add extra contextual information whilst running}
 }
@@ -49,5 +52,5 @@ So if you give GET a set of filter items to search on, it can only return all ro
 any of those items.
 }
 \examples{
-get_dataset(example_id(), indicators = "session_count")
+get_dataset(example_id(), indicators = example_id("indicator"))
 }
