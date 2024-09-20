@@ -1,4 +1,4 @@
-#' Title
+#' Parse contents of API data set json output
 #'
 #' @description
 #' This takes the json results output from the API and converts it into a usable data frame.
@@ -22,6 +22,9 @@
 parse_api_dataset <- function(
     api_data_result,
     dataset_id = NULL) {
+  if (!is.null(dataset_id)){
+    eesyapi::validate_ees_id(indicators, level = "dataset")
+  }
   if ("results" %in% names(api_data_result)) {
     api_data_result <- api_data_result$results
   }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_api_dataset.R
 \name{parse_api_dataset}
 \alias{parse_api_dataset}
-\title{Title}
+\title{Parse contents of API data set json output}
 \usage{
 parse_api_dataset(api_data_result, dataset_id = NULL)
 }

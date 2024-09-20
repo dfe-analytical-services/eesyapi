@@ -21,9 +21,11 @@ api_url_query <- function(
     geographic_levels = NULL,
     locations = NULL,
     filter_items = NULL) {
+  # Validation on required params
   if (is.null(indicators)) {
     stop("The keyword indicators must be supplied")
   }
+  eesyapi::validate_ees_id(indicators, level = "indicator")
   # Create the appropriate query strings for each level provided
   if (!is.null(time_periods)) {
     query_time_periods <- eesyapi::parse_filter_in(time_periods, "time_periods")
