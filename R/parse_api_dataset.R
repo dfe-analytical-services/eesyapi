@@ -24,12 +24,18 @@
 #'   parse_api_dataset()
 parse_api_dataset <- function(
     api_data_result,
-    dataset_id = NULL) {
+    dataset_id = NULL,
+    verbose = FALSE) {
   if (!is.null(dataset_id)) {
     eesyapi::validate_ees_id(dataset_id, level = "dataset")
   }
   if ("results" %in% names(api_data_result)) {
     api_data_result <- api_data_result$results
+  }
+  if(verbose){
+    print(names(api_data_result))
+    print(names(api_data_result$locations))
+    print(names(api_data_result$filters))
   }
   dplyr::bind_cols(
     api_data_result$timePeriod,
