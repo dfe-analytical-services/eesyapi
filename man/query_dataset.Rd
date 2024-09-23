@@ -49,8 +49,23 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 Data frame containing query results
 }
 \description{
-A short description...
+Create and send a query to the EES API. Queries can be constructed by including the
+codes to the relevant flags to filter on time period, geographic level, location,
+and data set specific filters. If none of the above are set in the function call,
+then the entire data set will be retrieved. The data set id and specific indicators
+of interest must be supplied explictly using the dataset_id and indicators params.
 }
 \examples{
-query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size = 10)
+query_dataset(
+  example_id(),
+  geographic_levels = "NAT",
+  filter_items = example_id("filter_item"),
+  indicators = example_id("indicator")
+)
+query_dataset(
+  example_id(),
+  indicators = example_id("indicator"),
+  page = 1,
+  page_size = 10
+)
 }

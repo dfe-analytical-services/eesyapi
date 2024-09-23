@@ -50,11 +50,11 @@ api_url_query <- function(
       for (filter_set in filter_items) {
         query_filter_items <- paste0(
           query_filter_items,
-          eesyapi::parse_filter_in(filter_set)
+          eesyapi::parse_filter_in(filter_set, type = "filter_items")
         )
       }
     } else {
-      query_filter_items <- eesyapi::parse_filter_in(filter_items)
+      query_filter_items <- eesyapi::parse_filter_in(filter_items, type = "filter_items")
     }
   }
   query_indicators <- paste0(

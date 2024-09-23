@@ -10,7 +10,7 @@ reference:
   desc: These are the functions we expect analysts will most likely want to use to connect to the EES API.
   contents:
   - get_publications
-  - get_datasets
+  - get_data_catalogue
   - get_meta
   - query_dataset
 

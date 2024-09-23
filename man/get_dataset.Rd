@@ -60,7 +60,7 @@ any of those items.
 \examples{
 get_dataset(
   example_id(),
-  geographic_level = "NAT",
+  geographic_levels = "NAT",
   filter_items = example_id("filter_item"),
   indicators = example_id("indicator")
 )

@@ -1,7 +1,11 @@
 #' Query a data set
 #'
 #' @description
-#' A short description...
+#' Create and send a query to the EES API. Queries can be constructed by including the
+#' codes to the relevant flags to filter on time period, geographic level, location,
+#' and data set specific filters. If none of the above are set in the function call,
+#' then the entire data set will be retrieved. The data set id and specific indicators
+#' of interest must be supplied explictly using the dataset_id and indicators params.
 #'
 #' @inheritParams api_url
 #' @param method An API query method. Needs to be "GET"
@@ -10,7 +14,18 @@
 #' @export
 #'
 #' @examples
-#' query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size = 10)
+#' query_dataset(
+#'   example_id(),
+#'   geographic_levels = "NAT",
+#'   filter_items = example_id("filter_item"),
+#'   indicators = example_id("indicator")
+#' )
+#' query_dataset(
+#'   example_id(),
+#'   indicators = example_id("indicator"),
+#'   page = 1,
+#'   page_size = 10
+#' )
 query_dataset <- function(
     dataset_id,
     indicators,
@@ -36,7 +51,7 @@ query_dataset <- function(
     warning(
       paste(
         "Using GET to query a data set offers limited functionality, we recommend",
-        "using POST alongside a json structured query instead:\n",
+        "using POST alongside a JSON structured query instead:\n",
         "  - query_dataset(..., method = 'POST')"
       )
     )

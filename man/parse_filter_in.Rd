@@ -4,13 +4,13 @@
 \alias{parse_filter_in}
 \title{Create \if{html}{\out{<filter>}}.in query string for URL queries}
 \usage{
-parse_filter_in(items = NULL, type = "filters")
+parse_filter_in(items = NULL, type = NULL)
 }
 \arguments{
 \item{items}{items to be included in the "in" statement}
 
 \item{type}{type of filter items being queried: "time_periods", "geographic_levels",
-"locations" or "filters"}
+"locations" or "filter_items"}
 }
 \value{
 Query string for use in URL based API queries

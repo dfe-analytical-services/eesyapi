@@ -10,8 +10,8 @@
 #' @export
 #'
 #' @examples
-#' get_datasets(example_id("publication"))
-get_datasets <- function(
+#' get_data_catalogue(example_id("publication"))
+get_data_catalogue <- function(
     publication_id,
     page_size = NULL,
     page = NULL,

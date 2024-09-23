@@ -3,7 +3,8 @@
 #' @description
 #' Translate a http error code into an error message.
 #'
-#' @param response HTTP response from the API
+#' @param response HTTP response from the API, should be in the form of a list with a
+#' status element containing the 3 digit HTTP response code
 #' @param verbose Run in verbose mode, logical, default = FALSE
 #'
 #'

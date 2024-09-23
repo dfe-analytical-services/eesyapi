@@ -7,7 +7,8 @@
 http_request_error(response, verbose = FALSE)
 }
 \arguments{
-\item{response}{HTTP response from the API}
+\item{response}{HTTP response from the API, should be in the form of a list with a
+status element containing the 3 digit HTTP response code}
 
 \item{verbose}{Run in verbose mode, logical, default = FALSE}
 }

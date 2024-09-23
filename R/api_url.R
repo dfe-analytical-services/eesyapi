@@ -211,6 +211,20 @@ api_url <- function(
         )
     }
   }
+  if (endpoint %in% c("get-publications", "get-data-catalogue", "get-meta")) {
+    if (
+      any(!is.null(c(time_periods, geographic_levels, locations, filter_items, indicators)))
+    ) {
+      warning(
+        paste0(
+          "None of the params ",
+          "time_periods, geographic_levels, locations, filter_items or indicators",
+          " are used by api_url when the endpoint param is set to ",
+          endpoint
+        )
+      )
+    }
+  }
   if (verbose) {
     cat("Generated the following query url:", fill = TRUE)
     cat(url, fill = TRUE)
