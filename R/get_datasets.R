@@ -47,7 +47,7 @@ get_datasets <- function(
           httr::content("text") |>
           jsonlite::fromJSON()
         response$results <- response$results |>
-          rbind(response_page$results)
+          dplyr::bind_rows(response_page$results)
       }
     }
   }

@@ -16,12 +16,12 @@
 #' @export
 #'
 #' @examples
-#' get_dataset(
-#'   example_id(),
-#'   geographic_level = "NAT",
-#'   filter_items = example_id("filter_item"),
-#'   indicators = example_id("indicator")
-#' )
+get_dataset(
+  example_id(),
+  geographic_level = "NAT",
+  filter_items = example_id("filter_item"),
+  indicators = example_id("indicator")
+)
 get_dataset <- function(
     dataset_id,
     indicators,
@@ -81,7 +81,7 @@ get_dataset <- function(
           jsonlite::fromJSON()
         response_page |> eesyapi::warning_max_pages()
         dfresults <- dfresults |>
-          rbind(
+          dplyr::bind_rows(
             response_page$results |>
               eesyapi::parse_api_dataset(verbose = verbose)
           )
