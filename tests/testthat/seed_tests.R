@@ -17,7 +17,7 @@
 # Refresh all test data
 seed_tests <- function() {
   seed_get_publications()
-  seed_get_datasets()
+  seed_get_data_catalogue()
 }
 
 # Refresh the publication list
@@ -29,9 +29,9 @@ seed_get_publications <- function() {
 }
 
 # Refresh the data sets list from the standard example publication
-seed_get_datasets <- function() {
+seed_get_data_catalogue <- function() {
   saveRDS(
-    eesyapi::get_datasets(eesyapi::example_id("publication")),
+    eesyapi::get_data_catalogue(eesyapi::example_id("publication")),
     file = "tests/testthat/testdata/example_publication_datasets.rds"
   )
 }
