@@ -12,12 +12,16 @@
 #'
 #' @param api_data_result A json data result list as returned from the API
 #' @param dataset_id ID of data set to be connected to.
+#' @param verbose Run in verbose mode, logical, default = FALSE
 #'
 #' @return Data frame containing API data results
 #' @export
 #'
 #' @examples
-#' api_url("get-data", dataset_id = example_id(), indicators = example_id("indicator"), page_size=10) |>
+#' api_url(
+#'   "get-data",
+#'   dataset_id = example_id(), indicators = example_id("indicator"), page_size = 10
+#' ) |>
 #'   httr::GET() |>
 #'   httr::content("text") |>
 #'   jsonlite::fromJSON() |>
@@ -32,7 +36,7 @@ parse_api_dataset <- function(
   if ("results" %in% names(api_data_result)) {
     api_data_result <- api_data_result$results
   }
-  if(verbose){
+  if (verbose) {
     print(names(api_data_result))
     print(names(api_data_result$locations))
     print(names(api_data_result$filters))

@@ -52,5 +52,5 @@ Data frame containing query results
 A short description...
 }
 \examples{
-query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size=10)
+query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size = 10)
 }

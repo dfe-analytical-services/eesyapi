@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size=10)
+#' query_dataset(example_id(), indicators = example_id("indicator"), page = 1, page_size = 10)
 query_dataset <- function(
     dataset_id,
     indicators,

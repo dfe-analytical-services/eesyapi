@@ -17,10 +17,10 @@
 #'
 #' @examples
 #' get_dataset(
-#' example_id(),
-#' geographic_level = "NAT",
-#' filter_items = example_id("filter_item"),
-#' indicators = example_id("indicator")
+#'   example_id(),
+#'   geographic_level = "NAT",
+#'   filter_items = example_id("filter_item"),
+#'   indicators = example_id("indicator")
 #' )
 get_dataset <- function(
     dataset_id,

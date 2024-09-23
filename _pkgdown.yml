@@ -9,7 +9,8 @@ reference:
 - title: Primary API workflow tools for analysts
   desc: These are the functions we expect analysts will most likely want to use to connect to the EES API.
   contents:
-  - starts_with("get_publication")
+  - get_publications
+  - get_datasets
   - get_meta
   - query_dataset
 
