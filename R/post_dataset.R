@@ -25,8 +25,8 @@ post_dataset <- function(
     time_periods = NULL,
     geographic_levels = NULL,
     locations = NULL,
-    json_query = NULL,
     filter_items = NULL,
+    json_query = NULL,
     dataset_version = NULL,
     api_version = NULL,
     page = NULL,
@@ -47,15 +47,21 @@ post_dataset <- function(
     if (json_query |> stringr::str_sub(-5) == ".json") {
       json_body <- readLines(json_query) |>
         paste0(collapse = "\n")
-    }else {
+    } else {
       message("Parsing query options")
       json_body <- json_query
     }
   } else {
     message("Parsing filters not implemented yet")
-    json_body <- "Some json created from the user inputs..."
+    json_body <- parse_params_to_json(
+      indicators = indicators,
+      time_periods = time_periods,
+      geographic_levels = geographic_levels,
+      locations = locations,
+      filter_items = filter_items
+    )
   }
-  response <- api_url(
+  response <- dfeshiny::api_url(
     "query-data",
     dataset_id = dataset_id,
     dataset_version = dataset_version
