@@ -63,19 +63,18 @@ get_dataset <- function(
   if (is.null(page)) {
     if (response_json$paging$totalPages > 1) {
       for (page in c(2:response_json$paging$totalPages)) {
-        response_page <-
-          response <- eesyapi::api_url(
-            "get-data",
-            dataset_id = dataset_id,
-            indicators = indicators,
-            time_periods = time_periods,
-            geographic_levels = geographic_levels,
-            locations = locations,
-            filter_items = filter_items,
-            page_size = page_size,
-            page = page,
-            verbose = verbose
-          ) |>
+        response_page <- eesyapi::api_url(
+          "get-data",
+          dataset_id = dataset_id,
+          indicators = indicators,
+          time_periods = time_periods,
+          geographic_levels = geographic_levels,
+          locations = locations,
+          filter_items = filter_items,
+          page_size = page_size,
+          page = page,
+          verbose = verbose
+        ) |>
           httr::GET() |>
           httr::content("text") |>
           jsonlite::fromJSON()

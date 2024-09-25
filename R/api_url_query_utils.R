@@ -14,8 +14,8 @@
 #' @examples
 #' parse_filter_in(c("2024|W11", "2024|W12"), type = "time_periods")
 parse_filter_in <- function(
-    items = NULL,
-    type = NULL) {
+    items,
+    type) {
   if (!(type %in% c("time_periods", "geographic_levels", "locations", "filter_items"))) {
     stop("type keyword should be one of time_periods, geographic_levels, locations or filter_items")
   }

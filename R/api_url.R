@@ -211,7 +211,7 @@ api_url <- function(
         )
     }
   }
-  if (endpoint %in% c("get-publications", "get-data-catalogue", "get-meta")) {
+  if (endpoint %in% c("get-publications", "get-data-catalogue", "get-summary", "get-meta")) {
     if (
       any(!is.null(c(time_periods, geographic_levels, locations, filter_items, indicators)))
     ) {
