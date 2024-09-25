@@ -4,7 +4,7 @@
 \alias{parse_filter_in}
 \title{Create \if{html}{\out{<filter>}}.in query string for URL queries}
 \usage{
-parse_filter_in(items = NULL, type = NULL)
+parse_filter_in(items, type)
 }
 \arguments{
 \item{items}{items to be included in the "in" statement}
