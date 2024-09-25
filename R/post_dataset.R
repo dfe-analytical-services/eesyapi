@@ -55,7 +55,7 @@ post_dataset <- function(
     message("Parsing filters not implemented yet")
     json_body <- "Some json created from the user inputs..."
   }
-  api_url(
+  response <- api_url(
     "query-data",
     dataset_id = dataset_id,
     dataset_version = dataset_version
@@ -64,4 +64,8 @@ post_dataset <- function(
     encode = "json",
     httr::content_type("application/json")
   )
+  results <- response |>
+    httr::content("text") |>
+    jsonlite::fromJSON() |>
+    magrittr::use_series(results)
 }

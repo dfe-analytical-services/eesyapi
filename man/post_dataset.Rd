@@ -10,7 +10,7 @@ post_dataset(
   time_periods = NULL,
   geographic_levels = NULL,
   locations = NULL,
-  json_file = NULL,
+  json_query = NULL,
   filter_items = NULL,
   dataset_version = NULL,
   api_version = NULL,
@@ -24,7 +24,7 @@ post_dataset(
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
 of "get-summary", "get-meta", "get-data" or "query-data"}
 
-\item{json_file}{Optional path to a json file containing the query parameters}
+\item{json_query}{Optional path to a json file containing the query parameters}
 
 \item{dataset_version}{Version of data set to be connected to}
 
