@@ -12,6 +12,17 @@ parse_params_to_json(
   filter_items = NULL
 )
 }
+\arguments{
+\item{indicators}{Indicators required as a string or vector of strings (required)}
+
+\item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
+
+\item{geographic_levels}{Geographic levels required as a string or vector of strings}
+
+\item{locations}{Location code required as a string or vector of strings}
+
+\item{filter_items}{Filter items required as a string or vector of strings}
+}
 \value{
 String containing json query body for use with http POST request
 }

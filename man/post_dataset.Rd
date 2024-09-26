@@ -22,7 +22,17 @@ post_dataset(
 }
 \arguments{
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "query-data"}
+of "get-summary", "get-meta", "get-data" or "post-data"}
+
+\item{indicators}{Indicators required as a string or vector of strings (required)}
+
+\item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
+
+\item{geographic_levels}{Geographic levels required as a string or vector of strings}
+
+\item{locations}{Location code required as a string or vector of strings}
+
+\item{filter_items}{Filter items required as a string or vector of strings}
 
 \item{json_query}{Optional path to a json file containing the query parameters}
 
