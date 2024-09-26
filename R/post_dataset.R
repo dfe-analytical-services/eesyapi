@@ -45,7 +45,7 @@
 #' }'
 #'
 #' post_dataset(
-#'   example_id(),
+#'   example_id(group = "attendance"),
 #'   json_query = test_query
 #' )
 post_dataset <- function(
@@ -99,8 +99,12 @@ post_dataset <- function(
     encode = "json",
     httr::content_type("application/json")
   )
+  if (verbose) {
+    print(response)
+  }
   results <- response |>
     httr::content("text") |>
     jsonlite::fromJSON() |>
     magrittr::use_series(results)
+  return(results)
 }

@@ -89,7 +89,7 @@ test_query <- '{
 }'
 
 post_dataset(
-  example_id(),
+  example_id(group = "attendance"),
   json_query = test_query
 )
 }

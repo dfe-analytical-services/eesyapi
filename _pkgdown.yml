@@ -22,6 +22,8 @@ reference:
   - http_request_error
   - parse_filter_in
   - parse_params_to_json
+  - parse_time_periods_to_json
+  - parse_geographic_levels_to_json
 
 - title: Support for handling meta data from the API
   desc: These functions are used by `get_meta()` and included here for completeness.

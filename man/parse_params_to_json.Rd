@@ -9,7 +9,9 @@ parse_params_to_json(
   time_periods = NULL,
   geographic_levels = NULL,
   locations = NULL,
-  filter_items = NULL
+  filter_items = NULL,
+  page = 1,
+  page_size = 1000
 )
 }
 \arguments{
@@ -22,6 +24,10 @@ parse_params_to_json(
 \item{locations}{Location code required as a string or vector of strings}
 
 \item{filter_items}{Filter items required as a string or vector of strings}
+
+\item{page}{Page number of query results to return}
+
+\item{page_size}{Number of results to return in a single query}
 }
 \value{
 String containing json query body for use with http POST request
