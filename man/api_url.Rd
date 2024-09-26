@@ -8,6 +8,11 @@ api_url(
   endpoint = "get-publications",
   publication_id = NULL,
   dataset_id = NULL,
+  indicators = NULL,
+  time_periods = NULL,
+  geographic_levels = NULL,
+  locations = NULL,
+  filter_items = NULL,
   dataset_version = NULL,
   page_size = NULL,
   page = NULL,
@@ -18,13 +23,23 @@ api_url(
 }
 \arguments{
 \item{endpoint}{Name of endpoint, can be "get-publications", "get-data-catalogue",
-"get-summary", "get-meta", "get-data" or "query-data"}
+"get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{publication_id}{ID of the publication to be connected to. This is required if the
 endpoint is "get-data-catalogue"}
 
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "query-data"}
+of "get-summary", "get-meta", "get-data" or "post-data"}
+
+\item{indicators}{Indicators required as a string or vector of strings (required)}
+
+\item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
+
+\item{geographic_levels}{Geographic levels required as a string or vector of strings}
+
+\item{locations}{Location code required as a string or vector of strings}
+
+\item{filter_items}{Filter items required as a string or vector of strings}
 
 \item{dataset_version}{Version of data set to be connected to}
 
@@ -50,7 +65,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.
 \strong{Endpoints} \tab \strong{id required} \cr
 get-publications \tab Neither  \cr
 get-data-catalogue \tab publication_id  \cr
-get-summary, get-meta, get-data, query-data \tab dataset_id  \cr
+get-summary, get-meta, get-data, post-data \tab dataset_id  \cr
 }
 }
 \examples{
@@ -59,6 +74,17 @@ api_url("get-publications")
 api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))
 api_url("get-summary", dataset_id = eesyapi::example_id("dataset"))
 api_url("get-meta", dataset_id = eesyapi::example_id("dataset"))
-api_url("get-data", dataset_id = eesyapi::example_id("dataset"))
-api_url("query-data", dataset_id = eesyapi::example_id("dataset"))
+api_url(
+  "get-data",
+  dataset_id = eesyapi::example_id("dataset"),
+  indicators = example_id("indicator"),
+  time_periods = c("2024|W12", "2024|W13"),
+  geographic_levels = c("NAT"),
+  filter_items = example_id("filter_item")
+)
+api_url(
+  "post-data",
+  dataset_id = eesyapi::example_id("dataset"),
+  indicators = example_id("indicator")
+)
 }

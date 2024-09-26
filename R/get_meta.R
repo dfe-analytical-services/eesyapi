@@ -68,23 +68,15 @@ get_meta_response <- function(
   )
 
   response <- httr::GET(meta_url)
-  if (response$status_code > 299) {
-    stop(paste0(
-      "Query returned error, status ",
-      response$status,
-      ": ",
-      eesyapi::http_request_error(response$status)
-    ))
+  eesyapi::http_request_error(response)
+  if (parse) {
+    result <- response |>
+      httr::content("text") |>
+      jsonlite::fromJSON()
   } else {
-    if (parse) {
-      result <- response |>
-        httr::content("text") |>
-        jsonlite::fromJSON()
-    } else {
-      result <- response
-    }
-    return(result)
+    result <- response
   }
+  return(result)
 }
 
 #' Parse API meta to give the time periods
