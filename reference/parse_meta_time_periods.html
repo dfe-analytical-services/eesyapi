@@ -58,46 +58,10 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="get_meta_response.html">get_meta_response</a></span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">timePeriods</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">parse_meta_time_periods</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code period        label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    W1   2024  2024 Week 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    W2   2024  2024 Week 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    W3   2024  2024 Week 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    W4   2024  2024 Week 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    W5   2024  2024 Week 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    W6   2024  2024 Week 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    W7   2024  2024 Week 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    W8   2024  2024 Week 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    W9   2024  2024 Week 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  W10   2024 2024 Week 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  W11   2024 2024 Week 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  W12   2024 2024 Week 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  W13   2024 2024 Week 13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  W15   2024 2024 Week 15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  W16   2024 2024 Week 16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16  W17   2024 2024 Week 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  W18   2024 2024 Week 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18  W19   2024 2024 Week 19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  W20   2024 2024 Week 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  W21   2024 2024 Week 21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21  W23   2024 2024 Week 23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22  W24   2024 2024 Week 24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  W25   2024 2024 Week 25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24  W26   2024 2024 Week 26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25  W37   2023 2023 Week 37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26  W38   2023 2023 Week 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27  W39   2023 2023 Week 39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28  W40   2023 2023 Week 40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29  W41   2023 2023 Week 41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30  W42   2023 2023 Week 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31  W43   2023 2023 Week 43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32  W44   2023 2023 Week 44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33  W45   2023 2023 Week 45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34  W46   2023 2023 Week 46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35  W47   2023 2023 Week 47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36  W48   2023 2023 Week 48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37  W49   2023 2023 Week 49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38  W50   2023 2023 Week 50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39  W51   2023 2023 Week 51</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code    period   label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   AY 2017/2018 2017/18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   AY 2018/2019 2018/19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   AY 2019/2020 2019/20</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -109,7 +73,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

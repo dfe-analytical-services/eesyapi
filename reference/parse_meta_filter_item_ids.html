@@ -58,106 +58,120 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="get_meta_response.html">get_meta_response</a></span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">filters</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">parse_meta_filter_item_ids</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               col_name                                 item_label item_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    attendance_status                                    Absence   uRBo4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    attendance_status                                 Attendance   lxdcB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    attendance_status                              Late sessions   ULFRF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    attendance_status                             Not determined   okYmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    attendance_status                          Possible sessions   rtaNj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      attendance_type              Approved educational activity   G7Kgr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      attendance_type                                 Authorised   3Km8u</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      attendance_type                             Not determined   SPIVx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      attendance_type                                    Present   ycTaB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10     attendance_type                               Unauthorised   RWdka</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          day_number                                          1   bGMtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          day_number                                          2   DqsQe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          day_number                                          3   eUpuS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          day_number                                          4   5uFdi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15          day_number                                          5   4aPUZ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16          day_number                                      Total   mhT9K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 establishment_phase                                    Primary   0mST5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 establishment_phase                                  Secondary   WZy2b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 establishment_phase                                    Special   EObqF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 establishment_phase                                      Total   QjDwb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21              reason                       B education off site   9y94v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22              reason                         C authorised other   2xclz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23              reason                        D dual registration   PUoeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24              reason                      E authorised excluded   NqbDC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25              reason                                   Excluded   wGjbx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26              reason                    F legacy family holiday   ohkmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27              reason                     G unauthorised holiday   9aa4v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28              reason                       H authorised holiday   dm90Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29              reason                       I authorised illness   OYzCL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30              reason                                J interview   7JpXo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31              reason     L present late before registers closed   pPmSo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32              reason                M authorised medical dental   IzpBz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33              reason                            N no reason yet   ibG6X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34              reason               Not attending planned closed   LZ6Wj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35              reason                       O other unauthorised   6tCrf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36              reason               P approved sporting activity   HSmzL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37              reason                                         Pa   09WT5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38              reason                                    Present   CH0Id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39              reason                                 Present am   Yp9HK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40              reason                                 Present pm   qISjG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41              reason          R authorised religious observance   a8bLP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42              reason                   S authorised study leave   BFm7J</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43              reason                   T authorised grt absence   zVyFQ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44              reason                                      Total   klbhs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45              reason U unauthorised late after registers closed   uk6o4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46              reason                   V educational visit trip   XvhfK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47              reason                          W work experience   T4iPJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48              reason           Y not attending enforced closure   cK731</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49              reason                Z not attending not on roll   5o1di</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    default_item</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16         TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20         TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44         TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    col_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                         item_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                           Any other ethnic group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                               Asian - Any other Asian background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                              Asian - Bangladeshi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                   Asian - Indian</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                Asian - Pakistani</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                               Black - Any other Black background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                                            Black - Black African</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                                          Black - Black Caribbean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                                                                          Chinese</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                              Mixed - Any other Mixed background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                         Mixed - White and Asian</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                 Mixed - White and Black African</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                               Mixed - White and Black Caribbean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                                                    Unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                              White - Any other White background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                                              White - Gypsy/Roma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                                                   White - Irish</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                             White - Traveller of Irish heritage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                                           White - White British</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                 Known or believed to be English</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22                                      Known or believed to be other than English</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                                                           Language unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25                                    FSM eligible pupils taking free school meals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                                  infants taken a free school meal on census day</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                                      known to be eligible for free school meals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 known to be eligible for free school meals (used for FSM in Performance Tables)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29                           number of pupils (used for FSM in Performance Tables)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31                                                   Non-maintained special school</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32                                                             Pupil referral unit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33                                                            State-funded nursery</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34                                                            State-funded primary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35                                                          State-funded secondary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36                                                     State-funded special school</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    item_id default_item</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    bfQtT           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    DBNQe           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    e2euS           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    5y0di           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    4skUZ           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    m8R9K           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    0LoT5           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    WNZ2b           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    EzCqF           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   QXGwb           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   9ZW4v           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   2D1lz           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   P2yeb           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   NBODC         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   wf7bx           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   o3cmX           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   9ZZ4v           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   daL0Z           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   OS5CL           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   70eXo           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   pRaSo           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   I5eBz           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   iOf6X           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   LrEWj         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   6Czrf           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   0LxT5           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   HuazL           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   CV4Id           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   YeLHK           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   qFujG         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   a6OLP           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   Bda7J           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   zo8FQ           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   kKOhs           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   ucEo4           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36   XT3fK           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   TWtPJ         TRUE</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -169,7 +183,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

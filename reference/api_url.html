@@ -6,7 +6,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.
 Endpointsid required
 get-publicationsNeither
 get-data-cataloguepublication_id
-get-summary, get-meta, get-data, query-datadataset_id
+get-summary, get-meta, get-data, post-datadataset_id
 
 
 "><meta property="og:description" content="This function returns a single URL to connect to a chosen EES API endpoint. The resulting URL can
@@ -16,7 +16,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.
 Endpointsid required
 get-publicationsNeither
 get-data-cataloguepublication_id
-get-summary, get-meta, get-data, query-datadataset_id
+get-summary, get-meta, get-data, post-datadataset_id
 
 
 "></head><body>
@@ -56,7 +56,7 @@ get-summary, get-meta, get-data, query-datadataset_id
     <p>This function returns a single URL to connect to a chosen EES API endpoint. The resulting URL can
 be used with GET or POST (as appropriate) in order to connect. Whether the publication_id or
 dataset_id (or neither) parameter are required depends on the endpoint chose.</p>
-<table class="table table"><tr><td><strong>Endpoints</strong></td><td><strong>id required</strong></td></tr><tr><td>get-publications</td><td>Neither</td></tr><tr><td>get-data-catalogue</td><td>publication_id</td></tr><tr><td>get-summary, get-meta, get-data, query-data</td><td>dataset_id</td></tr></table></div>
+<table class="table table"><tr><td><strong>Endpoints</strong></td><td><strong>id required</strong></td></tr><tr><td>get-publications</td><td>Neither</td></tr><tr><td>get-data-catalogue</td><td>publication_id</td></tr><tr><td>get-summary, get-meta, get-data, post-data</td><td>dataset_id</td></tr></table></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
@@ -64,6 +64,11 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.</p
 <span>  endpoint <span class="op">=</span> <span class="st">"get-publications"</span>,</span>
 <span>  publication_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dataset_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  indicators <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  time_periods <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  geographic_levels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  locations <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  filter_items <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dataset_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  page_size <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  page <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -79,7 +84,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.</p
 
 <dl><dt id="arg-endpoint">endpoint<a class="anchor" aria-label="anchor" href="#arg-endpoint"></a></dt>
 <dd><p>Name of endpoint, can be "get-publications", "get-data-catalogue",
-"get-summary", "get-meta", "get-data" or "query-data"</p></dd>
+"get-summary", "get-meta", "get-data" or "post-data"</p></dd>
 
 
 <dt id="arg-publication-id">publication_id<a class="anchor" aria-label="anchor" href="#arg-publication-id"></a></dt>
@@ -89,7 +94,27 @@ endpoint is "get-data-catalogue"</p></dd>
 
 <dt id="arg-dataset-id">dataset_id<a class="anchor" aria-label="anchor" href="#arg-dataset-id"></a></dt>
 <dd><p>ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "query-data"</p></dd>
+of "get-summary", "get-meta", "get-data" or "post-data"</p></dd>
+
+
+<dt id="arg-indicators">indicators<a class="anchor" aria-label="anchor" href="#arg-indicators"></a></dt>
+<dd><p>Indicators required as a string or vector of strings (required)</p></dd>
+
+
+<dt id="arg-time-periods">time_periods<a class="anchor" aria-label="anchor" href="#arg-time-periods"></a></dt>
+<dd><p>Time periods required as a string ("period|code") or vector of strings</p></dd>
+
+
+<dt id="arg-geographic-levels">geographic_levels<a class="anchor" aria-label="anchor" href="#arg-geographic-levels"></a></dt>
+<dd><p>Geographic levels required as a string or vector of strings</p></dd>
+
+
+<dt id="arg-locations">locations<a class="anchor" aria-label="anchor" href="#arg-locations"></a></dt>
+<dd><p>Location code required as a string or vector of strings</p></dd>
+
+
+<dt id="arg-filter-items">filter_items<a class="anchor" aria-label="anchor" href="#arg-filter-items"></a></dt>
+<dd><p>Filter items required as a string or vector of strings</p></dd>
 
 
 <dt id="arg-dataset-version">dataset_version<a class="anchor" aria-label="anchor" href="#arg-dataset-version"></a></dt>
@@ -128,15 +153,26 @@ of "get-summary", "get-meta", "get-data" or "query-data"</p></dd>
 <span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"get-publications"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/publications?"</span>
 <span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"get-data-catalogue"</span>, publication_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"publication"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/publications/b6d9ed96-be68-4791-abc3-08dcaba68c04/data-sets?"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/publications/d823e4df-626f-4450-9b21-08dc8b95fc02/data-sets?"</span>
 <span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"get-summary"</span>, dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/d7329101-f275-d277-bbfe-d8cfaa709833/summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/830f9201-9e11-ad75-8dcd-d2efe2834457"</span>
 <span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"get-meta"</span>, dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/d7329101-f275-d277-bbfe-d8cfaa709833/meta"</span>
-<span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"get-data"</span>, dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/d7329101-f275-d277-bbfe-d8cfaa709833"</span>
-<span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"query-data"</span>, dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/d7329101-f275-d277-bbfe-d8cfaa709833/query"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/830f9201-9e11-ad75-8dcd-d2efe2834457/meta"</span>
+<span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"get-data"</span>,</span></span>
+<span class="r-in"><span>  dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  indicators <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"indicator"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  time_periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2024|W12"</span>, <span class="st">"2024|W13"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  geographic_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAT"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  filter_items <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"filter_item"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/830f9201-9e11-ad75-8dcd-d2efe2834457/query?timePeriods.in=2024|W12%2C2024|W13&amp;geographicLevels.in=NAT&amp;filters.in=kKOhs&amp;indicators=mRj9K"</span>
+<span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"post-data"</span>,</span></span>
+<span class="r-in"><span>  dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  indicators <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"indicator"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/830f9201-9e11-ad75-8dcd-d2efe2834457/query"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -148,7 +184,7 @@ of "get-summary", "get-meta", "get-data" or "query-data"</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

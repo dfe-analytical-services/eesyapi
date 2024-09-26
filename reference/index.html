@@ -43,13 +43,13 @@
 
       <dl><dt>
 
-          <code><a href="get_publication_catalogue.html">get_publication_catalogue()</a></code>
+          <code><a href="get_publications.html">get_publications()</a></code>
 
         </dt>
         <dd>Get publications</dd>
       </dl><dl><dt>
 
-          <code><a href="get_publication_datasets.html">get_publication_datasets()</a></code>
+          <code><a href="get_data_catalogue.html">get_data_catalogue()</a></code>
 
         </dt>
         <dd>Get publication specific data set catalogue</dd>
@@ -59,6 +59,12 @@
 
         </dt>
         <dd>Get a parsed version of the API response for a data set's meta data</dd>
+      </dl><dl><dt>
+
+          <code><a href="query_dataset.html">query_dataset()</a></code>
+
+        </dt>
+        <dd>Query a data set</dd>
       </dl></div><div class="section level2">
       <h2 id="support-for-generating-api-urls-and-interpreting-responses">Support for generating API URLs and interpreting responses<a class="anchor" aria-label="anchor" href="#support-for-generating-api-urls-and-interpreting-responses"></a></h2>
 
@@ -90,10 +96,22 @@
         <dd>EES API URL paging</dd>
       </dl><dl><dt>
 
+          <code><a href="api_url_query.html">api_url_query()</a></code>
+
+        </dt>
+        <dd>Generate URL code for API data query</dd>
+      </dl><dl><dt>
+
           <code><a href="http_request_error.html">http_request_error()</a></code>
 
         </dt>
         <dd>Contextualise http request errors</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_filter_in.html">parse_filter_in()</a></code>
+
+        </dt>
+        <dd>Create <filter>.in query string for URL queries</filter></dd>
       </dl></div><div class="section level2">
       <h2 id="support-for-handling-meta-data-from-the-api">Support for handling meta data from the API<a class="anchor" aria-label="anchor" href="#support-for-handling-meta-data-from-the-api"></a></h2>
 
@@ -141,6 +159,29 @@
 
         </dt>
         <dd>Parse API meta to give the time periods</dd>
+      </dl></div><div class="section level2">
+      <h2 id="support-for-handling-data-sets-from-the-api">Support for handling data sets from the API<a class="anchor" aria-label="anchor" href="#support-for-handling-data-sets-from-the-api"></a></h2>
+
+      <div class="section-desc"><p>These functions are used by <code><a href="../reference/get_meta.html">get_meta()</a></code> and included here for completeness.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="get_dataset.html">get_dataset()</a></code>
+
+        </dt>
+        <dd>Query a data set using GET and a query URL</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_api_dataset.html">parse_api_dataset()</a></code>
+
+        </dt>
+        <dd>Parse contents of API data set json output</dd>
       </dl></div><div class="section level2">
       <h2 id="validation-functions">Validation functions<a class="anchor" aria-label="anchor" href="#validation-functions"></a></h2>
 
@@ -191,7 +232,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

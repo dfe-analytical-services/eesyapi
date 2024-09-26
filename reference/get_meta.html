@@ -72,319 +72,296 @@ meta endpoint.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_meta</span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $time_periods</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code period        label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    W1   2024  2024 Week 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    W2   2024  2024 Week 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    W3   2024  2024 Week 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    W4   2024  2024 Week 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    W5   2024  2024 Week 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    W6   2024  2024 Week 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    W7   2024  2024 Week 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    W8   2024  2024 Week 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    W9   2024  2024 Week 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  W10   2024 2024 Week 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  W11   2024 2024 Week 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  W12   2024 2024 Week 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  W13   2024 2024 Week 13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  W15   2024 2024 Week 15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  W16   2024 2024 Week 16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16  W17   2024 2024 Week 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  W18   2024 2024 Week 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18  W19   2024 2024 Week 19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  W20   2024 2024 Week 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  W21   2024 2024 Week 21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21  W23   2024 2024 Week 23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22  W24   2024 2024 Week 24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  W25   2024 2024 Week 25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24  W26   2024 2024 Week 26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25  W37   2023 2023 Week 37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26  W38   2023 2023 Week 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27  W39   2023 2023 Week 39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28  W40   2023 2023 Week 40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29  W41   2023 2023 Week 41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30  W42   2023 2023 Week 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31  W43   2023 2023 Week 43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32  W44   2023 2023 Week 44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33  W45   2023 2023 Week 45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34  W46   2023 2023 Week 46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35  W47   2023 2023 Week 47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36  W48   2023 2023 Week 48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37  W49   2023 2023 Week 49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38  W50   2023 2023 Week 50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39  W51   2023 2023 Week 51</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code    period   label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   AY 2017/2018 2017/18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   AY 2018/2019 2018/19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   AY 2019/2020 2019/20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $locations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     geographic_level      code                               label item_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Local authority E09000002                Barking and Dagenham   09WT5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Local authority E09000003                              Barnet   HSmzL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    Local authority E08000016                            Barnsley   bgKtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Local authority E06000022        Bath and North East Somerset   wgAbx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    Local authority E06000055                             Bedford   YS4HK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    Local authority E09000004                              Bexley   7zXob</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    Local authority E08000025                          Birmingham   eRtuS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    Local authority E06000008               Blackburn with Darwen   WxL2b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    Local authority E06000009                           Blackpool   EIEqF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   Local authority E08000001                              Bolton   uk7o4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   Local authority E06000058 Bournemouth, Christchurch and Poole   k3Ehs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   Local authority E06000036                    Bracknell Forest   1b9i3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   Local authority E08000032                            Bradford   4LeUZ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   Local authority E09000005                               Brent   CH0Id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   Local authority E06000043                   Brighton and Hove   tCoEm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   Local authority E06000023                    Bristol, City of   asELP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   Local authority E09000006                             Bromley   Yp9HK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   Local authority E06000060                     Buckinghamshire   daf0Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19   Local authority E08000002                                Bury   lM0cB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20   Local authority E08000033                          Calderdale   myP9K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21   Local authority E10000003                      Cambridgeshire   oyzmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22   Local authority E09000007                              Camden   ohkmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23   Local authority E06000056                Central Bedfordshire   qBVjG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24   Local authority E06000049                       Cheshire East   qFjG7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25   Local authority E06000050           Cheshire West and Chester   NAEDC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26   Local authority E09000001                      City of London   wGjbx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27   Local authority E06000052                            Cornwall   wOGbx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28   Local authority E06000047                       County Durham   uyNo4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29   Local authority E08000026                            Coventry   T4bPJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30   Local authority E09000008                             Croydon   qISjG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31   Local authority E06000063                          Cumberland   lQ4cB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32   Local authority E06000005                          Darlington   c1X31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33   Local authority E06000015                               Derby   z5aFQ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34   Local authority E10000007                          Derbyshire   HTzLj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35   Local authority E10000008                               Devon   Su7Vx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36   Local authority E08000017                           Doncaster   DjxQe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37   Local authority E06000059                              Dorset   zdLFQ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38   Local authority E08000027                              Dudley   hc7yW</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39   Local authority E09000009                              Ealing   a8bLP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40   Local authority E06000011            East Riding of Yorkshire   LsrWj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41   Local authority E10000011                         East Sussex   5midi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42   Local authority E09000010                             Enfield   BFm7J</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43   Local authority E10000012                               Essex   YPHKM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44   Local authority E08000037                           Gateshead   YVUHK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45   Local authority E10000013                     Gloucestershire   9WW4v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46   Local authority E09000011                           Greenwich   9aa4v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47   Local authority E09000012                             Hackney   dP0Zw</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48   Local authority E06000006                              Halton   Gfigr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49   Local authority E09000013              Hammersmith and Fulham   dm90Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50   Local authority E10000014                           Hampshire   fpcYF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51   Local authority E09000014                            Haringey   zVyFQ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52   Local authority E09000015                              Harrow   pTSoj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53   Local authority E06000001                          Hartlepool   OHFCL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54   Local authority E09000016                            Havering   klbhs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55   Local authority E06000019            Herefordshire, County of   XpafK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56   Local authority E10000015                       Hertfordshire   d4U0Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57   Local authority E09000017                          Hillingdon   uk6o4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58   Local authority E09000018                            Hounslow   XvhfK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59   Local authority E06000046                       Isle of Wight   OzJCL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60   Local authority E06000053                     Isles of Scilly   q75jG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61   Local authority E09000019                           Islington   OYzCL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62   Local authority E09000020              Kensington and Chelsea   7JpXo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63   Local authority E10000016                                Kent   4WuUZ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64   Local authority E06000010         Kingston upon Hull, City of   Bv47J</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65   Local authority E09000021                Kingston upon Thames   T4iPJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66   Local authority E08000034                            Kirklees   09VT5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67   Local authority E08000011                            Knowsley   Vut5X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68   Local authority E09000022                             Lambeth   O7CLF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69   Local authority E10000017                          Lancashire   045T5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70   Local authority E08000035                               Leeds   Wsa2b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71   Local authority E06000016                           Leicester   h3XyW</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72   Local authority E10000018                      Leicestershire   TUtPJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73   Local authority E09000023                            Lewisham   pPmSo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74   Local authority E10000019                        Lincolnshire   7nVXo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75   Local authority E08000012                           Liverpool   PUgeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76   Local authority E06000032                               Luton   CzTId</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77   Local authority E08000003                          Manchester   UWJRF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78   Local authority E06000035                              Medway   mae9K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79   Local authority E09000024                              Merton   cK731</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80   Local authority E06000002                       Middlesbrough   7vSXo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81   Local authority E06000042                       Milton Keynes   BJ97J</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82   Local authority E08000021                 Newcastle upon Tyne   QAQwb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83   Local authority E09000025                              Newham   5o1di</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84   Local authority E10000020                             Norfolk   pu4So</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85   Local authority E06000012             North East Lincolnshire   0kT5D</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86   Local authority E06000013                  North Lincolnshire   6EIrf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87   Local authority E06000061              North Northamptonshire   cif31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88   Local authority E06000024                      North Somerset   9LL4v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89   Local authority E08000022                      North Tyneside   9LU4v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90   Local authority E06000065                     North Yorkshire   1gai3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91   Local authority E06000057                      Northumberland   TRrPJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92   Local authority E06000018                          Nottingham   9WR4v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 93   Local authority E10000024                     Nottinghamshire   Qgbwb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94   Local authority E08000004                              Oldham   ohHmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95   Local authority E10000025                         Oxfordshire   LxNWj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 96   Local authority E06000031                        Peterborough   rqWNj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97   Local authority E06000026                            Plymouth   y8eaB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98   Local authority E06000044                          Portsmouth   j7RAM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99   Local authority E06000038                             Reading   CpId1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100  Local authority E09000026                           Redbridge   IzBzg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101  Local authority E06000003                Redcar and Cleveland   pe9So</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102  Local authority E09000027                Richmond upon Thames   tOuEm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103  Local authority E08000005                            Rochdale   rELNj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 104  Local authority E08000018                           Rotherham   eRSuS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 105  Local authority E06000017                             Rutland   maO9K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 106  Local authority E08000006                             Salford   GX1gr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 107  Local authority E08000028                            Sandwell   myg9K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 108  Local authority E08000014                              Sefton   1wmi3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 109  Local authority E08000019                           Sheffield   5oJdi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 110  Local authority E06000051                          Shropshire   2K8lz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 111  Local authority E06000039                              Slough   lKTcB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 112  Local authority E08000029                            Solihull   gf2O9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 113  Local authority E06000066                            Somerset   ucvo4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 114  Local authority E06000025               South Gloucestershire   d940Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 115  Local authority E08000023                      South Tyneside   2M3lz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 116  Local authority E06000045                         Southampton   ekEuS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 117  Local authority E06000033                     Southend-on-Sea   bO1tT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 118  Local authority E09000028                           Southwark   IzpBz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 119  Local authority E08000013                          St. Helens   LxWjE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 120  Local authority E10000028                       Staffordshire   gYlO9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 121  Local authority E08000007                           Stockport   3198u</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 122  Local authority E06000004                    Stockton-on-Tees   IFSBz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123  Local authority E06000021                      Stoke-on-Trent   AX2GK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 124  Local authority E10000029                             Suffolk   6qBrf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 125  Local authority E08000024                          Sunderland   PRmeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 126  Local authority E10000030                              Surrey   0UlT5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 127  Local authority E09000029                              Sutton   fnlYF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 128  Local authority E06000030                             Swindon   PROeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 129  Local authority E08000008                            Tameside   SeBVx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 130  Local authority E06000020                  Telford and Wrekin   Pk9eb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 131  Local authority E06000034                            Thurrock   DAMQe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 132  Local authority E06000027                              Torbay   RlTka</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 133  Local authority E09000030                       Tower Hamlets   ibG6X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134  Local authority E08000009                            Trafford   y3PaB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 135  Local authority E08000036                           Wakefield   ECtqF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 136  Local authority E08000030                             Walsall   it6Xr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 137  Local authority E09000031                      Waltham Forest   jBUAM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 138  Local authority E09000032                          Wandsworth   LZ6Wj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 139  Local authority E06000007                          Warrington   3i48u</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140  Local authority E10000031                        Warwickshire   H54zL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 141  Local authority E06000037                      West Berkshire   uhXo4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 142  Local authority E06000062               West Northamptonshire   596di</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 143  Local authority E10000032                         West Sussex   CFPId</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 144  Local authority E09000033                         Westminster   6tCrf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 145  Local authority E06000064             Westmorland and Furness   Ux0RF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 146  Local authority E08000010                               Wigan   R20ka</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 147  Local authority E06000054                           Wiltshire   VoE5X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 148  Local authority E06000040              Windsor and Maidenhead   d9g0Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 149  Local authority E08000015                              Wirral   dmG0Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 150  Local authority E06000041                           Wokingham   U2vRF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 151  Local authority E08000031                       Wolverhampton   A7WGK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 152  Local authority E10000034                      Worcestershire   5mvdi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 153  Local authority E06000014                                York   HV9zL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 154         National E92000001                             England   BT7J3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Local authority E09000002                Barking and Dagenham   S9YVx</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Local authority E09000003                              Barnet   21Zlz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    Local authority E08000016                            Barnsley   QOtwb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Local authority E06000022        Bath and North East Somerset   PhIeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    Local authority E06000055                             Bedford   pmRSo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    Local authority E09000004                              Bexley   yxmaB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    Local authority E08000025                          Birmingham   gF8O9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    Local authority E06000008               Blackburn with Darwen   XSLfK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    Local authority E06000009                           Blackpool   TkNPJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   Local authority E08000001                              Bolton   6AXrf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   Local authority E06000028                         Bournemouth   oLJmX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   Local authority E06000058 Bournemouth, Christchurch and Poole   ijI6X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   Local authority E06000036                    Bracknell Forest   Dg1Qe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   Local authority E08000032                            Bradford   l6ucB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   Local authority E09000005                               Brent   R8uka</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   Local authority E06000043                   Brighton and Hove   EXAqF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   Local authority E06000023                    Bristol, City of   1EUi3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   Local authority E09000006                             Bromley   bBrtT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   Local authority E10000002                     Buckinghamshire   Y0hHK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   Local authority E08000002                                Bury   0k3T5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   Local authority E08000033                          Calderdale   U3SRF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   Local authority E10000003                      Cambridgeshire   qYTjG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   Local authority E09000007                              Camden   DOiQe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   Local authority E06000056                Central Bedfordshire   IndBz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   Local authority E06000049                       Cheshire East   wIObx</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   Local authority E06000050           Cheshire West and Chester   oWLmX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   Local authority E09000001                      City of London   3Nk8u</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   Local authority E06000052                            Cornwall   dRk0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   Local authority E06000047                       County Durham   PyUeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   Local authority E08000026                            Coventry   AH3GK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   Local authority E09000008                             Croydon   ea0uS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   Local authority E10000006                             Cumbria   aKALP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   Local authority E06000005                          Darlington   z0WFQ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   Local authority E06000015                               Derby   eyjuS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   Local authority E10000007                          Derbyshire   BSk7J</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36   Local authority E10000008                               Devon   zPlFQ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   Local authority E08000017                           Doncaster   t74Em</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38   Local authority E06000059                              Dorset   LKQWj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39   Local authority E10000009                              Dorset   ksAhs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   Local authority E08000027                              Dudley   V4A5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41   Local authority E09000009                              Ealing   5USdi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42   Local authority E06000011            East Riding of Yorkshire   54rdi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43   Local authority E10000011                         East Sussex   uWwo4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44   Local authority E09000010                             Enfield   4c9UZ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45   Local authority E10000012                               Essex   X52fK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46   Local authority E08000020                           Gateshead   jYyAM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47   Local authority E10000013                     Gloucestershire   TyQPJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48   Local authority E09000011                           Greenwich   m2m9K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49   Local authority E09000012                             Hackney   0hPT5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50   Local authority E06000006                              Halton   k8qhs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51   Local authority E09000013              Hammersmith and Fulham   Wic2b</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52   Local authority E10000014                           Hampshire   cNz31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53   Local authority E09000014                            Haringey   EfGqF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54   Local authority E09000015                              Harrow   QIqwb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55   Local authority E06000001                          Hartlepool   Y5RHK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56   Local authority E09000016                            Havering   9cy4v</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57   Local authority E06000019            Herefordshire, County of   gz3O9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58   Local authority E10000015                       Hertfordshire   5RDdi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59   Local authority E09000017                          Hillingdon   26xlz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60   Local authority E09000018                            Hounslow   PaReb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61   Local authority E06000046                       Isle of Wight   2islz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62   Local authority E06000053                     Isles of Scilly   OJnCL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63   Local authority E09000019                           Islington   NOADC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64   Local authority E09000020              Kensington and Chelsea   wBCbx</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65   Local authority E10000016                                Kent   tXUEm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66   Local authority E06000010         Kingston upon Hull, City of   c6Y31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67   Local authority E09000021                Kingston upon Thames   o2WmX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68   Local authority E08000034                            Kirklees   oWvmX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69   Local authority E08000011                            Knowsley   uLQo4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70   Local authority E09000022                             Lambeth   9cc4v</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71   Local authority E10000017                          Lancashire   fdsYF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72   Local authority E08000035                               Leeds   rGcNj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73   Local authority E06000016                           Leicester   TkqPJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74   Local authority E10000018                      Leicestershire   jHaAM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75   Local authority E09000023                            Lewisham   dkh0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76   Local authority E10000019                        Lincolnshire   eLGuS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77   Local authority E08000012                           Liverpool   XVWfK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78   Local authority E06000032                               Luton   SmfVx</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79   Local authority E08000003                          Manchester   H0RzL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80   Local authority E06000035                              Medway   bI6tT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81   Local authority E09000024                              Merton   OvpCL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82   Local authority E06000002                       Middlesbrough   qXdjG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83   Local authority E06000042                       Milton Keynes   W1l2b</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84   Local authority E08000021                 Newcastle upon Tyne   eaAuS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85   Local authority E09000025                              Newham   7V0Xo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86   Local authority E10000020                             Norfolk   TyAPJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87   Local authority E06000012             North East Lincolnshire   tB9Em</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88   Local authority E06000013                  North Lincolnshire   fV8YF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89   Local authority E06000024                      North Somerset   dUC0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90   Local authority E08000022                      North Tyneside   ThjPJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91   Local authority E10000023                     North Yorkshire   ml79K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92   Local authority E10000021                    Northamptonshire   hxzyW</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93   Local authority E06000048                      Northumberland   NgjDC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94   Local authority E06000018                          Nottingham   mWI9K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95   Local authority E10000024                     Nottinghamshire   gJZO9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96   Local authority E08000004                              Oldham   CvuId</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97   Local authority E10000025                         Oxfordshire   Az8GK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98   Local authority E06000031                        Peterborough   3rR8u</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99   Local authority E06000026                            Plymouth   liecB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100  Local authority E06000029                               Poole   rAlNj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101  Local authority E06000044                          Portsmouth   QCEwb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102  Local authority E06000038                             Reading   54pdi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103  Local authority E09000026                           Redbridge   p9kSo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104  Local authority E06000003                Redcar and Cleveland   axqLP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105  Local authority E09000027                Richmond upon Thames   Ip0Bz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106  Local authority E08000005                            Rochdale   YdkHK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107  Local authority E08000018                           Rotherham   f5ZYF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108  Local authority E06000017                             Rutland   hZYyW</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109  Local authority E08000006                             Salford   qf0jG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110  Local authority E08000028                            Sandwell   PyBeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111  Local authority E08000014                              Sefton   crH31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112  Local authority E08000019                           Sheffield   92k4v</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113  Local authority E06000051                          Shropshire   9ll4v</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114  Local authority E06000039                              Slough   4lmUZ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115  Local authority E08000029                            Solihull   1qRi3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116  Local authority E10000027                            Somerset   VUG5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117  Local authority E06000025               South Gloucestershire   uaYo4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118  Local authority E08000023                      South Tyneside   hsHyW</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119  Local authority E06000045                         Southampton   9lh4v</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120  Local authority E06000033                     Southend-on-Sea   ysoaB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121  Local authority E09000028                           Southwark   iAB6X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122  Local authority E08000013                          St. Helens   ThDPJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123  Local authority E10000028                       Staffordshire   Pa7eb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124  Local authority E08000007                           Stockport   aMjLP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125  Local authority E06000004                    Stockton-on-Tees   BnU7J</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126  Local authority E06000021                      Stoke-on-Trent   V9j5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127  Local authority E10000029                             Suffolk   1jki3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128  Local authority E08000024                          Sunderland   m2B9K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129  Local authority E10000030                              Surrey   dkB0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130  Local authority E09000029                              Sutton   L1wWj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131  Local authority E06000030                             Swindon   GHrgr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132  Local authority E08000008                            Tameside   BpR7J</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133  Local authority E06000020                  Telford and Wrekin   AYcGK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134  Local authority E06000034                            Thurrock   R3eka</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135  Local authority E06000027                              Torbay   UcpRF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136  Local authority E09000030                       Tower Hamlets   6Gfrf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137  Local authority E08000009                            Trafford   zT2FQ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138  Local authority E08000036                           Wakefield   GzNgr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139  Local authority E08000030                             Walsall   dRI0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140  Local authority E09000031                      Waltham Forest   0h8T5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141  Local authority E09000032                          Wandsworth   HTkzL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142  Local authority E06000007                          Warrington   uaDo4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143  Local authority E10000031                        Warwickshire   uWzo4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144  Local authority E06000037                      West Berkshire   eyduS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145  Local authority E10000032                         West Sussex   lrocB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146  Local authority E09000033                         Westminster   CnoId</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147  Local authority E08000010                               Wigan   kZjhs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148  Local authority E06000054                           Wiltshire   7SdXo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149  Local authority E06000040              Windsor and Maidenhead   mWo9K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150  Local authority E08000015                              Wirral   5UNdi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151  Local authority E06000041                           Wokingham   0R0T5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152  Local authority E08000031                       Wolverhampton   uLHo4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153  Local authority E10000034                      Worcestershire   U8VRF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154  Local authority E06000014                                York   jfhAM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155         National E92000001                             England   dP0Zw</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filter_columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              col_name               label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   attendance_status   Attendance status</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     attendance_type     Attendance type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          day_number          Day number</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 establishment_phase Establishment phase</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              reason              Reason</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   col_name             label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    VTQ5X         Ethnicity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Pmjeb    First language</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    1Nei3 Free School Meals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    deq0Z       School type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filter_items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               col_name                                 item_label item_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    attendance_status                                    Absence   uRBo4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    attendance_status                                 Attendance   lxdcB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    attendance_status                              Late sessions   ULFRF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    attendance_status                             Not determined   okYmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    attendance_status                          Possible sessions   rtaNj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      attendance_type              Approved educational activity   G7Kgr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      attendance_type                                 Authorised   3Km8u</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      attendance_type                             Not determined   SPIVx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      attendance_type                                    Present   ycTaB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10     attendance_type                               Unauthorised   RWdka</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          day_number                                          1   bGMtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          day_number                                          2   DqsQe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          day_number                                          3   eUpuS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          day_number                                          4   5uFdi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15          day_number                                          5   4aPUZ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16          day_number                                      Total   mhT9K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 establishment_phase                                    Primary   0mST5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 establishment_phase                                  Secondary   WZy2b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 establishment_phase                                    Special   EObqF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 establishment_phase                                      Total   QjDwb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21              reason                       B education off site   9y94v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22              reason                         C authorised other   2xclz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23              reason                        D dual registration   PUoeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24              reason                      E authorised excluded   NqbDC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25              reason                                   Excluded   wGjbx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26              reason                    F legacy family holiday   ohkmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27              reason                     G unauthorised holiday   9aa4v</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28              reason                       H authorised holiday   dm90Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29              reason                       I authorised illness   OYzCL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30              reason                                J interview   7JpXo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31              reason     L present late before registers closed   pPmSo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32              reason                M authorised medical dental   IzpBz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33              reason                            N no reason yet   ibG6X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34              reason               Not attending planned closed   LZ6Wj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35              reason                       O other unauthorised   6tCrf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36              reason               P approved sporting activity   HSmzL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37              reason                                         Pa   09WT5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38              reason                                    Present   CH0Id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39              reason                                 Present am   Yp9HK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40              reason                                 Present pm   qISjG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41              reason          R authorised religious observance   a8bLP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42              reason                   S authorised study leave   BFm7J</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43              reason                   T authorised grt absence   zVyFQ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44              reason                                      Total   klbhs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45              reason U unauthorised late after registers closed   uk6o4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46              reason                   V educational visit trip   XvhfK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47              reason                          W work experience   T4iPJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48              reason           Y not attending enforced closure   cK731</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49              reason                Z not attending not on roll   5o1di</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    default_item</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16         TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20         TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44         TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    col_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20    VTQ5X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24    Pmjeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30    1Nei3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37    deq0Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                         item_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                           Any other ethnic group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                               Asian - Any other Asian background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                              Asian - Bangladeshi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                   Asian - Indian</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                Asian - Pakistani</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                               Black - Any other Black background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                                            Black - Black African</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                                          Black - Black Caribbean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                                                                          Chinese</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                              Mixed - Any other Mixed background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                         Mixed - White and Asian</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                 Mixed - White and Black African</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                               Mixed - White and Black Caribbean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                                                    Unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                              White - Any other White background</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                                              White - Gypsy/Roma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                                                   White - Irish</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                             White - Traveller of Irish heritage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                                           White - White British</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                 Known or believed to be English</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22                                      Known or believed to be other than English</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                                                           Language unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25                                    FSM eligible pupils taking free school meals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                                  infants taken a free school meal on census day</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                                      known to be eligible for free school meals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 known to be eligible for free school meals (used for FSM in Performance Tables)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29                           number of pupils (used for FSM in Performance Tables)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31                                                   Non-maintained special school</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32                                                             Pupil referral unit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33                                                            State-funded nursery</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34                                                            State-funded primary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35                                                          State-funded secondary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36                                                     State-funded special school</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37                                                                           Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    item_id default_item</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    bfQtT           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    DBNQe           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    e2euS           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    5y0di           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    4skUZ           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    m8R9K           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    0LoT5           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    WNZ2b           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    EzCqF           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   QXGwb           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   9ZW4v           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   2D1lz           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   P2yeb           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   NBODC         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   wf7bx           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   o3cmX           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   9ZZ4v           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   daL0Z           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   OS5CL           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   70eXo           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   pRaSo           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   I5eBz           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   iOf6X           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   LrEWj         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   6Czrf           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   0LxT5           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   HuazL           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   CV4Id           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   YeLHK           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   qFujG         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   a6OLP           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   Bda7J           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   zo8FQ           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   kKOhs           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   ucEo4           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36   XT3fK           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   TWtPJ         TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $indicators</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          col_name           label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   session_count   Session count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 session_percent Session percent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  session_scaled  Session scaled</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   col_name     label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    mRj9K Headcount</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    gBaO9   Percent</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
@@ -397,7 +374,7 @@ meta endpoint.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>
