@@ -4,7 +4,10 @@
 \alias{parse_time_periods_to_json}
 \title{Parse time_periods to json}
 \usage{
-parse_time_periods_to_json(time_preriods)
+parse_time_periods_to_json(time_periods)
+}
+\arguments{
+\item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
 }
 \value{
 String containing json form query for geographic levels

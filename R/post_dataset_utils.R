@@ -68,7 +68,7 @@ parse_params_to_json <- function(
 #'
 #' @examples
 #' parse_time_periods_to_json(c("2023|W25", "2024|W12"))
-parse_time_periods_to_json <- function(time_preriods) {
+parse_time_periods_to_json <- function(time_periods) {
   df_time_periods <- time_periods |>
     stringr::str_split("\\|", simplify = TRUE) |>
     as.data.frame() |>
