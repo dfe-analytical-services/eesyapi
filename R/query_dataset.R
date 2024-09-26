@@ -17,12 +17,14 @@
 #' @examples
 #' query_dataset(
 #'   example_id(),
+#'   method = "GET",
 #'   geographic_levels = "NAT",
 #'   filter_items = example_id("filter_item"),
 #'   indicators = example_id("indicator")
 #' )
 #' query_dataset(
 #'   example_id(),
+#'   method = "GET",
 #'   indicators = example_id("indicator"),
 #'   page = 1,
 #'   page_size = 10
