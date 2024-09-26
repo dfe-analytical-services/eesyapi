@@ -8,6 +8,7 @@
 #' of interest must be supplied explictly using the dataset_id and indicators params.
 #'
 #' @inheritParams api_url
+#' @inheritParams post_dataset
 #' @param method An API query method. Needs to be "GET"
 #'
 #' @return Data frame containing query results
@@ -33,13 +34,14 @@ query_dataset <- function(
     geographic_levels = NULL,
     locations = NULL,
     filter_items = NULL,
-    method = "GET",
+    json_query = NULL,
+    method = "POST",
     dataset_version = NULL,
     api_version = NULL,
     page_size = 1000,
     page = NULL,
     verbose = FALSE) {
-  if (method != "GET") {
+  if (!(method %in% c("POST", "GET"))) {
     stop(
       paste(
         "Invalid method selected. The keyword method should be set to GET",
@@ -47,7 +49,22 @@ query_dataset <- function(
       )
     )
   }
-  if (method == "GET") {
+  if (method == "POST") {
+    eesyapi::post_dataset(
+      dataset_id = dataset_id,
+      indicators = indicators,
+      time_periods = time_periods,
+      geographic_levels = geographic_levels,
+      locations = locations,
+      filter_items = filter_items,
+      json_query = json_query,
+      dataset_version = dataset_version,
+      api_version = api_version,
+      page_size = page_size,
+      page = page,
+      verbose = verbose
+    )
+  } else {
     warning(
       paste(
         "Using GET to query a data set offers limited functionality, we recommend",

@@ -57,10 +57,39 @@ EES API. As a minimum, it requires the dataset_id flag and either the indicators
 a json file containing a query to be provided.
 }
 \examples{
+test_query <- '{
+"criteria": {
+  "and": [
+    {
+      "geographicLevels": {
+        "eq": "NAT"
+      }
+    },{
+      "timePeriods": {
+        "in": [
+          {
+            "period": "2024",
+            "code": "W26"
+          }
+        ]
+      }
+    },  {
+      "filters": {
+        "eq": "jYyAM"
+      }
+    }
+  ]
+},
+"indicators": [
+  "bqZtT"
+],
+"debug": true,
+"page": 1,
+"pageSize": 1000
+}'
+
 post_dataset(
   example_id(),
-  example_id("indicator"),
-  geographic_levels = "NAT",
-  filter_items = example_id("filter_item")
+  json_query = test_query
 )
 }

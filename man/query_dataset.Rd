@@ -11,7 +11,8 @@ query_dataset(
   geographic_levels = NULL,
   locations = NULL,
   filter_items = NULL,
-  method = "GET",
+  json_query = NULL,
+  method = "POST",
   dataset_version = NULL,
   api_version = NULL,
   page_size = 1000,
@@ -32,6 +33,8 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 \item{locations}{Location code required as a string or vector of strings}
 
 \item{filter_items}{Filter items required as a string or vector of strings}
+
+\item{json_query}{Optional path to a json file containing the query parameters}
 
 \item{method}{An API query method. Needs to be "GET"}
 

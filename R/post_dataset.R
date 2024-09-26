@@ -13,11 +13,40 @@
 #' @export
 #'
 #' @examples
+#' test_query <- '{
+#' "criteria": {
+#'   "and": [
+#'     {
+#'       "geographicLevels": {
+#'         "eq": "NAT"
+#'       }
+#'     },{
+#'       "timePeriods": {
+#'         "in": [
+#'           {
+#'             "period": "2024",
+#'             "code": "W26"
+#'           }
+#'         ]
+#'       }
+#'     },  {
+#'       "filters": {
+#'         "eq": "jYyAM"
+#'       }
+#'     }
+#'   ]
+#' },
+#' "indicators": [
+#'   "bqZtT"
+#' ],
+#' "debug": true,
+#' "page": 1,
+#' "pageSize": 1000
+#' }'
+#'
 #' post_dataset(
 #'   example_id(),
-#'   example_id("indicator"),
-#'   geographic_levels = "NAT",
-#'   filter_items = example_id("filter_item")
+#'   json_query = test_query
 #' )
 post_dataset <- function(
     dataset_id,
@@ -61,8 +90,8 @@ post_dataset <- function(
       filter_items = filter_items
     )
   }
-  response <- dfeshiny::api_url(
-    "query-data",
+  response <- eesyapi::api_url(
+    "post-data",
     dataset_id = dataset_id,
     dataset_version = dataset_version
   ) |> httr::POST(
