@@ -4,12 +4,18 @@
 \alias{example_id}
 \title{Example ID}
 \usage{
-example_id(level = "dataset", environment = "dev")
+example_id(
+  level = "dataset",
+  environment = "dev",
+  group = "public-api-testing"
+)
 }
 \arguments{
 \item{level}{Level of ID example to return: "publication" or "data set"}
 
 \item{environment}{Environment to return a working example for}
+
+\item{group}{Choose the publication group of examples to use. Can be "attendance".}
 }
 \value{
 String containing an example ID present in the API

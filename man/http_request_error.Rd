@@ -4,10 +4,13 @@
 \alias{http_request_error}
 \title{Contextualise http request errors}
 \usage{
-http_request_error(response_status)
+http_request_error(response, verbose = FALSE)
 }
 \arguments{
-\item{response_status}{Response code from an API request}
+\item{response}{HTTP response from the API, should be in the form of a list with a
+status element containing the 3 digit HTTP response code}
+
+\item{verbose}{Run in verbose mode, logical, default = FALSE}
 }
 \value{
 Translation of the response code
@@ -16,7 +19,5 @@ Translation of the response code
 Translate a http error code into an error message.
 }
 \examples{
-http_request_error(200)
-http_request_error(400)
-http_request_error(504)
+http_request_error(list(status = 200))
 }
