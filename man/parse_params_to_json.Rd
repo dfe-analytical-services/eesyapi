@@ -36,5 +36,13 @@ String containing json query body for use with http POST request
 A short description...
 }
 \examples{
-parse_params_to_json(example_id("indicator"))
+parse_params_to_json(example_id("indicator")) |>
+  cat()
+parse_params_to_json(
+  example_id("indicator"),
+  time_periods = "2024|W23",
+  geographic_levels = c("NAT", "REG"),
+  filter_items = c("pmRSo", "7SdXo")
+) |>
+  cat()
 }

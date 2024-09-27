@@ -99,3 +99,23 @@ validate_ees_id <- function(element_id, level = "publication") {
     }
   }
 }
+
+#' Validate filter type
+#'
+#' @param filter_type
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' validate_ees_filter_type("time_periods")
+validate_ees_filter_type <- function(filter_type) {
+  if (!(filter_type %in% c("time_periods", "geographic_levels", "locations", "filter_items"))) {
+    stop(
+      paste(
+        "filter_type keyword should be one of \"time_periods\", \"geographic_levels\",",
+        "\"locations\" or \"filter_items\""
+      )
+    )
+  }
+}

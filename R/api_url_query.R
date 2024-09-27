@@ -32,12 +32,12 @@ api_url_query <- function(
   if (!is.null(geographic_levels)) {
     query_geographic_levels <- eesyapi::parse_filter_in(
       geographic_levels,
-      type = "geographic_levels"
+      filter_type = "geographic_levels"
     )
   }
   if (!is.null(locations)) {
     eesyapi::validate_ees_id(locations, level = "location")
-    query_locations <- eesyapi::parse_filter_in(locations, type = "locations")
+    query_locations <- eesyapi::parse_filter_in(locations, filter_type = "locations")
   }
   if (!is.null(filter_items)) {
     # Note the idea below was to differentiate the logic between AND / OR based on whether
@@ -50,11 +50,11 @@ api_url_query <- function(
       for (filter_set in filter_items) {
         query_filter_items <- paste0(
           query_filter_items,
-          eesyapi::parse_filter_in(filter_set, type = "filter_items")
+          eesyapi::parse_filter_in(filter_set, filter_type = "filter_items")
         )
       }
     } else {
-      query_filter_items <- eesyapi::parse_filter_in(filter_items, type = "filter_items")
+      query_filter_items <- eesyapi::parse_filter_in(filter_items, filter_type = "filter_items")
     }
   }
   query_indicators <- paste0(

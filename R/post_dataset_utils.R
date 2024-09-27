@@ -9,7 +9,15 @@
 #' @export
 #'
 #' @examples
-#' parse_params_to_json(example_id("indicator"))
+#' parse_params_to_json(example_id("indicator")) |>
+#'   cat()
+#' parse_params_to_json(
+#'   example_id("indicator"),
+#'   time_periods = "2024|W23",
+#'   geographic_levels = c("NAT", "REG"),
+#'   filter_items = c("pmRSo", "7SdXo")
+#' ) |>
+#'   cat()
 parse_params_to_json <- function(
     indicators,
     time_periods = NULL,
@@ -18,8 +26,8 @@ parse_params_to_json <- function(
     filter_items = NULL,
     page = 1,
     page_size = 1000) {
-  filter_items_str <- "  {\n      \"filters\": {\n        \"eq\": \"jYyAM\"\n      }\n    }\n"
-  bridge <- "]\n},"
+  # Set some default strings
+  bridge <- "\n  ]\n},"
   indicators_str <- "\n\"indicators\": [\n  \"bqZtT\"\n]"
   debug_str <- ",\n\"debug\": true"
   pages_str <- ",\n\"page\": 1,\n\"pageSize\": 1000\n}"
@@ -28,27 +36,21 @@ parse_params_to_json <- function(
     "{\n",
     ifelse(
       any(!is.null(c(time_periods, geographic_levels, locations, filter_items))),
-      "\"criteria\": {\n  \"and\": [\n    ",
+      paste0(
+        "\"criteria\": {\n  \"and\": [\n",
+        paste(
+          eesyapi::parse_time_periods_to_json(time_periods),
+          eesyapi::parse_filter_to_json(geographic_levels, filter_type = "geographic_levels"),
+          eesyapi::parse_filter_to_json(locations, filter_type = "locations"),
+          eesyapi::parse_filter_to_json(filter_items, filter_type = "filter_items"),
+          sep = ",\n"
+        ) |>
+          stringr::str_replace_all(",\\n,\\n,\\n|,\\n,\\n", ",\\\n") |>
+          stringr::str_remove_all("^,\\n|,\\n$"),
+        bridge
+      ),
       ""
     ),
-    ifelse(
-      !is.null(geographic_levels),
-      eesyapi::parse_geographic_levels_to_json(geographic_levels),
-      ""
-    ),
-    ifelse(
-      !is.null(geographic_levels),
-      ",\n",
-      ""
-    ),
-    ifelse(
-      !is.null(time_periods),
-      eesyapi::parse_time_periods_to_json(time_periods),
-      ""
-    ),
-    ",",
-    filter_items_str,
-    bridge,
     indicators_str,
     debug_str,
     pages_str
@@ -69,22 +71,26 @@ parse_params_to_json <- function(
 #' @examples
 #' parse_time_periods_to_json(c("2023|W25", "2024|W12"))
 parse_time_periods_to_json <- function(time_periods) {
-  df_time_periods <- time_periods |>
-    stringr::str_split("\\|", simplify = TRUE) |>
-    as.data.frame() |>
-    dplyr::rename(period = "V1", code = "V2")
-  paste0(
-    "    {\n      \"timePeriods\": {\n        \"in\": [\n",
+  if (!is.null(time_periods)) {
+    df_time_periods <- time_periods |>
+      stringr::str_split("\\|", simplify = TRUE) |>
+      as.data.frame() |>
+      dplyr::rename(period = "V1", code = "V2")
     paste0(
-      "          {\n            \"period\": \"",
-      df_time_periods$period,
-      "\",\n            \"code\": \"",
-      df_time_periods$code,
-      "\"\n          }",
-      collapse = ",\n"
-    ),
-    "\n        ]\n      }\n    }"
-  )
+      "    {\n      \"timePeriods\": {\n        \"in\": [\n",
+      paste0(
+        "          {\n            \"period\": \"",
+        df_time_periods$period,
+        "\",\n            \"code\": \"",
+        df_time_periods$code,
+        "\"\n          }",
+        collapse = ",\n"
+      ),
+      "\n        ]\n      }\n    }"
+    )
+  } else {
+    NULL
+  }
 }
 
 #' Parse geographic levels to json
@@ -98,11 +104,19 @@ parse_time_periods_to_json <- function(time_periods) {
 #' @export
 #'
 #' @examples
-#' parse_geographic_levels_to_json(c("NAT", "REG"))
-parse_geographic_levels_to_json <- function(geographic_levels) {
-  paste0(
-    "{\n      \"geographicLevels\": {\n        \"in\": [\n          \"",
-    paste0(geographic_levels, collapse = "\",\n          \""),
-    "\"\n        ]\n      }\n    }"
-  )
+#' parse_filter_to_json(c("NAT", "REG"), filter_type = "geographic_levels")
+parse_filter_to_json <- function(filter_items, filter_type = "filter_items") {
+  validate_ees_filter_type(filter_type)
+  api_filter_type <- to_api_filter_type(filter_type)
+  if (!is.null(filter_items)) {
+    paste0(
+      "    {\n      \"",
+      api_filter_type,
+      "\": {\n        \"in\": [\n          \"",
+      paste0(filter_items, collapse = "\",\n          \""),
+      "\"\n        ]\n      }\n    }"
+    )
+  } else {
+    NULL
+  }
 }
