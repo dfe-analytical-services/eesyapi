@@ -92,4 +92,12 @@ post_dataset(
   example_id(group = "attendance"),
   json_query = test_query
 )
+
+post_dataset(
+  example_id(group = "attendance"),
+  indicators = example_id("indicator"),
+  time_periods = "2024|W23",
+  geographic_levels = c("NAT", "REG"),
+  filter_items = c("pmRSo", "7SdXo")
+)
 }

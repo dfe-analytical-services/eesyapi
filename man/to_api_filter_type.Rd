@@ -7,7 +7,8 @@
 to_api_filter_type(filter_type)
 }
 \arguments{
-\item{filter_type}{}
+\item{filter_type}{type of filter being queried: "time_periods", "geographic_levels",
+"locations" or "filter_items"}
 }
 \value{
 String containing API friendly filter type descriptor

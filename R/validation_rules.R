@@ -102,7 +102,7 @@ validate_ees_id <- function(element_id, level = "publication") {
 
 #' Validate filter type
 #'
-#' @param filter_type
+#' @param filter_type type of filter being queried: "time_periods", "geographic_levels",
 #'
 #' @return NULL
 #' @export

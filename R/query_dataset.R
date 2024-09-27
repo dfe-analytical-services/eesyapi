@@ -15,6 +15,14 @@
 #' @export
 #'
 #' @examples
+#'  query_dataset(
+#'   example_id(group = "attendance"),
+#'   indicators = example_id("indicator"),
+#'   time_periods = "2024|W23",
+#'   geographic_levels = c("NAT", "REG"),
+#'   filter_items = c("pmRSo", "7SdXo")
+#' )
+#'
 #' query_dataset(
 #'   example_id(),
 #'   method = "GET",
@@ -22,6 +30,7 @@
 #'   filter_items = example_id("filter_item"),
 #'   indicators = example_id("indicator")
 #' )
+#'
 #' query_dataset(
 #'   example_id(),
 #'   method = "GET",
@@ -29,6 +38,7 @@
 #'   page = 1,
 #'   page_size = 10
 #' )
+#'
 query_dataset <- function(
     dataset_id,
     indicators,

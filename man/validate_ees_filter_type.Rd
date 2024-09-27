@@ -7,7 +7,7 @@
 validate_ees_filter_type(filter_type)
 }
 \arguments{
-\item{filter_type}{}
+\item{filter_type}{type of filter being queried: "time_periods", "geographic_levels",}
 }
 \description{
 Validate filter type

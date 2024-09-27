@@ -59,6 +59,14 @@ then the entire data set will be retrieved. The data set id and specific indicat
 of interest must be supplied explictly using the dataset_id and indicators params.
 }
 \examples{
+ query_dataset(
+  example_id(group = "attendance"),
+  indicators = example_id("indicator"),
+  time_periods = "2024|W23",
+  geographic_levels = c("NAT", "REG"),
+  filter_items = c("pmRSo", "7SdXo")
+)
+
 query_dataset(
   example_id(),
   method = "GET",
@@ -66,6 +74,7 @@ query_dataset(
   filter_items = example_id("filter_item"),
   indicators = example_id("indicator")
 )
+
 query_dataset(
   example_id(),
   method = "GET",
@@ -73,4 +82,5 @@ query_dataset(
   page = 1,
   page_size = 10
 )
+
 }

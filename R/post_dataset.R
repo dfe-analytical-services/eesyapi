@@ -48,6 +48,14 @@
 #'   example_id(group = "attendance"),
 #'   json_query = test_query
 #' )
+#'
+#' post_dataset(
+#'   example_id(group = "attendance"),
+#'   indicators = example_id("indicator"),
+#'   time_periods = "2024|W23",
+#'   geographic_levels = c("NAT", "REG"),
+#'   filter_items = c("pmRSo", "7SdXo")
+#' )
 post_dataset <- function(
     dataset_id,
     indicators = NULL,
@@ -81,7 +89,6 @@ post_dataset <- function(
       json_body <- json_query
     }
   } else {
-    message("Parsing filters not implemented yet")
     json_body <- parse_params_to_json(
       indicators = indicators,
       time_periods = time_periods,
@@ -89,6 +96,9 @@ post_dataset <- function(
       locations = locations,
       filter_items = filter_items
     )
+  }
+  if (verbose) {
+    json_body |> cat(fill = TRUE)
   }
   response <- eesyapi::api_url(
     "post-data",

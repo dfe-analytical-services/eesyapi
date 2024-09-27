@@ -99,6 +99,7 @@ parse_time_periods_to_json <- function(time_periods) {
 #' Create a json query sub-string based on geographic levels constraints
 #'
 #' @inheritParams api_url
+#' @inheritParams parse_filter_in
 #'
 #' @return String containing json form query for geographic levels
 #' @export

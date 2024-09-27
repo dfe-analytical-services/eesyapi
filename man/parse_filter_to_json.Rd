@@ -8,6 +8,9 @@ parse_filter_to_json(filter_items, filter_type = "filter_items")
 }
 \arguments{
 \item{filter_items}{Filter items required as a string or vector of strings}
+
+\item{filter_type}{type of filter being queried: "time_periods", "geographic_levels",
+"locations" or "filter_items"}
 }
 \value{
 String containing json form query for geographic levels

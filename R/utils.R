@@ -5,7 +5,7 @@
 #' filters to what is used by analysts within data files. The function just converts
 #' from the file versions to the API versions.
 #'
-#' @param filter_type
+#' @inheritParams parse_filter_in
 #'
 #' @return String containing API friendly filter type descriptor
 #' @export
