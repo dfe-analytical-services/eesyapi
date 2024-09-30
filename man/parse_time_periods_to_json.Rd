@@ -10,10 +10,10 @@ parse_time_periods_to_json(time_periods)
 \item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
 }
 \value{
-String containing json form query for geographic levels
+String containing json form query for time periods
 }
 \description{
-Create a json query sub-string based on geographic levels constraints
+Create a json query sub-string based on time periods constraints
 }
 \examples{
 parse_time_periods_to_json(c("2023|W25", "2024|W12"))

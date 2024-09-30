@@ -15,6 +15,7 @@
 #'   example_id("indicator"),
 #'   time_periods = "2024|W23",
 #'   geographic_levels = c("NAT", "REG"),
+#'   locations = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
 #'   filter_items = c("pmRSo", "7SdXo")
 #' ) |>
 #'   cat()
@@ -41,7 +42,7 @@ parse_params_to_json <- function(
         paste(
           eesyapi::parse_time_periods_to_json(time_periods),
           eesyapi::parse_filter_to_json(geographic_levels, filter_type = "geographic_levels"),
-          eesyapi::parse_filter_to_json(locations, filter_type = "locations"),
+          eesyapi::parse_locations_to_json(locations),
           eesyapi::parse_filter_to_json(filter_items, filter_type = "filter_items"),
           sep = ",\n"
         ) |>
@@ -61,11 +62,11 @@ parse_params_to_json <- function(
 #' Parse time_periods to json
 #'
 #' @description
-#' Create a json query sub-string based on geographic levels constraints
+#' Create a json query sub-string based on time periods constraints
 #'
 #' @inheritParams api_url
 #'
-#' @return String containing json form query for geographic levels
+#' @return String containing json form query for time periods
 #' @export
 #'
 #' @examples
@@ -116,6 +117,46 @@ parse_filter_to_json <- function(filter_items, filter_type = "filter_items") {
       "\": {\n        \"in\": [\n          \"",
       paste0(filter_items, collapse = "\",\n          \""),
       "\"\n        ]\n      }\n    }"
+    )
+  } else {
+    NULL
+  }
+}
+
+#' Parse locations to json
+#'
+#' @description
+#' Create a json query sub-string based on location constraints
+#'
+#' @inheritParams api_url
+#'
+#' @return String containing json form query for locations
+#' @export
+#'
+#' @examples
+#' parse_locations_to_json(c("NAT|id|dP0Zw", "REG|id|rg3Nj")) |>
+#'   cat()
+parse_locations_to_json <- function(locations) {
+  validate_ees_id(locations, level = "location")
+  if (!is.null(locations)) {
+    df_locations <- locations |>
+      stringr::str_split("\\|", simplify = TRUE) |>
+      as.data.frame() |>
+      tidyr::pivot_wider(names_from = "V2", values_from = "V3") |>
+      dplyr::rename(level = "V1")
+    paste0(
+      "    {\n      \"locations\": {\n        \"in\": [\n",
+      paste0(
+        "          {\n            \"level\": \"",
+        df_locations |> dplyr::pull("level"),
+        "\",\n            \"",
+        names(df_locations)[2],
+        "\": \"",
+        df_locations |> dplyr::pull(names(df_locations)[2]),
+        "\"\n          }",
+        collapse = ",\n"
+      ),
+      "\n        ]\n      }\n    }"
     )
   } else {
     NULL

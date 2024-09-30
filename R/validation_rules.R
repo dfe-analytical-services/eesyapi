@@ -43,60 +43,59 @@ validate_ees_id <- function(element_id, level = "publication") {
       )
     )
   }
-  skip_tests <- FALSE
   if (is.null(element_id)) {
     stop(
       "The variable ", level,
       "_id is NULL, please provide a valid ", level,
       "_id."
     )
-  } else {
-    if (level == "location") {
-      locations <- element_id |>
-        stringr::str_split("\\|")
-      if (any(locations |> sapply(length) < 3)) {
-        stop('Invalid location IDs found, these should be of the form "XXX|xxxx|1b3d5".')
-      } else {
-        # Extract the individual 5 digit location IDs
-        locations <- locations |>
-          as.data.frame() |>
-          t() |>
-          as.data.frame() |>
-          dplyr::rename(level = "V1", type = "V2", value = "V3")
-        element_id_proc <- locations$value
-        if (all(locations$type == "id")) {
-          example_vector <- eesyapi::example_id("location") |>
-            stringr::str_split("\\|")
-          example_id_string <- example_vector[[1]][3]
-        } else {
-          skip_tests <- TRUE
-        }
-      }
+  }
+  if (level == "location") {
+    locations <- element_id |>
+      stringr::str_split("\\|", simplify = TRUE)
+    if ("" %in% locations) {
+      stop('Invalid locations found, these should be of the form "LEVEL|xxxx|1b3d5".')
     } else {
-      element_id_proc <- element_id
-      example_id_string <- eesyapi::example_id(level)
-    }
-    if (!skip_tests) {
-      if (any(stringr::str_length(element_id) != stringr::str_length(eesyapi::example_id(level)))) {
-        err_string <- paste0(
-          "The ", level,
-          "_id(s) provided (", paste0(element_id_proc, collapse = ", "),
-          ") is expected to be a ",
-          stringr::str_length(example_id_string),
-          " character string in the format:\n    ",
-          example_id_string,
-          "\n  Please double check your ", level,
-          "_id."
-        )
-        stop(err_string)
-      } else if (
-        any(
-          gsub("[0-9a-zA-Z]", "", element_id_proc) != gsub("[0-9a-zA-Z]", "", example_id_string)
-        )
-      ) {
-        stop(err_string)
+      # Extract the individual 5 digit location IDs
+      df_locations <- locations |>
+        as.data.frame() |>
+        dplyr::rename(level = "V1", identifier_type = "V2", identifier = "V3")
+      location_type <- df_locations |>
+        dplyr::pull("identifier_type") |>
+        unique()
+      if (length(location_type) != 1 || !(location_type %in% c("id", "code"))) {
+        stop("The middle entry in \"LEVEL|xxxx|1b3d5\" should be one of \"id\" or \"code\"")
       }
+      level <- paste(level, location_type, sep = "_")
+      element_id <- df_locations |>
+        dplyr::pull("identifier")
     }
+  }
+  example_id_string <- example_id(level)
+  if (grepl("location", level)) {
+    example_id_string <- example_id_string |>
+      stringr::str_split("\\|", simplify = TRUE) |>
+      as.data.frame() |>
+      dplyr::pull("V3")
+  }
+  if (any(stringr::str_length(element_id) != stringr::str_length(example_id_string))) {
+    err_string <- paste0(
+      "The ", level,
+      "(s) provided (", paste0(element_id, collapse = ", "),
+      ") is expected to be a ",
+      stringr::str_length(example_id_string),
+      " character string in the format:\n    ",
+      example_id_string,
+      "\n  Please double check your ", level,
+      "_id."
+    )
+    stop(err_string)
+  } else if (
+    any(
+      gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", example_id_string)
+    )
+  ) {
+    stop(err_string)
   }
 }
 

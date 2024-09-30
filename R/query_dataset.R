@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#'  query_dataset(
+#' query_dataset(
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator"),
 #'   time_periods = "2024|W23",

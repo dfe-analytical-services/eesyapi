@@ -59,7 +59,7 @@ then the entire data set will be retrieved. The data set id and specific indicat
 of interest must be supplied explictly using the dataset_id and indicators params.
 }
 \examples{
- query_dataset(
+query_dataset(
   example_id(group = "attendance"),
   indicators = example_id("indicator"),
   time_periods = "2024|W23",
