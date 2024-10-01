@@ -123,42 +123,87 @@ parse_filter_to_json <- function(filter_items, filter_type = "filter_items") {
   }
 }
 
-#' Parse locations to json
+#' Parse geographic levels to json
+#'
+#' @description
+#' Create a json query sub-string based on geographic levels constraints
+#'
+#' @inheritParams api_url
+#' @inheritParams parse_filter_in
+#'
+#' @return String containing json form query for geographic levels
+#' @export
+#'
+#' @examples
+#' parse_tojson_filter_eq("NAT", filter_type = "geographic_levels") |> cat()
+parse_tojson_filter_eq <- function(filter_items, filter_type = "filter_items") {
+  validate_ees_filter_type(filter_type)
+  api_filter_type <- to_api_filter_type(filter_type)
+  if (!is.null(filter_items)) {
+    paste0(
+      "        {\n          \"",
+      api_filter_type,
+      "\": {\n            \"eq\": \"",
+      filter_items,
+      "\"\n          }\n        }"
+    )
+  } else {
+    NULL
+  }
+}
+
+#' Parse geographies to json
 #'
 #' @description
 #' Create a json query sub-string based on location constraints
 #'
 #' @inheritParams api_url
 #'
-#' @return String containing json form query for locations
+#' @return String containing json form query for geographies
 #' @export
 #'
 #' @examples
-#' parse_locations_to_json(c("NAT|id|dP0Zw", "REG|id|rg3Nj")) |>
+#' parse_geographies_to_json(c("NAT|id|dP0Zw", "REG|id|rg3Nj")) |>
 #'   cat()
-parse_locations_to_json <- function(locations) {
-  validate_ees_id(locations, level = "location")
-  if (!is.null(locations)) {
-    df_locations <- locations |>
+parse_geographies_to_json <- function(geographies) {
+  if (is.null(geographies)) {
+    return(NULL)
+  } else if (is.vector(geographies) || is.character(geographies)) {
+    geographies <- geographies |>
       stringr::str_split("\\|", simplify = TRUE) |>
       as.data.frame() |>
-      tidyr::pivot_wider(names_from = "V2", values_from = "V3") |>
-      dplyr::rename(level = "V1")
-    paste0(
-      "    {\n      \"locations\": {\n        \"in\": [\n",
-      paste0(
-        "          {\n            \"level\": \"",
-        df_locations |> dplyr::pull("level"),
-        "\",\n            \"",
-        names(df_locations)[2],
-        "\": \"",
-        df_locations |> dplyr::pull(names(df_locations)[2]),
-        "\"\n          }",
-        collapse = ",\n"
-      ),
-      "\n        ]\n      }\n    }"
-    )
+      dplyr::rename(search_level = "V1", identifier_type = "V2", identifier = "V3")
+    geographies <- geographies |>
+      dplyr::mutate(
+        return_level = geographies |>
+          dplyr::pull("search_level")
+      )
+  } else if (is.data.frame(geographies)) {
+    if (!all(c("return_level", "search_level", "identifier_type", "identifier") %in% colnames(geographies))) {
+      stop("The column \"search_level\" is required in the geographies data frame.")
+    }
   } else {
-    NULL
+    stop("The geographies parameter should be given as either a data frame, vector or string.")
   }
+  paste0(
+    "    {\n      \"or\": [\n",
+    paste0(
+      "        {\n          \"and\": [\n",
+      parse_tojson_filter_eq(
+        geographies |>
+          dplyr::pull("return_level"),
+        filter_type = "geographic_levels"
+      ),
+      ",\n    {\n      \"locations\": {\n        \"in\": [\n",
+      "          {\n            \"level\": \"",
+      geographies |> dplyr::pull("search_level"),
+      "\",\n            \"",
+      geographies |> dplyr::pull("identifier_type"),
+      "\": \"",
+      geographies |> dplyr::pull("identifier"),
+      "\"\n          }\n        ]\n      }\n    }\n  ]\n  }",
+      collapse = ",\n"
+    ),
+    "\n    ]\n  }"
+  )
 }
