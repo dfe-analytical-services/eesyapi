@@ -1,7 +1,11 @@
-#' Create a json query string
+#' Create a json query
 #'
 #' @description
-#' A short description...
+#' Creates a json query for use when POST-ing a query to the API. This takes time period,
+#' geography, filter item and indicator criteria and produces a working json query as a
+#' single string. The result can be used directly by post_dataset() or the output of
+#' `parse_tojson_params(...) |> cat()` can be copied and pasted as the "body" content in
+#' other API connection software (such as Postman) to POST a query to the EES API.
 #'
 #' @inheritParams api_url
 #' @inheritParams parse_tojson_geographies

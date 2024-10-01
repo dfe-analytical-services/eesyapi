@@ -2,7 +2,7 @@
 % Please edit documentation in R/post_dataset_utils.R
 \name{parse_tojson_params}
 \alias{parse_tojson_params}
-\title{Create a json query string}
+\title{Create a json query}
 \usage{
 parse_tojson_params(
   indicators,
@@ -34,7 +34,11 @@ locations to be queried.}
 String containing json query body for use with http POST request
 }
 \description{
-A short description...
+Creates a json query for use when POST-ing a query to the API. This takes time period,
+geography, filter item and indicator criteria and produces a working json query as a
+single string. The result can be used directly by post_dataset() or the output of
+\code{parse_tojson_params(...) |> cat()} can be copied and pasted as the "body" content in
+other API connection software (such as Postman) to POST a query to the EES API.
 }
 \examples{
 parse_tojson_params(example_id("indicator")) |>
