@@ -4,26 +4,45 @@
 #' A short description...
 #'
 #' @inheritParams api_url
+#' @param geographies String, vector or data frame containing the geographic levels and
+#' locations to be queried.
 #'
 #' @return String containing json query body for use with http POST request
 #' @export
 #'
 #' @examples
-#' parse_params_to_json(example_id("indicator")) |>
+#' parse_tojson_params(example_id("indicator")) |>
 #'   cat()
-#' parse_params_to_json(
+#'
+#' parse_tojson_params(
 #'   example_id("indicator"),
 #'   time_periods = "2024|W23",
-#'   geographic_levels = c("NAT", "REG"),
-#'   locations = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+#'   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
 #'   filter_items = c("pmRSo", "7SdXo")
 #' ) |>
 #'   cat()
-parse_params_to_json <- function(
+#'
+#' # Create a geographies data frame to find both of:
+#' #   - England national level data
+#' #   - all LAs in a specified region ("E12000004")
+#' dfgeographies <- data.frame(
+#'   return_level = c("NAT", "LA"),
+#'   search_level = c("NAT", "REG"),
+#'   identifier_type = c("code", "code"),
+#'   identifier = c("E92000001", "E12000004")
+#' )
+#'
+#' parse_tojson_params(
+#'   example_id("indicator"),
+#'   time_periods = "2024|W23",
+#'   geographies = dfgeographies,
+#'   filter_items = c("pmRSo")
+#' ) |>
+#'   cat()
+parse_tojson_params <- function(
     indicators,
     time_periods = NULL,
-    geographic_levels = NULL,
-    locations = NULL,
+    geographies = NULL,
     filter_items = NULL,
     page = 1,
     page_size = 1000) {
@@ -31,19 +50,23 @@ parse_params_to_json <- function(
   bridge <- "\n  ]\n},"
   indicators_str <- "\n\"indicators\": [\n  \"bqZtT\"\n]"
   debug_str <- ",\n\"debug\": true"
-  pages_str <- ",\n\"page\": 1,\n\"pageSize\": 1000\n}"
+  pages_str <- paste0(
+    ",\n\"page\": ",
+    page,
+    ",\n\"pageSize\": ",
+    page_size,
+    "1000\n}")
 
   json_query <- paste0(
     "{\n",
     ifelse(
-      any(!is.null(c(time_periods, geographic_levels, locations, filter_items))),
+      any(!is.null(c(time_periods, geographies, filter_items))),
       paste0(
         "\"criteria\": {\n  \"and\": [\n",
         paste(
-          eesyapi::parse_time_periods_to_json(time_periods),
-          eesyapi::parse_filter_to_json(geographic_levels, filter_type = "geographic_levels"),
-          eesyapi::parse_locations_to_json(locations),
-          eesyapi::parse_filter_to_json(filter_items, filter_type = "filter_items"),
+          eesyapi::parse_tojson_time_periods(time_periods),
+          eesyapi::parse_tojson_geographies(geographies),
+          eesyapi::parse_tojson_filter_in(filter_items, filter_type = "filter_items"),
           sep = ",\n"
         ) |>
           stringr::str_replace_all(",\\n,\\n,\\n|,\\n,\\n", ",\\\n") |>
@@ -70,8 +93,8 @@ parse_params_to_json <- function(
 #' @export
 #'
 #' @examples
-#' parse_time_periods_to_json(c("2023|W25", "2024|W12"))
-parse_time_periods_to_json <- function(time_periods) {
+#' parse_tojson_time_periods(c("2023|W25", "2024|W12"))
+parse_tojson_time_periods <- function(time_periods) {
   if (!is.null(time_periods)) {
     df_time_periods <- time_periods |>
       stringr::str_split("\\|", simplify = TRUE) |>
@@ -100,14 +123,14 @@ parse_time_periods_to_json <- function(time_periods) {
 #' Create a json query sub-string based on geographic levels constraints
 #'
 #' @inheritParams api_url
-#' @inheritParams parse_filter_in
+#' @inheritParams parse_tourl_filter_in
 #'
 #' @return String containing json form query for geographic levels
 #' @export
 #'
 #' @examples
-#' parse_filter_to_json(c("NAT", "REG"), filter_type = "geographic_levels")
-parse_filter_to_json <- function(filter_items, filter_type = "filter_items") {
+#' parse_tojson_filter_in(c("NAT", "REG"), filter_type = "geographic_levels")
+parse_tojson_filter_in <- function(filter_items, filter_type = "filter_items") {
   validate_ees_filter_type(filter_type)
   api_filter_type <- to_api_filter_type(filter_type)
   if (!is.null(filter_items)) {
@@ -129,7 +152,7 @@ parse_filter_to_json <- function(filter_items, filter_type = "filter_items") {
 #' Create a json query sub-string based on geographic levels constraints
 #'
 #' @inheritParams api_url
-#' @inheritParams parse_filter_in
+#' @inheritParams parse_tourl_filter_in
 #'
 #' @return String containing json form query for geographic levels
 #' @export
@@ -163,9 +186,9 @@ parse_tojson_filter_eq <- function(filter_items, filter_type = "filter_items") {
 #' @export
 #'
 #' @examples
-#' parse_geographies_to_json(c("NAT|id|dP0Zw", "REG|id|rg3Nj")) |>
+#' parse_tojson_geographies(c("NAT|id|dP0Zw", "REG|id|rg3Nj")) |>
 #'   cat()
-parse_geographies_to_json <- function(geographies) {
+parse_tojson_geographies <- function(geographies) {
   if (is.null(geographies)) {
     return(NULL)
   } else if (is.vector(geographies) || is.character(geographies)) {
@@ -179,7 +202,17 @@ parse_geographies_to_json <- function(geographies) {
           dplyr::pull("search_level")
       )
   } else if (is.data.frame(geographies)) {
-    if (!all(c("return_level", "search_level", "identifier_type", "identifier") %in% colnames(geographies))) {
+    if (
+      !all(
+        c(
+          "return_level",
+          "search_level",
+          "identifier_type",
+          "identifier"
+        ) %in%
+          colnames(geographies)
+      )
+    ) {
       stop("The column \"search_level\" is required in the geographies data frame.")
     }
   } else {

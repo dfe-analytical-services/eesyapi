@@ -8,6 +8,7 @@ query_dataset(
   dataset_id,
   indicators,
   time_periods = NULL,
+  geographies = NULL,
   geographic_levels = NULL,
   locations = NULL,
   filter_items = NULL,
@@ -27,6 +28,9 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 \item{indicators}{Indicators required as a string or vector of strings (required)}
 
 \item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
+
+\item{geographies}{String, vector or data frame containing the geographic levels and
+locations to be queried.}
 
 \item{geographic_levels}{Geographic levels required as a string or vector of strings}
 
@@ -63,7 +67,7 @@ query_dataset(
   example_id(group = "attendance"),
   indicators = example_id("indicator"),
   time_periods = "2024|W23",
-  geographic_levels = c("NAT", "REG"),
+  geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
   filter_items = c("pmRSo", "7SdXo")
 )
 

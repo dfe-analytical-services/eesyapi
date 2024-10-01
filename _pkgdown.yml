@@ -21,11 +21,12 @@ reference:
   - starts_with("api_url")
   - http_request_error
   - to_api_filter_type
-  - parse_filter_in
-  - parse_params_to_json
-  - parse_time_periods_to_json
-  - parse_filter_to_json
-  - parse_locations_to_json
+  - parse_tourl_filter_in
+  - parse_tojson_params
+  - parse_tojson_time_periods
+  - parse_tojson_filter_in
+  - parse_tojson_filter_eq
+  - parse_tojson_geographies
 
 - title: Support for handling meta data from the API
   desc: These functions are used by `get_meta()` and included here for completeness.

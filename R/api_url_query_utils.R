@@ -12,8 +12,8 @@
 #' @export
 #'
 #' @examples
-#' parse_filter_in(c("2024|W11", "2024|W12"), filter_type = "time_periods")
-parse_filter_in <- function(
+#' parse_tourl_filter_in(c("2024|W11", "2024|W12"), filter_type = "time_periods")
+parse_tourl_filter_in <- function(
     items,
     filter_type) {
   validate_ees_filter_type(filter_type)

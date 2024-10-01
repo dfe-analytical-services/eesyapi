@@ -8,8 +8,7 @@ post_dataset(
   dataset_id,
   indicators = NULL,
   time_periods = NULL,
-  geographic_levels = NULL,
-  locations = NULL,
+  geographies = NULL,
   filter_items = NULL,
   json_query = NULL,
   dataset_version = NULL,
@@ -28,9 +27,8 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{time_periods}{Time periods required as a string ("period|code") or vector of strings}
 
-\item{geographic_levels}{Geographic levels required as a string or vector of strings}
-
-\item{locations}{Location code required as a string or vector of strings}
+\item{geographies}{String, vector or data frame containing the geographic levels and
+locations to be queried.}
 
 \item{filter_items}{Filter items required as a string or vector of strings}
 
@@ -97,15 +95,7 @@ post_dataset(
   example_id(group = "attendance"),
   indicators = example_id("indicator"),
   time_periods = "2024|W23",
-  geographic_levels = c("NAT", "REG"),
-  filter_items = c("pmRSo", "7SdXo")
-)
-
-post_dataset(
-  example_id(group = "attendance"),
-  indicators = example_id("indicator"),
-  time_periods = "2024|W23",
-  locations = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+  geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
   filter_items = c("pmRSo", "7SdXo")
 )
 }

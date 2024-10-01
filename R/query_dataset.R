@@ -19,7 +19,7 @@
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator"),
 #'   time_periods = "2024|W23",
-#'   geographic_levels = c("NAT", "REG"),
+#'   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
 #'   filter_items = c("pmRSo", "7SdXo")
 #' )
 #'
@@ -43,6 +43,7 @@ query_dataset <- function(
     dataset_id,
     indicators,
     time_periods = NULL,
+    geographies = NULL,
     geographic_levels = NULL,
     locations = NULL,
     filter_items = NULL,
@@ -66,8 +67,7 @@ query_dataset <- function(
       dataset_id = dataset_id,
       indicators = indicators,
       time_periods = time_periods,
-      geographic_levels = geographic_levels,
-      locations = locations,
+      geographies = NULL,
       filter_items = filter_items,
       json_query = json_query,
       dataset_version = dataset_version,

@@ -6,6 +6,7 @@
 #' a json file containing a query to be provided.
 #'
 #' @inheritParams api_url
+#' @inheritParams parse_tojson_params
 #' @param json_query Optional path to a json file containing the query parameters
 #' @param parse Logical flag to activate parsing of the results. Default: TRUE
 #'
@@ -53,23 +54,14 @@
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator"),
 #'   time_periods = "2024|W23",
-#'   geographic_levels = c("NAT", "REG"),
-#'   filter_items = c("pmRSo", "7SdXo")
-#' )
-#'
-#' post_dataset(
-#'   example_id(group = "attendance"),
-#'   indicators = example_id("indicator"),
-#'   time_periods = "2024|W23",
-#'   locations = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+#'   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
 #'   filter_items = c("pmRSo", "7SdXo")
 #' )
 post_dataset <- function(
     dataset_id,
     indicators = NULL,
     time_periods = NULL,
-    geographic_levels = NULL,
-    locations = NULL,
+    geographies = NULL,
     filter_items = NULL,
     json_query = NULL,
     dataset_version = NULL,
@@ -81,11 +73,11 @@ post_dataset <- function(
   if (is.null(indicators) && is.null(json_query)) {
     stop("At least one of either indicators or json_query must not be NULL.")
   } else if (!is.null(json_query)) {
-    if (any(!is.null(c(indicators, time_periods, geographic_levels, locations, filter_items)))) {
+    if (any(!is.null(c(indicators, time_periods, geographies, filter_items)))) {
       warning(
         paste(
-          "json_query is set - ignoring indicators, time_periods, geographic_levels,",
-          "locations and filter_items params."
+          "json_query is set - ignoring indicators, time_periods, geographies",
+          " and filter_items params."
         )
       )
     }
@@ -97,11 +89,10 @@ post_dataset <- function(
       json_body <- json_query
     }
   } else {
-    json_body <- parse_params_to_json(
+    json_body <- eesyapi::parse_tojson_params(
       indicators = indicators,
       time_periods = time_periods,
-      geographic_levels = geographic_levels,
-      locations = locations,
+      geographies = geographies,
       filter_items = filter_items
     )
   }
