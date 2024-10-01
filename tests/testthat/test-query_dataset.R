@@ -48,10 +48,12 @@ test_that("Test filter-combinations POST dataset query", {
       day_number = c("uLQo4"),
       reason = c("bBrtT")
     )
-  )
+  ) |>
+    dplyr::arrange("emJuS :: attendance_type")
   expect_equal(
     query_result,
     readRDS("testdata/example_post_dataset.rds") |>
-      dplyr::select(all_of(colnames(query_result)))
+      dplyr::select(all_of(colnames(query_result)))|>
+      dplyr::arrange("emJuS :: attendance_type")
   )
 })
