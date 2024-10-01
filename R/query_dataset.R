@@ -17,11 +17,25 @@
 #' @examples
 #' query_dataset(
 #'   example_id(group = "attendance"),
-#'   indicators = example_id("indicator"),
+#'   indicators = example_id("indicator", group = "attendance"),
 #'   time_periods = "2024|W23",
 #'   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
 #'   filter_items = c("pmRSo", "7SdXo")
 #' )
+#'
+# query_dataset(
+#   example_id(group = "attendance"),
+#   indicators = example_id("indicator", group = "attendance"),
+#   time_periods = "2024|W23",
+#   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+#   filter_items = list(
+#     attendance_status = c("pmRSo", "7SdXo"),
+#     attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
+#     education_phase = c("ThDPJ", "crH31"),
+#     day_number = c("uLQo4"),
+#     reason = c("bBrtT")
+#   )
+# )
 #'
 #' query_dataset(
 #'   example_id(),
@@ -67,7 +81,7 @@ query_dataset <- function(
       dataset_id = dataset_id,
       indicators = indicators,
       time_periods = time_periods,
-      geographies = NULL,
+      geographies = geographies,
       filter_items = filter_items,
       json_query = json_query,
       dataset_version = dataset_version,

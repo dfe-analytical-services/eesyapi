@@ -18,6 +18,7 @@
 seed_tests <- function() {
   seed_get_publications()
   seed_get_data_catalogue()
+  seed_post_dataset()
 }
 
 # Refresh the publication list
@@ -34,4 +35,23 @@ seed_get_data_catalogue <- function() {
     eesyapi::get_data_catalogue(eesyapi::example_id("publication")),
     file = "tests/testthat/testdata/example_publication_datasets.rds"
   )
+}
+
+seed_post_dataset <- function() {
+  query_dataset(
+    example_id(group = "attendance"),
+    indicators = example_id("indicator", group = "attendance"),
+    time_periods = "2024|W23",
+    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+    filter_items = list(
+      attendance_status = c("pmRSo", "7SdXo"),
+      attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
+      education_phase = c("ThDPJ", "crH31"),
+      day_number = c("uLQo4"),
+      reason = c("bBrtT")
+    )
+  ) |>
+    saveRDS(
+      file = "tests/testthat/testdata/example_post_dataset.rds"
+    )
 }

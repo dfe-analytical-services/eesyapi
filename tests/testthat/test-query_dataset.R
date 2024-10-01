@@ -34,3 +34,24 @@ test_that("Geography query returns expected geographies", {
     )
   )
 })
+
+test_that("Test filter-combinations POST dataset query", {
+  query_result <- query_dataset(
+    example_id(group = "attendance"),
+    indicators = example_id("indicator", group = "attendance"),
+    time_periods = "2024|W23",
+    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+    filter_items = list(
+      attendance_status = c("pmRSo", "7SdXo"),
+      attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
+      education_phase = c("ThDPJ", "crH31"),
+      day_number = c("uLQo4"),
+      reason = c("bBrtT")
+    )
+  )
+  expect_equal(
+    query_result,
+    readRDS("testdata/example_post_dataset.rds") |>
+      dplyr::select(all_of(colnames(query_result)))
+  )
+})
