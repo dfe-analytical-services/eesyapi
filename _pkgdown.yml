@@ -24,10 +24,11 @@ reference:
   - parse_tourl_filter_in
   - parse_tojson_params
   - parse_tojson_time_periods
-  - parse_tojson_filter_list
+  - parse_tojson_filter
   - parse_tojson_filter_in
   - parse_tojson_filter_eq
   - parse_tojson_geographies
+  - parse_tojson_indicators
 
 - title: Support for handling meta data from the API
   desc: These functions are used by `get_meta()` and included here for completeness.

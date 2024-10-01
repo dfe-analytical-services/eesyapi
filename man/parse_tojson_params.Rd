@@ -10,7 +10,8 @@ parse_tojson_params(
   geographies = NULL,
   filter_items = NULL,
   page = 1,
-  page_size = 1000
+  page_size = 1000,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ locations to be queried.}
 \item{page}{Page number of query results to return}
 
 \item{page_size}{Number of results to return in a single query}
+
+\item{verbose}{Add extra contextual information whilst running}
 }
 \value{
 String containing json query body for use with http POST request

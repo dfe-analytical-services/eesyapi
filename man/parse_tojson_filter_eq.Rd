@@ -13,7 +13,7 @@ parse_tojson_filter_eq(items, filter_type = "filter_items")
 "locations" or "filter_items"}
 }
 \value{
-String containing json form query for geographic levels
+String containing json form query based on filter-equal-to constraints
 }
 \description{
 Create a json query sub-string based on filter-equal constraints

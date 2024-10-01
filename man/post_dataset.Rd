@@ -93,7 +93,7 @@ post_dataset(
 
 post_dataset(
   example_id(group = "attendance"),
-  indicators = example_id("indicator"),
+  indicators = example_id("indicator", group = "attendance"),
   time_periods = "2024|W23",
   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
   filter_items = c("pmRSo", "7SdXo")

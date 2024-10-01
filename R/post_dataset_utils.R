@@ -63,17 +63,17 @@ parse_tojson_params <- function(
     geographies = NULL,
     filter_items = NULL,
     page = 1,
-    page_size = 1000) {
+    page_size = 1000,
+    verbose = FALSE) {
   # Set some default strings
   bridge <- "\n  ]\n},"
-  indicators_str <- "\n\"indicators\": [\n  \"bqZtT\"\n]"
   debug_str <- ",\n\"debug\": true"
   pages_str <- paste0(
     ",\n\"page\": ",
     page,
     ",\n\"pageSize\": ",
     page_size,
-    "1000\n}"
+    "\n}"
   )
 
   json_query <- paste0(
@@ -85,7 +85,7 @@ parse_tojson_params <- function(
         paste(
           eesyapi::parse_tojson_time_periods(time_periods),
           eesyapi::parse_tojson_geographies(geographies),
-          eesyapi::parse_tojson_filter_list(filter_items, filter_type = "filter_items"),
+          eesyapi::parse_tojson_filter(filter_items, filter_type = "filter_items"),
           sep = ",\n"
         ) |>
           stringr::str_replace_all(",\\n,\\n,\\n|,\\n,\\n", ",\\\n") |>
@@ -94,10 +94,13 @@ parse_tojson_params <- function(
       ),
       ""
     ),
-    indicators_str,
+    parse_tojson_indicators(indicators),
     debug_str,
     pages_str
   )
+  if (verbose) {
+    json_query |> cat()
+  }
   return(json_query)
 }
 
@@ -147,7 +150,7 @@ parse_tojson_time_periods <- function(time_periods) {
 #' @export
 #'
 #' @examples
-#' parse_tojson_filter_list(
+#' parse_tojson_filter(
 #'   list(
 #'     day_number = c("uLQo4", "qf0jG", "aMjLP"),
 #'     reason = c("bBrtT", "ThjPJ", "hsHyW", "m2m9K"),
@@ -155,14 +158,18 @@ parse_tojson_time_periods <- function(time_periods) {
 #'   )
 #' ) |>
 #'   cat()
-parse_tojson_filter_list <- function(items, filter_type = "filter_items") {
+parse_tojson_filter <- function(items, filter_type = "filter_items") {
   eesyapi::validate_ees_filter_type(filter_type)
-  if (!is.null(items)) {
+  if (is.list(items)) {
+    # If items is a list, then process it as a combination separate "in" queries
     paste0(
       "{\n\"and\": [\n",
       sapply(items, parse_tojson_filter_in, filter_type) |>
         paste(collapse = ",\n"), "\n]\n}"
     )
+  } else if (is.vector(items)) {
+    # If items is a vector, then revert to just a single "in" query
+    parse_tojson_filter_in(items)
   } else {
     NULL
   }
@@ -175,7 +182,7 @@ parse_tojson_filter_list <- function(items, filter_type = "filter_items") {
 #'
 #' @inheritParams parse_tourl_filter_in
 #'
-#' @return String containing json form query for geographic levels
+#' @return String containing json form query based on filter-in constraints
 #' @export
 #'
 #' @examples
@@ -203,7 +210,7 @@ parse_tojson_filter_in <- function(items, filter_type = "filter_items") {
 #'
 #' @inheritParams parse_tourl_filter_in
 #'
-#' @return String containing json form query for geographic levels
+#' @return String containing json form query based on filter-equal-to constraints
 #' @export
 #'
 #' @examples
@@ -288,5 +295,30 @@ parse_tojson_geographies <- function(geographies) {
       collapse = ",\n"
     ),
     "\n    ]\n  }"
+  )
+}
+
+#' Parse an indicator-in type query to json
+#'
+#' @description
+#' Create a json query sub-string based on indicator-in constraints
+#'
+#' @param indicators String or vector of strings containing indicator ids
+#'
+#' @return A json query string to select a set of indicators
+#' @export
+#'
+#' @examples
+#' parse_tojson_indicators(example_id("indicator")) |>
+#'   cat()
+parse_tojson_indicators <- function(indicators) {
+  eesyapi::validate_ees_id(indicators, level = "indicator")
+  paste0(
+    "\n\"indicators\": [\n  \"",
+    paste0(
+      indicators,
+      collapse = "\",\n  \""
+    ),
+    "\"\n]"
   )
 }
