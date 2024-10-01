@@ -5,7 +5,7 @@
 #' codes to the relevant flags to filter on time period, geographic level, location,
 #' and data set specific filters. If none of the above are set in the function call,
 #' then the entire data set will be retrieved. The data set id and specific indicators
-#' of interest must be supplied explictly using the dataset_id and indicators params.
+#' of interest must be supplied explicitly using the dataset_id and indicators params.
 #'
 #' @inheritParams api_url
 #' @inheritParams post_dataset

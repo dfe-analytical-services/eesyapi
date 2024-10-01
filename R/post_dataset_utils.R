@@ -38,6 +38,25 @@
 #'   filter_items = c("pmRSo")
 #' ) |>
 #'   cat()
+#'
+#' # Create a filter list to find the combination of:
+#' #   - day_number is in c("uLQo4", "qf0jG", "aMjLP") *and*
+#' #   - reason is in c("bBrtT", "ThjPJ", "hsHyW", "m2m9K") *and*
+#' #   - education_phase is in c("5UNdi", "crH31")
+#' filter_list <- list(
+#'   day_number = c("uLQo4", "qf0jG", "aMjLP"),
+#'   reason = c("bBrtT", "ThjPJ", "hsHyW", "m2m9K"),
+#'   education_phase = c("5UNdi", "crH31")
+#' )
+#'
+#' parse_tojson_params(
+#'   example_id("indicator"),
+#'   time_periods = "2024|W23",
+#'   geographies = "NAT|code|E92000001",
+#'   filter_items = filter_list
+#' ) |>
+#'   cat()
+#'
 parse_tojson_params <- function(
     indicators,
     time_periods = NULL,
@@ -66,7 +85,7 @@ parse_tojson_params <- function(
         paste(
           eesyapi::parse_tojson_time_periods(time_periods),
           eesyapi::parse_tojson_geographies(geographies),
-          eesyapi::parse_tojson_filter_in(filter_items, filter_type = "filter_items"),
+          eesyapi::parse_tojson_filter_list(filter_items, filter_type = "filter_items"),
           sep = ",\n"
         ) |>
           stringr::str_replace_all(",\\n,\\n,\\n|,\\n,\\n", ",\\\n") |>
@@ -117,12 +136,43 @@ parse_tojson_time_periods <- function(time_periods) {
   }
 }
 
-#' Parse geographic levels to json
+#' Parse a combination-filter query to json
 #'
 #' @description
-#' Create a json query sub-string based on geographic levels constraints
+#' Create a json query sub-string based on a combination \"in\" and \"and\" constraints
 #'
-#' @inheritParams api_url
+#' @inheritParams parse_tourl_filter_in
+#' @return String containing json form query with \"and\"-combination of different filter
+#' selections
+#' @export
+#'
+#' @examples
+#' parse_tojson_filter_list(
+#'   list(
+#'     day_number = c("uLQo4", "qf0jG", "aMjLP"),
+#'     reason = c("bBrtT", "ThjPJ", "hsHyW", "m2m9K"),
+#'     education_phase = c("5UNdi", "crH31")
+#'   )
+#' ) |>
+#'   cat()
+parse_tojson_filter_list <- function(items, filter_type = "filter_items") {
+  eesyapi::validate_ees_filter_type(filter_type)
+  if (!is.null(items)) {
+    paste0(
+      "{\n\"and\": [\n",
+      sapply(items, parse_tojson_filter_in, filter_type) |>
+        paste(collapse = ",\n"), "\n]\n}"
+    )
+  } else {
+    NULL
+  }
+}
+
+#' Parse a filter-in type query to json
+#'
+#' @description
+#' Create a json query sub-string based on filter-in constraints
+#'
 #' @inheritParams parse_tourl_filter_in
 #'
 #' @return String containing json form query for geographic levels
@@ -130,15 +180,15 @@ parse_tojson_time_periods <- function(time_periods) {
 #'
 #' @examples
 #' parse_tojson_filter_in(c("NAT", "REG"), filter_type = "geographic_levels")
-parse_tojson_filter_in <- function(filter_items, filter_type = "filter_items") {
+parse_tojson_filter_in <- function(items, filter_type = "filter_items") {
   eesyapi::validate_ees_filter_type(filter_type)
-  api_filter_type <- eesyapi::to_api_filter_type(filter_type)
-  if (!is.null(filter_items)) {
+  if (!is.null(items)) {
+    api_filter_type <- eesyapi::to_api_filter_type(filter_type)
     paste0(
       "    {\n      \"",
       api_filter_type,
       "\": {\n        \"in\": [\n          \"",
-      paste0(filter_items, collapse = "\",\n          \""),
+      paste0(items, collapse = "\",\n          \""),
       "\"\n        ]\n      }\n    }"
     )
   } else {
@@ -146,12 +196,11 @@ parse_tojson_filter_in <- function(filter_items, filter_type = "filter_items") {
   }
 }
 
-#' Parse geographic levels to json
+#' Parse a filter-equal type query to json
 #'
 #' @description
-#' Create a json query sub-string based on geographic levels constraints
+#' Create a json query sub-string based on filter-equal constraints
 #'
-#' @inheritParams api_url
 #' @inheritParams parse_tourl_filter_in
 #'
 #' @return String containing json form query for geographic levels
@@ -159,15 +208,15 @@ parse_tojson_filter_in <- function(filter_items, filter_type = "filter_items") {
 #'
 #' @examples
 #' parse_tojson_filter_eq("NAT", filter_type = "geographic_levels") |> cat()
-parse_tojson_filter_eq <- function(filter_items, filter_type = "filter_items") {
+parse_tojson_filter_eq <- function(items, filter_type = "filter_items") {
   eesyapi::validate_ees_filter_type(filter_type)
-  api_filter_type <- eesyapi::to_api_filter_type(filter_type)
-  if (!is.null(filter_items)) {
+  if (!is.null(items)) {
+    api_filter_type <- eesyapi::to_api_filter_type(filter_type)
     paste0(
       "        {\n          \"",
       api_filter_type,
       "\": {\n            \"eq\": \"",
-      filter_items,
+      items,
       "\"\n          }\n        }"
     )
   } else {

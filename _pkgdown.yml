@@ -24,6 +24,7 @@ reference:
   - parse_tourl_filter_in
   - parse_tojson_params
   - parse_tojson_time_periods
+  - parse_tojson_filter_list
   - parse_tojson_filter_in
   - parse_tojson_filter_eq
   - parse_tojson_geographies

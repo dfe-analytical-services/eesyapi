@@ -62,4 +62,23 @@ parse_tojson_params(
   filter_items = c("pmRSo")
 ) |>
   cat()
+
+# Create a filter list to find the combination of:
+#   - day_number is in c("uLQo4", "qf0jG", "aMjLP") *and*
+#   - reason is in c("bBrtT", "ThjPJ", "hsHyW", "m2m9K") *and*
+#   - education_phase is in c("5UNdi", "crH31")
+filter_list <- list(
+  day_number = c("uLQo4", "qf0jG", "aMjLP"),
+  reason = c("bBrtT", "ThjPJ", "hsHyW", "m2m9K"),
+  education_phase = c("5UNdi", "crH31")
+)
+
+parse_tojson_params(
+  example_id("indicator"),
+  time_periods = "2024|W23",
+  geographies = "NAT|code|E92000001",
+  filter_items = filter_list
+) |>
+  cat()
+
 }

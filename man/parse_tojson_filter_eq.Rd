@@ -2,12 +2,12 @@
 % Please edit documentation in R/post_dataset_utils.R
 \name{parse_tojson_filter_eq}
 \alias{parse_tojson_filter_eq}
-\title{Parse geographic levels to json}
+\title{Parse a filter-equal type query to json}
 \usage{
-parse_tojson_filter_eq(filter_items, filter_type = "filter_items")
+parse_tojson_filter_eq(items, filter_type = "filter_items")
 }
 \arguments{
-\item{filter_items}{Filter items required as a string or vector of strings}
+\item{items}{items to be included in the "in" statement}
 
 \item{filter_type}{type of filter being queried: "time_periods", "geographic_levels",
 "locations" or "filter_items"}
@@ -16,7 +16,7 @@ parse_tojson_filter_eq(filter_items, filter_type = "filter_items")
 String containing json form query for geographic levels
 }
 \description{
-Create a json query sub-string based on geographic levels constraints
+Create a json query sub-string based on filter-equal constraints
 }
 \examples{
 parse_tojson_filter_eq("NAT", filter_type = "geographic_levels") |> cat()
