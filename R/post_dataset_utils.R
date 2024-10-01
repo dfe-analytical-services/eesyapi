@@ -4,8 +4,7 @@
 #' A short description...
 #'
 #' @inheritParams api_url
-#' @param geographies String, vector or data frame containing the geographic levels and
-#' locations to be queried.
+#' @inheritParams parse_tojson_geographies
 #'
 #' @return String containing json query body for use with http POST request
 #' @export
@@ -55,7 +54,8 @@ parse_tojson_params <- function(
     page,
     ",\n\"pageSize\": ",
     page_size,
-    "1000\n}")
+    "1000\n}"
+  )
 
   json_query <- paste0(
     "{\n",
@@ -180,7 +180,8 @@ parse_tojson_filter_eq <- function(filter_items, filter_type = "filter_items") {
 #' @description
 #' Create a json query sub-string based on location constraints
 #'
-#' @inheritParams api_url
+#' @param geographies String, vector or data frame containing the geographic levels and
+#' locations to be queried.
 #'
 #' @return String containing json form query for geographies
 #' @export

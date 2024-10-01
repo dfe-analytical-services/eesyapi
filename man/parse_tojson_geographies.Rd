@@ -6,6 +6,10 @@
 \usage{
 parse_tojson_geographies(geographies)
 }
+\arguments{
+\item{geographies}{String, vector or data frame containing the geographic levels and
+locations to be queried.}
+}
 \value{
 String containing json form query for geographies
 }
