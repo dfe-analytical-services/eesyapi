@@ -72,7 +72,8 @@ post_dataset <- function(
     verbose = FALSE) {
   if (is.null(indicators) && is.null(json_query)) {
     stop("At least one of either indicators or json_query must not be NULL.")
-  } else if (!is.null(json_query)) {
+  }
+  if (!is.null(json_query)) {
     if (any(!is.null(c(indicators, time_periods, geographies, filter_items)))) {
       warning(
         paste(
@@ -93,7 +94,10 @@ post_dataset <- function(
       indicators = indicators,
       time_periods = time_periods,
       geographies = geographies,
-      filter_items = filter_items
+      filter_items = filter_items,
+      page = page,
+      page_size = page_size,
+      verbose = verbose
     )
   }
   if (verbose) {
@@ -111,9 +115,49 @@ post_dataset <- function(
   if (verbose) {
     print(response)
   }
-  results <- response |>
+  # Unless the user specifies a specific page of results to get, loop through all available pages.
+  response_json <- response |>
     httr::content("text") |>
-    jsonlite::fromJSON() |>
-    magrittr::use_series(results)
-  return(results)
+    jsonlite::fromJSON()
+  if (verbose) {
+    message(paste("Total number of pages: ", response_json$paging$totalPages))
+  }
+  dfresults <- response_json$results |>
+    eesyapi::parse_api_dataset(verbose = verbose)
+  # Unless the user has requested a specific page, then assume they'd like all pages collated and
+  # recursively run the query.
+  if (is.null(page) && is.null(json_query)) {
+    if (response_json$paging$totalPages > 1) {
+      for (page in c(2:response_json$paging$totalPages)) {
+        json_body <- eesyapi::parse_tojson_params(
+          indicators = indicators,
+          time_periods = time_periods,
+          geographies = geographies,
+          filter_items = filter_items,
+          page = page,
+          page_size = page_size,
+          verbose = verbose
+        )
+        response_page <- eesyapi::api_url(
+          "post-data",
+          dataset_id = dataset_id,
+          dataset_version = dataset_version
+        ) |>
+          httr::POST(
+            body = json_body,
+            encode = "json",
+            httr::content_type("application/json")
+          ) |>
+          httr::content("text") |>
+          jsonlite::fromJSON()
+        response_page |> eesyapi::warning_max_pages()
+        dfresults <- dfresults |>
+          dplyr::bind_rows(
+            response_page$results |>
+              eesyapi::parse_api_dataset(verbose = verbose)
+          )
+      }
+    }
+  }
+  return(dfresults)
 }

@@ -74,7 +74,7 @@ parse_tojson_params <- function(
   debug_str <- ",\n\"debug\": true"
   pages_str <- paste0(
     ",\n\"page\": ",
-    page,
+    ifelse(is.null(page), 1, page),
     ",\n\"pageSize\": ",
     page_size,
     "\n}"
