@@ -71,7 +71,7 @@ validate_ees_id <- function(element_id, level = "publication") {
         dplyr::pull("identifier")
     }
   }
-  example_id_string <- example_id(level)
+  example_id_string <- eesyapi::example_id(level)
   if (grepl("location", level)) {
     example_id_string <- example_id_string |>
       stringr::str_split("\\|", simplify = TRUE) |>

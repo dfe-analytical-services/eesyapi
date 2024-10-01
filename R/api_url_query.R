@@ -54,7 +54,10 @@ api_url_query <- function(
         )
       }
     } else {
-      query_filter_items <- parse_tourl_filter_in(filter_items, filter_type = "filter_items")
+      query_filter_items <- eesyapi::parse_tourl_filter_in(
+        filter_items,
+        filter_type = "filter_items"
+      )
     }
   }
   query_indicators <- paste0(

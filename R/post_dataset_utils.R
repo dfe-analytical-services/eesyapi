@@ -131,8 +131,8 @@ parse_tojson_time_periods <- function(time_periods) {
 #' @examples
 #' parse_tojson_filter_in(c("NAT", "REG"), filter_type = "geographic_levels")
 parse_tojson_filter_in <- function(filter_items, filter_type = "filter_items") {
-  validate_ees_filter_type(filter_type)
-  api_filter_type <- to_api_filter_type(filter_type)
+  eesyapi::validate_ees_filter_type(filter_type)
+  api_filter_type <- eesyapi::to_api_filter_type(filter_type)
   if (!is.null(filter_items)) {
     paste0(
       "    {\n      \"",
@@ -160,8 +160,8 @@ parse_tojson_filter_in <- function(filter_items, filter_type = "filter_items") {
 #' @examples
 #' parse_tojson_filter_eq("NAT", filter_type = "geographic_levels") |> cat()
 parse_tojson_filter_eq <- function(filter_items, filter_type = "filter_items") {
-  validate_ees_filter_type(filter_type)
-  api_filter_type <- to_api_filter_type(filter_type)
+  eesyapi::validate_ees_filter_type(filter_type)
+  api_filter_type <- eesyapi::to_api_filter_type(filter_type)
   if (!is.null(filter_items)) {
     paste0(
       "        {\n          \"",

@@ -16,8 +16,8 @@
 parse_tourl_filter_in <- function(
     items,
     filter_type) {
-  validate_ees_filter_type(filter_type)
-  type_string <- to_api_filter_type(filter_type)
+  eesyapi::validate_ees_filter_type(filter_type)
+  type_string <- eesyapi::to_api_filter_type(filter_type)
   if (!is.null(items)) {
     if (filter_type %in% c("time_period", "locations")) {
       items <- gsub("\\|", "%7C", items)
