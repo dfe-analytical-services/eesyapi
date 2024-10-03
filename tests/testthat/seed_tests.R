@@ -51,4 +51,3 @@ seed_get_meta <- function() {
     file = "tests/testthat/testdata/example_meta_parsed.rds"
   )
 }
-
