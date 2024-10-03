@@ -16,8 +16,12 @@
 
 # Refresh all test data
 seed_tests <- function() {
+  message("Updating publication list")
   seed_get_publications()
+  message("Updating data catalogue list")
   seed_get_data_catalogue()
+  message("Updating example meta data")
+  seed_get_meta()
 }
 
 # Refresh the publication list
@@ -35,3 +39,16 @@ seed_get_data_catalogue <- function() {
     file = "tests/testthat/testdata/example_publication_datasets.rds"
   )
 }
+
+# Refresh the data sets list from the standard example publication
+seed_get_meta <- function() {
+  saveRDS(
+    eesyapi::get_meta_response(eesyapi::example_id()),
+    file = "tests/testthat/testdata/example_meta_unparsed.rds"
+  )
+  saveRDS(
+    eesyapi::get_meta(eesyapi::example_id()),
+    file = "tests/testthat/testdata/example_meta_parsed.rds"
+  )
+}
+

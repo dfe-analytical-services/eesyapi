@@ -145,7 +145,8 @@ parse_meta_location_ids <- function(api_meta_locations) {
 #'   parse_meta_filter_columns()
 parse_meta_filter_columns <- function(api_meta_filters) {
   data.frame(
-    col_name = api_meta_filters$id,
+    col_id = api_meta_filters$id,
+    col_name = api_meta_filters$column,
     label = api_meta_filters$label
   )
 }
@@ -192,19 +193,3 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
   return(filter_items)
 }
 
-#' Parse API meta to give the indicator columns
-#'
-#' @param api_meta_indicators Indicator information provided by the API output
-#'
-#' @return data frame containing indicator column names and labels
-#' @export
-#'
-#' @examples
-#' get_meta_response(example_id())$indicators |>
-#'   parse_meta_indicator_columns()
-parse_meta_indicator_columns <- function(api_meta_indicators) {
-  data.frame(
-    col_name = api_meta_indicators$id,
-    label = api_meta_indicators$label
-  )
-}
