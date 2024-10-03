@@ -1,3 +1,9 @@
+# eesyapi 0.2.1
+
+* Updated `get_meta()` to work with new API meta output (addition of id alongside col_name and label)
+* Removed redundant function: `parse_meta_filter_columns()`
+* Hex logo added for documentation
+
 # eesyapi 0.2.0
 
 * Creating publication querying functions:
