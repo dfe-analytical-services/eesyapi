@@ -21,16 +21,20 @@ example_id <- function(
       "dataset",
       "location_id",
       "location_code",
+      "filter",
       "filter_item",
       "indicator",
       "publication",
       "dataset",
       "location_id",
       "location_code",
+      "filter",
       "filter_item",
       "indicator"
     ),
     environments = c(
+      "dev",
+      "dev",
       "dev",
       "dev",
       "dev",
@@ -51,6 +55,8 @@ example_id <- function(
       "attendance",
       "attendance",
       "attendance",
+      "attendance",
+      "public-api-testing",
       "public-api-testing",
       "public-api-testing",
       "public-api-testing",
@@ -63,12 +69,14 @@ example_id <- function(
       "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
       "NAT|id|dP0Zw",
       "NAT|code|E92000001",
-      "hl2Gy",
+      "4kdUZ",
+      "5UNdi",
       "bqZtT",
       "d823e4df-626f-4450-9b21-08dc8b95fc02",
       "830f9201-9e11-ad75-8dcd-d2efe2834457",
       "LA|id|ml79K",
       "NAT|code|E92000001",
+      "5mvdi",
       "HsQzL",
       "h8fyW"
     )
@@ -95,4 +103,29 @@ example_id <- function(
         dplyr::pull("examples")
     )
   }
+}
+
+#' Title
+#'
+#' @inheritParams example_id
+#' @param size Number of rows to return (max = 1000)
+#'
+#' @return Nested list form of example data from the API
+#' @export
+#'
+#' @examples
+#' example_data_raw()
+example_data_raw <- function(
+    group = "attendance",
+    size = 32) {
+  api_url(
+    "get-data",
+    dataset_id = example_id(group = group),
+    indicators = example_id("indicator", group = group),
+    page = 1, page_size = size
+  ) |>
+    httr::GET() |>
+    httr::content("text") |>
+    jsonlite::fromJSON() |>
+    magrittr::use_series("results")
 }

@@ -4,14 +4,25 @@
 \alias{parse_api_dataset}
 \title{Parse contents of API data set json output}
 \usage{
-parse_api_dataset(api_data_result, dataset_id = NULL, verbose = FALSE)
+parse_api_dataset(
+  api_data_result,
+  dataset_id,
+  dataset_version = NULL,
+  api_version = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{api_data_result}{A json data result list as returned from the API}
 
-\item{dataset_id}{ID of data set to be connected to.}
+\item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
+of "get-summary", "get-meta", "get-data" or "post-data"}
 
-\item{verbose}{Run in verbose mode, logical, default = FALSE}
+\item{dataset_version}{Version of data set to be connected to}
+
+\item{api_version}{EES API version}
+
+\item{verbose}{Add extra contextual information whilst running}
 }
 \value{
 Data frame containing API data results
@@ -27,12 +38,6 @@ jsonlite::fromJSON() |>
 parse_api_dataset()
 }
 \examples{
-api_url(
-  "get-data",
-  dataset_id = example_id(), indicators = example_id("indicator"), page_size = 10
-) |>
-  httr::GET() |>
-  httr::content("text") |>
-  jsonlite::fromJSON() |>
-  parse_api_dataset()
+example_data_raw(group = "attendance") |>
+  parse_api_dataset(example_id(group = "attendance"))
 }
