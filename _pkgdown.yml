@@ -33,6 +33,7 @@ reference:
   contents:
   - get_dataset
   - parse_api_dataset
+  - starts_with("parse_sqid")
 
 - title: Validation functions
   desc: These functions are used across the package to validate elements being passed as part of an API url or query.

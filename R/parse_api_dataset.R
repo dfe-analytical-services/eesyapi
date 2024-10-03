@@ -45,8 +45,10 @@ parse_api_dataset <- function(
     api_data_result$timePeriod,
     data.frame(geographic_level = api_data_result$geographicLevel),
     api_data_result$locations,
-    api_data_result$filters,
-    api_data_result$values
+    api_data_result$filters |>
+      dplyr::rename_with(~ paste0("filter-", .x)),
+    api_data_result$values |>
+      dplyr::rename_with(~ paste0("indicator-", .x))
   )
   # Next aim here is to pull in the meta data automatically at this point to translate
   # all the API codes...
