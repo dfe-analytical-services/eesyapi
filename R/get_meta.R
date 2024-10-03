@@ -145,7 +145,8 @@ parse_meta_location_ids <- function(api_meta_locations) {
 #'   parse_meta_filter_columns()
 parse_meta_filter_columns <- function(api_meta_filters) {
   data.frame(
-    col_name = api_meta_filters$id,
+    col_id = api_meta_filters$id,
+    col_name = api_meta_filters$column,
     label = api_meta_filters$label
   )
 }
@@ -163,13 +164,13 @@ parse_meta_filter_columns <- function(api_meta_filters) {
 parse_meta_filter_item_ids <- function(api_meta_filters) {
   nfilters <- length(api_meta_filters$id)
   filter_items <- data.frame(
-    col_name = NA,
+    col_id = NA,
     item_id = NA,
     item_label = NA,
     isAggregate = NA
   )
   filter_items <- filter_items |>
-    dplyr::filter(!is.na(filter_items$col_name))
+    dplyr::filter(!is.na(filter_items$col_id))
   for (i in 1:nfilters) {
     filter_items_i <- as.data.frame(
       api_meta_filters$options[i]
@@ -178,7 +179,7 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
         item_id = "id",
         item_label = "label"
       ) |>
-      dplyr::mutate(col_name = api_meta_filters$id[i])
+      dplyr::mutate(col_id = api_meta_filters$id[i])
     if (!("isAggregate" %in% names(filter_items_i))) {
       filter_items_i <- filter_items_i |>
         dplyr::mutate(isAggregate = NA)
@@ -186,25 +187,8 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
     filter_items <- filter_items |>
       rbind(
         filter_items_i |>
-          dplyr::select("col_name", "item_label", "item_id", default_item = "isAggregate")
+          dplyr::select("col_id", "item_label", "item_id", default_item = "isAggregate")
       )
   }
   return(filter_items)
-}
-
-#' Parse API meta to give the indicator columns
-#'
-#' @param api_meta_indicators Indicator information provided by the API output
-#'
-#' @return data frame containing indicator column names and labels
-#' @export
-#'
-#' @examples
-#' get_meta_response(example_id())$indicators |>
-#'   parse_meta_indicator_columns()
-parse_meta_indicator_columns <- function(api_meta_indicators) {
-  data.frame(
-    col_name = api_meta_indicators$id,
-    label = api_meta_indicators$label
-  )
 }

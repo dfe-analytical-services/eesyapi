@@ -1,6 +1,6 @@
 Package: eesyapi
 Title: EES-y API
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
