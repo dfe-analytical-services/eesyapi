@@ -53,7 +53,7 @@ test_that("Test filter-combinations POST dataset query", {
   expect_equal(
     query_result,
     readRDS("testdata/example_post_dataset.rds") |>
-      dplyr::select(all_of(colnames(query_result)))|>
+      dplyr::select(all_of(colnames(query_result))) |>
       dplyr::arrange("emJuS :: attendance_type", "bqZtT :: session_count")
   )
 })
