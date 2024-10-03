@@ -11,7 +11,7 @@ meta endpoint."><meta property="og:image" content="https://dfe-analytical-servic
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -243,26 +243,35 @@ meta endpoint.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 155         National E92000001                      England   dP0Zw</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filter_columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   col_name       label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    5mvdi School type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   col_id    col_name       label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5mvdi school_type School type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filter_items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   col_name             item_label item_id default_item</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    5mvdi                Special   LfnWj           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    5mvdi   State-funded primary   6TUrf           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    5mvdi State-funded secondary   0wOT5           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    5mvdi                  Total   HsQzL         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   col_id             item_label item_id default_item</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5mvdi                Special   LfnWj           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  5mvdi   State-funded primary   6TUrf           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  5mvdi State-funded secondary   0wOT5           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  5mvdi                  Total   HsQzL         TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $indicators</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   col_name                                                         label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    tImEm                                   Fixed period exclusion rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    fS3YF                             Number of fixed period exclusions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    jXkAM                                Number of permanent exclusions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    ehquS                                              Number of pupils</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    TREPJ     Number of pupils with one or more fixed period exclusions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    h8fyW                                             Number of schools</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    mLC9K Percentage of pupils with one or more fixed period exclusions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    gHcO9                                      Permanent exclusion rate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   col_id            col_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  tImEm     fixed_excl_rate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  fS3YF          fixed_excl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  jXkAM           perm_excl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  ehquS           headcount</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  TREPJ      one_plus_fixed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  h8fyW         num_schools</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  mLC9K one_plus_fixed_rate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  gHcO9      perm_excl_rate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                           label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                   Fixed period exclusion rate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                             Number of fixed period exclusions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                Number of permanent exclusions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                              Number of pupils</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     Number of pupils with one or more fixed period exclusions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                             Number of schools</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7 Percentage of pupils with one or more fixed period exclusions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                      Permanent exclusion rate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
