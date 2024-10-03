@@ -4,7 +4,7 @@
 \alias{parse_squids_filter}
 \title{Parse IDs in a filter column}
 \usage{
-parse_squids_filter(data, meta, column_squid)
+parse_squids_filter(data, meta, column_squid, verbose = FALSE)
 }
 \arguments{
 \item{data}{Data frame containing data as returned from the API by \code{get_dataset()} or
@@ -13,6 +13,8 @@ parse_squids_filter(data, meta, column_squid)
 \item{meta}{Meta data for the data set as provided by \code{get_meta()}}
 
 \item{column_squid}{The}
+
+\item{verbose}{Output status messaging for user}
 }
 \value{
 Data frame
@@ -21,4 +23,11 @@ Data frame
 The API uses unique IDs (squids) to identify each filter column and its contents (filter items).
 This function parses those into the data creators id and item labels based on the meta data
 stored on the API for the data set.
+}
+\examples{
+parse_squids_filter(
+get_dataset(example_id(), indicators = example_id("indicator"), page = 1),
+get_meta(example_id()),
+example_id("filter")
+)
 }

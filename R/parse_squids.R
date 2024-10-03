@@ -12,6 +12,7 @@
 #' @param data Data frame containing data as returned from the API by `get_dataset()` or
 #' `post_dataset()`
 #' @param dataset_id String containing the data set ID
+#' @param verbose Output status messaging for user
 #'
 #' @return Data frame
 #' @export
@@ -21,14 +22,15 @@
 #'   parse_squids_dataset(example_id())
 parse_squids_dataset <- function(
     data,
-    dataset_id) {
+    dataset_id,
+    verbose = FALSE) {
   meta <- get_meta(dataset_id)
   filters <- meta |>
     magrittr::use_series("filter_columns") |>
-    dplyr::pull(col_name)
+    dplyr::pull("col_id")
   for (column in filters) {
     data <- data |>
-      parse_squids_filter(meta, column)
+      parse_squids_filter(meta, column, verbose = TRUE)
   }
   return(data)
 }
@@ -48,21 +50,29 @@ parse_squids_dataset <- function(
 #' @export
 #'
 #' @examples
-parse_squids_filter <- function(data, meta, column_squid) {
+#' parse_squids_filter(
+#' get_dataset(example_id(), indicators = example_id("indicator"), page = 1),
+#' get_meta(example_id()),
+#' example_id("filter")
+#' )
+parse_squids_filter <- function(data, meta, column_squid, verbose = FALSE) {
   col_name <- meta |>
     magrittr::use_series("filter_columns") |>
-    dplyr::filter(col_name == column_squid) |>
-    dplyr::pull("label")
+    dplyr::filter(!! rlang::sym("col_id") == column_squid) |>
+    dplyr::pull("col_name")
+  if (verbose) {
+    message("Matched ", column_squid, " to ", col_name)
+  }
   lookup <- meta |>
     magrittr::use_series("filter_items") |>
-    dplyr::filter(col_name == column_squid) |>
+    dplyr::filter(!! rlang::sym("col_id") == column_squid) |>
     dplyr::select("item_label", "item_id") |>
     dplyr::rename(
       !!rlang::sym(col_name) := "item_label",
       !!rlang::sym(column_squid) := "item_id"
     )
   data <- data |>
-    dplyr::left_join(lookup) |>
+    dplyr::left_join(lookup, by = column_squid) |>
     dplyr::select(-column_squid)
   return(data)
 }

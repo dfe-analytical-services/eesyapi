@@ -4,13 +4,15 @@
 \alias{parse_squids_dataset}
 \title{Parse IDs in returned API data}
 \usage{
-parse_squids_dataset(data, dataset_id)
+parse_squids_dataset(data, dataset_id, verbose = FALSE)
 }
 \arguments{
 \item{data}{Data frame containing data as returned from the API by \code{get_dataset()} or
 \code{post_dataset()}}
 
 \item{dataset_id}{String containing the data set ID}
+
+\item{verbose}{Output status messaging for user}
 }
 \value{
 Data frame
