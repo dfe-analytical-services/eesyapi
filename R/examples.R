@@ -104,3 +104,28 @@ example_id <- function(
     )
   }
 }
+
+#' Title
+#'
+#' @inheritParams example_id
+#' @param size Number of rows to return (max = 1000)
+#'
+#' @return Nested list form of example data from the API
+#' @export
+#'
+#' @examples
+#' example_data_raw()
+example_data_raw <- function(
+    group = "attendance",
+    size = 32) {
+  api_url(
+    "get-data",
+    dataset_id = example_id(group = group),
+    indicators = example_id("indicator", group = group),
+    page = 1, page_size = size
+  ) |>
+    httr::GET() |>
+    httr::content("text") |>
+    jsonlite::fromJSON() |>
+    magrittr::use_series("results")
+}

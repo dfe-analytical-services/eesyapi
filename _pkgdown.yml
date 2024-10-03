@@ -17,7 +17,6 @@ reference:
 - title: Support for generating API URLs and interpreting responses
   desc: These functions are helpful for deriving urls and handling HTTP responses and are used widely by the API workflow functions.
   contents:
-  - example_id
   - starts_with("api_url")
   - http_request_error
   - parse_filter_in
@@ -34,6 +33,11 @@ reference:
   - get_dataset
   - parse_api_dataset
   - starts_with("parse_sqid")
+
+- title: Generate example IDs and data
+  desc: These functions are used widely to create working example code and tests
+  contents:
+  - starts_with("example")
 
 - title: Validation functions
   desc: These functions are used across the package to validate elements being passed as part of an API url or query.
