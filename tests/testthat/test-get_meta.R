@@ -66,7 +66,7 @@ test_that("Filter item ids parsing works as expected", {
 test_that("Indicator ids parsing works as expected", {
   expect_equal(
     readRDS("testdata/example_meta_unparsed.rds")$indicators |>
-      parse_meta_indicator_columns(),
+      parse_meta_filter_columns(),
     readRDS("testdata/example_meta_parsed.rds")$indicators
   )
 })
