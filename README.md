@@ -1,4 +1,4 @@
-# <a href="https://dfe-analytical-services.github.io/eesyapi/">eesyapi</a>
+# eesyapi <a href="http://dfe-analytical-services.github.io/eesyapi/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/dfe-analytical-services/eesyapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dfe-analytical-services/eesyapi/actions/workflows/R-CMD-check.yaml)

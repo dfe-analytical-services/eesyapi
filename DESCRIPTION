@@ -5,7 +5,8 @@ Authors@R:
     c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9070-9969")),
-    person("Cam", "Race", , "cameron.race@education.gov.uk", role = "aut"))
+    person("Cam", "Race", , "cameron.race@education.gov.uk", role = "aut"),
+    person("Laura", "Selby", , "laura.selby@education.gov.uk", role = "ctb"))
 Description: An R package with useful utility functions for connecting to, and
     processing data from, the DfE's explore education statistics API.
 License: MIT + file LICENSE
