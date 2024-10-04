@@ -44,7 +44,7 @@ seed_get_data_catalogue <- function() {
 
 seed_query_dataset <- function() {
   message("Updating example json-from-file data set")
-  result <- query_dataset(
+  result <- eesyapi::query_dataset(
     example_id(group = "attendance"),
     json_query = "tests/testthat/testdata/test_query.json"
   )
@@ -53,9 +53,9 @@ seed_query_dataset <- function() {
     file = "tests/testthat/testdata/example_json-from-file_dataset.rds"
   )
   message("Updating example json-from-string data set")
-  result <- query_dataset(
+  result <- eesyapi::query_dataset(
     example_id(group = "attendance"),
-    json_query = example_json_query()
+    json_query = eesyapi::example_json_query()
   )
   message("  * Number records = ", nrow(result))
   result |> saveRDS(
