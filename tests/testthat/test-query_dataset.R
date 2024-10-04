@@ -16,6 +16,28 @@ test_that("No indicator supplied", {
   )
 })
 
+test_that("Run query from file", {
+  query_result <- query_dataset(
+    example_id(group = "attendance"),
+    json_query = "testdata/test_query.json"
+  )
+  expect_equal(
+    query_result,
+    readRDS("testdata/example_json-from-file_dataset.rds") |>
+      dplyr::select(all_of(colnames(query_result)))
+  )
+})
+
+test_that("Run query from string", {
+  expect_equal(
+    query_dataset(
+      example_id(group = "attendance"),
+      json_query = example_json_query()
+    ),
+    readRDS("testdata/example_json-from-string_dataset.rds")
+  )
+})
+
 test_that("Geography query returns expected geographies", {
   expect_equal(
     post_dataset(
