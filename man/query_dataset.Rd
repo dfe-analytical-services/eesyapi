@@ -41,7 +41,7 @@ locations to be queried.}
 
 \item{json_query}{Optional path to a json file containing the query parameters}
 
-\item{method}{An API query method. Needs to be "GET"}
+\item{method}{The API query method to be used. Can be  "POST" or "GET". Default: "POST".}
 
 \item{dataset_version}{Version of data set to be connected to}
 
@@ -59,11 +59,17 @@ locations to be queried.}
 Data frame containing query results
 }
 \description{
-Create and send a query to the EES API. Queries can be constructed by including the
-codes to the relevant flags to filter on time period, geographic level, location,
-and data set specific filters. If none of the above are set in the function call,
-then the entire data set will be retrieved. The data set id and specific indicators
-of interest must be supplied explicitly using the dataset_id and indicators params.
+Create and send a query to the EES API. Queries can be constructed by including the codes to the
+relevant flags to filter on time period, geographies, and data set specific filters. If none of
+the above are set in the function call, then the all rows will be retrieved. The data set id and
+specific indicators of interest must be supplied explicitly using the dataset_id and indicators
+params.
+You can request a specific set of rows using the page and page_size parameters. Keeping the
+default of page = NULL will return all rows matching the query. Setting page and page_size to
+numerical values will attempt to return a subset of rows, with page_size defining the number of
+rows and page defining which subset of rows to return from the query (i.e. page = 1, page_size =
+20 will return the first 20 rows, page = 2 and page_size = 20 will return the second 20 rows
+and so on).
 }
 \examples{
 query_dataset(
@@ -74,6 +80,19 @@ query_dataset(
   filter_items = c("pmRSo", "7SdXo")
 )
 
+query_dataset(
+  example_id(group = "attendance"),
+  indicators = example_id("indicator", group = "attendance"),
+  time_periods = "2024|W23",
+  geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+  filter_items = list(
+    attendance_status = c("pmRSo", "7SdXo"),
+    attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
+    education_phase = c("ThDPJ", "crH31"),
+    day_number = c("uLQo4"),
+    reason = c("bBrtT")
+  )
+)
 
 query_dataset(
   example_id(),

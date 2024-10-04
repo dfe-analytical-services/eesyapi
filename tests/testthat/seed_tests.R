@@ -20,6 +20,7 @@ seed_tests <- function() {
   seed_get_publications()
   message("Updating data catalogue list")
   seed_get_data_catalogue()
+  message("Updating example data set")
   seed_post_dataset()
   message("Updating example meta data")
   seed_get_meta()
@@ -42,9 +43,9 @@ seed_get_data_catalogue <- function() {
 }
 
 seed_post_dataset <- function() {
-  query_dataset(
+  eesyapi::query_dataset(
     example_id(group = "attendance"),
-    indicators = example_id("indicator", group = "attendance"),
+    indicators = eesyapi::example_id("indicator", group = "attendance"),
     time_periods = "2024|W23",
     geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
     filter_items = list(
