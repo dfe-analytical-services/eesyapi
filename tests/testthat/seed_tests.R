@@ -45,7 +45,7 @@ seed_get_data_catalogue <- function() {
 seed_query_dataset <- function() {
   message("Updating example json-from-file data set")
   result <- eesyapi::query_dataset(
-    example_id(group = "attendance"),
+    eesyapi::example_id(group = "attendance"),
     json_query = "tests/testthat/testdata/test_query.json"
   )
   message("  * Number records = ", nrow(result))
@@ -54,7 +54,7 @@ seed_query_dataset <- function() {
   )
   message("Updating example json-from-string data set")
   result <- eesyapi::query_dataset(
-    example_id(group = "attendance"),
+    eesyapi::example_id(group = "attendance"),
     json_query = eesyapi::example_json_query()
   )
   message("  * Number records = ", nrow(result))
@@ -66,7 +66,7 @@ seed_query_dataset <- function() {
 seed_post_dataset <- function() {
   message("Updating example data set from filter_items param selection")
   result <- eesyapi::query_dataset(
-    example_id(group = "attendance"),
+    eesyapi::example_id(group = "attendance"),
     indicators = eesyapi::example_id("indicator", group = "attendance"),
     time_periods = "2024|W23",
     geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
