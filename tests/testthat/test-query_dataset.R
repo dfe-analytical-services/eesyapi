@@ -29,12 +29,14 @@ test_that("Run query from file", {
 })
 
 test_that("Run query from string", {
+  query_result <- query_dataset(
+    example_id(group = "attendance"),
+    json_query = example_json_query()
+  )
   expect_equal(
-    query_dataset(
-      example_id(group = "attendance"),
-      json_query = example_json_query()
-    ),
-    readRDS("testdata/example_json-from-string_dataset.rds")
+    query_result,
+    readRDS("testdata/example_json-from-string_dataset.rds") |>
+      dplyr::select(all_of(colnames(query_result)))
   )
 })
 

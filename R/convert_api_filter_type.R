@@ -11,11 +11,11 @@
 #' @export
 #'
 #' @examples
-#' to_api_filter_type("filter_items")
-#' to_api_filter_type("geographic_levels")
-#' to_api_filter_type("locations")
-#' to_api_filter_type("filter_items")
-to_api_filter_type <- function(filter_type) {
+#' convert_api_filter_type("filter_items")
+#' convert_api_filter_type("geographic_levels")
+#' convert_api_filter_type("locations")
+#' convert_api_filter_type("filter_items")
+convert_api_filter_type <- function(filter_type) {
   if (!(filter_type %in% c("time_periods", "geographic_levels", "locations", "filter_items"))) {
     stop(
       paste0(

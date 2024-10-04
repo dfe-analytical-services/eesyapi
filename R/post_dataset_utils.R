@@ -196,7 +196,7 @@ parse_tojson_filter <- function(items, filter_type = "filter_items") {
 parse_tojson_filter_in <- function(items, filter_type = "filter_items") {
   eesyapi::validate_ees_filter_type(filter_type)
   if (!is.null(items)) {
-    api_filter_type <- eesyapi::to_api_filter_type(filter_type)
+    api_filter_type <- eesyapi::convert_api_filter_type(filter_type)
     paste0(
       "    {\n      \"",
       api_filter_type,
@@ -224,7 +224,7 @@ parse_tojson_filter_in <- function(items, filter_type = "filter_items") {
 parse_tojson_filter_eq <- function(items, filter_type = "filter_items") {
   eesyapi::validate_ees_filter_type(filter_type)
   if (!is.null(items)) {
-    api_filter_type <- eesyapi::to_api_filter_type(filter_type)
+    api_filter_type <- eesyapi::convert_api_filter_type(filter_type)
     paste0(
       "        {\n          \"",
       api_filter_type,
