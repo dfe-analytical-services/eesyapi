@@ -9,6 +9,7 @@
 #'
 #' @inheritParams api_url
 #' @inheritParams parse_tojson_geographies
+#' @param debug Run POST query in debug mode: logic, default: FALSE
 #'
 #' @return String containing json query body for use with http POST request
 #' @export
@@ -68,10 +69,11 @@ parse_tojson_params <- function(
     filter_items = NULL,
     page = 1,
     page_size = 1000,
+    debug = FALSE,
     verbose = FALSE) {
   # Set some default strings
   bridge <- "\n  ]\n},"
-  debug_str <- ",\n\"debug\": true"
+  debug_str <- paste(",\n\"debug\":", debug) |> tolower()
   pages_str <- paste0(
     ",\n\"page\": ",
     ifelse(is.null(page), 1, page),

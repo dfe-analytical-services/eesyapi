@@ -67,6 +67,7 @@ query_dataset <- function(
     api_version = NULL,
     page_size = 1000,
     page = NULL,
+    debug = FALSE,
     verbose = FALSE) {
   if (!(method %in% c("POST", "GET"))) {
     stop(
@@ -88,6 +89,7 @@ query_dataset <- function(
       api_version = api_version,
       page_size = page_size,
       page = page,
+      debug = debug,
       verbose = verbose
     )
   } else {

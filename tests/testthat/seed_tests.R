@@ -58,6 +58,7 @@ seed_post_dataset <- function() {
     saveRDS(
       file = "tests/testthat/testdata/example_post_dataset.rds"
     )
+}
 
 # Refresh the data sets list from the standard example publication
 seed_get_meta <- function() {

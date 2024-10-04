@@ -69,6 +69,7 @@ post_dataset <- function(
     page = NULL,
     page_size = 1000,
     parse = TRUE,
+    debug = FALSE,
     verbose = FALSE) {
   if (is.null(indicators) && is.null(json_query)) {
     stop("At least one of either indicators or json_query must not be NULL.")
@@ -97,6 +98,7 @@ post_dataset <- function(
       filter_items = filter_items,
       page = page,
       page_size = page_size,
+      debug = debug,
       verbose = verbose
     )
   }

@@ -11,6 +11,7 @@ parse_tojson_params(
   filter_items = NULL,
   page = 1,
   page_size = 1000,
+  debug = FALSE,
   verbose = FALSE
 )
 }
@@ -27,6 +28,8 @@ locations to be queried.}
 \item{page}{Page number of query results to return}
 
 \item{page_size}{Number of results to return in a single query}
+
+\item{debug}{Run POST query in debug mode: logic, default: FALSE}
 
 \item{verbose}{Add extra contextual information whilst running}
 }

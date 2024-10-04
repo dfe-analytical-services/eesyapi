@@ -26,11 +26,12 @@ test_that("Geography query returns expected geographies", {
       filter_items = c("pmRSo")
     ) |>
       dplyr::select(geographic_level, NAT, REG) |>
-      dplyr::distinct(),
+      dplyr::distinct() |>
+      dplyr::arrange(geographic_level),
     data.frame(
       geographic_level = c("NAT", "REG"),
-      NAT = c("dP0Zw :: England (code = E92000001)", "dP0Zw :: England (code = E92000001)"),
-      REG = c(NA, "rg3Nj :: East Midlands (code = E12000004)")
+      NAT = c("dP0Zw", "dP0Zw"),
+      REG = c(NA, "rg3Nj")
     )
   )
 })
@@ -49,11 +50,11 @@ test_that("Test filter-combinations POST dataset query", {
       reason = c("bBrtT")
     )
   ) |>
-    dplyr::arrange("emJuS :: attendance_type", "bqZtT :: session_count")
+    dplyr::arrange("emJuS", "bqZtT")
   expect_equal(
     query_result,
     readRDS("testdata/example_post_dataset.rds") |>
       dplyr::select(all_of(colnames(query_result))) |>
-      dplyr::arrange("emJuS :: attendance_type", "bqZtT :: session_count")
+      dplyr::arrange("emJuS", "bqZtT")
   )
 })

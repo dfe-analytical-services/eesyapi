@@ -18,6 +18,7 @@ query_dataset(
   api_version = NULL,
   page_size = 1000,
   page = NULL,
+  debug = FALSE,
   verbose = FALSE
 )
 }
@@ -49,6 +50,8 @@ locations to be queried.}
 \item{page_size}{Number of results to return in a single query}
 
 \item{page}{Page number of query results to return}
+
+\item{debug}{Run POST query in debug mode: logic, default: FALSE}
 
 \item{verbose}{Add extra contextual information whilst running}
 }
