@@ -249,7 +249,13 @@ parse_tojson_filter_eq <- function(items, filter_type = "filter_items") {
 #' @export
 #'
 #' @examples
+#' parse_tojson_geographies(c("NAT", "REG")) |>
+#'   cat()
 #' parse_tojson_geographies(c("NAT|id|dP0Zw", "REG|id|rg3Nj")) |>
+#'   cat()
+#' parse_tojson_geographies(c("NAT|id|dP0Zw", "REG")) |>
+#'   cat()
+#' parse_tojson_geographies(c("NAT|id|dP0Zw", "REG")) |>
 #'   cat()
 parse_tojson_geographies <- function(geographies) {
   if (is.null(geographies)) {
@@ -257,13 +263,17 @@ parse_tojson_geographies <- function(geographies) {
   } else if (is.vector(geographies) || is.character(geographies)) {
     geographies <- geographies |>
       stringr::str_split("\\|", simplify = TRUE) |>
-      as.data.frame() |>
-      dplyr::rename(search_level = "V1", identifier_type = "V2", identifier = "V3")
+      as.data.frame()
+    if (ncol(geographies) == 1) {
+      geographies <- geographies |>
+        dplyr::mutate(
+          V2 = "",
+          V3 = ""
+        )
+    }
     geographies <- geographies |>
-      dplyr::mutate(
-        return_level = geographies |>
-          dplyr::pull("search_level")
-      )
+      dplyr::rename(search_level = "V1", identifier_type = "V2", identifier = "V3") |>
+      dplyr::mutate(return_level = !!rlang::sym("search_level"))
   } else if (is.data.frame(geographies)) {
     if (
       !all(
@@ -290,19 +300,48 @@ parse_tojson_geographies <- function(geographies) {
           dplyr::pull("return_level"),
         filter_type = "geographic_levels"
       ),
-      ",\n    {\n      \"locations\": {\n        \"in\": [\n",
-      "          {\n            \"level\": \"",
-      geographies |> dplyr::pull("search_level"),
-      "\",\n            \"",
-      geographies |> dplyr::pull("identifier_type"),
-      "\": \"",
-      geographies |> dplyr::pull("identifier"),
-      "\"\n          }\n        ]\n      }\n    }\n  ]\n  }",
+      parse_tojson_location(geographies, include_comma = TRUE),
+      "\n  ]\n  }",
       collapse = ",\n"
     ),
     "\n    ]\n  }"
   )
 }
+
+#' Create json location search string from geographies
+#'
+#' @param geographies Vector or data frame of search geographies
+#' @param include_comma Include a comma before return strings (logical)
+#'
+#' @return Vector of strings containing json location search string
+#' @export
+#'
+#' @examples
+#' parse_tojson_location(example_geography_query()) |> cat()
+parse_tojson_location <- function(geographies, include_comma = FALSE) {
+  comma_string <- ifelse(include_comma, ",", "")
+  location_json <- geographies |>
+    dplyr::mutate(
+      location_json = dplyr::if_else(
+        !!rlang::sym("identifier_type") != "",
+        paste0(
+          comma_string,
+          "\n    {\n      \"locations\": {\n        \"in\": [\n",
+          "          {\n            \"level\": \"",
+          !!rlang::sym("search_level"),
+          "\",\n            \"",
+          !!rlang::sym("identifier_type"),
+          "\": \"",
+          !!rlang::sym("identifier"),
+          "\"\n          }\n        ]\n      }\n    }"
+        ),
+        ""
+      )
+    ) |>
+    dplyr::pull("location_json")
+  return(location_json)
+}
+
 
 #' Parse an indicator-in type query to json
 #'

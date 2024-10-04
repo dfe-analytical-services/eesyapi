@@ -17,6 +17,12 @@ String containing json form query for geographies
 Create a json query sub-string based on location constraints
 }
 \examples{
+parse_tojson_geographies(c("NAT", "REG")) |>
+  cat()
 parse_tojson_geographies(c("NAT|id|dP0Zw", "REG|id|rg3Nj")) |>
+  cat()
+parse_tojson_geographies(c("NAT|id|dP0Zw", "REG")) |>
+  cat()
+parse_tojson_geographies(c("NAT|id|dP0Zw", "REG")) |>
   cat()
 }

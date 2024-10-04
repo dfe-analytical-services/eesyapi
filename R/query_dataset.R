@@ -22,11 +22,15 @@
 #' @export
 #'
 #' @examples
-#' # Run query_dataset() using a string input to json_query.
+#' # Run query_dataset() using a json query string input to json_query (this can also be done by
+#' # passing a filename of a file containing your json query string).
 #' query_dataset(
 #'   example_id(group = "attendance"),
 #'   json_query = example_json_query()
 #' )
+#'
+#' # If you don't want to have tio write your own json query, the rest of the examples illustrate
+#' # how to use query_dataset() with parameters to construct queries in R.
 #'
 #' # Run query_dataset() to select rows containing either of two geographic locations and either of
 #' # two filter items.
@@ -45,11 +49,30 @@
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator", group = "attendance"),
 #'   time_periods = "2024|W23",
-#'   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+#'   geographies = c("NAT"),
 #'   filter_items = list(
 #'     attendance_status = c("pmRSo", "7SdXo"),
 #'     attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
 #'     education_phase = c("ThDPJ", "crH31"),
+#'     day_number = c("uLQo4"),
+#'     reason = c("bBrtT")
+#'   )
+#' )
+#'
+#' # Run a query with a more complex geography selection. Return data for all of:
+#' #   - England
+#' #   - Yorkshire and the Humber
+#' #   - All LAs in Yorkshire and the Humber
+#' example_geography_query("nat_yorks_yorkslas")
+#' query_dataset(
+#'   example_id(group = "attendance"),
+#'   indicators = example_id("indicator", group = "attendance"),
+#'   time_periods = "2024|W23",
+#'   geographies = example_geography_query("nat_yorks_yorkslas"),
+#'   filter_items = list(
+#'     attendance_status = c("pmRSo"),
+#'     attendance_type = c("CvuId"),
+#'     education_phase = c("ThDPJ"),
 #'     day_number = c("uLQo4"),
 #'     reason = c("bBrtT")
 #'   )

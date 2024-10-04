@@ -129,3 +129,33 @@ example_json_query <- function() {
     )
   )
 }
+
+#' Create an example geography-query data frame
+#'
+#' @param level Query level within available options, can be one of \"nat_yorks\" or
+#' \"nat_yorks_yorkslas\"
+#'
+#' @return Data frame containing an example geography query
+#' @export
+#'
+#' @examples
+#' example_geography_query()
+example_geography_query <- function(level = "nat_yorks") {
+  example_geography_queries <- list(
+    nat_yorks =
+      data.frame(
+        return_level = c("NAT", "REG"),
+        search_level = c("NAT", "REG"),
+        identifier_type = c("code", "code"),
+        identifier = c("E92000001", "E12000002")
+      ),
+    nat_yorks_yorkslas = data.frame(
+      return_level = c("NAT", "REG", "LA"),
+      search_level = c("NAT", "REG", "REG"),
+      identifier_type = c("code", "code", "code"),
+      identifier = c("E92000001", "E12000004", "E12000004")
+    )
+  )
+  example_geography_queries |>
+    magrittr::extract2(level)
+}
