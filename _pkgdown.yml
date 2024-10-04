@@ -19,7 +19,7 @@ reference:
   contents:
   - starts_with("api_url")
   - http_request_error
-  - to_api_filter_type
+  - convert_api_filter_type
   - parse_tourl_filter_in
   - starts_with("parse_tojson")
 

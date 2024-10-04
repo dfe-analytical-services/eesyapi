@@ -1,11 +1,85 @@
 #' Query a data set
 #'
 #' @description
-#' Create and send a query to the EES API. Queries can be constructed by including the codes to the
-#' relevant flags to filter on time period, geographies, and data set specific filters. If none of
-#' the above are set in the function call, then the all rows will be retrieved. The data set id and
-#' specific indicators of interest must be supplied explicitly using the dataset_id and indicators
-#' params.
+#' Create and send a query to the EES API. Queries can be supplied and run in one of 3 ways:
+#'   - Supplying a json query in a file to be sent with the POST method.
+#'   - Supplying a json query in a string variable to be sent with the POST method.
+#'   - Supplying parameters (time_periods, geographies, filter_items, indicators) to build a json
+#'   query is then sent with the POST method.
+#'   - Supplying parameters (time_periods, geographies, filter_items, indicators) to build a json
+#'   query is then sent with the GET method.
+#'
+#' In all cases, the data set id must be supplied explicitly using the dataset_id.
+#'
+#' Details on the format of each parameter for the latter two methods are as follows.
+#'
+#' ## indicators
+#'
+#' This must be supplied as a vector of sqids, which can be identified from the meta data using
+#' `get_meta()`.
+#'
+#' ## time_periods
+#'
+#' ## geographies
+#'
+#' Geographies can be supplied as a vector or a data frame depending on the complexity of the
+#' desired query.
+#'
+#' A vector will run a query returning **any** rows meeting any of the given
+#' geographies, i.e. geographies = `c("NAT", "REG")` will return all national and regional level
+#' rows, whilst `c("NAT", "REG|code|E120000001")` will return all national level rows and all North
+#' East rows. Specific locations are required to be supplied in the format
+#' `"LEVEL|identifier_type|identifier"`, where identifier type can be either code or id and the
+#' corresponding identifier is then the standard ONS code or the sqid given in the meta data
+#' respectively. Using England as an example, these would be:
+#'   - `"NAT|code|E92000001"`
+#'   - `"NAT|id|dP0Zw"`
+#'
+#' If you require a more complex selection, for example all LAs in a given region, then a data
+#' frame should be supplied, with a row for each selection. Note however, that this will only work
+#' when using the default `POST` method. The `GET` method is much more limited and can not process
+#' more complex queries.
+#'
+#' The geography query data frame should contain the following columns:
+#'   - return_level: the geographic level to return (e.g. LA in the example above).
+#'   - search_level: the geographic level of the search location (e.g. REG in the example above).
+#'   - identifier_type: "code" or "id".
+#'   - identifier: the code or id (sqid) for the search location (e.g. the code or sqid of the
+#'   region in the above example).
+#'
+#' Further rows can be added to add other geography searches to include in results.
+#'
+#' An example of a working geographies data frame can be obtained using `example_geography_query()`.
+#'
+#' ## filter_items
+#'
+#' Similarly to geographies, criteria for querying on filter items can be provided either via a
+#' vector for simple queries or, for more complex queries, as a list. In both cases, vector or
+#' list, filter items can only be supplied as sqids, i.e. the ids found in the meta data using
+#' `get_meta(dataset_id)`.
+#'
+#' Providing a vector of sqids will effectively run a query returning any rows containing any of
+#' the listed sqids. This therefore does not allow narrow searches based on a row or set of rows
+#' matching multiple criteria.
+#'
+#' Providing a list structure can provide a more narrow query selecting individual rows based on
+#' a combination of criteria. For example if we want rows that contain sqid1 in one column and
+#' sqid2 in another, then we would pass a list of:
+#' `filter_query <- list(column1 = c("sqid1"), column2 = c("sqid2"))`
+#' Note that the naming of the entries in the list is not necessary, but may help in creating more
+#' readable code.
+#'
+#' If we wish to create a query whereby we receive rows containing sqid1 in column 1 and sqid2 or
+#' sqid3 in column 2, then the required list would be:
+#' `filter_query <- list(column1 = c("sqid1"), column2 = c("sqid2", "sqid3"))`
+#'
+#' In this way, we can build up combinations of OR and AND criteria for a query across multiple
+#' filter columns.
+#'
+#' *Note again that the more complex querying using a list variable will only function when using
+#' the `POST` method*.
+#'
+#' ## Controlling paging
 #'
 #' You can request a specific set of rows using the page and page_size parameters. Keeping the
 #' default of page = NULL will return all rows matching the query. Setting page and page_size to
