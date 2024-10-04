@@ -1,4 +1,5 @@
 #' Example ID
+#'
 #' @description
 #' This function returns examples of working IDs that can be used with the API.
 #'
@@ -21,16 +22,20 @@ example_id <- function(
       "dataset",
       "location_id",
       "location_code",
+      "filter",
       "filter_item",
       "indicator",
       "publication",
       "dataset",
       "location_id",
       "location_code",
+      "filter",
       "filter_item",
       "indicator"
     ),
     environments = c(
+      "dev",
+      "dev",
       "dev",
       "dev",
       "dev",
@@ -51,6 +56,8 @@ example_id <- function(
       "attendance",
       "attendance",
       "attendance",
+      "attendance",
+      "public-api-testing",
       "public-api-testing",
       "public-api-testing",
       "public-api-testing",
@@ -63,12 +70,14 @@ example_id <- function(
       "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
       "NAT|id|dP0Zw",
       "NAT|code|E92000001",
-      "hl2Gy",
+      "4kdUZ",
+      "5UNdi",
       "bqZtT",
       "d823e4df-626f-4450-9b21-08dc8b95fc02",
       "830f9201-9e11-ad75-8dcd-d2efe2834457",
       "LA|id|ml79K",
       "NAT|code|E92000001",
+      "5mvdi",
       "HsQzL",
       "h8fyW"
     )
@@ -95,4 +104,28 @@ example_id <- function(
         dplyr::pull("examples")
     )
   }
+}
+
+#' Create an example json query string
+#' @description
+#' Create an example json query string for use in examples and tests
+#'
+#' @return String containing an example json query
+#' @export
+#'
+#' @examples
+#' example_json_query() |> cat()
+example_json_query <- function() {
+  parse_tojson_params(
+    indicators = example_id("indicator", group = "attendance"),
+    time_periods = "2024|W23",
+    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+    filter_items = list(
+      attendance_status = c("pmRSo"),
+      attendance_type = c("CvuId", "6AXrf"),
+      education_phase = c("ThDPJ", "crH31"),
+      day_number = c("uLQo4"),
+      reason = c("bBrtT")
+    )
+  )
 }

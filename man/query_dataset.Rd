@@ -6,7 +6,7 @@
 \usage{
 query_dataset(
   dataset_id,
-  indicators,
+  indicators = NULL,
   time_periods = NULL,
   geographies = NULL,
   geographic_levels = NULL,
@@ -64,6 +64,7 @@ relevant flags to filter on time period, geographies, and data set specific filt
 the above are set in the function call, then the all rows will be retrieved. The data set id and
 specific indicators of interest must be supplied explicitly using the dataset_id and indicators
 params.
+
 You can request a specific set of rows using the page and page_size parameters. Keeping the
 default of page = NULL will return all rows matching the query. Setting page and page_size to
 numerical values will attempt to return a subset of rows, with page_size defining the number of
@@ -72,14 +73,25 @@ rows and page defining which subset of rows to return from the query (i.e. page 
 and so on).
 }
 \examples{
+# Run query_dataset() using a string input to json_query.
+query_dataset(
+  example_id(group = "attendance"),
+  json_query = example_json_query()
+)
+
+# Run query_dataset() to select rows containing either of two geographic locations and either of
+# two filter items.
 query_dataset(
   example_id(group = "attendance"),
   indicators = example_id("indicator", group = "attendance"),
   time_periods = "2024|W23",
   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-  filter_items = c("pmRSo", "7SdXo")
+  filter_items = c("CvuId", "6AXrf"),
+  page = 1,
+  page_size = 32
 )
 
+# Run query_dataset() using set parameters giving a combination of filter options
 query_dataset(
   example_id(group = "attendance"),
   indicators = example_id("indicator", group = "attendance"),
@@ -94,17 +106,12 @@ query_dataset(
   )
 )
 
+# Run a basic query using GET instead of POST
 query_dataset(
   example_id(),
   method = "GET",
   geographic_levels = "NAT",
   filter_items = example_id("filter_item"),
-  indicators = example_id("indicator")
-)
-
-query_dataset(
-  example_id(),
-  method = "GET",
   indicators = example_id("indicator"),
   page = 1,
   page_size = 10

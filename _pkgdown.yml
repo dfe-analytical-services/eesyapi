@@ -17,18 +17,11 @@ reference:
 - title: Support for generating API URLs and interpreting responses
   desc: These functions are helpful for deriving urls and handling HTTP responses and are used widely by the API workflow functions.
   contents:
-  - example_id
   - starts_with("api_url")
   - http_request_error
   - to_api_filter_type
   - parse_tourl_filter_in
-  - parse_tojson_params
-  - parse_tojson_time_periods
-  - parse_tojson_filter
-  - parse_tojson_filter_in
-  - parse_tojson_filter_eq
-  - parse_tojson_geographies
-  - parse_tojson_indicators
+  - starts_with("parse_tojson")
 
 - title: Support for handling meta data from the API
   desc: These functions are used by `get_meta()` and included here for completeness.
@@ -42,6 +35,11 @@ reference:
   - get_dataset
   - post_dataset
   - parse_api_dataset
+
+- title: Examples
+  desc: Functions to create useful example cases for tests and code examples
+  contents:
+  - starts_with("example_")
 
 - title: Validation functions
   desc: These functions are used across the package to validate elements being passed as part of an API url or query.

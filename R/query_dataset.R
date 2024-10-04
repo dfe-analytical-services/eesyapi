@@ -22,14 +22,25 @@
 #' @export
 #'
 #' @examples
+#' # Run query_dataset() using a string input to json_query.
+#' query_dataset(
+#'   example_id(group = "attendance"),
+#'   json_query = example_json_query()
+#' )
+#'
+#' # Run query_dataset() to select rows containing either of two geographic locations and either of
+#' # two filter items.
 #' query_dataset(
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator", group = "attendance"),
 #'   time_periods = "2024|W23",
 #'   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-#'   filter_items = c("pmRSo", "7SdXo")
+#'   filter_items = c("CvuId", "6AXrf"),
+#'   page = 1,
+#'   page_size = 32
 #' )
 #'
+#' # Run query_dataset() using set parameters giving a combination of filter options
 #' query_dataset(
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator", group = "attendance"),
@@ -44,17 +55,12 @@
 #'   )
 #' )
 #'
+#' # Run a basic query using GET instead of POST
 #' query_dataset(
 #'   example_id(),
 #'   method = "GET",
 #'   geographic_levels = "NAT",
 #'   filter_items = example_id("filter_item"),
-#'   indicators = example_id("indicator")
-#' )
-#'
-#' query_dataset(
-#'   example_id(),
-#'   method = "GET",
 #'   indicators = example_id("indicator"),
 #'   page = 1,
 #'   page_size = 10
@@ -62,7 +68,7 @@
 #'
 query_dataset <- function(
     dataset_id,
-    indicators,
+    indicators = NULL,
     time_periods = NULL,
     geographies = NULL,
     geographic_levels = NULL,

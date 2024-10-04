@@ -58,47 +58,35 @@ EES API. As a minimum, it requires the dataset_id flag and either the indicators
 a json file containing a query to be provided.
 }
 \examples{
-test_query <- '{
-"criteria": {
-  "and": [
-    {
-      "geographicLevels": {
-        "eq": "NAT"
-      }
-    },{
-      "timePeriods": {
-        "in": [
-          {
-            "period": "2024",
-            "code": "W26"
-          }
-        ]
-      }
-    },  {
-      "filters": {
-        "eq": "jYyAM"
-      }
-    }
-  ]
-},
-"indicators": [
-  "bqZtT"
-],
-"debug": true,
-"page": 1,
-"pageSize": 1000
-}'
-
 post_dataset(
   example_id(group = "attendance"),
-  json_query = test_query
+  json_query = example_json_query()
 )
 
+# Run post_dataset() to select rows containing either of two geographic locations and either of
+# two filter items.
 post_dataset(
   example_id(group = "attendance"),
   indicators = example_id("indicator", group = "attendance"),
   time_periods = "2024|W23",
   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-  filter_items = c("pmRSo", "7SdXo")
+  filter_items = c("CvuId", "6AXrf"),
+  page = 1,
+  page_size = 32
+)
+
+# Run post_dataset() using set parameters giving a combination of filter options
+post_dataset(
+  example_id(group = "attendance"),
+  indicators = example_id("indicator", group = "attendance"),
+  time_periods = "2024|W23",
+  geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+  filter_items = list(
+    attendance_status = c("pmRSo", "7SdXo"),
+    attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
+    education_phase = c("ThDPJ", "crH31"),
+    day_number = c("uLQo4"),
+    reason = c("bBrtT")
+  )
 )
 }
