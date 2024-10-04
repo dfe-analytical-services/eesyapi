@@ -20,6 +20,12 @@
 #'
 #' ## time_periods
 #'
+#' Time periods should be supplied as a vector of periods and codes in the form:
+#'   - `"period|code"`
+#'
+#' For example, selecting the 2023 and 2024 academic years would require:
+#' `time_period = c("2023|AY", "2024|AY")`
+#'
 #' ## geographies
 #'
 #' Geographies can be supplied as a vector or a data frame depending on the complexity of the
