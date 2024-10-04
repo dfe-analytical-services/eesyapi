@@ -21,5 +21,4 @@ Imports:
     httr,
     jsonlite,
     dplyr,
-    magrittr,
     stringr
