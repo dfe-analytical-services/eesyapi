@@ -82,10 +82,10 @@ example_id <- function(
       "eQcuS"
     )
   )
-  if (level == "all") {
+  if (any(level == "all")) {
     return(example_ids)
   } else {
-    if (!(level %in% example_ids$levels)) {
+    if (any(!(level %in% example_ids$levels))) {
       stop(
         paste0(
           "Non-valid element level received by validate_id.\n",
