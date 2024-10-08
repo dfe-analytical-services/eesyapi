@@ -53,7 +53,7 @@ validate_ees_id <- function(element_id, level = "publication") {
   if (level == "location") {
     locations <- element_id |>
       stringr::str_split("\\|", simplify = TRUE)
-    if ("" %in% locations) {
+    if ("" %in% locations || ncol(locations) != 3) {
       stop('Invalid locations found, these should be of the form "LEVEL|xxxx|1b3d5".')
     } else {
       # Extract the individual 5 digit location IDs

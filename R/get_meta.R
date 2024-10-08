@@ -120,12 +120,11 @@ parse_meta_location_ids <- function(api_meta_locations) {
   location_items <- location_items |>
     dplyr::filter(!is.na(location_items$geographic_level))
   for (i in 1:nlevels) {
-    print(i)
     location_items_i <- api_meta_locations$options |>
       magrittr::extract2(i) |>
       dplyr::mutate(
         geographic_level = api_meta_locations$level$label[i]
-        )
+      )
     location_items <- location_items |>
       rbind(
         location_items_i |>
