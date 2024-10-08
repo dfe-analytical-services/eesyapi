@@ -110,7 +110,7 @@ parse_meta_time_periods <- function(api_meta_time_periods) {
 #' get_meta_response(example_id())$locations |>
 #'   parse_meta_location_ids()
 parse_meta_location_ids <- function(api_meta_locations) {
-  nlevels <- length(api_meta_locations$level)
+  nlevels <- nrow(api_meta_locations$level)
   location_items <- data.frame(
     geographic_level = NA,
     code = NA,
@@ -120,10 +120,12 @@ parse_meta_location_ids <- function(api_meta_locations) {
   location_items <- location_items |>
     dplyr::filter(!is.na(location_items$geographic_level))
   for (i in 1:nlevels) {
-    location_items_i <- as.data.frame(
-      api_meta_locations$options[i]
-    ) |>
-      dplyr::mutate(geographic_level = api_meta_locations$level$label[i])
+    print(i)
+    location_items_i <- api_meta_locations$options |>
+      magrittr::extract2(i) |>
+      dplyr::mutate(
+        geographic_level = api_meta_locations$level$label[i]
+        )
     location_items <- location_items |>
       rbind(
         location_items_i |>
