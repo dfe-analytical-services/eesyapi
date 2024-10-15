@@ -33,17 +33,18 @@ validate_page_size <- function(page_size, min = 1, max = 40) {
 #'
 #' @examples
 #' validate_time_periods(c("2023|AY", "2024|AY"))
-validate_time_periods <- function(time_periods){
+validate_time_periods <- function(time_periods) {
   time_pipes <- time_periods |>
     stringr::str_replace_all("[a-zA-Z0-9]", "")
-  if(!all(stringr::str_length(time_pipes)==1)){
-    invalid_pipes <- time_periods[stringr::str_length(time_pipes)!=1]
+  if (!all(stringr::str_length(time_pipes) == 1)) {
+    invalid_pipes <- time_periods[stringr::str_length(time_pipes) != 1]
     stop(
       paste(
         "Invalid time periods provided:",
         paste(invalid_pipes, collapse = ", "),
-        "\nThese should be in the format {period}|{code}, e.g. 2024|AY, 2023|W21")
+        "\nThese should be in the format {period}|{code}, e.g. 2024|AY, 2023|W21"
       )
+    )
   }
 }
 

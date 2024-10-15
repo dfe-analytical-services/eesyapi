@@ -116,7 +116,7 @@ example_id <- function(
 #' @examples
 #' example_json_query() |> cat()
 example_json_query <- function() {
-  parse_tojson_params(
+  eesyapi::parse_tojson_params(
     indicators = example_id("indicator", group = "attendance"),
     time_periods = "2024|W23",
     geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),

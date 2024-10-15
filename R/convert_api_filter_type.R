@@ -16,16 +16,7 @@
 #' convert_api_filter_type("locations")
 #' convert_api_filter_type("filter_items")
 convert_api_filter_type <- function(filter_type) {
-  if (!(filter_type %in% c("time_periods", "geographic_levels", "locations", "filter_items"))) {
-    stop(
-      paste0(
-        "Invalid filter type: ",
-        filter_type,
-        "\nShould be one of \"time_periods\", \"geographic_levels\", ",
-        "\"locations\" or \"filter_items\"."
-      )
-    )
-  }
+  validate_ees_filter_type(filter_type)
   filter_type <- filter_type |>
     stringr::str_replace("_item", "")
   gsub("_(\\w?)", "\\U\\1", filter_type, perl = TRUE)
