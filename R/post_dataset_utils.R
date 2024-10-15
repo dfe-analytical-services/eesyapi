@@ -123,6 +123,7 @@ parse_tojson_params <- function(
 #' @examples
 #' parse_tojson_time_periods(c("2023|W25", "2024|W12"))
 parse_tojson_time_periods <- function(time_periods) {
+  validate_time_periods(time_periods)
   if (!is.null(time_periods)) {
     df_time_periods <- time_periods |>
       stringr::str_split("\\|", simplify = TRUE) |>
