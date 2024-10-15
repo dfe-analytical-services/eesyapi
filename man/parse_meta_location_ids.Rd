@@ -9,7 +9,7 @@ parse_meta_location_ids(api_meta_locations, verbose = FALSE)
 \arguments{
 \item{api_meta_locations}{Locations information provided by the API output}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE#'}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 Data frame containing location item codes matched

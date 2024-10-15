@@ -22,7 +22,7 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{parse}{Parse result into structured list}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE#'}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 Results of query to API meta data endpoint

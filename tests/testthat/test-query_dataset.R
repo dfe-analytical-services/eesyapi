@@ -113,4 +113,29 @@ test_that("Test filter-combinations POST dataset query", {
       dplyr::select(all_of(colnames(query_result))) |>
       dplyr::arrange("emJuS", "bqZtT")
   )
+  query_result <- query_dataset(
+    example_id(group = "attendance"),
+    indicators = example_id("indicator", group = "attendance"),
+    time_periods = "2024|W23",
+    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+    filter_items = list(
+      attendance_status = c("pmRSo", "7SdXo"),
+      attendance_type = c("CvuId", "6AXrf"),
+      education_phase = c("ThDPJ", "crH31"),
+      day_number = c("uLQo4"),
+      reason = c("bBrtT")
+    )
+  ) |>
+    dplyr::select("5TYdi", "mU59K", "Db3Qe", "emJuS", "4kdUZ") |>
+    dplyr::distinct()
+  expect_equal(
+    query_result,
+    data.frame(
+      `5TYdi` = c("uLQo4", "uLQo4", "uLQo4", "uLQo4"),
+      `mU59K` = c("bBrtT", "bBrtT", "bBrtT", "bBrtT"),
+      `Db3Qe` = c("pmRSo", "pmRSo", "pmRSo", "pmRSo"),
+      `emJuS` = c("CvuId", "6AXrf", "CvuId", "6AXrf"),
+      `4kdUZ` = c("ThDPJ", "ThDPJ", "crH31", "crH31")
+    ) |> dplyr::rename_with(~ stringr::str_replace_all(., "X", ""))
+  )
 })

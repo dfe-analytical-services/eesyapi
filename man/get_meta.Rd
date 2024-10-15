@@ -19,7 +19,7 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{api_version}{EES API version}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE#'}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 List of data frames containing a data set's meta data

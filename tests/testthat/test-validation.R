@@ -26,8 +26,7 @@ test_that("Time period validation", {
   expect_error(
     validate_time_periods("2023AY")
   )
-}
-)
+})
 
 test_that("Filter type validation", {
   expect_no_error(
@@ -54,5 +53,4 @@ test_that("Filter type validation", {
   expect_error(
     validate_ees_filter_type("filter_item")
   )
-}
-)
+})
