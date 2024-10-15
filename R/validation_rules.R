@@ -142,10 +142,18 @@ validate_ees_id <- function(element_id, level = "publication", verbose = FALSE) 
     stop(err_string)
   } else if (
     any(
-      gsub("[0-9a-zA-Z]", "", element_id) != gsub("[0-9a-zA-Z]", "", example_id_string)
+      gsub("[0-9a-zA-Z]", "", element_id |> dplyr::pull("identifier")) !=
+        gsub("[0-9a-zA-Z]", "", example_id_string |> dplyr::pull("identifier"))
     )
   ) {
-    stop(err_string)
+    stop(
+      paste(
+        "Some elements in",
+        paste(element_id |> dplyr::pull("identifier"), collapse = ", "),
+        "do not match the expected structure: ",
+        example_id_string |> dplyr::pull("identifier")
+      )
+    )
   }
 }
 
