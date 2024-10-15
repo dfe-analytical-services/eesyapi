@@ -18,7 +18,7 @@
 #' @examples
 #' get_dataset(
 #'   example_id(),
-#'   geographic_levels = "NAT",
+#'   geographic_levels = c("SCH"),
 #'   filter_items = example_id("filter_item"),
 #'   indicators = example_id("indicator")
 #' )
