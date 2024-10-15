@@ -51,7 +51,7 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{environment}{EES environment to connect to: "dev", "test", "preprod" or "prod"}
 
-\item{verbose}{Add extra contextual information whilst running}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE#'}
 }
 \value{
 A string containing the URL for connecting to the EES API

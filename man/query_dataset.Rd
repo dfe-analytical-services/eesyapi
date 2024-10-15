@@ -53,7 +53,7 @@ locations to be queried.}
 
 \item{debug}{Run POST query in debug mode: logic, default: FALSE}
 
-\item{verbose}{Add extra contextual information whilst running}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE#'}
 }
 \value{
 Data frame containing query results

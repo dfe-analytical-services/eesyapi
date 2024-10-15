@@ -13,7 +13,6 @@
 # bulk refresh
 # - test data should be saved as rds files in tests/testthat/testdata/
 
-
 # Refresh all test data
 seed_tests <- function() {
   message("Updating publication list")

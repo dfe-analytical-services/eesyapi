@@ -91,14 +91,16 @@ validate_ees_id <- function(element_id, level = "publication", verbose = FALSE) 
     dplyr::left_join(example_id_string, by = "identifier_type")
   error_rows <- check_frame |>
     dplyr::filter(
-      identifier_type == "id",
-      stringr::str_length(identifier.x) < stringr::str_length(identifier.y)
+      !!rlang::sym("identifier_type") == "id",
+      stringr::str_length(!!rlang::sym("identifier.x")) <
+        stringr::str_length(!!rlang::sym("identifier.y"))
     ) |>
     dplyr::bind_rows(
       check_frame |>
         dplyr::filter(
-          identifier_type == "code",
-          stringr::str_length(identifier.x) != stringr::str_length(identifier.y)
+          !!rlang::sym("identifier_type") == "code",
+          stringr::str_length(!!rlang::sym("identifier.x")) !=
+            stringr::str_length(!!rlang::sym("identifier.y"))
         )
     )
   if (nrow(error_rows) != 0) {
