@@ -40,6 +40,38 @@ test_that("Run query from string", {
   )
 })
 
+test_that("Time period query returns expected time periods", {
+  expect_equal(
+    post_dataset(
+      example_id(group = "attendance"),
+      indicators = example_id("indicator", group = "attendance"),
+      time_periods = c("2024|W21", "2024|W23"),
+      geographies = c("NAT|id|dP0Zw"),
+      filter_items = c("pmRSo")
+    ) |>
+      dplyr::select("code", "period") |>
+      dplyr::distinct() |>
+      dplyr::arrange(code, period),
+    data.frame(
+      code = c("W21", "W23"),
+      period = c("2024", "2024")
+    )
+  )
+})
+
+test_that("Time period query returns expected time periods", {
+  expect_error(
+    post_dataset(
+      example_id(group = "attendance"),
+      indicators = example_id("indicator", group = "attendance"),
+      time_periods = c("2024W21", "2024|W23"),
+      geographies = c("NAT|id|dP0Zw"),
+      filter_items = c("pmRSo")
+    )
+  )
+})
+
+
 test_that("Geography query returns expected geographies", {
   expect_equal(
     post_dataset(
