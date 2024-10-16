@@ -24,7 +24,9 @@ http_request_error <- function(
     ),
     response_text = c(
       "Successful API request.",
-      "Invalid query, data set ID, data set version or API version submitted to API.",
+      paste(
+        "Invalid query, data set ID, data set version or API version submitted to API."
+      ),
       paste(
         "Internal server error encountered - please contact the EES API team at",
         "explore.statistics@education.gov.uk",
@@ -32,17 +34,28 @@ http_request_error <- function(
       )
     )
   )
+
   status_group <- trunc(response$status / 100.)
   if (status_group %in% status_lookup$response_group) {
     status_response_text <- status_lookup |>
       dplyr::filter(status_lookup$response_group == status_group) |>
       dplyr::pull("response_text")
-    if (!(status_group %in% c(2, 5)) && !is.null(response$errors)) {
-      status_response_text <- status_response_text |>
-        paste0(
-          "\n",
-          paste(response$errors, collapse = ". ")
+    if (!(status_group %in% c(2, 5))) {
+      api_error <- response |>
+        httr::content("text") |>
+        jsonlite::fromJSON() |>
+        magrittr::extract2("errors")
+      if (!is.null(api_error)) {
+        status_response_text <- paste0(
+          api_error |>
+            dplyr::pull("message"),
+          "\n     ",
+          api_error |>
+            dplyr::pull("detail") |>
+            unlist() |>
+            paste0(collapse = ", ")
         )
+      }
     }
   } else {
     status_response_text <- "API http response code not recognised."
@@ -50,7 +63,7 @@ http_request_error <- function(
   if (status_group != 2) {
     stop(
       paste0(
-        "HTTP connection error: ",
+        "\nHTTP connection error: ",
         response$status,
         "\n",
         status_response_text

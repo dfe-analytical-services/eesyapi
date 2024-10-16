@@ -139,3 +139,10 @@ test_that("Test filter-combinations POST dataset query", {
     ) |> dplyr::rename_with(~ stringr::str_replace_all(., "X", ""))
   )
 })
+
+test_that("Invalid method selected", {
+  expect_error(
+    query_dataset(example_id(), indicators = c("uywet", "uywed")),
+    "\nHTTP connection error: 400\nOne or more indicators could not be found.\n     uywet, uywed"
+  )
+})

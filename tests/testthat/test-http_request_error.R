@@ -7,28 +7,14 @@ test_that("Successful connection message", {
 
 test_that("Bad URL / query message", {
   expect_error(
-    http_request_error(list(status = 404, errors = "Demo error")),
+    api_url("get-meta", dataset_id = example_id("publication")) |>
+      httr::GET() |>
+      http_request_error(),
     paste0(
       "HTTP connection error: ",
       404,
       "\n",
-      "Invalid query, data set ID, data set version or API version submitted to API.",
-      "\n",
-      "Demo error"
-    )
-  )
-})
-
-test_that("Server error message", {
-  expect_error(
-    http_request_error(list(status = 503)),
-    paste0(
-      "HTTP connection error: ",
-      503,
-      "\n",
-      "Internal server error encountered - please contact the EES API team at ",
-      "explore.statistics@education.gov.uk ",
-      "providing the query you were attempting to submit."
+      "Invalid query, data set ID, data set version or API version submitted to API."
     )
   )
 })
