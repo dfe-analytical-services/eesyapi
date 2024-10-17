@@ -1,7 +1,7 @@
 #' Query a data set
 #'
 #' @description
-#' Create and send a query to the EES API. Queries can be supplied and run in one of 3 ways:
+#' Create and send a query to the EES API. Queries can be supplied and run in one of 4 ways:
 #'   - Supplying a json query in a file to be sent with the POST method.
 #'   - Supplying a json query in a string variable to be sent with the POST method.
 #'   - Supplying parameters (time_periods, geographies, filter_items, indicators) to build a json

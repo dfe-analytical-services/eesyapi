@@ -16,7 +16,7 @@
 #' convert_api_filter_type("locations")
 #' convert_api_filter_type("filter_items")
 convert_api_filter_type <- function(filter_type) {
-  validate_ees_filter_type(filter_type)
+  eesyapi::validate_ees_filter_type(filter_type)
   filter_type <- filter_type |>
     stringr::str_replace("_item", "")
   gsub("_(\\w?)", "\\U\\1", filter_type, perl = TRUE)

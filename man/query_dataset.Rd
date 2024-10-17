@@ -59,7 +59,7 @@ locations to be queried.}
 Data frame containing query results
 }
 \description{
-Create and send a query to the EES API. Queries can be supplied and run in one of 3 ways:
+Create and send a query to the EES API. Queries can be supplied and run in one of 4 ways:
 \itemize{
 \item Supplying a json query in a file to be sent with the POST method.
 \item Supplying a json query in a string variable to be sent with the POST method.

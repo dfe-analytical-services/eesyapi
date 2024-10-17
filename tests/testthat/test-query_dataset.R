@@ -21,10 +21,13 @@ test_that("Run query from file", {
     example_id(group = "attendance"),
     json_query = "testdata/test_query.json"
   )
+  query_result <- query_result |>
+    dplyr::arrange(dplyr::across(colnames(query_result)))
   expect_equal(
     query_result,
     readRDS("testdata/example_json-from-file_dataset.rds") |>
-      dplyr::select(all_of(colnames(query_result)))
+      dplyr::select(dplyr::all_of(colnames(query_result))) |>
+      dplyr::arrange(dplyr::across(colnames(query_result)))
   )
 })
 
@@ -33,10 +36,13 @@ test_that("Run query from string", {
     example_id(group = "attendance"),
     json_query = example_json_query()
   )
+  query_result <- query_result |>
+    dplyr::arrange(dplyr::across(colnames(query_result)))
   expect_equal(
     query_result,
     readRDS("testdata/example_json-from-string_dataset.rds") |>
-      dplyr::select(all_of(colnames(query_result)))
+      dplyr::select(dplyr::all_of(colnames(query_result))) |>
+      dplyr::arrange(dplyr::across(colnames(query_result)))
   )
 })
 
@@ -45,9 +51,9 @@ test_that("Time period query returns expected time periods", {
     post_dataset(
       example_id(group = "attendance"),
       indicators = example_id("indicator", group = "attendance"),
-      time_periods = c("2024|W21", "2024|W23"),
-      geographies = c("NAT|id|dP0Zw"),
-      filter_items = c("pmRSo")
+      time_periods = eesyapi::example_id("time_periods", group = "attendance"),
+      geographies = eesyapi::example_id("location_ids", group = "attendance"),
+      filter_items = eesyapi::example_id("filter_item", group = "attendance")
     ) |>
       dplyr::select("code", "period") |>
       dplyr::distinct() |>
@@ -59,14 +65,14 @@ test_that("Time period query returns expected time periods", {
   )
 })
 
-test_that("Time period query returns expected time periods", {
+test_that("Time period query errors on badly formatted time period", {
   expect_error(
     post_dataset(
       example_id(group = "attendance"),
       indicators = example_id("indicator", group = "attendance"),
       time_periods = c("2024W21", "2024|W23"),
-      geographies = c("NAT|id|dP0Zw"),
-      filter_items = c("pmRSo")
+      geographies = eesyapi::example_id("location_ids", group = "attendance"),
+      filter_items = eesyapi::example_id("filter_item", group = "attendance")
     )
   )
 })
@@ -77,9 +83,9 @@ test_that("Geography query returns expected geographies", {
     post_dataset(
       example_id(group = "attendance"),
       indicators = example_id("indicator", group = "attendance"),
-      time_periods = "2024|W23",
-      geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-      filter_items = c("pmRSo")
+      time_periods = eesyapi::example_id("time_period", group = "attendance"),
+      geographies = eesyapi::example_id("location_ids", group = "attendance"),
+      filter_items = eesyapi::example_id("filter_item", group = "attendance")
     ) |>
       dplyr::select(geographic_level, NAT, REG) |>
       dplyr::distinct() |>
@@ -96,35 +102,24 @@ test_that("Test filter-combinations POST dataset query", {
   query_result <- query_dataset(
     example_id(group = "attendance"),
     indicators = example_id("indicator", group = "attendance"),
-    time_periods = "2024|W23",
-    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-    filter_items = list(
-      attendance_status = c("pmRSo", "7SdXo"),
-      attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
-      education_phase = c("ThDPJ", "crH31"),
-      day_number = c("uLQo4"),
-      reason = c("bBrtT")
-    )
-  ) |>
-    dplyr::arrange("emJuS", "bqZtT")
+    time_periods = eesyapi::example_id("time_period", group = "attendance"),
+    geographies = eesyapi::example_id("location_ids", group = "attendance"),
+    filter_items = eesyapi::example_id("filter_items_long", group = "attendance")
+  )
+  query_result <- query_result |>
+    dplyr::arrange(dplyr::across(colnames(query_result)))
   expect_equal(
     query_result,
     readRDS("testdata/example_post_dataset.rds") |>
-      dplyr::select(all_of(colnames(query_result))) |>
-      dplyr::arrange("emJuS", "bqZtT")
+      dplyr::select(dplyr::all_of(colnames(query_result))) |>
+      dplyr::arrange(dplyr::across(colnames(query_result)))
   )
   query_result <- query_dataset(
     example_id(group = "attendance"),
     indicators = example_id("indicator", group = "attendance"),
-    time_periods = "2024|W23",
-    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-    filter_items = list(
-      attendance_status = c("pmRSo", "7SdXo"),
-      attendance_type = c("CvuId", "6AXrf"),
-      education_phase = c("ThDPJ", "crH31"),
-      day_number = c("uLQo4"),
-      reason = c("bBrtT")
-    )
+    time_periods = eesyapi::example_id("time_period", group = "attendance"),
+    geographies = eesyapi::example_id("location_ids", group = "attendance"),
+    filter_items = eesyapi::example_id("filter_items_short", group = "attendance")
   ) |>
     dplyr::select("5TYdi", "mU59K", "Db3Qe", "emJuS", "4kdUZ") |>
     dplyr::distinct()
@@ -140,7 +135,7 @@ test_that("Test filter-combinations POST dataset query", {
   )
 })
 
-test_that("Invalid method selected", {
+test_that("Indicators not found in data set", {
   expect_error(
     query_dataset(example_id(), indicators = c("uywet", "uywed")),
     "\nHTTP connection error: 400\nOne or more indicators could not be found.\n     uywet, uywed"
