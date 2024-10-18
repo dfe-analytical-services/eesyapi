@@ -3,7 +3,7 @@ test_that("Returns a data frame and has no errors", {
   expect_no_error(download_dataset(example_id("dataset")))
 })
 
-test_that("Unnecessary or incorrect inputs cause errors", {
+test_that("Incorrect inputs cause errors", {
   expect_error(download_dataset("ark-of-the-covenent"))
   expect_error(
     download_dataset(example_id("dataset"), verbose = "chatty"),
