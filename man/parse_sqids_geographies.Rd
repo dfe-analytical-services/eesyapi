@@ -7,7 +7,7 @@
 parse_sqids_geographies(geographies, meta, verbose = FALSE)
 }
 \arguments{
-\item{geographies}{}
+\item{geographies}{A set of location columns as taken from a data set downloaded from the API}
 
 \item{meta}{Meta data for the data set as provided by \code{get_meta()}}
 
@@ -17,7 +17,9 @@ parse_sqids_geographies(geographies, meta, verbose = FALSE)
 Data frame of parsed geography information
 }
 \description{
-Parse geography sqids
+The API uses unique IDs (sqids) to identify each filter column and its contents (filter items).
+This function parses those into the data creators' id and item labels based on the meta data
+stored on the API for the data set.
 }
 \examples{
 example_data_raw() |>

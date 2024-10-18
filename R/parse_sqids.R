@@ -1,7 +1,12 @@
 #' Parse geography sqids
 #'
+#' @description
+#' The API uses unique IDs (sqids) to identify each location in a data set. This function parses
+#' those into the corresponding location codes and names based on the meta data stored on the API
+#' for the data set.
+#'
 #' @inheritParams parse_sqids_filters
-#' @param geographies
+#' @param geographies A set of location columns as taken from a data set downloaded from the API
 #'
 #' @return Data frame of parsed geography information
 #' @export
