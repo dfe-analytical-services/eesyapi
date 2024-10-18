@@ -48,4 +48,11 @@ test_that("api_url", {
       "   - dev, test, preprod or prod"
     )
   )
+
+  expect_error(
+    api_url(
+      response_format = "wingdings"
+    ),
+    "response_format must be either JSON or CSV"
+  )
 })

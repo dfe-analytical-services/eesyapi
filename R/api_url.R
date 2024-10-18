@@ -19,6 +19,7 @@
 #' @param dataset_id ID of data set to be connected to. This is required if the endpoint is one
 #' of "get-summary", "get-meta", "get-data" or "post-data"
 #' @inheritParams api_url_query
+#' @param response_format Requested format of response, JSON by default, can also be CSV
 #' @param dataset_version Version of data set to be connected to
 #' @param page_size Number of results to return in a single query
 #' @param page Page number of query results to return
@@ -49,6 +50,7 @@
 #' )
 api_url <- function(
     endpoint = "get-publications",
+    response_format = "JSON",
     publication_id = NULL,
     dataset_id = NULL,
     indicators = NULL,
@@ -128,6 +130,12 @@ api_url <- function(
       )
     )
   }
+
+  # Validate response format
+  if (!response_format %in% c("JSON", "CSV")) {
+    stop("response_format must be either JSON or CSV")
+  }
+
   # End of validation
 
   endpoint_base <- list(
@@ -182,32 +190,45 @@ api_url <- function(
       )
     }
     if (endpoint == "get-data") {
-      # Force default page size if page is given by user and page_size isn't
-      if (!is.null(page) && is.null(page_size)) {
-        page_size <- 1000
-      }
-      # Force first page if page size is given by user and page isn't
-      if (!is.null(page_size) && is.null(page)) {
-        page <- 1
-      }
-      if (verbose) {
-        message(paste("paging:", page, page_size))
-      }
-      url <- url |>
-        paste0(
-          eesyapi::api_url_query(
-            indicators = indicators,
-            time_periods = time_periods,
-            geographic_levels = geographic_levels,
-            locations = locations,
-            filter_items = filter_items
-          ),
-          ifelse(
-            !is.null(page) & !is.null(page_size),
-            paste0("&", eesyapi::api_url_pages(page_size = page_size, page = page)),
-            ""
-          )
+      # Shortcut if just getting a CSV
+      # Currently no support for anything more so ignoring most of the params
+      if (response_format == "CSV") {
+        url <- paste0(
+          endpoint_base_version,
+          "data-sets/",
+          dataset_id,
+          "/csv"
         )
+      } else {
+        # Do full querying if JSON format
+
+        # Force default page size if page is given by user and page_size isn't
+        if (!is.null(page) && is.null(page_size)) {
+          page_size <- 1000
+        }
+        # Force first page if page size is given by user and page isn't
+        if (!is.null(page_size) && is.null(page)) {
+          page <- 1
+        }
+        if (verbose) {
+          message(paste("paging:", page, page_size))
+        }
+        url <- url |>
+          paste0(
+            eesyapi::api_url_query(
+              indicators = indicators,
+              time_periods = time_periods,
+              geographic_levels = geographic_levels,
+              locations = locations,
+              filter_items = filter_items
+            ),
+            ifelse(
+              !is.null(page) & !is.null(page_size),
+              paste0("&", eesyapi::api_url_pages(page_size = page_size, page = page)),
+              ""
+            )
+          )
+      }
     }
   }
   if (endpoint %in% c("get-publications", "get-data-catalogue", "get-summary", "get-meta")) {

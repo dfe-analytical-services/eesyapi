@@ -6,6 +6,7 @@
 \usage{
 api_url(
   endpoint = "get-publications",
+  response_format = "JSON",
   publication_id = NULL,
   dataset_id = NULL,
   indicators = NULL,
@@ -24,6 +25,8 @@ api_url(
 \arguments{
 \item{endpoint}{Name of endpoint, can be "get-publications", "get-data-catalogue",
 "get-summary", "get-meta", "get-data" or "post-data"}
+
+\item{response_format}{Requested format of response, JSON by default, can also be CSV}
 
 \item{publication_id}{ID of the publication to be connected to. This is required if the
 endpoint is "get-data-catalogue"}
