@@ -14,8 +14,10 @@
 #' function will likely break whenever there is renaming of variables or items
 #' in the data.
 #'
-#' It is recommended to subscribe to the data set you're querying and then keep
-#' track of any updates, including minor updates to the data.
+#' It is recommended to take the time to set up custom queries using the
+#' `query_dataset()` function instead. If you are using this function for more
+#' than exploratory purposes, make sure you subscribe to the data set you're
+#' downloading and then keep track of any updates to the data.
 #'
 #' @param dataset_id ID of data set
 #' @param dataset_version Version number of data set
@@ -26,11 +28,11 @@
 #' @export
 #'
 #' @examples
-#' download_dataset(example_id("dataset", group = "public-api-testing"))
+#' download_dataset(example_id("dataset"))
 download_dataset <- function(
     dataset_id,
     dataset_version = NULL,
-    api_version = NULL, # TODO: check how this is handled
+    api_version = NULL,
     verbose = FALSE) {
   # Validation ----------------------------------------------------------------
   if (!is.null(dataset_version)) {
@@ -42,12 +44,15 @@ download_dataset <- function(
     )
   }
 
+  if (!is.logical(verbose)) {
+    stop("verbose must be a logical value, either TRUE or FALSE")
+  }
+
   eesyapi::validate_ees_id(dataset_id, level = "dataset")
 
   # Generate query ------------------------------------------------------------
   query_url <- eesyapi::api_url(
-    endpoint = "get-data",
-    response_format = "CSV",
+    endpoint = "get-csv",
     dataset_id = dataset_id,
     verbose = verbose
   )

@@ -50,9 +50,19 @@ test_that("api_url", {
   )
 
   expect_error(
-    api_url(
-      response_format = "wingdings"
-    ),
-    "response_format must be either JSON or CSV"
+    api_url("get-csv"),
+    "The variable dataset_id is NULL, please provide a valid dataset_id."
   )
+
+  expect_warning(
+    api_url("get-csv", dataset_id = example_id("dataset"), indicators = "qwerty")
+  )
+
+  expect_equal(
+    api_url("get-csv", dataset_id = example_id("dataset")),
+    paste0(
+      "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/",
+      example_id("dataset"),
+      "/csv"
+    ))
 })

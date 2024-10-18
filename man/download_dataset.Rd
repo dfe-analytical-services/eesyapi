@@ -34,13 +34,15 @@ As there are no IDs involved, this is brittle and code relying on this
 function will likely break whenever there is renaming of variables or items
 in the data.
 
-It is recommended to subscribe to the data set you're querying and then keep
-track of any updates, including minor updates to the data.
+It is recommended to take the time to set up custom queries using the
+\code{query_dataset()} function instead. If you are using this function for more
+than exploratory purposes, make sure you subscribe to the data set you're
+downloading and then keep track of any updates to the data.
 }
 \details{
 This gives a super quick way to just fetch the whole file in a human
 readable format.
 }
 \examples{
-download_dataset(example_id("dataset", group = "public-api-testing"))
+download_dataset(example_id("dataset"))
 }
