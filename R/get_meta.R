@@ -121,6 +121,7 @@ parse_meta_location_ids <- function(api_meta_locations,
     location_items_i <- api_meta_locations$options |>
       magrittr::extract2(i) |>
       dplyr::mutate(
+        geographic_level_code = api_meta_locations$level$code[i],
         geographic_level = api_meta_locations$level$label[i]
       ) |>
       dplyr::rename(item_id = "id")

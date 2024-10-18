@@ -22,5 +22,6 @@ Imports:
     jsonlite,
     dplyr,
     stringr,
-    rlang,
-    magrittr
+    data.table,
+    magrittr,
+    rlang

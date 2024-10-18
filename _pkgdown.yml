@@ -35,6 +35,12 @@ reference:
   - get_dataset
   - post_dataset
   - parse_api_dataset
+  - starts_with("parse_sqid")
+
+- title: Generate example IDs and data
+  desc: These functions are used widely to create working example code and tests
+  contents:
+  - starts_with("example")
 
 - title: Examples
   desc: Functions to create useful example cases for tests and code examples

@@ -1,5 +1,4 @@
 #' Example ID
-#'
 #' @description
 #' This function returns examples of working IDs that can be used with the API.
 #'
@@ -94,6 +93,31 @@ example_id <- function(
   }
 }
 
+#' Title
+#'
+#' @inheritParams example_id
+#' @param size Number of rows to return (max = 1000)
+#'
+#' @return Nested list form of example data from the API
+#' @export
+#'
+#' @examples
+#' example_data_raw()
+example_data_raw <- function(
+    group = "attendance",
+    size = 32) {
+  eesyapi::api_url(
+    "get-data",
+    dataset_id = example_id(group = group),
+    indicators = example_id("indicator", group = group),
+    page = 1, page_size = size
+  ) |>
+    httr::GET() |>
+    httr::content("text") |>
+    jsonlite::fromJSON() |>
+    magrittr::use_series("results")
+}
+
 #' Create an example json query string
 #' @description
 #' Create an example json query string for use in examples and tests
@@ -135,13 +159,13 @@ example_geography_query <- function(level = "nat_yorks") {
         return_level = c("NAT", "REG"),
         search_level = c("NAT", "REG"),
         identifier_type = c("code", "code"),
-        identifier = c("E92000001", "E12000002")
+        identifier = c("E92000001", "E12000003")
       ),
     nat_yorks_yorkslas = data.frame(
       return_level = c("NAT", "REG", "LA"),
       search_level = c("NAT", "REG", "REG"),
       identifier_type = c("code", "code", "code"),
-      identifier = c("E92000001", "E12000004", "E12000004")
+      identifier = c("E92000001", "E12000003", "E12000003")
     )
   )
   example_geography_queries |>
