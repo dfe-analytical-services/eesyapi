@@ -45,7 +45,7 @@ parse_api_dataset <- function(
     api_data_result$timePeriod,
     data.frame(geographic_level = api_data_result$geographicLevel),
     api_data_result$locations |>
-      parse_sqids_geographies(meta),
+      parse_sqids_locations(meta),
     api_data_result$filters |>
       eesyapi::parse_sqids_filters(meta),
     api_data_result$values |>

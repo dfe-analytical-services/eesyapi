@@ -1,4 +1,4 @@
-#' Parse geography sqids
+#' Parse location sqids
 #'
 #' @description
 #' The API uses unique IDs (sqids) to identify each location in a data set. This function parses
@@ -6,7 +6,7 @@
 #' for the data set.
 #'
 #' @inheritParams parse_sqids_filters
-#' @param geographies A set of location columns as taken from a data set downloaded from the API
+#' @param locations A set of location columns as taken from a data set downloaded from the API
 #'
 #' @return Data frame of parsed geography information
 #' @export
@@ -14,14 +14,14 @@
 #' @examples
 #' example_data_raw() |>
 #'   magrittr::use_series("locations") |>
-#'   parse_sqids_geographies(get_meta(example_id(group = "attendance")))
-parse_sqids_geographies <- function(geographies, meta, verbose = FALSE) {
+#'   parse_sqids_locations(get_meta(example_id(group = "attendance")))
+parse_sqids_locations <- function(locations, meta, verbose = FALSE) {
   lookup <- meta |>
     magrittr::use_series("locations") |>
-    dplyr::filter(!!rlang::sym("geographic_level_code") %in% names(geographies)) |>
+    dplyr::filter(!!rlang::sym("geographic_level_code") %in% names(locations)) |>
     dplyr::rename(name = "label")
-  for (level in names(geographies)) {
-    geographies <- geographies |>
+  for (level in names(locations)) {
+    locations <- locations |>
       dplyr::rename("item_id" = !!rlang::sym(level)) |>
       dplyr::left_join(
         lookup |>
@@ -33,7 +33,7 @@ parse_sqids_geographies <- function(geographies, meta, verbose = FALSE) {
       dplyr::select(-"item_id")
   }
   return(
-    geographies |>
+    locations |>
       dplyr::select(
         dplyr::where(
           ~ !all(is.na(.x))
