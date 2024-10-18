@@ -75,7 +75,9 @@ post_dataset <- function(
       json_body <- readLines(json_query) |>
         paste0(collapse = "\n")
     } else {
-      message("Parsing query options")
+      if (verbose) {
+        message("Parsing query options")
+      }
       json_body <- json_query
     }
   } else {

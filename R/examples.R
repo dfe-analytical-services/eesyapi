@@ -159,13 +159,13 @@ example_geography_query <- function(level = "nat_yorks") {
         return_level = c("NAT", "REG"),
         search_level = c("NAT", "REG"),
         identifier_type = c("code", "code"),
-        identifier = c("E92000001", "E12000002")
+        identifier = c("E92000001", "E12000003")
       ),
     nat_yorks_yorkslas = data.frame(
       return_level = c("NAT", "REG", "LA"),
       search_level = c("NAT", "REG", "REG"),
       identifier_type = c("code", "code", "code"),
-      identifier = c("E92000001", "E12000004", "E12000004")
+      identifier = c("E92000001", "E12000003", "E12000003")
     )
   )
   example_geography_queries |>

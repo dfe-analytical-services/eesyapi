@@ -1,3 +1,42 @@
+#' Parse geography sqids
+#'
+#' @inheritParams parse_sqids_filters
+#' @param geographies
+#'
+#' @return Data frame of parsed geography information
+#' @export
+#'
+#' @examples
+#' example_data_raw() |>
+#'   magrittr::use_series("locations") |>
+#'   parse_sqids_geographies(get_meta(example_id(group = "attendance")))
+parse_sqids_geographies <- function(geographies, meta, verbose = FALSE) {
+  lookup <- meta |>
+    magrittr::use_series("locations") |>
+    dplyr::filter(!!rlang::sym("geographic_level_code") %in% names(geographies)) |>
+    dplyr::rename(name = "label")
+  for (level in names(geographies)) {
+    geographies <- geographies |>
+      dplyr::rename("item_id" = !!rlang::sym(level)) |>
+      dplyr::left_join(
+        lookup |>
+          dplyr::filter(!!rlang::sym("geographic_level_code") == level) |>
+          dplyr::select(-dplyr::all_of(c("geographic_level_code", "geographic_level"))) |>
+          dplyr::rename_with(~ paste0(tolower(level), "_", .x), !matches("item_id")),
+        by = dplyr::join_by("item_id")
+      ) |>
+      dplyr::select(-"item_id")
+  }
+  return(
+    geographies |>
+      dplyr::select(
+        dplyr::where(
+          ~ !all(is.na(.x))
+        )
+      )
+  )
+}
+
 #' Parse IDs in a set of filters
 #'
 #' @description
@@ -42,7 +81,7 @@ parse_sqids_filters <- function(filters, meta, verbose = FALSE) {
       )
     filters <- filters |>
       dplyr::left_join(lookup, by = column_sqid) |>
-      dplyr::select(-all_of(column_sqid))
+      dplyr::select(-dplyr::all_of(column_sqid))
   }
   return(filters)
 }

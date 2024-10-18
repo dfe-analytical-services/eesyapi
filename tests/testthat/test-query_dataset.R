@@ -87,13 +87,13 @@ test_that("Geography query returns expected geographies", {
       geographies = eesyapi::example_id("location_ids", group = "attendance"),
       filter_items = eesyapi::example_id("filter_item", group = "attendance")
     ) |>
-      dplyr::select(geographic_level, NAT, REG) |>
+      dplyr::select("geographic_level", "nat_code", "reg_code") |>
       dplyr::distinct() |>
       dplyr::arrange(geographic_level),
     data.frame(
       geographic_level = c("NAT", "REG"),
-      NAT = c("dP0Zw", "dP0Zw"),
-      REG = c(NA, "rg3Nj")
+      nat_code = rep("E92000001", 2),
+      reg_code = c(NA, "E12000004")
     )
   )
 })
@@ -127,7 +127,7 @@ test_that("Test filter-combinations POST dataset query", {
       "day_number",
       "establishment_phase",
       "reason"
-      ) |>
+    ) |>
     dplyr::distinct()
   expect_equal(
     query_result,
