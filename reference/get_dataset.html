@@ -17,7 +17,7 @@ any of those items."><meta property="og:image" content="https://dfe-analytical-s
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,7 +118,7 @@ of "get-summary", "get-meta", "get-data" or "post-data"</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>Add extra contextual information whilst running</p></dd>
+<dd><p>Run with additional contextual messaging, logical, default = FALSE</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -130,22 +130,33 @@ of "get-summary", "get-meta", "get-data" or "post-data"</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_dataset</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  geographic_levels <span class="op">=</span> <span class="st">"NAT"</span>,</span></span>
+<span class="r-in"><span>  geographic_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SCH"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  filter_items <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"filter_item"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  indicators <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"indicator"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level   NAT 5mvdi h8fyW</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2016/2017              NAT dP0Zw HsQzL 21319</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2015/2016              NAT dP0Zw HsQzL 21245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2014/2015              NAT dP0Zw HsQzL 21234</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2013/2014              NAT dP0Zw HsQzL 21193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2012/2013              NAT dP0Zw HsQzL 21157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2011/2012              NAT dP0Zw HsQzL 21133</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2010/2011              NAT dP0Zw HsQzL 21228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2009/2010              NAT dP0Zw HsQzL 21352</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2008/2009              NAT dP0Zw HsQzL 21685</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2007/2008              NAT dP0Zw HsQzL 21641</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   AY 2006/2007              NAT dP0Zw HsQzL 21864</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level    LA   NAT   SCH f2GYF tu1Em PbNeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 9Rpn4 wEZcb  1777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 HJjXz wEZcb  1505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 7YbEX wEZcb  1505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 iNW86 wEZcb   510</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 u9vRo wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 XHEvf wEZcb    18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 LleUW wEZcb   524</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 a2eWL wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 Bfbf7 wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 qGKqj wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 dPff0 wEZcb   517</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 C7DgI wEZcb   396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 p5IXS wEZcb   396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 6D2xr wEZcb   181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 TuzUP wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 zvGnF wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 OBNDC wEZcb  1259</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 YFqfH wEZcb  1108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 IXQEB wEZcb  1108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 0eYST wEZcb   329</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 cZ4i3 wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 ka0Wh wEZcb     z</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

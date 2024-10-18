@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_meta_filter_item_ids</span><span class="op">(</span><span class="va">api_meta_filters</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_meta_filter_item_ids</span><span class="op">(</span><span class="va">api_meta_filters</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -46,6 +46,10 @@
 
 <dl><dt id="arg-api-meta-filters">api_meta_filters<a class="anchor" aria-label="anchor" href="#arg-api-meta-filters"></a></dt>
 <dd><p>Filter information provided by the API output</p></dd>
+
+
+<dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
+<dd><p>Run with additional contextual messaging, logical, default = FALSE</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -57,11 +61,35 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="get_meta_response.html">get_meta_response</a></span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">filters</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">parse_meta_filter_item_ids</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   col_id             item_label item_id default_item</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5mvdi                Special   LfnWj           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  5mvdi   State-funded primary   6TUrf           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  5mvdi State-funded secondary   0wOT5           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  5mvdi                  Total   HsQzL         TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    col_id             item_label item_id default_item</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   tu1Em      Academy Converter   9RpY4           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   tu1Em    Academy Sponsor Led   23odl           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   tu1Em       Community School   Poz7e           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   tu1Em     Independent School   NwcLD           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   tu1Em     Sixth Form College   wEZcb           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   tu1Em Voluntary Aided School   o4vFm           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   f2GYF                   1618   9Rpn4           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   f2GYF               1618_DIS   dPff0           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   f2GYF            1618_NOTDIS   OBNDC           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  f2GYF                   ACAD   7YbEX           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  f2GYF               ACAD_DIS   p5IXS           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  f2GYF            ACAD_NOTDIS   IXQEB           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  f2GYF                   AGEN   iNW86           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  f2GYF               AGEN_DIS   6D2xr           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  f2GYF            AGEN_NOTDIS   0eYST           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  f2GYF              AGENDENOM   LleUW           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  f2GYF                   ALEV   HJjXz           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  f2GYF               ALEV_DIS   C7DgI           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  f2GYF            ALEV_NOTDIS   YFqfH           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  f2GYF               ANYL2VOC   qGKqj           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  f2GYF              SCOPE_L3M   a2eWL           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  f2GYF               TechCert   Bfbf7           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  f2GYF           TechCert_DIS   zvGnF           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  f2GYF        TechCert_NOTDIS   ka0Wh           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  f2GYF                   TLEV   u9vRo           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  f2GYF               TLEV_DIS   TuzUP           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  f2GYF            TLEV_NOTDIS   cZ4i3           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  f2GYF              TLEVDENOM   XHEvf           NA</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

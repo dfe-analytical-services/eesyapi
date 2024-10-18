@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_meta_time_periods</span><span class="op">(</span><span class="va">api_meta_time_periods</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_meta_time_periods</span><span class="op">(</span><span class="va">api_meta_time_periods</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -46,6 +46,10 @@
 
 <dl><dt id="arg-api-meta-time-periods">api_meta_time_periods<a class="anchor" aria-label="anchor" href="#arg-api-meta-time-periods"></a></dt>
 <dd><p>Time periods information provided by the API output</p></dd>
+
+
+<dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
+<dd><p>Run with additional contextual messaging, logical, default = FALSE</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -57,18 +61,8 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="get_meta_response.html">get_meta_response</a></span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">timePeriods</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">parse_meta_time_periods</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period   label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2006/2007 2006/07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2007/2008 2007/08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2008/2009 2008/09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2009/2010 2009/10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2010/2011 2010/11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2011/2012 2011/12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2012/2013 2012/13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2013/2014 2013/14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2014/2015 2014/15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2015/2016 2015/16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   AY 2016/2017 2016/17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code    period   label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   AY 2022/2023 2022/23</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

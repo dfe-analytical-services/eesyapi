@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,12 +77,6 @@
 
       <dl><dt>
 
-          <code><a href="example_id.html">example_id()</a></code>
-
-        </dt>
-        <dd>Example ID</dd>
-      </dl><dl><dt>
-
           <code><a href="api_url.html">api_url()</a></code>
 
         </dt>
@@ -107,10 +101,64 @@
         <dd>Contextualise http request errors</dd>
       </dl><dl><dt>
 
-          <code><a href="parse_filter_in.html">parse_filter_in()</a></code>
+          <code><a href="convert_api_filter_type.html">convert_api_filter_type()</a></code>
+
+        </dt>
+        <dd>Convert filter type to API filter type</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tourl_filter_in.html">parse_tourl_filter_in()</a></code>
 
         </dt>
         <dd>Create <filter>.in query string for URL queries</filter></dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_filter.html">parse_tojson_filter()</a></code>
+
+        </dt>
+        <dd>Parse a combination-filter query to json</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_filter_eq.html">parse_tojson_filter_eq()</a></code>
+
+        </dt>
+        <dd>Parse a filter-equal type query to json</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_filter_in.html">parse_tojson_filter_in()</a></code>
+
+        </dt>
+        <dd>Parse a filter-in type query to json</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_geographies.html">parse_tojson_geographies()</a></code>
+
+        </dt>
+        <dd>Parse geographies to json</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_indicators.html">parse_tojson_indicators()</a></code>
+
+        </dt>
+        <dd>Parse an indicator-in type query to json</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_location.html">parse_tojson_location()</a></code>
+
+        </dt>
+        <dd>Create json location search string from geographies</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_params.html">parse_tojson_params()</a></code>
+
+        </dt>
+        <dd>Create a json query</dd>
+      </dl><dl><dt>
+
+          <code><a href="parse_tojson_time_periods.html">parse_tojson_time_periods()</a></code>
+
+        </dt>
+        <dd>Parse time_periods to json</dd>
       </dl></div><div class="section level2">
       <h2 id="support-for-handling-meta-data-from-the-api">Support for handling meta data from the API<a class="anchor" aria-label="anchor" href="#support-for-handling-meta-data-from-the-api"></a></h2>
 
@@ -171,10 +219,45 @@
         <dd>Query a data set using GET and a query URL</dd>
       </dl><dl><dt>
 
+          <code><a href="post_dataset.html">post_dataset()</a></code>
+
+        </dt>
+        <dd>Query a data set using POST and a query json</dd>
+      </dl><dl><dt>
+
           <code><a href="parse_api_dataset.html">parse_api_dataset()</a></code>
 
         </dt>
         <dd>Parse contents of API data set json output</dd>
+      </dl></div><div class="section level2">
+      <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a></h2>
+
+      <div class="section-desc"><p>Functions to create useful example cases for tests and code examples</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="example_geography_query.html">example_geography_query()</a></code>
+
+        </dt>
+        <dd>Create an example geography-query data frame</dd>
+      </dl><dl><dt>
+
+          <code><a href="example_id.html">example_id()</a></code>
+
+        </dt>
+        <dd>Example ID</dd>
+      </dl><dl><dt>
+
+          <code><a href="example_json_query.html">example_json_query()</a></code>
+
+        </dt>
+        <dd>Create an example json query string</dd>
       </dl></div><div class="section level2">
       <h2 id="validation-functions">Validation functions<a class="anchor" aria-label="anchor" href="#validation-functions"></a></h2>
 
@@ -188,6 +271,12 @@
 
       <dl><dt>
 
+          <code><a href="validate_ees_filter_type.html">validate_ees_filter_type()</a></code>
+
+        </dt>
+        <dd>Validate filter type</dd>
+      </dl><dl><dt>
+
           <code><a href="validate_ees_id.html">validate_ees_id()</a></code>
 
         </dt>
@@ -198,6 +287,12 @@
 
         </dt>
         <dd>Validate page size</dd>
+      </dl><dl><dt>
+
+          <code><a href="validate_time_periods.html">validate_time_periods()</a></code>
+
+        </dt>
+        <dd>Validate time periods</dd>
       </dl></div><div class="section level2">
       <h2 id="warning-functions">Warning functions<a class="anchor" aria-label="anchor" href="#warning-functions"></a></h2>
 

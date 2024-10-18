@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,8 +31,21 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="eesyapi-030">eesyapi 0.3.0<a class="anchor" aria-label="anchor" href="#eesyapi-030"></a></h2>
+<ul><li>Created capacity to query data using POST:
+<ul><li>
+<code><a href="../reference/query_dataset.html">query_dataset()</a></code>: Now defaults to using POST instead of GET</li>
+<li>
+<code><a href="../reference/post_dataset.html">post_dataset()</a></code>: Sends a query of a data set, either using a json file, json string or parameters</li>
+</ul></li>
+<li>Updated how <code><a href="../reference/example_id.html">example_id()</a></code> works to allow more complex examples</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="eesyapi-021">eesyapi 0.2.1<a class="anchor" aria-label="anchor" href="#eesyapi-021"></a></h2>
-<ul><li>Updated <code><a href="../reference/get_meta.html">get_meta()</a></code> to work with new API meta output (addition of id alongside col_name and label)</li>
+<ul><li>Created initial <code><a href="../reference/query_dataset.html">query_dataset()</a></code> function that queries a data set using <code><a href="../reference/get_dataset.html">get_dataset()</a></code>
+</li>
+<li>Created <code><a href="../reference/get_dataset.html">get_dataset()</a></code> function that queries a data set using GET and URL parameters</li>
+<li>Updated <code><a href="../reference/get_meta.html">get_meta()</a></code> to work with new API meta output (addition of id alongside col_name and label)</li>
 <li>Removed redundant function: <code><a href="../reference/parse_meta_filter_columns.html">parse_meta_filter_columns()</a></code>
 </li>
 <li>Hex logo added for documentation</li>
