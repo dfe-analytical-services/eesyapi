@@ -1,3 +1,4 @@
 linters: linters_with_defaults(
-    line_length_linter = line_length_linter(100L)
+    line_length_linter = line_length_linter(100L),
+    cyclocomp_linter = cyclocomp_linter(25L)
   )

@@ -22,7 +22,7 @@ post_dataset(
 }
 \arguments{
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "post-data"}
+of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
 
 \item{indicators}{Indicators required as a string or vector of strings (required)}
 
