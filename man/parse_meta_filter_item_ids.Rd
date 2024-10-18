@@ -4,10 +4,12 @@
 \alias{parse_meta_filter_item_ids}
 \title{Parse API meta to give the filter item codes}
 \usage{
-parse_meta_filter_item_ids(api_meta_filters)
+parse_meta_filter_item_ids(api_meta_filters, verbose = FALSE)
 }
 \arguments{
 \item{api_meta_filters}{Filter information provided by the API output}
+
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 Data frame containing filter item codes matched to filter item labels and col_name

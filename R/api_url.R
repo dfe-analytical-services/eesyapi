@@ -24,8 +24,7 @@
 #' @param page Page number of query results to return
 #' @param api_version EES API version
 #' @param environment EES environment to connect to: "dev", "test", "preprod" or "prod"
-#' @param verbose Add extra contextual information whilst running
-#'
+#' @param verbose Run with additional contextual messaging, logical, default = FALSE
 #' @return A string containing the URL for connecting to the EES API
 #' @export
 #'

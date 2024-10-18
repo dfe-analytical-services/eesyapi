@@ -43,7 +43,7 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{parse}{Logical flag to activate parsing of the results. Default: TRUE}
 
-\item{verbose}{Add extra contextual information whilst running}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 Data frame containing query results of an API data set
@@ -60,7 +60,7 @@ any of those items.
 \examples{
 get_dataset(
   example_id(),
-  geographic_levels = "NAT",
+  geographic_levels = c("SCH"),
   filter_items = example_id("filter_item"),
   indicators = example_id("indicator")
 )
