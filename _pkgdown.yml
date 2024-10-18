@@ -19,7 +19,9 @@ reference:
   contents:
   - starts_with("api_url")
   - http_request_error
-  - parse_filter_in
+  - convert_api_filter_type
+  - parse_tourl_filter_in
+  - starts_with("parse_tojson")
 
 - title: Support for handling meta data from the API
   desc: These functions are used by `get_meta()` and included here for completeness.
@@ -31,6 +33,7 @@ reference:
   desc: These functions are used by `get_meta()` and included here for completeness.
   contents:
   - get_dataset
+  - post_dataset
   - parse_api_dataset
   - starts_with("parse_sqid")
 
@@ -38,6 +41,11 @@ reference:
   desc: These functions are used widely to create working example code and tests
   contents:
   - starts_with("example")
+
+- title: Examples
+  desc: Functions to create useful example cases for tests and code examples
+  contents:
+  - starts_with("example_")
 
 - title: Validation functions
   desc: These functions are used across the package to validate elements being passed as part of an API url or query.

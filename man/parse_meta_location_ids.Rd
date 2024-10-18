@@ -4,10 +4,12 @@
 \alias{parse_meta_location_ids}
 \title{Parse API meta to give the locations}
 \usage{
-parse_meta_location_ids(api_meta_locations)
+parse_meta_location_ids(api_meta_locations, verbose = FALSE)
 }
 \arguments{
 \item{api_meta_locations}{Locations information provided by the API output}
+
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 Data frame containing location item codes matched

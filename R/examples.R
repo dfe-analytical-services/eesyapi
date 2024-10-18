@@ -15,92 +15,80 @@ example_id <- function(
     level = "dataset",
     environment = "dev",
     group = "public-api-testing") {
-  example_ids <- data.frame(
-    levels = c(
-      "publication",
-      "dataset",
-      "location_id",
-      "location_code",
-      "filter",
-      "filter_item",
-      "indicator",
-      "publication",
-      "dataset",
-      "location_id",
-      "location_code",
-      "filter",
-      "filter_item",
-      "indicator"
+  example_id_list <- list(
+    attendance = list(
+      dev = list(
+        publication = "b6d9ed96-be68-4791-abc3-08dcaba68c04",
+        dataset = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
+        time_period = "2024|W23",
+        time_periods = c("2024|W21", "2024|W23"),
+        location_id = "NAT|id|dP0Zw",
+        location_ids = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+        location_code = "NAT|code|E92000001",
+        filter = "4kdUZ",
+        filter_item = "5UNdi",
+        filter_items_long = list(
+          attendance_status = c("pmRSo", "7SdXo"),
+          attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
+          education_phase = c("ThDPJ", "crH31"),
+          day_number = c("uLQo4"),
+          reason = c("bBrtT")
+        ),
+        filter_items_short = list(
+          attendance_status = c("pmRSo"),
+          attendance_type = c("CvuId", "6AXrf"),
+          education_phase = c("ThDPJ", "crH31"),
+          day_number = c("uLQo4"),
+          reason = c("bBrtT")
+        ),
+        indicator = "bqZtT"
+      )
     ),
-    environments = c(
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev",
-      "dev"
-    ),
-    example_group = c(
-      "attendance",
-      "attendance",
-      "attendance",
-      "attendance",
-      "attendance",
-      "attendance",
-      "attendance",
-      "public-api-testing",
-      "public-api-testing",
-      "public-api-testing",
-      "public-api-testing",
-      "public-api-testing",
-      "public-api-testing",
-      "public-api-testing"
-    ),
-    examples = c(
-      "b6d9ed96-be68-4791-abc3-08dcaba68c04",
-      "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
-      "NAT|id|dP0Zw",
-      "NAT|code|E92000001",
-      "4kdUZ",
-      "5UNdi",
-      "bqZtT",
-      "d823e4df-626f-4450-9b21-08dc8b95fc02",
-      "830f9201-9e11-ad75-8dcd-d2efe2834457",
-      "LA|id|ml79K",
-      "NAT|code|E92000001",
-      "5mvdi",
-      "HsQzL",
-      "h8fyW"
+    `public-api-testing` = list(
+      dev = list(
+        publication = "d823e4df-626f-4450-9b21-08dc8b95fc02",
+        dataset = "830f9201-9e11-ad75-8dcd-d2efe2834457",
+        location_id = "LA|id|ml79K",
+        location_code = "NAT|code|E92000001",
+        filter = "01tT5",
+        filter_item = "wEZcb",
+        indicator = "PbNeb"
+      )
     )
   )
-  if (level == "all") {
-    return(example_ids)
+  if (!(group %in% names(example_id_list))) {
+    stop(paste0("Chosen group (", group, ") not found in examples list."))
+  }
+  if (!(environment %in% c("dev"))) {
+    stop(paste0("Chosen environment (", environment, ") should be one of: \"dev\"."))
+  }
+
+  group_examples <- example_id_list |>
+    magrittr::extract2(group) |>
+    magrittr::extract2(environment)
+
+  if (any(level == "all")) {
+    return(group_examples)
   } else {
-    if (!(level %in% example_ids$levels)) {
+    if (any(!(level %in% names(group_examples)))) {
       stop(
         paste0(
           "Non-valid element level received by validate_id.\n",
-          "Should be one of:\n",
-          paste(example_ids$levels, collapse = "\", \"")
+          "Should be one of:\n\"",
+          paste(names(group_examples), collapse = "\", \""),
+          "\"."
         )
       )
     }
     return(
-      example_ids |>
-        dplyr::filter(
-          example_ids$levels == level,
-          example_ids$environments == environment,
-          example_ids$example_group == group
-        ) |>
-        dplyr::pull("examples")
+      if (length(level) > 1) {
+        group_examples |>
+          magrittr::extract(level) |>
+          unlist()
+      } else {
+        group_examples |>
+          magrittr::extract2(level)
+      }
     )
   }
 }
@@ -128,4 +116,58 @@ example_data_raw <- function(
     httr::content("text") |>
     jsonlite::fromJSON() |>
     magrittr::use_series("results")
+}
+
+#' Create an example json query string
+#' @description
+#' Create an example json query string for use in examples and tests
+#'
+#' @return String containing an example json query
+#' @export
+#'
+#' @examples
+#' example_json_query() |> cat()
+example_json_query <- function() {
+  eesyapi::parse_tojson_params(
+    indicators = example_id("indicator", group = "attendance"),
+    time_periods = "2024|W23",
+    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
+    filter_items = list(
+      attendance_status = c("pmRSo"),
+      attendance_type = c("CvuId", "6AXrf"),
+      education_phase = c("ThDPJ", "crH31"),
+      day_number = c("uLQo4"),
+      reason = c("bBrtT")
+    )
+  )
+}
+
+#' Create an example geography-query data frame
+#'
+#' @param level Query level within available options, can be one of \"nat_yorks\" or
+#' \"nat_yorks_yorkslas\"
+#'
+#' @return Data frame containing an example geography query
+#' @export
+#'
+#' @examples
+#' example_geography_query()
+example_geography_query <- function(level = "nat_yorks") {
+  example_geography_queries <- list(
+    nat_yorks =
+      data.frame(
+        return_level = c("NAT", "REG"),
+        search_level = c("NAT", "REG"),
+        identifier_type = c("code", "code"),
+        identifier = c("E92000001", "E12000002")
+      ),
+    nat_yorks_yorkslas = data.frame(
+      return_level = c("NAT", "REG", "LA"),
+      search_level = c("NAT", "REG", "REG"),
+      identifier_type = c("code", "code", "code"),
+      identifier = c("E92000001", "E12000004", "E12000004")
+    )
+  )
+  example_geography_queries |>
+    magrittr::extract2(level)
 }

@@ -4,10 +4,12 @@
 \alias{parse_meta_filter_columns}
 \title{Parse API meta to give the filter columns}
 \usage{
-parse_meta_filter_columns(api_meta_filters)
+parse_meta_filter_columns(api_meta_filters, verbose = FALSE)
 }
 \arguments{
 \item{api_meta_filters}{Filter information provided by the API output}
+
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 data frame containing column names and labels

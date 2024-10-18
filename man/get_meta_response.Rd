@@ -8,17 +8,21 @@ get_meta_response(
   dataset_id,
   dataset_version = NULL,
   api_version = NULL,
-  parse = TRUE
+  parse = TRUE,
+  verbose = FALSE
 )
 }
 \arguments{
-\item{dataset_id}{ID of data set to be connected to}
+\item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
+of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{dataset_version}{Version of data set to be connected to}
 
 \item{api_version}{EES API version}
 
 \item{parse}{Parse result into structured list}
+
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 Results of query to API meta data endpoint
