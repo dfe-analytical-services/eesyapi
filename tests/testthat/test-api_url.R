@@ -64,5 +64,6 @@ test_that("api_url", {
       "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/",
       example_id("dataset"),
       "/csv"
-    ))
+    )
+  )
 })
