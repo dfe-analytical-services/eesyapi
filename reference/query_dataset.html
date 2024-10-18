@@ -538,15 +538,15 @@ locations to be queried.</p></dd>
 <span class="r-in"><span>    reason <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bBrtT"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   code period geographic_level   NAT Db3Qe emJuS 4kdUZ 5TYdi mU59K      bqZtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  W23   2024              NAT dP0Zw pmRSo CvuId crH31 uLQo4 bBrtT     870024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  W23   2024              NAT dP0Zw pmRSo 6AXrf crH31 uLQo4 bBrtT      17506</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  W23   2024              NAT dP0Zw 7SdXo 0k3T5 crH31 uLQo4 bBrtT      88094</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  W23   2024              NAT dP0Zw 7SdXo YdkHK crH31 uLQo4 bBrtT      37748</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  W23   2024              NAT dP0Zw pmRSo CvuId ThDPJ uLQo4 bBrtT   20145467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  W23   2024              NAT dP0Zw pmRSo 6AXrf ThDPJ uLQo4 bBrtT     401209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  W23   2024              NAT dP0Zw 7SdXo 0k3T5 ThDPJ uLQo4 bBrtT    1093633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  W23   2024              NAT dP0Zw 7SdXo YdkHK ThDPJ uLQo4 bBrtT     956076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code period geographic_level   NAT 5TYdi mU59K Db3Qe emJuS 4kdUZ      bqZtT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo CvuId crH31     870024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo 6AXrf crH31      17506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo 0k3T5 crH31      88094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo YdkHK crH31      37748</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo CvuId ThDPJ   20145467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo 6AXrf ThDPJ     401209</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo 0k3T5 ThDPJ    1093633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo YdkHK ThDPJ     956076</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run a query with a more complex geography selection. Return data for all of:</span></span></span>
 <span class="r-in"><span><span class="co">#   - England</span></span></span>
@@ -609,17 +609,17 @@ locations to be queried.</p></dd>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using GET to query a data set offers limited functionality, we recommend using POST alongside a JSON structured query instead:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>    - query_dataset(..., method = 'POST')</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level    LA   NAT   SCH f2GYF tu1Em PbNeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 9Rpn4 wEZcb  1777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 HJjXz wEZcb  1505</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 7YbEX wEZcb  1505</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 iNW86 wEZcb   510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 u9vRo wEZcb     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 XHEvf wEZcb    18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 LleUW wEZcb   524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 a2eWL wEZcb     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 Bfbf7 wEZcb     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 qGKqj wEZcb     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level    LA   NAT   SCH tu1Em f2GYF PbNeb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb 9Rpn4  1777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb HJjXz  1505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb 7YbEX  1505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb iNW86   510</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb u9vRo     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb XHEvf    18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb LleUW   524</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb a2eWL     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb Bfbf7     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb qGKqj     z</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
