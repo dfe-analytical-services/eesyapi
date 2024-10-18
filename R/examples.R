@@ -106,7 +106,7 @@ example_id <- function(
 example_data_raw <- function(
     group = "attendance",
     size = 32) {
-  api_url(
+  eesyapi::api_url(
     "get-data",
     dataset_id = example_id(group = group),
     indicators = example_id("indicator", group = group),

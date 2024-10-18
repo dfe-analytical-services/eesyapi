@@ -36,7 +36,7 @@ parse_api_dataset <- function(
     print(names(api_data_result$locations))
     print(names(api_data_result$filters))
   }
-  meta <- get_meta(
+  meta <- eesyapi::get_meta(
     dataset_id,
     dataset_version = dataset_version,
     api_version = api_version

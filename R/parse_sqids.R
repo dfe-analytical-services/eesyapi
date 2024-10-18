@@ -42,7 +42,7 @@ parse_sqids_filters <- function(filters, meta, verbose = FALSE) {
       )
     filters <- filters |>
       dplyr::left_join(lookup, by = column_sqid) |>
-      dplyr::select(-column_sqid)
+      dplyr::select(-all_of(column_sqid))
   }
   return(filters)
 }

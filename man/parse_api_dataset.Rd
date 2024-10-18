@@ -22,7 +22,7 @@ of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{api_version}{EES API version}
 
-\item{verbose}{Add extra contextual information whilst running}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 Data frame containing API data results

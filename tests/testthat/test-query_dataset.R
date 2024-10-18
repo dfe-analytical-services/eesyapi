@@ -121,17 +121,23 @@ test_that("Test filter-combinations POST dataset query", {
     geographies = eesyapi::example_id("location_ids", group = "attendance"),
     filter_items = eesyapi::example_id("filter_items_short", group = "attendance")
   ) |>
-    dplyr::select("5TYdi", "mU59K", "Db3Qe", "emJuS", "4kdUZ") |>
+    dplyr::select(
+      "attendance_status",
+      "attendance_type",
+      "day_number",
+      "establishment_phase",
+      "reason"
+      ) |>
     dplyr::distinct()
   expect_equal(
     query_result,
     data.frame(
-      `5TYdi` = c("uLQo4", "uLQo4", "uLQo4", "uLQo4"),
-      `mU59K` = c("bBrtT", "bBrtT", "bBrtT", "bBrtT"),
-      `Db3Qe` = c("pmRSo", "pmRSo", "pmRSo", "pmRSo"),
-      `emJuS` = c("CvuId", "6AXrf", "CvuId", "6AXrf"),
-      `4kdUZ` = c("ThDPJ", "ThDPJ", "crH31", "crH31")
-    ) |> dplyr::rename_with(~ stringr::str_replace_all(., "X", ""))
+      attendance_status = rep("Attendance", 4),
+      attendance_type = rep(c("Present", "Approved educational activity"), 2),
+      day_number = rep("Total", 4),
+      establishment_phase = c(rep("Secondary", 2), rep("Special", 2)),
+      reason = rep("Total", 4)
+    )
   )
 })
 
