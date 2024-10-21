@@ -23,13 +23,13 @@ api_url(
 }
 \arguments{
 \item{endpoint}{Name of endpoint, can be "get-publications", "get-data-catalogue",
-"get-summary", "get-meta", "get-data" or "post-data"}
+"get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
 
 \item{publication_id}{ID of the publication to be connected to. This is required if the
 endpoint is "get-data-catalogue"}
 
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "post-data"}
+of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
 
 \item{indicators}{Indicators required as a string or vector of strings (required)}
 
@@ -65,7 +65,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.
 \strong{Endpoints} \tab \strong{id required} \cr
 get-publications \tab Neither  \cr
 get-data-catalogue \tab publication_id  \cr
-get-summary, get-meta, get-data, post-data \tab dataset_id  \cr
+get-summary, get-meta, get-csv, get-data, post-data \tab dataset_id  \cr
 }
 }
 \examples{
@@ -74,6 +74,7 @@ api_url("get-publications")
 api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))
 api_url("get-summary", dataset_id = eesyapi::example_id("dataset"))
 api_url("get-meta", dataset_id = eesyapi::example_id("dataset"))
+api_url("get-csv", dataset_id = eesyapi::example_id("dataset"))
 api_url(
   "get-data",
   dataset_id = eesyapi::example_id("dataset"),
