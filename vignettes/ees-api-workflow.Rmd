@@ -153,7 +153,7 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 ### Filter columns
 
 ``` {r}
-eesyapi::get_meta(dataset_id = attendance$id[1]) |>
+eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("filter_columns")
 ```
 
