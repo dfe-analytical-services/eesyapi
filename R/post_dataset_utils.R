@@ -9,7 +9,7 @@
 #'
 #' @inheritParams api_url
 #' @inheritParams parse_tojson_geographies
-#' @param debug Run POST query in debug mode: logic, default: FALSE
+#' @param debug Run POST query in debug mode. Logical, default = FALSE
 #'
 #' @return String containing json query body for use with http POST request
 #' @export
