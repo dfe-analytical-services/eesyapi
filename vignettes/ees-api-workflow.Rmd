@@ -296,4 +296,4 @@ new data over the subsequent releases, even if a renaming of a field occurs.
 
 ### Are there any bandwidth / repeat connection constraints that I should know about?
 
-...
+There are currently no constraints whilst the system is being tested.
