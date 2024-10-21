@@ -8,7 +8,9 @@
 #' be suitable for long term production use.
 #'
 #' There is no filtering down of the file so you will always get the whole file
-#' and in some instances this may be very large.
+#' and in some instances this may be very large. To help with this, it is
+#' recommended to pipe the result into the `head()` function so you get a
+#' preview snapshot of the data while you're exploring.
 #'
 #' As there are no IDs involved, this is brittle and code relying on this
 #' function will likely break whenever there is renaming of variables or items
@@ -29,6 +31,10 @@
 #'
 #' @examples
 #' download_dataset(example_id("dataset"))
+#'
+#' # Pipe into head function to preview a few rows only
+#' download_dataset(example_id("dataset")) |>
+#'   head(10)
 download_dataset <- function(
     dataset_id,
     dataset_version = NULL,
