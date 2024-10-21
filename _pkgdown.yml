@@ -42,11 +42,6 @@ reference:
   contents:
   - starts_with("example")
 
-- title: Examples
-  desc: Functions to create useful example cases for tests and code examples
-  contents:
-  - starts_with("example_")
-
 - title: Validation functions
   desc: These functions are used across the package to validate elements being passed as part of an API url or query.
   contents:
