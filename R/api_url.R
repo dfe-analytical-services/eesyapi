@@ -93,7 +93,7 @@ api_url <- function(
       stop(
         paste(
           "You have entered an invalid endpoint, this should one of:",
-          "get-publication, get-data-catalogue, get-summary, get-meta,",
+          "get-publications, get-data-catalogue, get-summary, get-meta,",
           "get-csv, get-data or post-data"
         )
       )
