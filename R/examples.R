@@ -43,6 +43,7 @@ example_id <- function(
         ),
         indicator = "bqZtT"
       )
+      # TODO: add in test pupil attendance details here
     ),
     `public-api-testing` = list(
       dev = list(
@@ -53,6 +54,11 @@ example_id <- function(
         filter = "01tT5",
         filter_item = "wEZcb",
         indicator = "PbNeb"
+      ),
+      test = list(
+        publication = "25d0e40b-643a-4f73-3ae5-08dcf1c4d57f"#,
+        # TODO: complete this for absence data file
+
       )
     )
   )
@@ -60,7 +66,7 @@ example_id <- function(
     stop(paste0("Chosen group (", group, ") not found in examples list."))
   }
   if (!(environment %in% c("dev", "test"))) {
-    stop(paste0("Chosen environment (", environment, ") should be one of: \dev or test."))
+    stop(paste0("Chosen environment (", environment, ") should be one of: dev or test."))
   }
 
   group_examples <- example_id_list |>

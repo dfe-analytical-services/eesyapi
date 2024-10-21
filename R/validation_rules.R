@@ -64,7 +64,7 @@ validate_ees_id <- function(element_id, level = "publication", verbose = FALSE) 
     stop(
       paste0(
         "Non-valid element level received by validate_id.\n",
-        'Should be one of "publication", "dataset", "location", "filter_item" or indicator.'
+        "Should be one of 'publication', 'dataset', 'location', 'filter_item' or 'indicator'."
       )
     )
   }
