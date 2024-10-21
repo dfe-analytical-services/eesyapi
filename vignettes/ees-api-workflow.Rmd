@@ -11,7 +11,6 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
-  
 )
 ```
 
@@ -156,7 +155,9 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("filter_items") |>
   dplyr::filter(
-    item_label %in% c("Absence", "Approved educational activity", "Authorised", "Unauthorised", "Total")
+    item_label %in% c(
+      "Absence", "Approved educational activity", "Authorised", "Unauthorised", "Total"
+    )
   )
 ```
 
@@ -203,16 +204,16 @@ supply the following:
 
 ``` {r example-parameter-query}
 eesyapi::query_dataset(
-dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6", 
-indicators = "bqZtT",
-filter_items = list(
-  attendance_status = c("7SdXo"),
-  attendance_type = c("6AXrf", "0k3T5", "YdkHK"),
-  day_number = "uLQo4",
-  reason = "bBrtT"
-),
-geographies = c("NAT|id|dP0Zw", "LA|ID|jfhAM"),
-time_periods = c("2024|W26")
+  dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
+  indicators = "bqZtT",
+  filter_items = list(
+    attendance_status = c("7SdXo"),
+    attendance_type = c("6AXrf", "0k3T5", "YdkHK"),
+    day_number = "uLQo4",
+    reason = "bBrtT"
+  ),
+  geographies = c("NAT|id|dP0Zw", "LA|ID|jfhAM"),
+  time_periods = c("2024|W26")
 )
 ```
 
@@ -233,7 +234,7 @@ If you're familiar with using json and wish to just write your own query from sc
 use `query_dataset()` with the `json_query` parameter as follows:
 
 ``` {r example-json-string-query}
-json_query = "{
+json_query <- "{
   \"criteria\": {
     \"and\": [
       {
@@ -259,8 +260,8 @@ json_query = "{
   \"pageSize\": 10
 }"
 eesyapi::query_dataset(
-dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6", 
-json_query = json_query
+  dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
+  json_query = json_query
 )
 ```
 
