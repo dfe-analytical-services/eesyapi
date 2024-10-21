@@ -35,11 +35,12 @@ reference:
   - get_dataset
   - post_dataset
   - parse_api_dataset
+  - starts_with("parse_sqid")
 
-- title: Examples
-  desc: Functions to create useful example cases for tests and code examples
+- title: Generate example IDs and data
+  desc: These functions are used widely to create working example code and tests
   contents:
-  - starts_with("example_")
+  - starts_with("example")
 
 - title: Validation functions
   desc: These functions are used across the package to validate elements being passed as part of an API url or query.

@@ -11,24 +11,19 @@
 #'       parse_api_dataset()
 #'
 #' @param api_data_result A json data result list as returned from the API
-#' @param dataset_id ID of data set to be connected to.
-#' @param verbose Run in verbose mode, logical, default = FALSE
+#' @inheritParams api_url
 #'
 #' @return Data frame containing API data results
 #' @export
 #'
 #' @examples
-#' api_url(
-#'   "get-data",
-#'   dataset_id = example_id(), indicators = example_id("indicator"), page_size = 10
-#' ) |>
-#'   httr::GET() |>
-#'   httr::content("text") |>
-#'   jsonlite::fromJSON() |>
-#'   parse_api_dataset()
+#' example_data_raw(group = "attendance") |>
+#'   parse_api_dataset(example_id(group = "attendance"))
 parse_api_dataset <- function(
     api_data_result,
-    dataset_id = NULL,
+    dataset_id,
+    dataset_version = NULL,
+    api_version = NULL,
     verbose = FALSE) {
   if (!is.null(dataset_id)) {
     eesyapi::validate_ees_id(dataset_id, level = "dataset")
@@ -41,12 +36,20 @@ parse_api_dataset <- function(
     print(names(api_data_result$locations))
     print(names(api_data_result$filters))
   }
+  meta <- eesyapi::get_meta(
+    dataset_id,
+    dataset_version = dataset_version,
+    api_version = api_version
+  )
   dplyr::bind_cols(
     api_data_result$timePeriod,
     data.frame(geographic_level = api_data_result$geographicLevel),
-    api_data_result$locations,
-    api_data_result$filters,
-    api_data_result$values
+    api_data_result$locations |>
+      eesyapi::parse_sqids_locations(meta),
+    api_data_result$filters |>
+      eesyapi::parse_sqids_filters(meta),
+    api_data_result$values |>
+      eesyapi::parse_sqids_indicators(meta),
   )
   # Next aim here is to pull in the meta data automatically at this point to translate
   # all the API codes...
