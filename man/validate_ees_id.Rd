@@ -4,12 +4,14 @@
 \alias{validate_ees_id}
 \title{Validate element IDs}
 \usage{
-validate_ees_id(element_id, level = "publication")
+validate_ees_id(element_id, level = "publication", verbose = FALSE)
 }
 \arguments{
 \item{element_id}{ID for publication or a data set}
 
-\item{level}{ID level: "publication" or "dataset"}
+\item{level}{ID level: "publication", "dataset", "location", "filter_item" or "indicator"}
+
+\item{verbose}{Run in verbose mode}
 }
 \description{
 Validate element IDs

@@ -1,3 +1,20 @@
+# eesyapi 0.3.0
+
+* Created capacity to query data using POST:
+  - `query_dataset()`: Now defaults to using POST instead of GET
+  - `post_dataset()`: Sends a query of a data set, either using a json file, json string or 
+  parameters
+* Updated how `example_id()` works to allow more complex examples
+
+# eesyapi 0.2.1
+
+* Created initial `query_dataset()` function that queries a data set using `get_dataset()`
+* Created `get_dataset()` function that queries a data set using GET and URL parameters
+* Updated `get_meta()` to work with new API meta output (addition of id alongside col_name and 
+label)
+* Removed redundant function: `parse_meta_filter_columns()`
+* Hex logo added for documentation
+
 # eesyapi 0.2.0
 
 * Creating publication querying functions:

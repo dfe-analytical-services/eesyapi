@@ -4,14 +4,22 @@
 \alias{get_meta}
 \title{Get a parsed version of the API response for a data set's meta data}
 \usage{
-get_meta(dataset_id, dataset_version = NULL, api_version = NULL)
+get_meta(
+  dataset_id,
+  dataset_version = NULL,
+  api_version = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
-\item{dataset_id}{ID of data set to be connected to}
+\item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
+of "get-summary", "get-meta", "get-data" or "post-data"}
 
 \item{dataset_version}{Version of data set to be connected to}
 
 \item{api_version}{EES API version}
+
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 List of data frames containing a data set's meta data

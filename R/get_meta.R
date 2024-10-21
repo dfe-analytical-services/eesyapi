@@ -5,28 +5,28 @@
 #' look-up tables from human readable labels to ids used in the API, or the raw response from the
 #' meta endpoint.
 #'
-#' @param dataset_id ID of data set to be connected to
-#' @param dataset_version Version of data set to be connected to
-#' @param api_version EES API version
+#' @inheritParams api_url
 #'
 #' @return List of data frames containing a data set's meta data
 #' @export
 #'
 #' @examples
 #' get_meta(example_id())
-get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
+get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL,
+                     verbose = FALSE) {
   meta_data_response <- get_meta_response(
     dataset_id,
     dataset_version = dataset_version,
     api_version = api_version,
-    parse = TRUE
+    parse = TRUE,
+    verbose = verbose
   )
   meta_data <- list(
-    time_periods = parse_meta_time_periods(meta_data_response$timePeriods),
-    locations = parse_meta_location_ids(meta_data_response$locations),
-    filter_columns = parse_meta_filter_columns(meta_data_response$filters),
-    filter_items = parse_meta_filter_item_ids(meta_data_response$filters),
-    indicators = parse_meta_filter_columns(meta_data_response$indicators)
+    time_periods = parse_meta_time_periods(meta_data_response$timePeriods, verbose = verbose),
+    locations = parse_meta_location_ids(meta_data_response$locations, verbose = verbose),
+    filter_columns = parse_meta_filter_columns(meta_data_response$filters, verbose = verbose),
+    filter_items = parse_meta_filter_item_ids(meta_data_response$filters, verbose = verbose),
+    indicators = parse_meta_filter_columns(meta_data_response$indicators, verbose = verbose)
   )
   return(meta_data)
 }
@@ -36,9 +36,7 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL) {
 #' @description
 #' Get the metadata information for a data set available from the EES API.
 #'
-#' @param dataset_id ID of data set to be connected to
-#' @param dataset_version Version of data set to be connected to
-#' @param api_version EES API version
+#' @inheritParams api_url
 #' @param parse Parse result into structured list
 #'
 #' @return Results of query to API meta data endpoint
@@ -50,7 +48,8 @@ get_meta_response <- function(
     dataset_id,
     dataset_version = NULL,
     api_version = NULL,
-    parse = TRUE) {
+    parse = TRUE,
+    verbose = FALSE) {
   # Check that the parse flag is valid
   if (is.logical(parse) == FALSE) {
     stop(
@@ -68,27 +67,20 @@ get_meta_response <- function(
   )
 
   response <- httr::GET(meta_url)
-  if (response$status_code > 299) {
-    stop(paste0(
-      "Query returned error, status ",
-      response$status,
-      ": ",
-      eesyapi::http_request_error(response$status)
-    ))
+  eesyapi::http_request_error(response)
+  if (parse) {
+    result <- response |>
+      httr::content("text") |>
+      jsonlite::fromJSON()
   } else {
-    if (parse) {
-      result <- response |>
-        httr::content("text") |>
-        jsonlite::fromJSON()
-    } else {
-      result <- response
-    }
-    return(result)
+    result <- response
   }
+  return(result)
 }
 
 #' Parse API meta to give the time periods
 #'
+#' @inheritParams api_url
 #' @param api_meta_time_periods Time periods information provided by the API output
 #'
 #' @return Data frame containing location item codes matched
@@ -97,7 +89,11 @@ get_meta_response <- function(
 #' @examples
 #' get_meta_response(example_id())$timePeriods |>
 #'   parse_meta_time_periods()
-parse_meta_time_periods <- function(api_meta_time_periods) {
+parse_meta_time_periods <- function(api_meta_time_periods,
+                                    verbose = FALSE) {
+  if (!("code" %in% names(api_meta_time_periods))) {
+    stop("Code column not found in timePeriods data")
+  }
   time_periods <- api_meta_time_periods |>
     dplyr::mutate(code_num = as.numeric(gsub("[a-zA-Z]", "", api_meta_time_periods$code)))
   time_periods <- time_periods |>
@@ -109,6 +105,7 @@ parse_meta_time_periods <- function(api_meta_time_periods) {
 
 #' Parse API meta to give the locations
 #'
+#' @inheritParams api_url
 #' @param api_meta_locations Locations information provided by the API output
 #'
 #' @return Data frame containing location item codes matched
@@ -117,32 +114,39 @@ parse_meta_time_periods <- function(api_meta_time_periods) {
 #' @examples
 #' get_meta_response(example_id())$locations |>
 #'   parse_meta_location_ids()
-parse_meta_location_ids <- function(api_meta_locations) {
-  nlevels <- length(api_meta_locations$level)
-  location_items <- data.frame(
-    geographic_level = NA,
-    code = NA,
-    label = NA,
-    item_id = NA
-  )
-  location_items <- location_items |>
-    dplyr::filter(!is.na(location_items$geographic_level))
+parse_meta_location_ids <- function(api_meta_locations,
+                                    verbose = FALSE) {
+  nlevels <- nrow(api_meta_locations$level)
   for (i in 1:nlevels) {
-    location_items_i <- as.data.frame(
-      api_meta_locations$options[i]
-    ) |>
-      dplyr::mutate(geographic_level = api_meta_locations$level$label[i])
-    location_items <- location_items |>
-      rbind(
-        location_items_i |>
-          dplyr::select("geographic_level", "code", "label", item_id = "id")
-      )
+    location_items_i <- api_meta_locations$options |>
+      magrittr::extract2(i) |>
+      dplyr::mutate(
+        geographic_level_code = api_meta_locations$level$code[i],
+        geographic_level = api_meta_locations$level$label[i]
+      ) |>
+      dplyr::rename(item_id = "id")
+    if (verbose) {
+      message(paste0("Location level #", i))
+    }
+    if (verbose) {
+      print(location_items_i)
+    }
+    if (i == 1) {
+      location_items <- location_items_i
+    } else {
+      location_items <- location_items |>
+        dplyr::bind_rows(location_items_i)
+    }
+  }
+  if (verbose) {
+    message("Collated location levels into single data frame.")
   }
   return(location_items)
 }
 
 #' Parse API meta to give the filter columns
 #'
+#' @inheritParams api_url
 #' @param api_meta_filters Filter information provided by the API output
 #'
 #' @return data frame containing column names and labels
@@ -151,15 +155,18 @@ parse_meta_location_ids <- function(api_meta_locations) {
 #' @examples
 #' get_meta_response(example_id())$filters |>
 #'   parse_meta_filter_columns()
-parse_meta_filter_columns <- function(api_meta_filters) {
+parse_meta_filter_columns <- function(api_meta_filters,
+                                      verbose = FALSE) {
   data.frame(
-    col_name = api_meta_filters$id,
+    col_id = api_meta_filters$id,
+    col_name = api_meta_filters$column,
     label = api_meta_filters$label
   )
 }
 
 #' Parse API meta to give the filter item codes
 #'
+#' @inheritParams api_url
 #' @param api_meta_filters Filter information provided by the API output
 #'
 #' @return Data frame containing filter item codes matched to filter item labels and col_name
@@ -168,16 +175,17 @@ parse_meta_filter_columns <- function(api_meta_filters) {
 #' @examples
 #' get_meta_response(example_id())$filters |>
 #'   parse_meta_filter_item_ids()
-parse_meta_filter_item_ids <- function(api_meta_filters) {
+parse_meta_filter_item_ids <- function(api_meta_filters,
+                                       verbose = FALSE) {
   nfilters <- length(api_meta_filters$id)
   filter_items <- data.frame(
-    col_name = NA,
+    col_id = NA,
     item_id = NA,
     item_label = NA,
     isAggregate = NA
   )
   filter_items <- filter_items |>
-    dplyr::filter(!is.na(filter_items$col_name))
+    dplyr::filter(!is.na(filter_items$col_id))
   for (i in 1:nfilters) {
     filter_items_i <- as.data.frame(
       api_meta_filters$options[i]
@@ -186,7 +194,7 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
         item_id = "id",
         item_label = "label"
       ) |>
-      dplyr::mutate(col_name = api_meta_filters$id[i])
+      dplyr::mutate(col_id = api_meta_filters$id[i])
     if (!("isAggregate" %in% names(filter_items_i))) {
       filter_items_i <- filter_items_i |>
         dplyr::mutate(isAggregate = NA)
@@ -194,25 +202,8 @@ parse_meta_filter_item_ids <- function(api_meta_filters) {
     filter_items <- filter_items |>
       rbind(
         filter_items_i |>
-          dplyr::select("col_name", "item_label", "item_id", default_item = "isAggregate")
+          dplyr::select("col_id", "item_label", "item_id", default_item = "isAggregate")
       )
   }
   return(filter_items)
-}
-
-#' Parse API meta to give the indicator columns
-#'
-#' @param api_meta_indicators Indicator information provided by the API output
-#'
-#' @return data frame containing indicator column names and labels
-#' @export
-#'
-#' @examples
-#' get_meta_response(example_id())$indicators |>
-#'   parse_meta_indicator_columns()
-parse_meta_indicator_columns <- function(api_meta_indicators) {
-  data.frame(
-    col_name = api_meta_indicators$id,
-    label = api_meta_indicators$label
-  )
 }
