@@ -183,33 +183,26 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 
 ## Retrieving data from a data set
 
-### Download raw data as a preview
+### Preview raw CSV data
 
-In the EES API you have the option to just download the entirety of the underlying data CSV file
-for a given data set. This bypasses the use of IDs, making it a simpler short-term option to 
-preview and explore the available data.
+In the EES API you have the option to preview underlying data CSV file for a given data set. 
+This bypasses the use of IDs, making it a simpler short-term option to explore the available data.
 
-Using `eesyapi`, you can download a full a data set using `download_dataset()` and providing the data set 
+Using `eesyapi`, you can preview a data set using `preview_dataset()` and providing the data set 
 ID as follows:
 
 ```
-eesyapi::download_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
+eesyapi::preview_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
 ```
 
-This will return a data frame containing the data in the form that DfE analysts uploaded it to 
-EES in. As this loads in the full data set, it's often best to pipe the output into the `head()` 
-function so that you only save a few rows of data in your active memory:
+This will return a data frame containing the first 10 rows of the data in the form that DfE 
+analysts uploaded it to EES in.
 
-```
-data_preview <- eesyapi::download_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |> 
-  head(10) # return the top 10 rows only
-  
-View(data_preview)
-```
+While you can set n_max to Inf, and get the whole data set using this, you should avoid relying on
+the `preview_dataset()` function in your pipelines or dashboards and instead use it to explore the
+data as you create your own custom query using `query_dataset()`.
 
-You should avoid relying on the `download_dataset()` function in your pipelines or dashboards and
-instead use it to explore the data as you create your own custom query using `query_dataset()`.
-If you only download the CSV, you risk:
+If you only read the whole CSV, you risk:
 * code breaking whenever element labels change
 * reading in too much data into active memory, causing R to slow or even crash
 
