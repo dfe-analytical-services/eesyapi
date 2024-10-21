@@ -174,7 +174,23 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 
 ## Retrieving data from a data set
 
-We'll now use the element item_ids from the meta data to build queries of the data set.
+### Downloading an entire data set in a single file
+
+Whilst specific queries (as detailed in the following sections) are best used for automated pipeline 
+workflows, the EES API also offers the option
+to just download the entirety of the underlying data file for a given data set. This bypasses the 
+use of IDs, making it a simpler short-term option to retrieve data, but with the risk of creating
+breaking changes in automated pipelines should element labels change.
+
+Using `eesyapi`, you can retrieve a data set using `download_dataset()` and providing the data set 
+ID as follows:
+
+```
+download_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
+```
+
+This will return a data frame containing the data in the form that DfE analysts uploaded it to 
+EES in.
 
 ### Using `query_dataset()`
 
@@ -265,23 +281,6 @@ eesyapi::query_dataset(
   json_query = json_query
 )
 ```
-
-#### Downloading an entire data set in a single file
-
-Whilst the above are best used for automated pipeline workflows, the EES API also has an connection
-to just download the entirety of the underlying data file for a given data set. This bypasses the 
-use of IDs, making it a simpler short-term option to retrieve data, but with the risk of creating
-breaking changes in automated pipelines should element labels change.
-
-Using `eesyapi`, you can retrieve a data set using `download_dataset()` and providing the data set 
-ID as follows:
-
-```
-download_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
-```
-
-This will return a data frame containing the data in the form that DfE analysts uploaded it to 
-EES in.
 
 ## FAQs
 
