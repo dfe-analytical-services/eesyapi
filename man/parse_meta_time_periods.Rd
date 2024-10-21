@@ -9,7 +9,7 @@ parse_meta_time_periods(api_meta_time_periods, verbose = FALSE)
 \arguments{
 \item{api_meta_time_periods}{Time periods information provided by the API output}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 Data frame containing location item codes matched

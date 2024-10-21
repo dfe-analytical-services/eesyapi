@@ -45,9 +45,9 @@ locations to be queried.}
 
 \item{parse}{Logical flag to activate parsing of the results. Default: TRUE}
 
-\item{debug}{Run POST query in debug mode: logic, default: FALSE}
+\item{debug}{Run POST query in debug mode. Logical, default = FALSE}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 Data frame containing query results of an API data set

@@ -87,13 +87,13 @@ test_that("Geography query returns expected geographies", {
       geographies = eesyapi::example_id("location_ids", group = "attendance"),
       filter_items = eesyapi::example_id("filter_item", group = "attendance")
     ) |>
-      dplyr::select(geographic_level, NAT, REG) |>
+      dplyr::select("geographic_level", "nat_code", "reg_code") |>
       dplyr::distinct() |>
       dplyr::arrange(geographic_level),
     data.frame(
       geographic_level = c("NAT", "REG"),
-      NAT = c("dP0Zw", "dP0Zw"),
-      REG = c(NA, "rg3Nj")
+      nat_code = rep("E92000001", 2),
+      reg_code = c(NA, "E12000004")
     )
   )
 })
@@ -121,17 +121,23 @@ test_that("Test filter-combinations POST dataset query", {
     geographies = eesyapi::example_id("location_ids", group = "attendance"),
     filter_items = eesyapi::example_id("filter_items_short", group = "attendance")
   ) |>
-    dplyr::select("5TYdi", "mU59K", "Db3Qe", "emJuS", "4kdUZ") |>
+    dplyr::select(
+      "attendance_status",
+      "attendance_type",
+      "day_number",
+      "establishment_phase",
+      "reason"
+    ) |>
     dplyr::distinct()
   expect_equal(
     query_result,
     data.frame(
-      `5TYdi` = c("uLQo4", "uLQo4", "uLQo4", "uLQo4"),
-      `mU59K` = c("bBrtT", "bBrtT", "bBrtT", "bBrtT"),
-      `Db3Qe` = c("pmRSo", "pmRSo", "pmRSo", "pmRSo"),
-      `emJuS` = c("CvuId", "6AXrf", "CvuId", "6AXrf"),
-      `4kdUZ` = c("ThDPJ", "ThDPJ", "crH31", "crH31")
-    ) |> dplyr::rename_with(~ stringr::str_replace_all(., "X", ""))
+      attendance_status = rep("Attendance", 4),
+      attendance_type = rep(c("Present", "Approved educational activity"), 2),
+      day_number = rep("Total", 4),
+      establishment_phase = c(rep("Secondary", 2), rep("Special", 2)),
+      reason = rep("Total", 4)
+    )
   )
 })
 

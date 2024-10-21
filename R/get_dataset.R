@@ -57,7 +57,7 @@ get_dataset <- function(
     message(paste("Total number of pages: ", response_json$paging$totalPages))
   }
   dfresults <- response_json$results |>
-    eesyapi::parse_api_dataset(verbose = verbose)
+    eesyapi::parse_api_dataset(dataset_id = dataset_id, verbose = verbose)
   # Unless the user has requested a specific page, then assume they'd like all pages collated and
   # recursively run the query.
   if (is.null(page)) {

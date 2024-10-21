@@ -29,9 +29,9 @@ locations to be queried.}
 
 \item{page_size}{Number of results to return in a single query}
 
-\item{debug}{Run POST query in debug mode: logic, default: FALSE}
+\item{debug}{Run POST query in debug mode. Logical, default = FALSE}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 String containing json query body for use with http POST request

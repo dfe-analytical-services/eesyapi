@@ -14,6 +14,7 @@ URL: https://dfe-analytical-services.github.io/eesyapi
 Depends: 
     R (>= 3.5.0)
 Imports: 
+    data.table,
     dplyr,
     httr,
     jsonlite,

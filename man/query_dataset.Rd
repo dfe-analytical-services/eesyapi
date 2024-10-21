@@ -51,9 +51,9 @@ locations to be queried.}
 
 \item{page}{Page number of query results to return}
 
-\item{debug}{Run POST query in debug mode: logic, default: FALSE}
+\item{debug}{Run POST query in debug mode. Logical, default = FALSE}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 Data frame containing query results

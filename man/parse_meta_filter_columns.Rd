@@ -9,7 +9,7 @@ parse_meta_filter_columns(api_meta_filters, verbose = FALSE)
 \arguments{
 \item{api_meta_filters}{Filter information provided by the API output}
 
-\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 data frame containing column names and labels
