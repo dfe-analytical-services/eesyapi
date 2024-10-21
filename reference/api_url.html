@@ -6,7 +6,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.
 Endpointsid required
 get-publicationsNeither
 get-data-cataloguepublication_id
-get-summary, get-meta, get-data, post-datadataset_id
+get-summary, get-meta, get-csv, get-data, post-datadataset_id
 
 
 "><meta property="og:description" content="This function returns a single URL to connect to a chosen EES API endpoint. The resulting URL can
@@ -16,7 +16,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.
 Endpointsid required
 get-publicationsNeither
 get-data-cataloguepublication_id
-get-summary, get-meta, get-data, post-datadataset_id
+get-summary, get-meta, get-csv, get-data, post-datadataset_id
 
 
 "><meta property="og:image" content="https://dfe-analytical-services.github.io/eesyapi/logo.png"></head><body>
@@ -55,7 +55,7 @@ get-summary, get-meta, get-data, post-datadataset_id
     <p>This function returns a single URL to connect to a chosen EES API endpoint. The resulting URL can
 be used with GET or POST (as appropriate) in order to connect. Whether the publication_id or
 dataset_id (or neither) parameter are required depends on the endpoint chose.</p>
-<table class="table table"><tr><td><strong>Endpoints</strong></td><td><strong>id required</strong></td></tr><tr><td>get-publications</td><td>Neither</td></tr><tr><td>get-data-catalogue</td><td>publication_id</td></tr><tr><td>get-summary, get-meta, get-data, post-data</td><td>dataset_id</td></tr></table></div>
+<table class="table table"><tr><td><strong>Endpoints</strong></td><td><strong>id required</strong></td></tr><tr><td>get-publications</td><td>Neither</td></tr><tr><td>get-data-catalogue</td><td>publication_id</td></tr><tr><td>get-summary, get-meta, get-csv, get-data, post-data</td><td>dataset_id</td></tr></table></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
@@ -83,7 +83,7 @@ dataset_id (or neither) parameter are required depends on the endpoint chose.</p
 
 <dl><dt id="arg-endpoint">endpoint<a class="anchor" aria-label="anchor" href="#arg-endpoint"></a></dt>
 <dd><p>Name of endpoint, can be "get-publications", "get-data-catalogue",
-"get-summary", "get-meta", "get-data" or "post-data"</p></dd>
+"get-summary", "get-meta", "get-csv", "get-data" or "post-data"</p></dd>
 
 
 <dt id="arg-publication-id">publication_id<a class="anchor" aria-label="anchor" href="#arg-publication-id"></a></dt>
@@ -93,7 +93,7 @@ endpoint is "get-data-catalogue"</p></dd>
 
 <dt id="arg-dataset-id">dataset_id<a class="anchor" aria-label="anchor" href="#arg-dataset-id"></a></dt>
 <dd><p>ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "post-data"</p></dd>
+of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"</p></dd>
 
 
 <dt id="arg-indicators">indicators<a class="anchor" aria-label="anchor" href="#arg-indicators"></a></dt>
@@ -157,6 +157,8 @@ of "get-summary", "get-meta", "get-data" or "post-data"</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/830f9201-9e11-ad75-8dcd-d2efe2834457"</span>
 <span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"get-meta"</span>, dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/830f9201-9e11-ad75-8dcd-d2efe2834457/meta"</span>
+<span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span><span class="st">"get-csv"</span>, dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/830f9201-9e11-ad75-8dcd-d2efe2834457/csv"</span>
 <span class="r-in"><span><span class="fu">api_url</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"get-data"</span>,</span></span>
 <span class="r-in"><span>  dataset_id <span class="op">=</span> <span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span>,</span></span>
