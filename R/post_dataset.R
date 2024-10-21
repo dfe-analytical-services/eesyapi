@@ -127,14 +127,16 @@ post_dataset <- function(
   # recursively run the query.
   if (is.null(page) && is.null(json_query)) {
     if (response_json$paging$totalPages > 1) {
-      if(response_json$paging$totalPages*page_size > 100000){
+      if (response_json$paging$totalPages * page_size > 100000) {
         message(
           paste(
-            "Downloading up to", response_json$paging$totalPages*page_size, "rows.",
+            "Downloading up to", response_json$paging$totalPages * page_size, "rows.",
             "This may take a while.",
             "We recommend downloading the full data set using download_dataset()",
-            "for large volumes of data"))
-        }
+            "for large volumes of data"
+          )
+        )
+      }
       for (page in c(2:response_json$paging$totalPages)) {
         json_body <- eesyapi::parse_tojson_params(
           indicators = indicators,
@@ -162,11 +164,11 @@ post_dataset <- function(
           dplyr::bind_rows(
             response_page |>
               magrittr::extract2("results")
-            )
+          )
       }
     }
   }
-  if(parse){
+  if (parse) {
     dfresults <- dfresults |>
       eesyapi::parse_api_dataset(dataset_id, verbose = verbose)
   }

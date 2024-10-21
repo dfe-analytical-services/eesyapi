@@ -32,7 +32,7 @@ get_dataset <- function(
     dataset_version = NULL,
     api_version = NULL,
     page = NULL,
-    page_size = 1000,
+    page_size = 10000,
     parse = TRUE,
     verbose = FALSE) {
   response <- eesyapi::api_url(
@@ -56,12 +56,22 @@ get_dataset <- function(
   if (verbose) {
     message(paste("Total number of pages: ", response_json$paging$totalPages))
   }
-  dfresults <- response_json$results |>
-    eesyapi::parse_api_dataset(dataset_id = dataset_id, verbose = verbose)
+  dfresults <- response_json |>
+    magrittr::extract2("results")
   # Unless the user has requested a specific page, then assume they'd like all pages collated and
   # recursively run the query.
   if (is.null(page)) {
     if (response_json$paging$totalPages > 1) {
+      if (response_json$paging$totalPages * page_size > 100000) {
+        message(
+          paste(
+            "Downloading up to", response_json$paging$totalPages * page_size, "rows.",
+            "This may take a while.",
+            "We recommend downloading the full data set using download_dataset()",
+            "for large volumes of data"
+          )
+        )
+      }
       for (page in c(2:response_json$paging$totalPages)) {
         response_page <- eesyapi::api_url(
           "get-data",
@@ -81,11 +91,15 @@ get_dataset <- function(
         response_page |> eesyapi::warning_max_pages()
         dfresults <- dfresults |>
           dplyr::bind_rows(
-            response_page$results |>
-              eesyapi::parse_api_dataset(verbose = verbose)
+            response_page |>
+              magrittr::extract2("results")
           )
       }
     }
+  }
+  if (parse) {
+    dfresults <- dfresults |>
+      eesyapi::parse_api_dataset(dataset_id, verbose = verbose)
   }
   return(dfresults)
 }
