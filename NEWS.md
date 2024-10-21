@@ -1,3 +1,9 @@
+# eesyapi 0.3.1
+
+* Added parsing of SQIDs in retrieved data to provide human readable content
+* Created function to connect to csv endpoint for downloading data set csv file
+* Added first draft of example workflow for querying a data set
+
 # eesyapi 0.3.0
 
 * Created capacity to query data using POST:
