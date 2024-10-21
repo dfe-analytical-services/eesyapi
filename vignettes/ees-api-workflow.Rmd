@@ -77,17 +77,16 @@ taken to it's details page in the catalogue. On this page (pictured below), you'
 
 ## Getting the data set meta data
 
-When querying a data set via the API, indicator and filter items are referenced 
+When querying a data set via the API, column names (indicators and filters) and the options available within columns (filter items) are referenced 
 using auto-generated ID codes (known as SQIDs). Therefore, in order to construct a query that 
 involves selecting a subset of filter items or indicators, you'll need to obtain
-the codes associated with those elements.
+the IDs associated with those elements.
 
-All those filter item and indicator codes are stored in a data set's meta data, 
-which can also be queried via the API. To get those codes as well as details on
+All those IDs are stored in a data set's meta data, 
+which can also be queried via the API. To get those IDs as well as details on
 what time periods and geographic levels and locations are available in a given
 data set, you can use the function `eesyapi::get_meta()`, providing it with your 
-data set's ID (which you can obtain either using `eesyapi::get_data_catalogue()` or via
-the EES data catalogue). For example, to get the "attendance in schools" data from the example
+data set's ID. For example, to get the "attendance in schools" data from the example
 attendance API data publication, you can take the data set ID 
 `7c0e9201-c7c0-ff73-bee4-304e731ec0e6` and provide it as a parameter to `get_meta`:
 
@@ -144,10 +143,18 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 ```
 
 ### Geographies
+
 ``` {r}
 eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("locations") |>
   dplyr::filter(label %in% c("York", "England"))
+```
+
+### Filter columns
+
+``` {r}
+eesyapi::get_meta(dataset_id = attendance$id[1]) |>
+  magrittr::extract2("filter_columns")
 ```
 
 ### Filter items
@@ -213,6 +220,8 @@ The parameters that you'll can provide to build up your query are:
 All these are optional, except for `indicators` which you must always specify. If you don't provide 
 any of `time_periods`, `locations` or `filter_items`, then you'll receive all rows from the data 
 set (although be careful, this may take some time for larger data sets).
+
+You don't generally need to use the IDs for filter columns as the query only needs to know the options you want to select from those columns (filter items).
 
 Using the parameters we obtained from `get-meta` above, then we can create a query to return 
 session count data for only **Approved educational activity**, **Authorised** and **Unauthorised** 
