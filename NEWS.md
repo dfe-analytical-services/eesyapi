@@ -1,3 +1,5 @@
+# eesyapi (development version)
+
 # eesyapi 0.3.1
 
 * Added parsing of SQIDs in retrieved data to provide human readable content
