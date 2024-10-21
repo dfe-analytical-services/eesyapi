@@ -16,7 +16,7 @@ parse_api_dataset(
 \item{api_data_result}{A json data result list as returned from the API}
 
 \item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-data" or "post-data"}
+of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
 
 \item{dataset_version}{Version of data set to be connected to}
 

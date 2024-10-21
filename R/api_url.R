@@ -9,15 +9,15 @@
 #' \strong{Endpoints} \tab \strong{id required} \cr
 #' get-publications \tab Neither  \cr
 #' get-data-catalogue \tab publication_id  \cr
-#' get-summary, get-meta, get-data, post-data \tab dataset_id  \cr
+#' get-summary, get-meta, get-csv, get-data, post-data \tab dataset_id  \cr
 #' }
 #'
 #' @param endpoint Name of endpoint, can be "get-publications", "get-data-catalogue",
-#' "get-summary", "get-meta", "get-data" or "post-data"
+#' "get-summary", "get-meta", "get-csv", "get-data" or "post-data"
 #' @param publication_id ID of the publication to be connected to. This is required if the
 #' endpoint is "get-data-catalogue"
 #' @param dataset_id ID of data set to be connected to. This is required if the endpoint is one
-#' of "get-summary", "get-meta", "get-data" or "post-data"
+#' of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"
 #' @inheritParams api_url_query
 #' @param dataset_version Version of data set to be connected to
 #' @param page_size Number of results to return in a single query
@@ -34,6 +34,7 @@
 #' api_url("get-data-catalogue", publication_id = eesyapi::example_id("publication"))
 #' api_url("get-summary", dataset_id = eesyapi::example_id("dataset"))
 #' api_url("get-meta", dataset_id = eesyapi::example_id("dataset"))
+#' api_url("get-csv", dataset_id = eesyapi::example_id("dataset"))
 #' api_url(
 #'   "get-data",
 #'   dataset_id = eesyapi::example_id("dataset"),
@@ -83,7 +84,7 @@ api_url <- function(
     endpoint %in% c(
       "get-publications", "get-data-catalogue",
       "get-summary", "get-meta",
-      "get-data", "post-data"
+      "get-csv", "get-data", "post-data"
     )
   }
 
@@ -92,7 +93,8 @@ api_url <- function(
       stop(
         paste(
           "You have entered an invalid endpoint, this should one of:",
-          "get-summary, get-meta, get-data or post-data"
+          "get-publications, get-data-catalogue, get-summary, get-meta,",
+          "get-csv, get-data or post-data"
         )
       )
     }
@@ -103,7 +105,7 @@ api_url <- function(
   }
 
   # Check that if endpoint requires a data set then dataset_id is not null
-  if (endpoint %in% c("get-summary", "get-meta", "get-data", "post-data")) {
+  if (endpoint %in% c("get-summary", "get-meta", "get-csv", "get-data", "post-data")) {
     eesyapi::validate_ees_id(dataset_id, level = "dataset")
     if (is_valid_dataset_info(dataset_id, dataset_version) == FALSE) {
       stop(
@@ -209,8 +211,18 @@ api_url <- function(
           )
         )
     }
+    if (endpoint == "get-csv") {
+      url <- paste0(
+        endpoint_base_version,
+        "data-sets/",
+        dataset_id,
+        "/csv"
+      )
+    }
   }
-  if (endpoint %in% c("get-publications", "get-data-catalogue", "get-summary", "get-meta")) {
+  if (endpoint %in% c(
+    "get-publications", "get-data-catalogue", "get-summary", "get-meta", "get-csv"
+  )) {
     if (
       any(!is.null(c(time_periods, geographic_levels, locations, filter_items, indicators)))
     ) {
