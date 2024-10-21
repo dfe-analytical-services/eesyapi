@@ -195,7 +195,7 @@ The parameters that you'll can provide to build up your query are:
 - `indicators` (required)
 
 All these are optional, except for `indicators` which you must always specify. If you don't provide 
-any of `time_periods`, `locations` or `filter_items`, then you#ll receive all rows from the data 
+any of `time_periods`, `locations` or `filter_items`, then you'll receive all rows from the data 
 set (although be careful, this may take some time for larger data sets).
 
 Using the parameters we obtained from `get-meta` above, then we can create a query to return 
@@ -287,13 +287,12 @@ EES in.
 
 ### Why do you use IDs rather than the actual labels used in the data?
 
-The IDs are intended to aid in future proofing fir users that may develop automated pipelines that
-connect to the EES API. Labeling inevitably changes, for example local authorities sometimes get
-renamed or column labels are updated to be clearer. If the underlying content of that item stays
-the same, i.e. the renamed local authority still has the same boundaries, then automated pipelines
-will be required to still connect to the same item, therefore each item has an associated ID that
-will remain unchanged in a given data set as it is updated with new data over the subsequent
-releases, even if a renaming of a field occurs.
+The IDs are intended to aid in future proofing for users that may develop automated pipelines that
+connect to the EES API. Labeling inevitably changes, for example if a "Total" entry is renamed to
+"All pupils" or "All schools" to add clarity. If the underlying content of that item stays
+the same, then automated pipelines will be required to still connect to the same item, therefore 
+each item has an associated ID that will remain unchanged in a given data set as it is updated with 
+new data over the subsequent releases, even if a renaming of a field occurs.
 
 ### Are there any bandwidth / repeat connection constraints that I should know about?
 
