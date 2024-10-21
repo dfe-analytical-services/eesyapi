@@ -61,7 +61,7 @@ api_url <- function(
     page_size = NULL,
     page = NULL,
     api_version = "1.0",
-    environment = "dev",
+    environment = "test",
     verbose = FALSE) {
   # Check that the API version is valid
   is_valid_api_version <- function(vapi) {

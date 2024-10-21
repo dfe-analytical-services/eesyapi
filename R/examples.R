@@ -13,7 +13,7 @@
 #' example_id()
 example_id <- function(
     level = "dataset",
-    environment = "dev",
+    environment = "test",
     group = "public-api-testing") {
   example_id_list <- list(
     attendance = list(
@@ -59,8 +59,8 @@ example_id <- function(
   if (!(group %in% names(example_id_list))) {
     stop(paste0("Chosen group (", group, ") not found in examples list."))
   }
-  if (!(environment %in% c("dev"))) {
-    stop(paste0("Chosen environment (", environment, ") should be one of: \"dev\"."))
+  if (!(environment %in% c("dev", "test"))) {
+    stop(paste0("Chosen environment (", environment, ") should be one of: \dev or test."))
   }
 
   group_examples <- example_id_list |>

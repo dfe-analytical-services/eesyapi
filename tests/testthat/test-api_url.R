@@ -1,7 +1,7 @@
 test_that("api_url", {
   expect_equal(
     api_url(),
-    "https://dev.statistics.api.education.gov.uk/api/v1.0/publications?"
+    "https://test.statistics.api.education.gov.uk/api/v1.0/publications?"
   )
   expect_error(
     api_url(api_version = "1.x")
@@ -15,7 +15,7 @@ test_that("api_url", {
   expect_equal(
     api_url(endpoint = "post-data", dataset_id = example_id()),
     paste0(
-      "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/",
+      "https://test.statistics.api.education.gov.uk/api/v1.0/data-sets/",
       example_id(),
       "/query"
     )
@@ -34,7 +34,7 @@ test_that("api_url", {
       dataset_version = 2.1
     ),
     paste0(
-      "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/",
+      "https://test.statistics.api.education.gov.uk/api/v1.0/data-sets/",
       example_id(),
       "/query?dataSetVersion=2.1"
     )
@@ -61,7 +61,7 @@ test_that("api_url", {
   expect_equal(
     api_url("get-csv", dataset_id = example_id("dataset")),
     paste0(
-      "https://dev.statistics.api.education.gov.uk/api/v1.0/data-sets/",
+      "https://test.statistics.api.education.gov.uk/api/v1.0/data-sets/",
       example_id("dataset"),
       "/csv"
     )
