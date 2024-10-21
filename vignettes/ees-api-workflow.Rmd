@@ -13,8 +13,9 @@ knitr::opts_chunk$set(
   comment = "#>"
   
 )
-devtools::load_all(".")
-
+if(!require("eesyapi")) {
+  devtools::load_all(".")
+}
 ```
 
 ```{r setup}
