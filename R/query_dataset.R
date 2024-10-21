@@ -193,6 +193,12 @@ query_dataset <- function(
       )
     )
   }
+  if(is.null(indicators)){
+    warning("No indicators provided, defaulted to using all indicators from meta data")
+    indicators <- get_meta(dataset_id) |>
+      magrittr::extract2("indicators") |>
+      pull("col_id")
+  }
   if (method == "POST") {
     eesyapi::post_dataset(
       dataset_id = dataset_id,
