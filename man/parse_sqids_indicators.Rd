@@ -17,9 +17,8 @@ parse_sqids_indicators(indicators, meta, verbose = FALSE)
 Data frame
 }
 \description{
-The API uses unique IDs (sqids) to identify each filter column and its contents (filter items).
-This function parses those into the data creators' id and item labels based on the meta data
-stored on the API for the data set.
+The API uses unique IDs (sqids) to identify each indicator column. This function parses those
+into the data creators' column names based on the meta data stored on the API for the data set.
 }
 \examples{
 example_data_raw(group = "attendance") |>

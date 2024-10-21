@@ -27,7 +27,7 @@ parse_sqids_locations <- function(locations, meta, verbose = FALSE) {
         lookup |>
           dplyr::filter(!!rlang::sym("geographic_level_code") == level) |>
           dplyr::select(-dplyr::all_of(c("geographic_level_code", "geographic_level"))) |>
-          dplyr::rename_with(~ paste0(tolower(level), "_", .x), !matches("item_id")),
+          dplyr::rename_with(~ paste0(tolower(level), "_", .x), !dplyr::matches("item_id")),
         by = dplyr::join_by("item_id")
       ) |>
       dplyr::select(-"item_id")
@@ -94,9 +94,8 @@ parse_sqids_filters <- function(filters, meta, verbose = FALSE) {
 #' Parse IDs in a set of indicators
 #'
 #' @description
-#' The API uses unique IDs (sqids) to identify each filter column and its contents (filter items).
-#' This function parses those into the data creators' id and item labels based on the meta data
-#' stored on the API for the data set.
+#' The API uses unique IDs (sqids) to identify each indicator column. This function parses those
+#' into the data creators' column names based on the meta data stored on the API for the data set.
 #'
 #' @inheritParams parse_sqids_filters
 #' @param indicators A set of indicator columns as taken from a data set downloaded from the API

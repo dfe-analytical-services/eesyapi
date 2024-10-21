@@ -93,7 +93,12 @@ example_id <- function(
   }
 }
 
-#' Title
+#' Example raw data
+#'
+#' @description
+#' Download some example raw data. Mainly intended for use in developing / testing the sqid parsing
+#' or as an example of getting raw data if any end users would prefer to do the sqid parsing
+#' themselves.
 #'
 #' @inheritParams example_id
 #' @param size Number of rows to return (max = 1000)

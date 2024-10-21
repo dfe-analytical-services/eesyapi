@@ -2,7 +2,7 @@
 % Please edit documentation in R/examples.R
 \name{example_data_raw}
 \alias{example_data_raw}
-\title{Title}
+\title{Example raw data}
 \usage{
 example_data_raw(group = "attendance", size = 32)
 }
@@ -15,7 +15,9 @@ example_data_raw(group = "attendance", size = 32)
 Nested list form of example data from the API
 }
 \description{
-Title
+Download some example raw data. Mainly intended for use in developing / testing the sqid parsing
+or as an example of getting raw data if any end users would prefer to do the sqid parsing
+themselves.
 }
 \examples{
 example_data_raw()
