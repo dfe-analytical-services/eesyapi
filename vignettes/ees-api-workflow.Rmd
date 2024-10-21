@@ -13,9 +13,6 @@ knitr::opts_chunk$set(
   comment = "#>"
   
 )
-if(!require("eesyapi")) {
-  devtools::load_all(".")
-}
 ```
 
 ```{r setup}
@@ -113,18 +110,20 @@ filtered on the values in the `$time_period` code column.
 In this example, let's say we've run `eesyapi::get_meta("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")`
 and we want to filter our data set to obtain data for:
 
-- the "Week 51" time period, 
-- "York" and "England" from the locations,
+- the "Week 26" time period in "2024", 
+- "York" and "England" from the geographies,
 - "Absence" from Attendance status
 - "Approved educational activity", "Authorised" and "Unauthorised" from Attendance type
+- Just the "Total" entries for "reason" and "day_number"
 - And we want to see "Number of sessions" data values.
 
 For this we would need the following codes / item_ids:
 
-- "W51"
+- "2024 W26"
 - "jfhAM" and "dP0Zw"
 - "7SdXo"
 - "6AXrf", "0k3T5" and "YdkHK"
+- "uLQo4" and "bBrtT"
 - "bqZtT"
 
 Note that whilst the above IDs are unique within a given item type (e.g. `filter_item`), they are
@@ -140,11 +139,11 @@ following example pieces of query code.
 eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("time_periods") |>
   dplyr::filter(
-    label %in% c("2023 Week 51")
+    label %in% c("2024 Week 26")
   )
 ```
 
-### Locations
+### Geographies
 ``` {r}
 eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("locations") |>
@@ -157,7 +156,7 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("filter_items") |>
   dplyr::filter(
-    item_label %in% c("Absence", "Approved educational activity", "Authorised", "Unauthorised")
+    item_label %in% c("Absence", "Approved educational activity", "Authorised", "Unauthorised", "Total")
   )
 ```
 
@@ -171,24 +170,112 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   )
 ```
 
-## Posting a query of a data set
+## Retrieving data from a data set
 
 We'll now use the element item_ids from the meta data to build queries of the data set.
 
+### Using `query_dataset()`
 
-### Get the entirety of a single data set
+The recommended go-to option for retrieving data is the `query_dataset()` function. This provides
+options for attaching a pre-made json file to a query, attaching a pre-made json string or passing
+a set of IDs as parameters to create a query for you.
 
-### Post a simple query of a single data set
+#### Querying a data set using parameters
 
-### Post a more complex query of a single data set
+`query_dataset()` can be given a set of parameters to build up a query for you. Behind the scenes
+it creates a json string based on the parameters provided to it by the user. This inherently limits
+the extent of the type of queries that you can perform, but it should cover most basic use cases.
 
-## Useful notes on handling the data once you've got it
+The parameters that you'll can provide to build up your query are:
+- `time_periods`
+- `locations`
+- `filter_items`
+- `indicators` (required)
+
+All these are optional, except for `indicators` which you must always specify. If you don't provide 
+any of `time_periods`, `locations` or `filter_items`, then you#ll receive all rows from the data 
+set (although be careful, this may take some time for larger data sets).
+
+Using the parameters we obtained from `get-meta` above, then we can create a query to return 
+session count data for only **Approved educational activity**, **Authorised** and **Unauthorised** 
+in the **Absences** category, **Nationally** for **York** in **Week 26** in **2024**, we would 
+supply the following:
+
+``` {r example-parameter-query}
+eesyapi::query_dataset(
+dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6", 
+indicators = "bqZtT",
+filter_items = list(
+  attendance_status = c("7SdXo"),
+  attendance_type = c("6AXrf", "0k3T5", "YdkHK"),
+  day_number = "uLQo4",
+  reason = "bBrtT"
+),
+geographies = c("NAT|id|dP0Zw", "LA|ID|jfhAM"),
+time_periods = c("2024|W26")
+)
+```
+
+Some notes on the above:
+
+- `indicators`, `time_periods`, `geographies` and `filter_items` can all be supplied as vectors - 
+`c(...)` - and will be interpreted as `filter(... %in% c(...))`.
+- `filter_items` can be supplied as a list to create more stringent cross-filter combinations, i.e. 
+in the above example rows will only be returned for the specific combinations given across the 4 
+filters.
+- `geographies` can be supplied as a data frame to allow for more complex queries such as "give me 
+all LAs in a given region". The structure for this can be seen by calling `example_geography_query()`.
+
+
+#### Querying a data set using a json file or string
+
+If you're familiar with using json and wish to just write your own query from scratch, then you can 
+use `query_dataset()` with the `json_query` parameter as follows:
+
+``` {r example-json-string-query}
+json_query = "{
+  \"criteria\": {
+    \"and\": [
+      {
+        \"filters\": {
+          \"eq\": \"7SdXo\"
+        }
+      },
+      {
+        \"locations\": {
+          \"eq\": {
+            \"level\": \"LA\",
+            \"id\": \"jfhAM\"
+          }
+        }
+      }
+    ]
+  },
+  \"indicators\": [
+    \"bqZtT\"
+  ],
+  \"debug\": false,
+  \"page\": 1,
+  \"pageSize\": 10
+}"
+eesyapi::query_dataset(
+dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6", 
+json_query = json_query
+)
+```
 
 ## FAQs
 
-### Are there any bandwidth / repeat connection constraints that I should know about?
-
 ### Why do you use IDs rather than the actual labels used in the data?
 
+The IDs are intended to aid in future proofing fir users that may develop automated pipelines that
+connect to the EES API. Labeling inevitably changes, for example local authorities sometimes get
+renamed or column labels are updated to be clearer. If the underlying content of that item stays
+the same, i.e. the renamed local authority still has the same boundaries, then automated pipelines
+will be required to still connect to the same item, therefore each item has an associated ID that
+will remain unchanged in a given data set as it is updated with new data over the subsequent
+releases, even if a renaming of a field occurs.
 
+### Are there any bandwidth / repeat connection constraints that I should know about?
 
+...
