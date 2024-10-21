@@ -11,7 +11,10 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
+  
 )
+devtools::load_all(".")
+
 ```
 
 ```{r setup}
@@ -46,7 +49,7 @@ Finding a data set ID via the API is a two step process. First, you'll need to f
 Querying the publication list:
 
 ```
-eesyapi::get_publication_catalogue()
+eesyapi::get_publications()
 ```
 
 This returns a list of all publications by id and title (along with slug, summary and date last published). 
@@ -54,13 +57,13 @@ From this list, you can find the title of the publication that you're interested
 associated publication ID.
 
 For example from the test list, we can pick out **"Attendance API data"**, which has an 
-id of **"b6d9ed96-be68-4791-abc3-08dcaba68c04"**. We can now use this in the function `eesyapi::get_publication_datasets()` to find all the data sets within that publication:
+id of **"b6d9ed96-be68-4791-abc3-08dcaba68c04"**. We can now use this in the function `eesyapi::get_data_catalogue()` to find all the data sets within that publication:
 
 ```
-eesyapi::get_publication_datasets("b6d9ed96-be68-4791-abc3-08dcaba68c04")
+eesyapi::get_data_catalogue("b6d9ed96-be68-4791-abc3-08dcaba68c04")
 ```
 
-This returns a data frame containing data set ids and titles (along with a summary, the status and information on what's in the latest version). This data set id can now be used as shown in the following sections to get a given data set's summary and meta data, and to query the data set itself.
+This returns a data frame containing data set ids and titles (along with a summary, the status and information on what's in the latest version). The data set ids can be used as shown in the following sections to get a given data set's summary and meta data, and to query the data set itself.
 
 ### Finding a data set ID on the EES website
 
@@ -77,18 +80,21 @@ taken to it's details page in the catalogue. On this page (pictured below), you'
 ## Getting the data set meta data
 
 When querying a data set via the API, indicator and filter items are referenced 
-using auto-generated ID codes. Therefore, in order to construct a query that 
+using auto-generated ID codes (known as SQIDs). Therefore, in order to construct a query that 
 involves selecting a subset of filter items or indicators, you'll need to obtain
 the codes associated with those elements.
 
-All those filter item and indicator codes are stored in a data sets meta data, 
+All those filter item and indicator codes are stored in a data set's meta data, 
 which can also be queried via the API. To get those codes as well as details on
 what time periods and geographic levels and locations are available in a given
 data set, you can use the function `eesyapi::get_meta()`, providing it with your 
-data set's ID:
+data set's ID (which you can obtain either using `eesyapi::get_data_catalogue()` or via
+the EES data catalogue). For example, to get the "attendance in schools" data from the example
+attendance API data publication, you can take the data set ID 
+`7c0e9201-c7c0-ff73-bee4-304e731ec0e6` and provide it as a parameter to `get_meta`:
 
 ```
-eesyapi::get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")
+eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
 ```
 
 This function returns a list of 5 data frames:
@@ -103,7 +109,7 @@ The item_id values provided in `$locations` and `$filter_items` are required to
 construct queries for filtering a given data set, whilst time periods can be 
 filtered on the values in the `$time_period` code column.
 
-In this example, let's say we've run `eesyapi::get_meta("d7329101-f275-d277-bbfe-d8cfaa709833")`
+In this example, let's say we've run `eesyapi::get_meta("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")`
 and we want to filter our data set to obtain data for:
 
 - the "Week 51" time period, 
@@ -115,15 +121,59 @@ and we want to filter our data set to obtain data for:
 For this we would need the following codes / item_ids:
 
 - "W51"
-- "HV9zL" and "BT7J3"
-- "uRBo4"
-- "G7Kgr", "3Km8u" and "RWdka"
-- "session_count"
+- "jfhAM" and "dP0Zw"
+- "7SdXo"
+- "6AXrf", "0k3T5" and "YdkHK"
+- "bqZtT"
 
-We'll use these codes / item_ids in the following section to build a demo data 
-query.
+Note that whilst the above IDs are unique within a given item type (e.g. `filter_item`), they are
+not necessarily unique between types. For example, a given `indicator` could be assigned the same 
+ID as a `filter_item` in a given data set.
+
+As a quick example of how you might quickly query the meta data for these codes, you could try the
+following example pieces of query code.
+
+### Time periods
+
+``` {r}
+eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+  magrittr::extract2("time_periods") |>
+  dplyr::filter(
+    label %in% c("2023 Week 51")
+  )
+```
+
+### Locations
+``` {r}
+eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+  magrittr::extract2("locations") |>
+  dplyr::filter(label %in% c("York", "England"))
+```
+
+### Filter items
+
+``` {r}
+eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+  magrittr::extract2("filter_items") |>
+  dplyr::filter(
+    item_label %in% c("Absence", "Approved educational activity", "Authorised", "Unauthorised")
+  )
+```
+
+### Indicators
+
+``` {r}
+eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+  magrittr::extract2("indicators") |>
+  dplyr::filter(
+    label %in% c("Session count")
+  )
+```
 
 ## Posting a query of a data set
+
+We'll now use the element item_ids from the meta data to build queries of the data set.
+
 
 ### Get the entirety of a single data set
 
