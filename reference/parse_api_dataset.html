@@ -58,7 +58,13 @@ parse_api_dataset()</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_api_dataset</span><span class="op">(</span><span class="va">api_data_result</span>, dataset_id <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_api_dataset</span><span class="op">(</span></span>
+<span>  <span class="va">api_data_result</span>,</span>
+<span>  <span class="va">dataset_id</span>,</span>
+<span>  dataset_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  api_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -70,11 +76,20 @@ parse_api_dataset()</p>
 
 
 <dt id="arg-dataset-id">dataset_id<a class="anchor" aria-label="anchor" href="#arg-dataset-id"></a></dt>
-<dd><p>ID of data set to be connected to.</p></dd>
+<dd><p>ID of data set to be connected to. This is required if the endpoint is one
+of "get-summary", "get-meta", "get-data" or "post-data"</p></dd>
+
+
+<dt id="arg-dataset-version">dataset_version<a class="anchor" aria-label="anchor" href="#arg-dataset-version"></a></dt>
+<dd><p>Version of data set to be connected to</p></dd>
+
+
+<dt id="arg-api-version">api_version<a class="anchor" aria-label="anchor" href="#arg-api-version"></a></dt>
+<dd><p>EES API version</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>Run in verbose mode, logical, default = FALSE</p></dd>
+<dd><p>Run with additional contextual messaging. Logical, default = FALSE</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -84,25 +99,140 @@ parse_api_dataset()</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="api_url.html">api_url</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="st">"get-data"</span>,</span></span>
-<span class="r-in"><span>  dataset_id <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span>, indicators <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"indicator"</span><span class="op">)</span>, page_size <span class="op">=</span> <span class="fl">10</span></span></span>
-<span class="r-in"><span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html" class="external-link">GET</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="st">"text"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">parse_api_dataset</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level    LA   NAT   SCH f2GYF tu1Em PbNeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2022/2023              SCH QIqwb dP0Zw 59BKd 9Rpn4 NwcLD   108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2022/2023              SCH QIqwb dP0Zw 59BKd HJjXz NwcLD    89</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2022/2023              SCH QIqwb dP0Zw 59BKd 7YbEX NwcLD   108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2022/2023              SCH QIqwb dP0Zw 59BKd iNW86 NwcLD     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2022/2023              SCH QIqwb dP0Zw 59BKd u9vRo NwcLD     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2022/2023              SCH QIqwb dP0Zw 59BKd XHEvf NwcLD     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2022/2023              SCH QIqwb dP0Zw 59BKd LleUW NwcLD     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2022/2023              SCH QIqwb dP0Zw 59BKd a2eWL NwcLD     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2022/2023              SCH QIqwb dP0Zw 59BKd Bfbf7 NwcLD     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2022/2023              SCH QIqwb dP0Zw 59BKd qGKqj NwcLD     z</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="example_data_raw.html">example_data_raw</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"attendance"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">parse_api_dataset</span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"attendance"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    code period geographic_level  la_name   la_code la_oldCode nat_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  W26   2024               LA Havering E09000016        311  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     nat_code reg_name  reg_code attendance_status               attendance_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  E92000001   London E12000007        Attendance                       Present</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  E92000001   London E12000007        Attendance Approved educational activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  E92000001   London E12000007        Attendance                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  E92000001   London E12000007           Absence                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  E92000001   London E12000007           Absence                  Unauthorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  E92000001   London E12000007     Late sessions                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  E92000001   London E12000007 Possible sessions                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  E92000001   London E12000007        Attendance                       Present</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 E92000001   London E12000007        Attendance                       Present</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 E92000001   London E12000007        Attendance                       Present</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 E92000001   London E12000007        Attendance                       Present</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 E92000001   London E12000007           Absence                    Authorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 E92000001   London E12000007        Attendance Approved educational activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 E92000001   London E12000007        Attendance Approved educational activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 E92000001   London E12000007        Attendance Approved educational activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 E92000001   London E12000007        Attendance Approved educational activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 E92000001   London E12000007        Attendance Approved educational activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 E92000001   London E12000007           Absence                  Unauthorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27 E92000001   London E12000007           Absence                  Unauthorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 E92000001   London E12000007           Absence                  Unauthorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 E92000001   London E12000007    Not determined                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 E92000001   London E12000007    Not determined                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 E92000001   London E12000007    Not determined                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32 E92000001   London E12000007    Not determined                Not determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    day_number establishment_phase                                     reason</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8           1             Primary                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9           1             Primary                                 Present am</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10          1             Primary                                 Present pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11          1             Primary                                    Present</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12          1             Primary     L present late before registers closed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13          1             Primary                       I authorised illness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14          1             Primary                M authorised medical dental</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15          1             Primary          R authorised religious observance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16          1             Primary                   S authorised study leave</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17          1             Primary                   T authorised grt absence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18          1             Primary                       H authorised holiday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19          1             Primary                      E authorised excluded</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20          1             Primary                         C authorised other</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21          1             Primary                       B education off site</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22          1             Primary                        D dual registration</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23          1             Primary               P approved sporting activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24          1             Primary                   V educational visit trip</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25          1             Primary                          W work experience</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26          1             Primary                     G unauthorised holiday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27          1             Primary U unauthorised late after registers closed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28          1             Primary                       O other unauthorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29          1             Primary                            N no reason yet</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30          1             Primary               Not attending planned closed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31          1             Primary           Y not attending enforced closure</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32          1             Primary                Z not attending not on roll</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    session_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          32342</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            605</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          32947</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           1955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           1455</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6            500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7            404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8          34902</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9          15783</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10         16180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11         31963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12           379</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13          1153</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14            84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15             4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17            14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18            30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19             3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20           167</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21           120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23            16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24           383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26           241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27            25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28           192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29            42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31             2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32           124</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

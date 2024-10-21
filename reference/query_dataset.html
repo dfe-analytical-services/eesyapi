@@ -403,11 +403,11 @@ locations to be queried.</p></dd>
 
 
 <dt id="arg-debug">debug<a class="anchor" aria-label="anchor" href="#arg-debug"></a></dt>
-<dd><p>Run POST query in debug mode: logic, default: FALSE</p></dd>
+<dd><p>Run POST query in debug mode. Logical, default = FALSE</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>Run with additional contextual messaging, logical, default = FALSE</p></dd>
+<dd><p>Run with additional contextual messaging. Logical, default = FALSE</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -423,25 +423,33 @@ locations to be queried.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"attendance"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  json_query <span class="op">=</span> <span class="fu"><a href="example_json_query.html">example_json_query</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Parsing query options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   code period geographic_level   NAT   REG Db3Qe emJuS 4kdUZ 5TYdi mU59K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  W23   2024              REG dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  W23   2024              REG dP0Zw rg3Nj pmRSo CvuId crH31 uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf crH31 uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo CvuId crH31 uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo 6AXrf crH31 uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo 6AXrf ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        bqZtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1862256</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      35007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      74898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       1020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     870024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      17506</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   20145467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     401209</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code period geographic_level nat_name  nat_code      reg_name  reg_code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   attendance_status               attendance_type day_number</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        Attendance                       Present      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        Attendance Approved educational activity      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Attendance                       Present      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        Attendance Approved educational activity      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        Attendance                       Present      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        Attendance Approved educational activity      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Attendance                       Present      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8        Attendance Approved educational activity      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   establishment_phase reason session_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           Secondary  Total       1862256</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           Secondary  Total         35007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             Special  Total         74898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             Special  Total          1020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             Special  Total        870024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6             Special  Total         17506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7           Secondary  Total      20145467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8           Secondary  Total        401209</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If you don't want to have tio write your own json query, the rest of the examples illustrate</span></span></span>
 <span class="r-in"><span><span class="co"># how to use query_dataset() with parameters to construct queries in R.</span></span></span>
@@ -457,72 +465,105 @@ locations to be queried.</p></dd>
 <span class="r-in"><span>  page <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>  page_size <span class="op">=</span> <span class="fl">32</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code period geographic_level   NAT   REG Db3Qe emJuS 4kdUZ 5TYdi mU59K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   W23   2024              REG dP0Zw rg3Nj pmRSo CvuId XVWfK qf0jG bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf XVWfK qf0jG bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   W23   2024              REG dP0Zw rg3Nj pmRSo CvuId XVWfK qf0jG GzNgr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   W23   2024              REG dP0Zw rg3Nj pmRSo CvuId XVWfK qf0jG 3Nk8u</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   W23   2024              REG dP0Zw rg3Nj pmRSo CvuId XVWfK qf0jG rGcNj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   W23   2024              REG dP0Zw rg3Nj pmRSo CvuId XVWfK qf0jG PyBeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf XVWfK qf0jG t74Em</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf XVWfK qf0jG jYyAM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf XVWfK qf0jG oWvmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf XVWfK qf0jG ea0uS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf XVWfK qf0jG 5USdi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  W23   2024              REG dP0Zw rg3Nj pmRSo CvuId crH31 qf0jG bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf crH31 qf0jG bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  W23   2024              REG dP0Zw rg3Nj pmRSo CvuId crH31 qf0jG GzNgr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  W23   2024              REG dP0Zw rg3Nj pmRSo CvuId crH31 qf0jG 3Nk8u</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16  W23   2024              REG dP0Zw rg3Nj pmRSo CvuId crH31 qf0jG rGcNj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  W23   2024              REG dP0Zw rg3Nj pmRSo CvuId crH31 qf0jG PyBeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf crH31 qf0jG t74Em</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf crH31 qf0jG jYyAM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf crH31 qf0jG oWvmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf crH31 qf0jG ea0uS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22  W23   2024              REG dP0Zw rg3Nj pmRSo 6AXrf crH31 qf0jG 5USdi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo CvuId crH31 qf0jG bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo 6AXrf crH31 qf0jG bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo CvuId crH31 qf0jG GzNgr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo CvuId crH31 qf0jG 3Nk8u</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo CvuId crH31 qf0jG rGcNj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo CvuId crH31 qf0jG PyBeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo 6AXrf crH31 qf0jG t74Em</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo 6AXrf crH31 qf0jG jYyAM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo 6AXrf crH31 qf0jG oWvmX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32  W23   2024              NAT dP0Zw  &lt;NA&gt; pmRSo 6AXrf crH31 qf0jG ea0uS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         bqZtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      475991</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        5235</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      234417</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      236991</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      471408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        4583</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         452</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         552</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       4225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      14497</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14       7206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15       7203</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16      14409</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17         88</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18        103</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19         26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21         24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23     157670</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24       2611</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25      77609</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26      78597</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27     156206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28       1464</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29       2132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30        287</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31         46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32        343</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    code period geographic_level nat_name  nat_code      reg_name  reg_code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  W23   2024              REG  England E92000001 East Midlands E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  W23   2024              NAT  England E92000001          &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    attendance_status               attendance_type day_number</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28        Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32        Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    establishment_phase                                 reason session_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              Primary                                  Total        475991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              Primary                                  Total          5235</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              Primary                             Present am        234417</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              Primary                             Present pm        236991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5              Primary                                Present        471408</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6              Primary L present late before registers closed          4583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7              Primary                   B education off site           452</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8              Primary                    D dual registration           226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9              Primary           P approved sporting activity           552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10             Primary               V educational visit trip          4225</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11             Primary                      W work experience             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12             Special                                  Total         14497</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13             Special                                  Total           130</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14             Special                             Present am          7206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15             Special                             Present pm          7203</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16             Special                                Present         14409</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17             Special L present late before registers closed            88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18             Special                   B education off site           103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19             Special                    D dual registration            26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20             Special           P approved sporting activity             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21             Special               V educational visit trip            24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22             Special                      W work experience             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23             Special                                  Total        157670</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24             Special                                  Total          2611</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25             Special                             Present am         77609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26             Special                             Present pm         78597</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27             Special                                Present        156206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28             Special L present late before registers closed          1464</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29             Special                   B education off site          2132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30             Special                    D dual registration           287</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31             Special           P approved sporting activity            46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32             Special               V educational visit trip           343</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run query_dataset() using set parameters giving a combination of filter options</span></span></span>
 <span class="r-in"><span><span class="fu">query_dataset</span><span class="op">(</span></span></span>
@@ -538,15 +579,33 @@ locations to be queried.</p></dd>
 <span class="r-in"><span>    reason <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bBrtT"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   code period geographic_level   NAT 5TYdi mU59K Db3Qe emJuS 4kdUZ      bqZtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo CvuId crH31     870024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo 6AXrf crH31      17506</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo 0k3T5 crH31      88094</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo YdkHK crH31      37748</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo CvuId ThDPJ   20145467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  W23   2024              NAT dP0Zw uLQo4 bBrtT pmRSo 6AXrf ThDPJ     401209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo 0k3T5 ThDPJ    1093633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  W23   2024              NAT dP0Zw uLQo4 bBrtT 7SdXo YdkHK ThDPJ     956076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code period geographic_level nat_name  nat_code attendance_status</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  W23   2024              NAT  England E92000001        Attendance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  W23   2024              NAT  England E92000001        Attendance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  W23   2024              NAT  England E92000001           Absence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  W23   2024              NAT  England E92000001           Absence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  W23   2024              NAT  England E92000001        Attendance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  W23   2024              NAT  England E92000001        Attendance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  W23   2024              NAT  England E92000001           Absence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  W23   2024              NAT  England E92000001           Absence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 attendance_type day_number establishment_phase reason</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       Present      Total             Special  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Approved educational activity      Total             Special  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    Authorised      Total             Special  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                  Unauthorised      Total             Special  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 Approved educational activity      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                    Authorised      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                  Unauthorised      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   session_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        870024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         17506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         88094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         37748</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      20145467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        401209</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       1093633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8        956076</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run a query with a more complex geography selection. Return data for all of:</span></span></span>
 <span class="r-in"><span><span class="co">#   - England</span></span></span>
@@ -555,8 +614,8 @@ locations to be queried.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="example_geography_query.html">example_geography_query</a></span><span class="op">(</span><span class="st">"nat_yorks_yorkslas"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   return_level search_level identifier_type identifier</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1          NAT          NAT            code  E92000001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          REG          REG            code  E12000004</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           LA          REG            code  E12000004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          REG          REG            code  E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           LA          REG            code  E12000003</span>
 <span class="r-in"><span><span class="fu">query_dataset</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"attendance"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  indicators <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"indicator"</span>, group <span class="op">=</span> <span class="st">"attendance"</span><span class="op">)</span>,</span></span>
@@ -570,32 +629,78 @@ locations to be queried.</p></dd>
 <span class="r-in"><span>    reason <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bBrtT"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code period geographic_level    LA   NAT   REG Db3Qe emJuS 4kdUZ 5TYdi mU59K</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   W23   2024               LA mWI9K dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   W23   2024               LA hZYyW dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   W23   2024               LA 5RVdi dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   W23   2024               LA TkqPJ dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   W23   2024               LA eyjuS dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   W23   2024               LA eLGuS dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   W23   2024               LA BSk7J dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   W23   2024               LA gJZO9 dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   W23   2024              REG  &lt;NA&gt; dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  W23   2024              NAT  &lt;NA&gt; dP0Zw  &lt;NA&gt; pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  W23   2024               LA eLTuS dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  W23   2024               LA jHaAM dP0Zw rg3Nj pmRSo CvuId ThDPJ uLQo4 bBrtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         bqZtT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      131228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       21456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      194011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      147391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      121030</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      294233</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      244947</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      296357</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     1862256</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   20145467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11     134245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12     277358</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    code period geographic_level                     la_name   la_code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   W23   2024               LA                   Doncaster E08000017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   W23   2024               LA    East Riding of Yorkshire E06000011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   W23   2024               LA     North East Lincolnshire E06000012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   W23   2024               LA                    Kirklees E08000034</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   W23   2024               LA                   Rotherham E08000018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   W23   2024               LA                  Calderdale E08000033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   W23   2024               LA                    Bradford E08000032</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   W23   2024               LA                       Leeds E08000035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   W23   2024               LA                   Wakefield E08000036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  W23   2024               LA          North Lincolnshire E06000013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  W23   2024               LA Kingston upon Hull, City of E06000010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  W23   2024               LA                        York E06000014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  W23   2024               LA                    Barnsley E08000016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  W23   2024               LA             North Yorkshire E06000065</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  W23   2024               LA                   Sheffield E08000019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  W23   2024              REG                        &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  W23   2024              NAT                        &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    la_oldCode nat_name  nat_code                 reg_name  reg_code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         371  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         811  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         812  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         382  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         372  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         381  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         380  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         383  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         384  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        813  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        810  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        816  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        370  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        815  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        373  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16       &lt;NA&gt;  England E92000001 Yorkshire and The Humber E12000003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17       &lt;NA&gt;  England E92000001                     &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    attendance_status attendance_type day_number establishment_phase reason</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17        Attendance         Present      Total           Secondary  Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    session_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         100362</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         122064</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          64103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         193988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         114645</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          91976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         259606</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         337686</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         144054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10         73286</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        100724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12         68239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13         95796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        222434</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        194561</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16       2183524</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      20145467</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run a basic query using GET instead of POST</span></span></span>
 <span class="r-in"><span><span class="fu">query_dataset</span><span class="op">(</span></span></span>
@@ -609,17 +714,39 @@ locations to be queried.</p></dd>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using GET to query a data set offers limited functionality, we recommend using POST alongside a JSON structured query instead:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>    - query_dataset(..., method = 'POST')</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level    LA   NAT   SCH tu1Em f2GYF PbNeb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb 9Rpn4  1777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb HJjXz  1505</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb 7YbEX  1505</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb iNW86   510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb u9vRo     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb XHEvf    18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb LleUW   524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb a2eWL     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb Bfbf7     z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2022/2023              SCH H0RzL dP0Zw mLJt9 wEZcb qGKqj     z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level    la_name   la_code la_oldCode nat_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2022/2023              SCH Manchester E08000003        352  England</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     nat_code       sch_name sch_urn sch_laEstab establishment_type      type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  E92000001 Loreto College  130503     3528601 Sixth Form College      1618</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  E92000001 Loreto College  130503     3528601 Sixth Form College      ALEV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  E92000001 Loreto College  130503     3528601 Sixth Form College      ACAD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  E92000001 Loreto College  130503     3528601 Sixth Form College      AGEN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  E92000001 Loreto College  130503     3528601 Sixth Form College      TLEV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  E92000001 Loreto College  130503     3528601 Sixth Form College TLEVDENOM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  E92000001 Loreto College  130503     3528601 Sixth Form College AGENDENOM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  E92000001 Loreto College  130503     3528601 Sixth Form College SCOPE_L3M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  E92000001 Loreto College  130503     3528601 Sixth Form College  TechCert</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 E92000001 Loreto College  130503     3528601 Sixth Form College  ANYL2VOC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    total_pupil_value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1               1777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2               1505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3               1505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                510</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                  z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                 18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                524</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                  z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                  z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                 z</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

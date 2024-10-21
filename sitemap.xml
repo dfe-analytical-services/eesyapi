@@ -12,6 +12,8 @@
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/api_url_pages.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/api_url_query.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/convert_api_filter_type.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/eesyapi-package.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/example_data_raw.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/example_geography_query.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/example_id.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/example_json_query.html</loc></url>
@@ -27,6 +29,9 @@
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_meta_filter_item_ids.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_meta_location_ids.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_meta_time_periods.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_sqids_filters.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_sqids_indicators.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_sqids_locations.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_tojson_filter.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_tojson_filter_eq.html</loc></url>
 <url><loc>https://dfe-analytical-services.github.io/eesyapi/reference/parse_tojson_filter_in.html</loc></url>
