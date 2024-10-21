@@ -49,18 +49,19 @@ Querying the publication list:
 eesyapi::get_publications()
 ```
 
-This returns a list of all publications by id and title (along with slug, summary and date last published). 
+This returns a list of all publications by ID and title (along with slug, summary and date last published). 
 From this list, you can find the title of the publication that you're interested in and pick out the 
 associated publication ID.
 
-For example from the test list, we can pick out **"Attendance API data"**, which has an 
-id of **"b6d9ed96-be68-4791-abc3-08dcaba68c04"**. We can now use this in the function `eesyapi::get_data_catalogue()` to find all the data sets within that publication:
+For example from the test list, we can pick out **"Attendance API data"**, which has an ID of 
+**"b6d9ed96-be68-4791-abc3-08dcaba68c04"**. We can now use this in the function 
+`eesyapi::get_data_catalogue()` to find all the data sets within that publication:
 
 ```
 eesyapi::get_data_catalogue("b6d9ed96-be68-4791-abc3-08dcaba68c04")
 ```
 
-This returns a data frame containing data set ids and titles (along with a summary, the status and information on what's in the latest version). The data set ids can be used as shown in the following sections to get a given data set's summary and meta data, and to query the data set itself.
+This returns a data frame containing data set IDs and titles (along with a summary, the status and information on what's in the latest version). The data set IDs can be used as shown in the following sections to get a given data set's summary and meta data, and to query the data set itself.
 
 ### Finding a data set ID on the EES website
 
@@ -178,13 +179,13 @@ We'll now use the element item_ids from the meta data to build queries of the da
 ### Using `query_dataset()`
 
 The recommended go-to option for retrieving data is the `query_dataset()` function. This provides
-options for attaching a pre-made json file to a query, attaching a pre-made json string or passing
+options for attaching a pre-made JSON file to a query, attaching a pre-made JSON string or passing
 a set of IDs as parameters to create a query for you.
 
 #### Querying a data set using parameters
 
 `query_dataset()` can be given a set of parameters to build up a query for you. Behind the scenes
-it creates a json string based on the parameters provided to it by the user. This inherently limits
+it creates a JSON string based on the parameters provided to it by the user. This inherently limits
 the extent of the type of queries that you can perform, but it should cover most basic use cases.
 
 The parameters that you'll can provide to build up your query are:
@@ -228,9 +229,9 @@ filters.
 all LAs in a given region". The structure for this can be seen by calling `example_geography_query()`.
 
 
-#### Querying a data set using a json file or string
+#### Querying a data set using a JSON file or string
 
-If you're familiar with using json and wish to just write your own query from scratch, then you can 
+If you're familiar with using JSON and wish to just write your own query from scratch, then you can 
 use `query_dataset()` with the `json_query` parameter as follows:
 
 ``` {r example-json-string-query}
@@ -264,6 +265,23 @@ eesyapi::query_dataset(
   json_query = json_query
 )
 ```
+
+#### Downloading an entire data set in a single file
+
+Whilst the above are best used for automated pipeline workflows, the EES API also has an connection
+to just download the entirety of the underlying data file for a given data set. This bypasses the 
+use of IDs, making it a simpler short-term option to retrieve data, but with the risk of creating
+breaking changes in automated pipelines should element labels change.
+
+Using `eesyapi`, you can retrieve a data set using `download_dataset()` and providing the data set 
+ID as follows:
+
+```
+download_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
+```
+
+This will return a data frame containing the data in the form that DfE analysts uploaded it to 
+EES in.
 
 ## FAQs
 
