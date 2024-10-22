@@ -61,7 +61,11 @@ who wish to generate their own URLs.</p>
 
 
 <dl><dt id="arg-page-size">page_size<a class="anchor" aria-label="anchor" href="#arg-page-size"></a></dt>
-<dd><p>Number of results to return in a single query (max 40)</p></dd>
+<dd><p>Number of rows to return in a single query. The maximum allowable value varies
+between query type:</p><ul><li><p>get_publications: 40</p></li>
+<li><p>get_data_catalogue: 20</p></li>
+<li><p>query_dataset: 10000</p></li>
+</ul></dd>
 
 
 <dt id="arg-page">page<a class="anchor" aria-label="anchor" href="#arg-page"></a></dt>
