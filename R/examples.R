@@ -67,7 +67,7 @@ example_id <- function(
       )
       # TODO: add in test pupil attendance details here
     ),
-    `public-api-testing` = list(
+    absence = list(
       dev = list(
         publication = "d823e4df-626f-4450-9b21-08dc8b95fc02",
         dataset = "830f9201-9e11-ad75-8dcd-d2efe2834457",
