@@ -56,8 +56,15 @@ example_id <- function(
         indicator = "PbNeb"
       ),
       test = list(
-        publication = "25d0e40b-643a-4f73-3ae5-08dcf1c4d57f" # ,
-        # TODO: complete this for absence data file
+        publication = "25d0e40b-643a-4f73-3ae5-08dcf1c4d57f",
+        dataset = "e1ae9201-2fff-d376-8fa3-bd3c3660d4c8",
+        location_id = "NAT|id|mRj9K",
+        location_code = "NAT|code|E92000001",
+        filter = "arLPb",
+        filter_item = "VN5XE",
+        filter_items = c("VN5XE", "PEebW"),
+        indicator = "dPe0Z",
+        indicators = c("OBXCL", "7YFXo")
       )
     )
   )
