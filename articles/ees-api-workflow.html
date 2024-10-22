@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eesyapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,6 +139,30 @@ data.</p>
 </div>
 </div>
 <div class="section level2">
+<h2 id="preview-underlying-data">Preview underlying data<a class="anchor" aria-label="anchor" href="#preview-underlying-data"></a>
+</h2>
+<p>In the EES API you have the option to preview the underlying data for
+a given data set. This bypasses the use of IDs, making it a simpler
+short-term option to explore the available data.</p>
+<p>Using <code>eesyapi</code>, you can preview a data set using
+<code><a href="../reference/preview_dataset.html">preview_dataset()</a></code> and providing the data set ID as
+follows:</p>
+<pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/preview_dataset.html">preview_dataset</a></span><span class="op">(</span><span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span></span></code></pre>
+<p>This will return a data frame containing the first 10 rows of the
+data in the form that DfE analysts uploaded it to EES in.</p>
+<p>While you can set n_max to Inf, and get the whole data set using
+this, you should avoid relying on the <code><a href="../reference/preview_dataset.html">preview_dataset()</a></code>
+function in your pipelines or dashboards and instead use it to explore
+the data as you create your own custom query using
+<code><a href="../reference/query_dataset.html">query_dataset()</a></code>.</p>
+<p>If you only read the whole file in using the preview you risk:</p>
+<ul>
+<li>code breaking whenever element labels change</li>
+<li>reading in too much data into active memory, causing R to slow or
+even crash</li>
+</ul>
+</div>
+<div class="section level2">
 <h2 id="getting-the-data-set-meta-data">Getting the data set meta data<a class="anchor" aria-label="anchor" href="#getting-the-data-set-meta-data"></a>
 </h2>
 <p>When querying a data set via the API, column names (indicators and
@@ -210,7 +234,7 @@ code.</p>
 <div class="section level3">
 <h3 id="time-periods">Time periods<a class="anchor" aria-label="anchor" href="#time-periods"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"time_periods"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
@@ -222,7 +246,7 @@ code.</p>
 <div class="section level3">
 <h3 id="geographies">Geographies<a class="anchor" aria-label="anchor" href="#geographies"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"locations"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">label</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"York"</span>, <span class="st">"England"</span><span class="op">)</span><span class="op">)</span></span>
@@ -235,7 +259,7 @@ code.</p>
 </h3>
 <p>Note that the col_id values here correspond to the col_id values in
 the filter items, which shows which column each item is availble in.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"filter_columns"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   col_id            col_name               label</span></span>
@@ -248,7 +272,7 @@ the filter items, which shows which column each item is availble in.</p>
 <div class="section level3">
 <h3 id="filter-items">Filter items<a class="anchor" aria-label="anchor" href="#filter-items"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"filter_items"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
@@ -268,7 +292,7 @@ the filter items, which shows which column each item is availble in.</p>
 <div class="section level3">
 <h3 id="indicators">Indicators<a class="anchor" aria-label="anchor" href="#indicators"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"indicators"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
@@ -281,23 +305,6 @@ the filter items, which shows which column each item is availble in.</p>
 <div class="section level2">
 <h2 id="retrieving-data-from-a-data-set">Retrieving data from a data set<a class="anchor" aria-label="anchor" href="#retrieving-data-from-a-data-set"></a>
 </h2>
-<div class="section level3">
-<h3 id="downloading-an-entire-data-set-in-a-single-file">Downloading an entire data set in a single file<a class="anchor" aria-label="anchor" href="#downloading-an-entire-data-set-in-a-single-file"></a>
-</h3>
-<p>Whilst specific queries (as detailed in the following sections) are
-best used for automated pipeline workflows, the EES API also offers the
-option to just download the entirety of the underlying data file for a
-given data set. This bypasses the use of IDs, making it a simpler
-short-term option to retrieve data, but with the risk of creating
-breaking changes in automated pipelines should element labels
-change.</p>
-<p>Using <code>eesyapi</code>, you can retrieve a data set using
-<code><a href="../reference/download_dataset.html">download_dataset()</a></code> and providing the data set ID as
-follows:</p>
-<pre><code><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span><span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span></span></code></pre>
-<p>This will return a data frame containing the data in the form that
-DfE analysts uploaded it to EES in.</p>
-</div>
 <div class="section level3">
 <h3 id="using-query_dataset">Using <code>query_dataset()</code><a class="anchor" aria-label="anchor" href="#using-query_dataset"></a>
 </h3>
