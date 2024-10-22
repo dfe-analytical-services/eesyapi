@@ -152,6 +152,8 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 
 ### Filter columns
 
+Note that the col_id values here correspond to the col_id values in the filter items, which shows which column each item is availble in.
+
 ``` {r}
 eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("filter_columns")
