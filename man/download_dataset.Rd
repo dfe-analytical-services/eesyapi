@@ -7,22 +7,18 @@
 download_dataset(
   dataset_id,
   dataset_version = NULL,
-  ees_environment = NULL,
   api_version = NULL,
   verbose = FALSE
 )
 }
 \arguments{
-\item{dataset_id}{ID of data set to be connected to. This is required if the endpoint is one
-of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
+\item{dataset_id}{ID of data set}
 
-\item{dataset_version}{Version of data set to be connected to}
-
-\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
+\item{dataset_version}{Version number of data set}
 
 \item{api_version}{EES API version}
 
-\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
+\item{verbose}{Run with additional contextual messaging, logical, default = FALSE}
 }
 \value{
 data.frame
