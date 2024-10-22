@@ -12,7 +12,7 @@ reference:
   - get_publications
   - get_data_catalogue
   - get_meta
-  - download_dataset
+  - preview_dataset
   - query_dataset
 
 - title: Support for generating API URLs and interpreting responses
