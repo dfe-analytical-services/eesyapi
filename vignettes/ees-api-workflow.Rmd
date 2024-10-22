@@ -75,19 +75,42 @@ taken to it's details page in the catalogue. On this page (pictured below), you'
 
 ![An example of an API data set's details](ees-data-catalogue-details-api-data-set.png)
 
+## Preview underlying data
+
+In the EES API you have the option to preview the underlying data for a given data set. 
+This bypasses the use of IDs, making it a simpler short-term option to explore the available data.
+
+Using `eesyapi`, you can preview a data set using `preview_dataset()` and providing the data set 
+ID as follows:
+
+```
+eesyapi::preview_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
+```
+
+This will return a data frame containing the first 10 rows of the data in the form that DfE 
+analysts uploaded it to EES in.
+
+While you can set n_max to Inf, and get the whole data set using this, you should avoid relying on
+the `preview_dataset()` function in your pipelines or dashboards and instead use it to explore the
+data as you create your own custom query using `query_dataset()`.
+
+If you only read the whole file in using the preview you risk:
+
+* code breaking whenever element labels change
+* reading in too much data into active memory, causing R to slow or even crash
+
 ## Getting the data set meta data
 
-When querying a data set via the API, indicator and filter items are referenced 
+When querying a data set via the API, column names (indicators and filters) and the options available within columns (filter items) are referenced 
 using auto-generated ID codes (known as SQIDs). Therefore, in order to construct a query that 
 involves selecting a subset of filter items or indicators, you'll need to obtain
-the codes associated with those elements.
+the IDs associated with those elements.
 
-All those filter item and indicator codes are stored in a data set's meta data, 
-which can also be queried via the API. To get those codes as well as details on
+All those IDs are stored in a data set's meta data, 
+which can also be queried via the API. To get those IDs as well as details on
 what time periods and geographic levels and locations are available in a given
 data set, you can use the function `eesyapi::get_meta()`, providing it with your 
-data set's ID (which you can obtain either using `eesyapi::get_data_catalogue()` or via
-the EES data catalogue). For example, to get the "attendance in schools" data from the example
+data set's ID. For example, to get the "attendance in schools" data from the example
 attendance API data publication, you can take the data set ID 
 `7c0e9201-c7c0-ff73-bee4-304e731ec0e6` and provide it as a parameter to `get_meta`:
 
@@ -144,10 +167,20 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 ```
 
 ### Geographies
+
 ``` {r}
 eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
   magrittr::extract2("locations") |>
   dplyr::filter(label %in% c("York", "England"))
+```
+
+### Filter columns
+
+Note that the col_id values here correspond to the col_id values in the filter items, which shows which column each item is availble in.
+
+``` {r}
+eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+  magrittr::extract2("filter_columns")
 ```
 
 ### Filter items
@@ -174,24 +207,6 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 
 ## Retrieving data from a data set
 
-### Downloading an entire data set in a single file
-
-Whilst specific queries (as detailed in the following sections) are best used for automated pipeline 
-workflows, the EES API also offers the option
-to just download the entirety of the underlying data file for a given data set. This bypasses the 
-use of IDs, making it a simpler short-term option to retrieve data, but with the risk of creating
-breaking changes in automated pipelines should element labels change.
-
-Using `eesyapi`, you can retrieve a data set using `download_dataset()` and providing the data set 
-ID as follows:
-
-```
-download_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
-```
-
-This will return a data frame containing the data in the form that DfE analysts uploaded it to 
-EES in.
-
 ### Using `query_dataset()`
 
 The recommended go-to option for retrieving data is the `query_dataset()` function. This provides
@@ -213,6 +228,8 @@ The parameters that you'll can provide to build up your query are:
 All these are optional, except for `indicators` which you must always specify. If you don't provide 
 any of `time_periods`, `locations` or `filter_items`, then you'll receive all rows from the data 
 set (although be careful, this may take some time for larger data sets).
+
+You don't generally need to use the IDs for filter columns as the query only needs to know the options you want to select from those columns (filter items).
 
 Using the parameters we obtained from `get-meta` above, then we can create a query to return 
 session count data for only **Approved educational activity**, **Authorised** and **Unauthorised** 
