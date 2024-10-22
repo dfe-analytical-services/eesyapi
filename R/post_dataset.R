@@ -152,7 +152,7 @@ post_dataset <- function(
         dfresults <- dfresults |>
           dplyr::bind_rows(
             response_page$results |>
-              eesyapi::parse_api_dataset(verbose = verbose)
+              eesyapi::parse_api_dataset(dataset_id, verbose = verbose)
           )
       }
     }
