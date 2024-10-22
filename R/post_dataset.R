@@ -53,7 +53,7 @@ post_dataset <- function(
     filter_items = NULL,
     json_query = NULL,
     dataset_version = NULL,
-    environment = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     page = NULL,
     page_size = 1000,
@@ -100,7 +100,7 @@ post_dataset <- function(
     "post-data",
     dataset_id = dataset_id,
     dataset_version = dataset_version,
-    environment = environment,
+    ees_environment = ees_environment,
     api_version = api_version
   ) |> httr::POST(
     body = json_body,
@@ -143,7 +143,7 @@ post_dataset <- function(
           "post-data",
           dataset_id = dataset_id,
           dataset_version = dataset_version,
-          environment = environment,
+          ees_environment = ees_environment,
           api_version = api_version
         ) |>
           httr::POST(

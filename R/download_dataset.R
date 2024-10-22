@@ -29,7 +29,7 @@
 download_dataset <- function(
     dataset_id,
     dataset_version = NULL,
-    environment = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     verbose = FALSE) {
   # Validation ----------------------------------------------------------------

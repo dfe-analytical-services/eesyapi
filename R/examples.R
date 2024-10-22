@@ -3,7 +3,7 @@
 #' This function returns examples of working IDs that can be used with the API.
 #'
 #' @param level Level of ID example to return: "publication" or "data set"
-#' @param environment Environment to return a working example for
+#' @param ees_environment ees_environment to return a working example for
 #' @param group Choose the publication group of examples to use. Can be "attendance".
 #'
 #' @return String containing an example ID present in the API
@@ -13,7 +13,7 @@
 #' example_id()
 example_id <- function(
     level = "dataset",
-    environment = "test",
+    ees_environment = "dev",
     group = "public-api-testing") {
   example_id_list <- list(
     attendance = list(
@@ -64,13 +64,13 @@ example_id <- function(
   if (!(group %in% names(example_id_list))) {
     stop(paste0("Chosen group (", group, ") not found in examples list."))
   }
-  if (!(environment %in% c("dev", "test"))) {
-    stop(paste0("Chosen environment (", environment, ") should be one of: dev or test."))
+  if (!(ees_environment %in% c("dev", "test"))) {
+    stop(paste0("Chosen ees_environment (", ees_environment, ") should be one of: dev or test."))
   }
 
   group_examples <- example_id_list |>
     magrittr::extract2(group) |>
-    magrittr::extract2(environment)
+    magrittr::extract2(ees_environment)
 
   if (any(level == "all")) {
     return(group_examples)

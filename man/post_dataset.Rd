@@ -12,6 +12,7 @@ post_dataset(
   filter_items = NULL,
   json_query = NULL,
   dataset_version = NULL,
+  ees_environment = NULL,
   api_version = NULL,
   page = NULL,
   page_size = 1000,
@@ -36,6 +37,8 @@ locations to be queried.}
 \item{json_query}{Optional path to a json file containing the query parameters}
 
 \item{dataset_version}{Version of data set to be connected to}
+
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
 \item{api_version}{EES API version}
 

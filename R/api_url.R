@@ -23,7 +23,7 @@
 #' @param page_size Number of results to return in a single query
 #' @param page Page number of query results to return
 #' @param api_version EES API version
-#' @param environment EES environment to connect to: "dev", "test", "preprod" or "prod"
+#' @param ees_environment EES ees_environment to connect to: "dev", "test", "preprod" or "prod"
 #' @param verbose Run with additional contextual messaging. Logical, default = FALSE
 #' @return A string containing the URL for connecting to the EES API
 #' @export
@@ -58,7 +58,7 @@ api_url <- function(
     locations = NULL,
     filter_items = NULL,
     dataset_version = NULL,
-    environment = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     page_size = NULL,
     page = NULL,
@@ -67,7 +67,7 @@ api_url <- function(
   # for most other functions, but can be set to the latest version here. We'll want to automate
   # this once we know how to find out the latest api version from the api itself.
   if (is.null(api_version)) {
-    api_version <- 1.0
+    api_version <- "1.0"
   }
   # Check that the API version is valid
   is_valid_api_version <- function(vapi) {
@@ -126,14 +126,14 @@ api_url <- function(
     }
   }
 
-  # Creating a master switch here for environment, so that when we switch from dev to test and
+  # Creating a master switch here for ees_environment, so that when we switch from dev to test and
   # then subsequently from test to prod, we can just change it here and everything should follow
-  # from here. Environment should default to NULL for most other functions.
-  if (is.null(environment)) {
-    environment <- "dev"
+  # from here. ees_environment should default to NULL for most other functions.
+  if (is.null(ees_environment)) {
+    ees_environment <- "dev"
   }
-  # Check the environment param is valid
-  if (!(environment %in% c("dev", "test", "preprod", "prod"))) {
+  # Check the ees_environment param is valid
+  if (!(ees_environment %in% c("dev", "test", "preprod", "prod"))) {
     stop(
       paste(
         "You have entered invalid EES environment. The environment should be one of:\n",
@@ -151,7 +151,7 @@ api_url <- function(
   )
 
   endpoint_base_version <- paste0(
-    endpoint_base[[environment]],
+    endpoint_base[[ees_environment]],
     "v", api_version, "/"
   )
 

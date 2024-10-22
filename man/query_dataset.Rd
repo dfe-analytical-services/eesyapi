@@ -15,6 +15,7 @@ query_dataset(
   json_query = NULL,
   method = "POST",
   dataset_version = NULL,
+  ees_environment = NULL,
   api_version = NULL,
   page_size = 1000,
   page = NULL,
@@ -44,6 +45,8 @@ locations to be queried.}
 \item{method}{The API query method to be used. Can be  "POST" or "GET". Default: "POST".}
 
 \item{dataset_version}{Version of data set to be connected to}
+
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
 \item{api_version}{EES API version}
 

@@ -30,12 +30,13 @@ get_dataset <- function(
     locations = NULL,
     filter_items = NULL,
     dataset_version = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     page = NULL,
     page_size = 1000,
     parse = TRUE,
     verbose = FALSE) {
-  response <- eesyapi::api_url(
+  api_call <- eesyapi::api_url(
     "get-data",
     dataset_id = dataset_id,
     indicators = indicators,
@@ -44,14 +45,18 @@ get_dataset <- function(
     locations = locations,
     filter_items = filter_items,
     dataset_version = dataset_version,
-    environment = environment,
+    ees_environment = ees_environment,
     api_version = api_version,
     page_size = page_size,
     page = page,
     verbose = verbose
-  ) |>
+  )
+  toggle_message(api_call, verbose = verbose)
+  response <- api_call |>
     httr::GET()
+  print("here")
   eesyapi::http_request_error(response)
+  toggle_message("Retrieved data", verbose = verbose)
   # Unless the user specifies a specific page of results to get, loop through all available pages.
   response_json <- response |>
     httr::content("text") |>
@@ -75,7 +80,7 @@ get_dataset <- function(
           locations = locations,
           filter_items = filter_items,
           dataset_version = dataset_version,
-          environment = environment,
+          ees_environment = ees_environment,
           api_version = api_version,
           page_size = page_size,
           page = page,
@@ -85,6 +90,10 @@ get_dataset <- function(
           httr::content("text") |>
           jsonlite::fromJSON()
         response_page |> eesyapi::warning_max_pages()
+        toggle_message(
+          paste0("Retrieved page ", page, " of ", response_json$paging$totalPages),
+          verbose = verbose
+        )
         dfresults <- dfresults |>
           dplyr::bind_rows(
             response_page$results |>

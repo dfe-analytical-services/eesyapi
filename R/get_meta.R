@@ -15,13 +15,13 @@
 get_meta <- function(
     dataset_id,
     dataset_version = NULL,
-    environment = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     verbose = FALSE) {
   meta_data_response <- get_meta_response(
     dataset_id,
     dataset_version = dataset_version,
-    environment = environment,
+    ees_environment = ees_environment,
     api_version = api_version,
     parse = TRUE,
     verbose = verbose
@@ -52,7 +52,7 @@ get_meta <- function(
 get_meta_response <- function(
     dataset_id,
     dataset_version = NULL,
-    environment = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     parse = TRUE,
     verbose = FALSE) {
@@ -70,7 +70,7 @@ get_meta_response <- function(
     endpoint = "get-meta",
     dataset_id = dataset_id,
     dataset_version = dataset_version,
-    environment = environment,
+    ees_environment = ees_environment,
     api_version = api_version
   )
 
