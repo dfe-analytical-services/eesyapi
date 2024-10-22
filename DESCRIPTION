@@ -1,6 +1,6 @@
 Package: eesyapi
 Title: EES-y API
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9070-9969")),
@@ -22,8 +22,12 @@ Imports:
     rlang,
     stringr
 Suggests: 
+    knitr,
     readr,
+    rmarkdown,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
