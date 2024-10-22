@@ -10,15 +10,15 @@
 #'   - "dataset": Return example data set ID
 #'   - "time_period" / "time_periods": Return example time_period(s)
 #'   - "location_id" / "location_ids": Return example location ID(s)
-#'   - "location_code": Return example location code
+#'   - "location_code / location_codes": Return example location code(s)
 #'   - "filter": Return example filter column ID
 #'   - "filter_item" / "filter_items_short" / "filter_items_long": Return example filter ID or
 #'     example short / long filter query list.
 #'   - "indicator": Return example indicator ID
 #' @param environment Environment to return a working example for: "dev" or "test"
 #' @param group Choose the publication group of examples to use. Options are:
-#'   - "attendance"
-#'   - "public-api-testing"
+#'   - "attendance": Large example data set, careful what you ask for
+#'   - "public-api-testing": Smaller example data set
 #'
 #' @return String, vector or list containing example ID(s) present in the API
 #' @export
@@ -46,6 +46,7 @@ example_id <- function(
         location_id = "NAT|id|dP0Zw",
         location_ids = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
         location_code = "NAT|code|E92000001",
+        location_codes = c("REG|code|E12000001", "REG|code|E12000002"),
         filter = "4kdUZ",
         filter_item = "5UNdi",
         filter_items_long = list(
@@ -71,6 +72,7 @@ example_id <- function(
         dataset = "830f9201-9e11-ad75-8dcd-d2efe2834457",
         location_id = "LA|id|ml79K",
         location_code = "NAT|code|E92000001",
+        location_codes = c("REG|code|E12000001", "REG|code|E12000002"),
         filter = "01tT5",
         filter_item = "wEZcb",
         indicator = "PbNeb"

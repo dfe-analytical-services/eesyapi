@@ -19,7 +19,7 @@ group necessarily contains all possible examples. The following are generally av
 \item "dataset": Return example data set ID
 \item "time_period" / "time_periods": Return example time_period(s)
 \item "location_id" / "location_ids": Return example location ID(s)
-\item "location_code": Return example location code
+\item "location_code / location_codes": Return example location code(s)
 \item "filter": Return example filter column ID
 \item "filter_item" / "filter_items_short" / "filter_items_long": Return example filter ID or
 example short / long filter query list.
@@ -30,8 +30,8 @@ example short / long filter query list.
 
 \item{group}{Choose the publication group of examples to use. Options are:
 \itemize{
-\item "attendance"
-\item "public-api-testing"
+\item "attendance": Large example data set, careful what you ask for
+\item "public-api-testing": Smaller example data set
 }}
 }
 \value{
