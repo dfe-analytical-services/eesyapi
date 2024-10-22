@@ -75,6 +75,30 @@ taken to it's details page in the catalogue. On this page (pictured below), you'
 
 ![An example of an API data set's details](ees-data-catalogue-details-api-data-set.png)
 
+## Preview underlying data
+
+In the EES API you have the option to preview the underlying data for a given data set. 
+This bypasses the use of IDs, making it a simpler short-term option to explore the available data.
+
+Using `eesyapi`, you can preview a data set using `preview_dataset()` and providing the data set 
+ID as follows:
+
+```
+eesyapi::preview_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
+```
+
+This will return a data frame containing the first 10 rows of the data in the form that DfE 
+analysts uploaded it to EES in.
+
+While you can set n_max to Inf, and get the whole data set using this, you should avoid relying on
+the `preview_dataset()` function in your pipelines or dashboards and instead use it to explore the
+data as you create your own custom query using `query_dataset()`.
+
+If you only read the whole file in using the preview you risk:
+
+* code breaking whenever element labels change
+* reading in too much data into active memory, causing R to slow or even crash
+
 ## Getting the data set meta data
 
 When querying a data set via the API, column names (indicators and filters) and the options available within columns (filter items) are referenced 
@@ -182,29 +206,6 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 ```
 
 ## Retrieving data from a data set
-
-### Preview raw CSV data
-
-In the EES API you have the option to preview underlying data CSV file for a given data set. 
-This bypasses the use of IDs, making it a simpler short-term option to explore the available data.
-
-Using `eesyapi`, you can preview a data set using `preview_dataset()` and providing the data set 
-ID as follows:
-
-```
-eesyapi::preview_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
-```
-
-This will return a data frame containing the first 10 rows of the data in the form that DfE 
-analysts uploaded it to EES in.
-
-While you can set n_max to Inf, and get the whole data set using this, you should avoid relying on
-the `preview_dataset()` function in your pipelines or dashboards and instead use it to explore the
-data as you create your own custom query using `query_dataset()`.
-
-If you only read the whole CSV, you risk:
-* code breaking whenever element labels change
-* reading in too much data into active memory, causing R to slow or even crash
 
 ### Using `query_dataset()`
 
