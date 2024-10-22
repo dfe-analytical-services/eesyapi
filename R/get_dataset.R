@@ -51,12 +51,12 @@ get_dataset <- function(
     page = page,
     verbose = verbose
   )
-  toggle_message(api_call, verbose = verbose)
+  eesyapi::toggle_message(api_call, verbose = verbose)
   response <- api_call |>
     httr::GET()
   print("here")
   eesyapi::http_request_error(response)
-  toggle_message("Retrieved data", verbose = verbose)
+  eesyapi::toggle_message("Retrieved data", verbose = verbose)
   # Unless the user specifies a specific page of results to get, loop through all available pages.
   response_json <- response |>
     httr::content("text") |>
@@ -100,7 +100,7 @@ get_dataset <- function(
           httr::content("text") |>
           jsonlite::fromJSON()
         response_page |> eesyapi::warning_max_pages()
-        toggle_message(
+        eesyapi::toggle_message(
           paste0("Retrieved page ", page, " of ", response_json$paging$totalPages),
           verbose = verbose
         )
