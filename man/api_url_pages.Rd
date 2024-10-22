@@ -10,8 +10,8 @@ api_url_pages(page_size = 40, page = NULL)
 \item{page_size}{Number of rows to return in a single query. The maximum allowable value varies
 between query type:
 \itemize{
-\item get-publications: 40
-\item get-data-catalogue: 20
+\item get_publications: 40
+\item get_data_catalogue: 20
 \item query_dataset: 10000
 }}
 

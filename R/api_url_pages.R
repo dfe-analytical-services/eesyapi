@@ -9,8 +9,8 @@
 #'
 #' @param page_size Number of rows to return in a single query. The maximum allowable value varies
 #' between query type:
-#'    - get-publications: 40
-#'    - get-data-catalogue: 20
+#'    - get_publications: 40
+#'    - get_data_catalogue: 20
 #'    - query_dataset: 10000
 #' @param page Page number to return
 #'
