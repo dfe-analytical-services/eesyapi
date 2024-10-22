@@ -11,8 +11,9 @@ test_that("Invalid dataset_id", {
 })
 
 test_that("No indicator supplied", {
-  expect_error(
-    query_dataset(example_id())
+  expect_warning(
+    query_dataset(example_id()),
+    "No indicators provided, defaulted to using all indicators from meta data"
   )
 })
 

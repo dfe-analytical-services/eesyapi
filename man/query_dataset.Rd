@@ -16,7 +16,7 @@ query_dataset(
   method = "POST",
   dataset_version = NULL,
   api_version = NULL,
-  page_size = 1000,
+  page_size = 10000,
   page = NULL,
   debug = FALSE,
   verbose = FALSE

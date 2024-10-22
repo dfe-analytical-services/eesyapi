@@ -7,7 +7,11 @@
 #' automatically generate API request URLs, but is exported as part of the package for any users
 #' who wish to generate their own URLs.
 #'
-#' @param page_size Number of results to return in a single query (max 40)
+#' @param page_size Number of rows to return in a single query. The maximum allowable value varies
+#' between query type:
+#'    - get_publications: 40
+#'    - get_data_catalogue: 20
+#'    - query_dataset: 10000
 #' @param page Page number to return
 #'
 #' @return String containing pages query
