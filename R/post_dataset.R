@@ -67,7 +67,7 @@ post_dataset <- function(
       warning(
         paste(
           "json_query is set - ignoring indicators, time_periods, geographies",
-          " and filter_items params."
+          "and filter_items params."
         )
       )
     }
