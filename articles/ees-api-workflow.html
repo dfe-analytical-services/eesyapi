@@ -141,21 +141,20 @@ data.</p>
 <div class="section level2">
 <h2 id="getting-the-data-set-meta-data">Getting the data set meta data<a class="anchor" aria-label="anchor" href="#getting-the-data-set-meta-data"></a>
 </h2>
-<p>When querying a data set via the API, indicator and filter items are
+<p>When querying a data set via the API, column names (indicators and
+filters) and the options available within columns (filter items) are
 referenced using auto-generated ID codes (known as SQIDs). Therefore, in
 order to construct a query that involves selecting a subset of filter
-items or indicators, you’ll need to obtain the codes associated with
-those elements.</p>
-<p>All those filter item and indicator codes are stored in a data set’s
-meta data, which can also be queried via the API. To get those codes as
-well as details on what time periods and geographic levels and locations
-are available in a given data set, you can use the function
-<code><a href="../reference/get_meta.html">eesyapi::get_meta()</a></code>, providing it with your data set’s ID
-(which you can obtain either using
-<code><a href="../reference/get_data_catalogue.html">eesyapi::get_data_catalogue()</a></code> or via the EES data
-catalogue). For example, to get the “attendance in schools” data from
-the example attendance API data publication, you can take the data set
-ID <code>7c0e9201-c7c0-ff73-bee4-304e731ec0e6</code> and provide it as a
+items or indicators, you’ll need to obtain the IDs associated with those
+elements.</p>
+<p>All those IDs are stored in a data set’s meta data, which can also be
+queried via the API. To get those IDs as well as details on what time
+periods and geographic levels and locations are available in a given
+data set, you can use the function <code><a href="../reference/get_meta.html">eesyapi::get_meta()</a></code>,
+providing it with your data set’s ID. For example, to get the
+“attendance in schools” data from the example attendance API data
+publication, you can take the data set ID
+<code>7c0e9201-c7c0-ff73-bee4-304e731ec0e6</code> and provide it as a
 parameter to <code>get_meta</code>:</p>
 <pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span></span></code></pre>
 <p>This function returns a list of 5 data frames:</p>
@@ -232,9 +231,24 @@ code.</p>
 <span><span class="co">#&gt; 2   dP0Zw England E92000001    &lt;NA&gt;                   NAT         National</span></span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="filter-columns">Filter columns<a class="anchor" aria-label="anchor" href="#filter-columns"></a>
+</h3>
+<p>Note that the col_id values here correspond to the col_id values in
+the filter items, which shows which column each item is availble in.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"filter_columns"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   col_id            col_name               label</span></span>
+<span><span class="co">#&gt; 1  Db3Qe   attendance_status   Attendance status</span></span>
+<span><span class="co">#&gt; 2  emJuS     attendance_type     Attendance type</span></span>
+<span><span class="co">#&gt; 3  5TYdi          day_number          Day number</span></span>
+<span><span class="co">#&gt; 4  4kdUZ establishment_phase Establishment phase</span></span>
+<span><span class="co">#&gt; 5  mU59K              reason              Reason</span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="filter-items">Filter items<a class="anchor" aria-label="anchor" href="#filter-items"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"filter_items"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
@@ -254,7 +268,7 @@ code.</p>
 <div class="section level3">
 <h3 id="indicators">Indicators<a class="anchor" aria-label="anchor" href="#indicators"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"indicators"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
@@ -309,6 +323,9 @@ must always specify. If you don’t provide any of
 <code>filter_items</code>, then you’ll receive all rows from the data
 set (although be careful, this may take some time for larger data
 sets).</p>
+<p>You don’t generally need to use the IDs for filter columns as the
+query only needs to know the options you want to select from those
+columns (filter items).</p>
 <p>Using the parameters we obtained from <code>get-meta</code> above,
 then we can create a query to return session count data for only
 <strong>Approved educational activity</strong>,
@@ -316,7 +333,7 @@ then we can create a query to return session count data for only
 <strong>Absences</strong> category, <strong>Nationally</strong> for
 <strong>York</strong> in <strong>Week 26</strong> in
 <strong>2024</strong>, we would supply the following:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/query_dataset.html">query_dataset</a></span><span class="op">(</span></span>
 <span>  dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span>,</span>
 <span>  indicators <span class="op">=</span> <span class="st">"bqZtT"</span>,</span>
@@ -399,7 +416,7 @@ The structure for this can be seen by calling
 <p>If you’re familiar with using JSON and wish to just write your own
 query from scratch, then you can use <code><a href="../reference/query_dataset.html">query_dataset()</a></code> with
 the <code>json_query</code> parameter as follows:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">json_query</span> <span class="op">&lt;-</span> <span class="st">"{</span></span>
 <span><span class="st">  \"criteria\": {</span></span>
 <span><span class="st">    \"and\": [</span></span>
