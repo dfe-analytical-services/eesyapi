@@ -7,7 +7,13 @@
 api_url_pages(page_size = 40, page = NULL)
 }
 \arguments{
-\item{page_size}{Number of results to return in a single query (max 40)}
+\item{page_size}{Number of rows to return in a single query. The maximum allowable value varies
+between query type:
+\itemize{
+\item get-publications: 40
+\item get-data-catalogue: 20
+\item query_dataset: 10000
+}}
 
 \item{page}{Page number to return}
 }
