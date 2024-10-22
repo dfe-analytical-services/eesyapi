@@ -53,6 +53,7 @@ post_dataset <- function(
     filter_items = NULL,
     json_query = NULL,
     dataset_version = NULL,
+    environment = NULL,
     api_version = NULL,
     page = NULL,
     page_size = 1000,
@@ -98,7 +99,9 @@ post_dataset <- function(
   response <- eesyapi::api_url(
     "post-data",
     dataset_id = dataset_id,
-    dataset_version = dataset_version
+    dataset_version = dataset_version,
+    environment = environment,
+    api_version = api_version
   ) |> httr::POST(
     body = json_body,
     encode = "json",
@@ -139,7 +142,9 @@ post_dataset <- function(
         response_page <- eesyapi::api_url(
           "post-data",
           dataset_id = dataset_id,
-          dataset_version = dataset_version
+          dataset_version = dataset_version,
+          environment = environment,
+          api_version = api_version
         ) |>
           httr::POST(
             body = json_body,

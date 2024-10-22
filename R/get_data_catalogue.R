@@ -13,6 +13,8 @@
 #' get_data_catalogue(example_id("publication"))
 get_data_catalogue <- function(
     publication_id,
+    environment = NULL,
+    api_version = NULL,
     page_size = NULL,
     page = NULL,
     verbose = FALSE) {
@@ -24,6 +26,8 @@ get_data_catalogue <- function(
     eesyapi::api_url(
       endpoint = "get-data-catalogue",
       publication_id = publication_id,
+      environment = environment,
+      api_version = api_version,
       page_size = page_size,
       page = page,
       verbose = verbose
@@ -39,6 +43,8 @@ get_data_catalogue <- function(
           eesyapi::api_url(
             endpoint = "get-data-catalogue",
             publication_id = publication_id,
+            environment = environment,
+            api_version = api_version,
             page_size = page_size,
             page = page,
             verbose = verbose

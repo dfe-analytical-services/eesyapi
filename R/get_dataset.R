@@ -43,6 +43,9 @@ get_dataset <- function(
     geographic_levels = geographic_levels,
     locations = locations,
     filter_items = filter_items,
+    dataset_version = dataset_version,
+    environment = environment,
+    api_version = api_version,
     page_size = page_size,
     page = page,
     verbose = verbose
@@ -71,6 +74,9 @@ get_dataset <- function(
           geographic_levels = geographic_levels,
           locations = locations,
           filter_items = filter_items,
+          dataset_version = dataset_version,
+          environment = environment,
+          api_version = api_version,
           page_size = page_size,
           page = page,
           verbose = verbose
