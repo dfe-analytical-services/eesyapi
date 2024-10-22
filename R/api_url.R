@@ -58,11 +58,17 @@ api_url <- function(
     locations = NULL,
     filter_items = NULL,
     dataset_version = NULL,
+    environment = NULL,
+    api_version = NULL,
     page_size = NULL,
     page = NULL,
-    api_version = "1.0",
-    environment = "test",
     verbose = FALSE) {
+  # Creating a master switch here for api_version. The default for this param should be set to NULL
+  # for most other functions, but can be set to the latest version here. We'll want to automate
+  # this once we know how to find out the latest api version from the api itself.
+  if (is.null(api_version)) {
+    api_version <- 1.0
+  }
   # Check that the API version is valid
   is_valid_api_version <- function(vapi) {
     !grepl(
@@ -71,7 +77,6 @@ api_url <- function(
       ignore.case = TRUE
     )
   }
-
   if (is_valid_api_version(api_version) == FALSE) {
     stop(
       "You have entered an invalid API version in the api_version argument.
@@ -121,6 +126,12 @@ api_url <- function(
     }
   }
 
+  # Creating a master switch here for environment, so that when we switch from dev to test and
+  # then subsequently from test to prod, we can just change it here and everything should follow
+  # from here. Environment should default to NULL for most other functions.
+  if (is.null(environment)) {
+    environment <- "dev"
+  }
   # Check the environment param is valid
   if (!(environment %in% c("dev", "test", "preprod", "prod"))) {
     stop(

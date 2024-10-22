@@ -19,10 +19,7 @@
 #' than exploratory purposes, make sure you subscribe to the data set you're
 #' downloading and then keep track of any updates to the data.
 #'
-#' @param dataset_id ID of data set
-#' @param dataset_version Version number of data set
-#' @param api_version EES API version
-#' @param verbose Run with additional contextual messaging, logical, default = FALSE
+#' @inheritParams api_url
 #'
 #' @return data.frame
 #' @export
@@ -32,6 +29,7 @@
 download_dataset <- function(
     dataset_id,
     dataset_version = NULL,
+    environment = NULL,
     api_version = NULL,
     verbose = FALSE) {
   # Validation ----------------------------------------------------------------
