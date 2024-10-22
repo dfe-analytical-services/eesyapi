@@ -15,7 +15,7 @@ get_dataset(
   ees_environment = NULL,
   api_version = NULL,
   page = NULL,
-  page_size = 1000,
+  page_size = 10000,
   parse = TRUE,
   verbose = FALSE
 )

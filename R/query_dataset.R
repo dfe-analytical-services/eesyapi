@@ -182,7 +182,7 @@ query_dataset <- function(
     dataset_version = NULL,
     ees_environment = NULL,
     api_version = NULL,
-    page_size = 1000,
+    page_size = 10000,
     page = NULL,
     debug = FALSE,
     verbose = FALSE) {
@@ -193,6 +193,12 @@ query_dataset <- function(
         "(an option to use POST is being developed)."
       )
     )
+  }
+  if (is.null(indicators) && (is.null(json_query) || method == "GET")) {
+    warning("No indicators provided, defaulted to using all indicators from meta data")
+    indicators <- eesyapi::get_meta(dataset_id) |>
+      magrittr::extract2("indicators") |>
+      dplyr::pull("col_id")
   }
   if (method == "POST") {
     eesyapi::post_dataset(

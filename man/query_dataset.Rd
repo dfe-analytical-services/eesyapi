@@ -17,7 +17,7 @@ query_dataset(
   dataset_version = NULL,
   ees_environment = NULL,
   api_version = NULL,
-  page_size = 1000,
+  page_size = 10000,
   page = NULL,
   debug = FALSE,
   verbose = FALSE
