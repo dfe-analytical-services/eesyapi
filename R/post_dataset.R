@@ -175,7 +175,11 @@ post_dataset <- function(
   }
   if (parse) {
     dfresults <- dfresults |>
-      eesyapi::parse_api_dataset(dataset_id, verbose = verbose)
+      eesyapi::parse_api_dataset(
+        dataset_id,
+        verbose = verbose,
+        ees_environment = ees_environment
+        )
   }
   return(dfresults)
 }

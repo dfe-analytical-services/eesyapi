@@ -26,7 +26,7 @@ example short / long filter query list.
 \item "indicator": Return example indicator ID
 }}
 
-\item{ees_environment}{ees_environment to return a working example for}
+\item{ees_environment}{Environment to return a working example for: "dev" or "test"}
 
 \item{group}{Choose the publication group of examples to use. Options are:
 \itemize{
