@@ -128,9 +128,12 @@ api_url <- function(
 
   # Creating a master switch here for ees_environment, so that when we switch from dev to test and
   # then subsequently from test to prod, we can just change it here and everything should follow
-  # from here. ees_environment should default to NULL for most other functions.
+  # from here. ees_environment should default to NULL for most other functions. Probably not a
+  # "proper" way to do this as it's not clear from the primary user-facing functions themselves
+  # what it's going to default to, so probably want to remove this and do something better once
+  # we're through development.
   if (is.null(ees_environment)) {
-    ees_environment <- "dev"
+    ees_environment <- "test"
   }
   # Check the ees_environment param is valid
   if (!(ees_environment %in% c("dev", "test", "preprod", "prod"))) {

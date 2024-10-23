@@ -4,11 +4,7 @@
 \alias{example_id}
 \title{Example ID}
 \usage{
-example_id(
-  level = "dataset",
-  ees_environment = "dev",
-  group = "public-api-testing"
-)
+example_id(level = "dataset", ees_environment = "test", group = "absence")
 }
 \arguments{
 \item{level}{Level of ID example to return. A range are available, although not every example

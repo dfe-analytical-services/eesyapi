@@ -18,7 +18,7 @@
 #' @examples
 #' get_dataset(
 #'   example_id(),
-#'   geographic_levels = c("SCH"),
+#'   geographic_levels = c("NAT"),
 #'   filter_items = example_id("filter_item"),
 #'   indicators = example_id("indicator")
 #' )
@@ -51,12 +51,11 @@ get_dataset <- function(
     page = page,
     verbose = verbose
   )
-  eesyapi::toggle_message(api_call, verbose = verbose)
+  toggle_message(api_call, verbose = verbose)
   response <- api_call |>
     httr::GET()
-  print("here")
   eesyapi::http_request_error(response)
-  eesyapi::toggle_message("Retrieved data", verbose = verbose)
+  toggle_message("Retrieved data", verbose = verbose)
   # Unless the user specifies a specific page of results to get, loop through all available pages.
   response_json <- response |>
     httr::content("text") |>
@@ -100,7 +99,7 @@ get_dataset <- function(
           httr::content("text") |>
           jsonlite::fromJSON()
         response_page |> eesyapi::warning_max_pages()
-        eesyapi::toggle_message(
+        toggle_message(
           paste0("Retrieved page ", page, " of ", response_json$paging$totalPages),
           verbose = verbose
         )

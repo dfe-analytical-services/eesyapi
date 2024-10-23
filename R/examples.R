@@ -34,8 +34,8 @@
 #' example_id("indicator", group = "attendance")
 example_id <- function(
     level = "dataset",
-    ees_environment = "dev",
-    group = "public-api-testing") {
+    ees_environment = "test",
+    group = "absence") {
   example_id_list <- list(
     attendance = list(
       dev = list(
@@ -64,8 +64,35 @@ example_id <- function(
           reason = c("bBrtT")
         ),
         indicator = "bqZtT"
+      ),
+      test = list(
+        publication = "25d0e40b-643a-4f73-3ae5-08dcf1c4d57f",
+        dataset = "57b69201-033a-2c77-a19f-abcce2b11341",
+        time_period = "2024|W23",
+        time_periods = c("2024|W24", "2024|W25"),
+        location_id = "NAT|id|mRj9K",
+        location_ids = c("LA|id|arLPb", "REG|id|zecFQ"),
+        location_code = "NAT|code|E92000001",
+        location_codes = c("REG|code|E12000001", "REG|code|E12000002"),
+        filter = "5Zdi9",
+        filter_item = "rQkNj",
+        filter_items_long = list(
+          attendance_status = c("BfP7J", "zvUFQ"),
+          attendance_type = c("TuxPJ", "tj0Em", "5Tsdi", "fzaYF"),
+          education_phase = c("Poqeb", "dPE0Z"),
+          day_number = c("AOhGK"),
+          reason = c("9Ru4v")
+        ),
+        filter_items_short = list(
+          attendance_status = c("qGJjG"),
+          attendance_type = c("cZO31", "jgoAM"),
+          education_phase = c("Poqeb", "dPE0Z"),
+          day_number = c("AOhGK"),
+          reason = c("9Ru4v")
+        ),
+        indicator = "tj0Em",
+        indicators = c("tj0Em", "fzaYF")
       )
-      # TODO: add in test pupil attendance details here
     ),
     absence = list(
       dev = list(
@@ -170,15 +197,9 @@ example_data_raw <- function(
 example_json_query <- function() {
   eesyapi::parse_tojson_params(
     indicators = example_id("indicator", group = "attendance"),
-    time_periods = "2024|W23",
-    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-    filter_items = list(
-      attendance_status = c("pmRSo"),
-      attendance_type = c("CvuId", "6AXrf"),
-      education_phase = c("ThDPJ", "crH31"),
-      day_number = c("uLQo4"),
-      reason = c("bBrtT")
-    )
+    time_periods = example_id("time_period", group = "attendance"),
+    geographies = example_id("location_codes", group = "attendance"),
+    filter_items = example_id("filter_items_short", group = "attendance")
   )
 }
 

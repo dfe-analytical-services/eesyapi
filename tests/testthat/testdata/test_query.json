@@ -10,19 +10,19 @@
         "in": [
           {
             "period": "2024",
-            "code": "W26"
+            "code": "W25"
           }
         ]
       }
     },  {
         "filters": {
-          "eq": "jYyAM"
+          "eq": "5TYdi"
         }
       }
     ]
   },
   "indicators": [
-    "bqZtT"
+    "tj0Em"
   ],
   "debug": false,
   "page": 1,

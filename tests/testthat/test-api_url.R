@@ -1,6 +1,6 @@
 test_that("api_url", {
   # Set the default environment for the tests
-  test_env <- "dev"
+  test_env <- "test"
   expect_equal(
     api_url(),
     paste0("https://", test_env, ".statistics.api.education.gov.uk/api/v1.0/publications?")
