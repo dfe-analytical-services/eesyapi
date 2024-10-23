@@ -149,3 +149,35 @@ test_that("Indicators not found in data set", {
     "\nHTTP connection error: 400\nOne or more indicators could not be found.\n     uywet, uywed"
   )
 })
+
+test_that("Query data set runs on dev!", {
+  expect_equal(
+    query_dataset(
+      example_id(group = "attendance", ees_environment = "dev"),
+      indicators = example_id("indicator", group = "attendance", ees_environment = "dev"),
+      time_periods = example_id("time_periods", group = "attendance", ees_environment = "dev"),
+      geographies = example_id("location_codes", group = "attendance", ees_environment = "dev"),
+      filter_items = example_id("filter_items_short", group = "attendance", ees_environment = "dev"),
+      page = 1,
+      page_size = 12,
+      ees_environment = "dev"
+    ) |> nrow(),
+    12
+  )
+})
+
+test_that("Query data set runs on test!", {
+  expect_equal(
+    query_dataset(
+      example_id(group = "attendance", ees_environment = "test"),
+      indicators = example_id("indicator", group = "attendance", ees_environment = "test"),
+      time_periods = example_id("time_periods", group = "attendance", ees_environment = "test"),
+      geographies = example_id("location_codes", group = "attendance", ees_environment = "test"),
+      filter_items = example_id("filter_items_short", group = "attendance", ees_environment = "test"),
+      page = 1,
+      page_size = 12,
+      ees_environment = "test"
+    ) |> nrow(),
+    12
+  )
+})
