@@ -6,8 +6,9 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-An R package to support analysts in connecting to and processing data from 
-the DfE's explore education statistics API endpoints.
+An R package to support analysts in connecting to and processing data from the DfE's explore education statistics API endpoints.
+
+To get started using the package take a look at the [getting started guide](https://dfe-analytical-services.github.io/eesyapi/articles/eesyapi.html) on our documentation site.
 
 ## Installation
 
