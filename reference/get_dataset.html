@@ -64,6 +64,7 @@ any of those items.</p>
 <span>  locations <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  filter_items <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dataset_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ees_environment <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  api_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  page <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  page_size <span class="op">=</span> <span class="fl">10000</span>,</span>
@@ -105,6 +106,10 @@ of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"</p></dd>
 <dd><p>Version of data set to be connected to</p></dd>
 
 
+<dt id="arg-ees-environment">ees_environment<a class="anchor" aria-label="anchor" href="#arg-ees-environment"></a></dt>
+<dd><p>EES ees_environment to connect to: "dev", "test", "preprod" or "prod"</p></dd>
+
+
 <dt id="arg-api-version">api_version<a class="anchor" aria-label="anchor" href="#arg-api-version"></a></dt>
 <dd><p>EES API version</p></dd>
 
@@ -134,79 +139,18 @@ of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_dataset</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  geographic_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SCH"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  geographic_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAT"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  filter_items <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"filter_item"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  indicators <span class="op">=</span> <span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"indicator"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code    period geographic_level    la_name   la_code la_oldCode nat_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22   AY 2022/2023              SCH Manchester E08000003        352  England</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     nat_code       sch_name sch_urn sch_laEstab establishment_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 E92000001 Loreto College  130503     3528601 Sixth Form College</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               type total_pupil_value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             1618              1777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             ALEV              1505</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3             ACAD              1505</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4             AGEN               510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             TLEV                 z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        TLEVDENOM                18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        AGENDENOM               524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        SCOPE_L3M                 z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         TechCert                 z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        ANYL2VOC                 z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        1618_DIS               517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        ALEV_DIS               396</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        ACAD_DIS               396</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        AGEN_DIS               181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        TLEV_DIS                 z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16    TechCert_DIS                 z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17     1618_NOTDIS              1259</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18     ALEV_NOTDIS              1108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19     ACAD_NOTDIS              1108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20     AGEN_NOTDIS               329</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21     TLEV_NOTDIS                 z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 TechCert_NOTDIS                 z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code    period geographic_level nat_name  nat_code establishment_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   AY 2023/2024              NAT  England E92000001    Primary schools</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   AY 2022/2023              NAT  England E92000001    Primary schools</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   AY 2021/2022              NAT  England E92000001    Primary schools</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   count_absent_sessions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              27819920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              32350550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              30023935</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

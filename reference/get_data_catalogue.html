@@ -43,6 +43,8 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_data_catalogue</span><span class="op">(</span></span>
 <span>  <span class="va">publication_id</span>,</span>
+<span>  ees_environment <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  api_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  page_size <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  page <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
@@ -54,20 +56,28 @@
 
 
 <dl><dt id="arg-publication-id">publication_id<a class="anchor" aria-label="anchor" href="#arg-publication-id"></a></dt>
-<dd><p>The publication ID as used by the API</p></dd>
+<dd><p>ID of the publication to be connected to. This is required if the
+endpoint is "get-data-catalogue"</p></dd>
+
+
+<dt id="arg-ees-environment">ees_environment<a class="anchor" aria-label="anchor" href="#arg-ees-environment"></a></dt>
+<dd><p>EES ees_environment to connect to: "dev", "test", "preprod" or "prod"</p></dd>
+
+
+<dt id="arg-api-version">api_version<a class="anchor" aria-label="anchor" href="#arg-api-version"></a></dt>
+<dd><p>EES API version</p></dd>
 
 
 <dt id="arg-page-size">page_size<a class="anchor" aria-label="anchor" href="#arg-page-size"></a></dt>
-<dd><p>Number of results to collect in a single query to the API (max 40)</p></dd>
+<dd><p>Number of results to return in a single query</p></dd>
 
 
 <dt id="arg-page">page<a class="anchor" aria-label="anchor" href="#arg-page"></a></dt>
-<dd><p>Page number to return (Default is NULL which will loop through until all
-pages of the query are collated).</p></dd>
+<dd><p>Page number of query results to return</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>Add extra contextual information whilst running</p></dd>
+<dd><p>Run with additional contextual messaging. Logical, default = FALSE</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -78,24 +88,34 @@ pages of the query are collated).</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_data_catalogue</span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="st">"publication"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                     id                          title summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 830f9201-9e11-ad75-8dcd-d2efe2834457 10MB data file for API dataset        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 830f9201-5343-7c73-98d7-8e5ac02933b2                    Loc names 3    test</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      status latestVersion.version          latestVersion.published</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Published                   4.0 2024-10-09T12:01:22.068044+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Published                   1.3 2024-10-09T12:01:22.068044+00:00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                     id                           title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 3bb59201-0d1e-1e74-a745-8f65fe5895cf A level and equivalents results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 57b69201-033a-2c77-a19f-abcce2b11341       Pupil attendance sessions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 e1ae9201-2fff-d376-8fa3-bd3c3660d4c8                   Pupil absence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     summary    status latestVersion.version          latestVersion.published</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           Published                   1.0 2024-10-22T22:34:44.356583+00:00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           Published                   1.0 2024-10-22T22:34:44.356583+00:00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Test file Published                   1.0 2024-10-21T12:15:26.171566+00:00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   latestVersion.totalResults                     latestVersion.id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        220 26010adc-713a-4cae-9074-e5a864a38363</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          3 4f29af11-8ccc-4897-8924-246a6666f51c</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      22685 49ac60e3-915f-4080-9b07-fb7625e02011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    3315543 cc6745d0-d4bb-4871-bf26-a9ed653a66f1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                         12 5296244d-5487-4416-bec0-43ed4b50b72a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   latestVersion.timePeriods.start latestVersion.timePeriods.end</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         2022/23                       2022/23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                            2018                          2019</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   latestVersion.geographicLevels    latestVersion.filters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         School establishment type, type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                Local authority                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                           latestVersion.indicators</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 ppe value, ppegrd value, retained 2ndyr value, retained value, total pupil value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                Admission Numbers</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         2021/22                       2021/22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    2023 Week 37                  2024 Week 25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                         2021/22                       2023/24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        latestVersion.geographicLevels</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                              School</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Local authority, National, Regional</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                            National</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                         latestVersion.filters</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        Disadvantaged status, Establishment type group, Qualification cohort</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Attendance status, Attendance type, Day number, Establishment phase, Reason</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                              Type of school</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                              latestVersion.indicators</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Number of students retained, Number of students retained (2nd year), Points per entry, Points per entry (grade), Retained, Total students, Total triggered students</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                                                                      Session count, Session percent, Session scaled</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                         Number of overall absence sessions, Number of pupil enrolments, Number of sessions possible</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

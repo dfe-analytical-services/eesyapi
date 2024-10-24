@@ -44,6 +44,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_meta_response</span><span class="op">(</span></span>
 <span>  <span class="va">dataset_id</span>,</span>
 <span>  dataset_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ees_environment <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  api_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  parse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
@@ -61,6 +62,10 @@ of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"</p></dd>
 
 <dt id="arg-dataset-version">dataset_version<a class="anchor" aria-label="anchor" href="#arg-dataset-version"></a></dt>
 <dd><p>Version of data set to be connected to</p></dd>
+
+
+<dt id="arg-ees-environment">ees_environment<a class="anchor" aria-label="anchor" href="#arg-ees-environment"></a></dt>
+<dd><p>EES ees_environment to connect to: "dev", "test", "preprod" or "prod"</p></dd>
 
 
 <dt id="arg-api-version">api_version<a class="anchor" aria-label="anchor" href="#arg-api-version"></a></dt>
@@ -84,38 +89,34 @@ of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_meta_response</span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      id             column              label hint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 tu1Em establishment_type establishment type     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 f2GYF               type               type     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                                                                                                                                                                                                                                         options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                                                                                                                                                                            9RpY4, 23odl, Poz7e, NwcLD, wEZcb, o4vFm, Academy Converter, Academy Sponsor Led, Community School, Independent School, Sixth Form College, Voluntary Aided School</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 9Rpn4, dPff0, OBNDC, 7YbEX, p5IXS, IXQEB, iNW86, 6D2xr, 0eYST, LleUW, HJjXz, C7DgI, YFqfH, qGKqj, a2eWL, Bfbf7, zvGnF, ka0Wh, u9vRo, TuzUP, cZ4i3, XHEvf, 1618, 1618_DIS, 1618_NOTDIS, ACAD, ACAD_DIS, ACAD_NOTDIS, AGEN, AGEN_DIS, AGEN_NOTDIS, AGENDENOM, ALEV, ALEV_DIS, ALEV_NOTDIS, ANYL2VOC, SCOPE_L3M, TechCert, TechCert_DIS, TechCert_NOTDIS, TLEV, TLEV_DIS, TLEV_NOTDIS, TLEVDENOM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      id             column          label hint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 arLPb establishment_type Type of school     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                    options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 VN5XE, PEebW, 1Ti3Z, dt0Zw, Primary schools, Secondary schools, Special schools, Total, NA, NA, NA, TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $indicators</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      id               column                label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 E40qF            ppe_value            ppe value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 QuVwb         ppegrd_value         ppegrd value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 9Aw4v retained_2ndyr_value retained 2ndyr value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2YIlz       retained_value       retained value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 PbNeb    total_pupil_value    total pupil value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      id                  column                              label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 dPe0Z   count_absent_sessions Number of overall absence sessions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 OBXCL        count_enrolments         Number of pupil enrolments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 7YFXo count_possible_sessions        Number of sessions possible</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   decimalPlaces</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $geographicLevels</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   code  label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  SCH School</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code    label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  NAT National</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $locations</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   level.code     level.label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         LA Local authority</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        NAT        National</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        SCH          School</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                                                                                                                                  ea0uS, 4c9UZ, QIqwb, rGcNj, eLGuS, H0RzL, VUG5X, lrocB, jfhAM, Croydon, Enfield, Harrow, Leeds, Lincolnshire, Manchester, Somerset, West Sussex, York, E09000008, E09000010, E09000015, E08000035, E10000019, E08000003, E10000027, E10000032, E06000014, 306, 308, 310, 383, 925, 352, 933, 938, 816</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                                                                                                                                                                                                                                                                                                                                                                                                              dP0Zw, England, E92000001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 42nEU, y8Jra, k2qHh, mLJt9, 59BKd, dNu0Z, 0UXNT, BzBp7, hciHy, HS5ez, Bootham School, Brigshaw High School, Felpham Community College, Loreto College, North London Collegiate School, The Latymer School, The Laurels School, The Priory Ruskin Academy, University Academy Holbeach, West Somerset College, 121722, 143238, 126080, 130503, 102257, 102055, 140356, 136194, 137282, 136791, 8166000, 3834113, 9384059, 3528601, 3106075, 3085400, 3066028, 9256910, 9254001, 9334291</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   level.code level.label                   options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        NAT    National mRj9K, England, E92000001</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $timePeriods</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   code    period   label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   AY 2022/2023 2022/23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   AY 2021/2022 2021/22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   AY 2022/2023 2022/23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   AY 2023/2024 2023/24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

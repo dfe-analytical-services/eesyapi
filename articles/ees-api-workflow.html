@@ -104,10 +104,10 @@ title of the publication that you’re interested in and pick out the
 associated publication ID.</p>
 <p>For example from the test list, we can pick out <strong>“Attendance
 API data”</strong>, which has an ID of
-<strong>“b6d9ed96-be68-4791-abc3-08dcaba68c04”</strong>. We can now use
+<strong>25d0e40b-643a-4f73-3ae5-08dcf1c4d57f</strong>. We can now use
 this in the function <code><a href="../reference/get_data_catalogue.html">eesyapi::get_data_catalogue()</a></code> to find
 all the data sets within that publication:</p>
-<pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_data_catalogue.html">get_data_catalogue</a></span><span class="op">(</span><span class="st">"b6d9ed96-be68-4791-abc3-08dcaba68c04"</span><span class="op">)</span></span></code></pre>
+<pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_data_catalogue.html">get_data_catalogue</a></span><span class="op">(</span><span class="st">"25d0e40b-643a-4f73-3ae5-08dcf1c4d57f"</span><span class="op">)</span></span></code></pre>
 <p>This returns a data frame containing data set IDs and titles (along
 with a summary, the status and information on what’s in the latest
 version). The data set IDs can be used as shown in the following
@@ -147,7 +147,7 @@ short-term option to explore the available data.</p>
 <p>Using <code>eesyapi</code>, you can preview a data set using
 <code><a href="../reference/preview_dataset.html">preview_dataset()</a></code> and providing the data set ID as
 follows:</p>
-<pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/preview_dataset.html">preview_dataset</a></span><span class="op">(</span><span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span></span></code></pre>
+<pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/preview_dataset.html">preview_dataset</a></span><span class="op">(</span><span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span><span class="op">)</span></span></code></pre>
 <p>This will return a data frame containing the first 10 rows of the
 data in the form that DfE analysts uploaded it to EES in.</p>
 <p>While you can set n_max to Inf, and get the whole data set using
@@ -178,9 +178,9 @@ data set, you can use the function <code><a href="../reference/get_meta.html">ee
 providing it with your data set’s ID. For example, to get the
 “attendance in schools” data from the example attendance API data
 publication, you can take the data set ID
-<code>7c0e9201-c7c0-ff73-bee4-304e731ec0e6</code> and provide it as a
-parameter to <code>get_meta</code>:</p>
-<pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span></span></code></pre>
+<strong>57b69201-033a-2c77-a19f-abcce2b11341</strong> and provide it as
+a parameter to <code>get_meta</code>:</p>
+<pre><code><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span><span class="op">)</span></span></code></pre>
 <p>This function returns a list of 5 data frames:</p>
 <ul>
 <li>
@@ -204,25 +204,26 @@ the data set</li>
 filtering a given data set, whilst time periods can be filtered on the
 values in the <code>$time_period</code> code column.</p>
 <p>In this example, let’s say we’ve run
-<code>eesyapi::get_meta("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")</code>
+<code>eesyapi::get_meta("57b69201-033a-2c77-a19f-abcce2b11341")</code>
 and we want to filter our data set to obtain data for:</p>
 <ul>
-<li>the “Week 26” time period in “2024”,</li>
+<li>the “Week 24” time period in “2024”,</li>
 <li>“York” and “England” from the geographies,</li>
 <li>“Absence” from Attendance status</li>
 <li>“Approved educational activity”, “Authorised” and “Unauthorised”
 from Attendance type</li>
-<li>Just the “Total” entries for “reason” and “day_number”</li>
+<li>Just the “Total” entries for “attendance_reason” and
+“day_number”</li>
 <li>And we want to see “Number of sessions” data values.</li>
 </ul>
 <p>For this we would need the following codes / item_ids:</p>
 <ul>
-<li>“2024 W26”</li>
-<li>“jfhAM” and “dP0Zw”</li>
-<li>“7SdXo”</li>
-<li>“6AXrf”, “0k3T5” and “YdkHK”</li>
-<li>“uLQo4” and “bBrtT”</li>
-<li>“bqZtT”</li>
+<li>“W24 2024”</li>
+<li>“arLPb” and “mRj9K”</li>
+<li>“qGJjG”</li>
+<li>“TuxPJ”, “cZO31”, “jgoAM”</li>
+<li>“AOhGK” and “9Ru4v”</li>
+<li>“tj0Em”</li>
 </ul>
 <p>Note that whilst the above IDs are unique within a given item type
 (e.g. <code>filter_item</code>), they are not necessarily unique between
@@ -235,24 +236,24 @@ code.</p>
 <h3 id="time-periods">Time periods<a class="anchor" aria-label="anchor" href="#time-periods"></a>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"time_periods"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
-<span>    <span class="va">label</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2024 Week 26"</span><span class="op">)</span></span>
+<span>    <span class="va">label</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2024 Week 24"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt;   code period        label</span></span>
-<span><span class="co">#&gt; 1  W26   2024 2024 Week 26</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  W24   2024 2024 Week 24</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="geographies">Geographies<a class="anchor" aria-label="anchor" href="#geographies"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"locations"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">label</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"York"</span>, <span class="st">"England"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   item_id   label      code oldCode geographic_level_code geographic_level</span></span>
-<span><span class="co">#&gt; 1   jfhAM    York E06000014     816                    LA  Local authority</span></span>
-<span><span class="co">#&gt; 2   dP0Zw England E92000001    &lt;NA&gt;                   NAT         National</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   arLPb    York E06000014     816                    LA  Local authority</span></span>
+<span><span class="co">#&gt; 2   mRj9K England E92000001    &lt;NA&gt;                   NAT         National</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="filter-columns">Filter columns<a class="anchor" aria-label="anchor" href="#filter-columns"></a>
@@ -260,20 +261,20 @@ code.</p>
 <p>Note that the col_id values here correspond to the col_id values in
 the filter items, which shows which column each item is availble in.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"filter_columns"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   col_id            col_name               label</span></span>
-<span><span class="co">#&gt; 1  Db3Qe   attendance_status   Attendance status</span></span>
-<span><span class="co">#&gt; 2  emJuS     attendance_type     Attendance type</span></span>
-<span><span class="co">#&gt; 3  5TYdi          day_number          Day number</span></span>
-<span><span class="co">#&gt; 4  4kdUZ establishment_phase Establishment phase</span></span>
-<span><span class="co">#&gt; 5  mU59K              reason              Reason</span></span></code></pre></div>
+<span><span class="co">#&gt;   col_id          col_name               label</span></span>
+<span><span class="co">#&gt; 1  5Zdi9 attendance_status   Attendance status</span></span>
+<span><span class="co">#&gt; 2  tdEm5   attendance_type     Attendance type</span></span>
+<span><span class="co">#&gt; 3  fyYFZ        day_number          Day number</span></span>
+<span><span class="co">#&gt; 4  juAMt   education_phase Establishment phase</span></span>
+<span><span class="co">#&gt; 5  eNuSW attendance_reason              Reason</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="filter-items">Filter items<a class="anchor" aria-label="anchor" href="#filter-items"></a>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"filter_items"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
 <span>    <span class="va">item_label</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
@@ -281,25 +282,26 @@ the filter items, which shows which column each item is availble in.</p>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt;   col_id                    item_label item_id default_item</span></span>
-<span><span class="co">#&gt; 1  Db3Qe                       Absence   7SdXo           NA</span></span>
-<span><span class="co">#&gt; 2  emJuS Approved educational activity   6AXrf           NA</span></span>
-<span><span class="co">#&gt; 3  emJuS                    Authorised   0k3T5           NA</span></span>
-<span><span class="co">#&gt; 4  emJuS                  Unauthorised   YdkHK           NA</span></span>
-<span><span class="co">#&gt; 5  5TYdi                         Total   uLQo4         TRUE</span></span>
-<span><span class="co">#&gt; 6  4kdUZ                         Total   5UNdi         TRUE</span></span>
-<span><span class="co">#&gt; 7  mU59K                         Total   bBrtT         TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  5Zdi9                       Absence   qGJjG           NA</span></span>
+<span><span class="co">#&gt; 2  tdEm5 Approved educational activity   TuxPJ           NA</span></span>
+<span><span class="co">#&gt; 3  tdEm5                    Authorised   cZO31           NA</span></span>
+<span><span class="co">#&gt; 4  tdEm5                         Total   fzaYF         TRUE</span></span>
+<span><span class="co">#&gt; 5  tdEm5                  Unauthorised   jgoAM           NA</span></span>
+<span><span class="co">#&gt; 6  fyYFZ                         Total   AOhGK         TRUE</span></span>
+<span><span class="co">#&gt; 7  juAMt                         Total   dPE0Z         TRUE</span></span>
+<span><span class="co">#&gt; 8  eNuSW                         Total   9Ru4v         TRUE</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="indicators">Indicators<a class="anchor" aria-label="anchor" href="#indicators"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/get_meta.html">get_meta</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">extract2</a></span><span class="op">(</span><span class="st">"indicators"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
 <span>    <span class="va">label</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Session count"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt;   col_id      col_name         label</span></span>
-<span><span class="co">#&gt; 1  bqZtT session_count Session count</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  tj0Em session_count Session count</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -338,36 +340,36 @@ then we can create a query to return session count data for only
 <strong>Approved educational activity</strong>,
 <strong>Authorised</strong> and <strong>Unauthorised</strong> in the
 <strong>Absences</strong> category, <strong>Nationally</strong> for
-<strong>York</strong> in <strong>Week 26</strong> in
+<strong>York</strong> in <strong>Week 24</strong> in
 <strong>2024</strong>, we would supply the following:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/query_dataset.html">query_dataset</a></span><span class="op">(</span></span>
-<span>  dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span>,</span>
-<span>  indicators <span class="op">=</span> <span class="st">"bqZtT"</span>,</span>
+<span>  dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span>,</span>
+<span>  indicators <span class="op">=</span> <span class="st">"tj0Em"</span>,</span>
 <span>  filter_items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    attendance_status <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"7SdXo"</span><span class="op">)</span>,</span>
-<span>    attendance_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"6AXrf"</span>, <span class="st">"0k3T5"</span>, <span class="st">"YdkHK"</span><span class="op">)</span>,</span>
-<span>    day_number <span class="op">=</span> <span class="st">"uLQo4"</span>,</span>
-<span>    reason <span class="op">=</span> <span class="st">"bBrtT"</span></span>
+<span>    attendance_status <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"qGJjG"</span><span class="op">)</span>,</span>
+<span>    attendance_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TuxPJ"</span>, <span class="st">"cZO31"</span>, <span class="st">"jgoAM"</span><span class="op">)</span>,</span>
+<span>    day_number <span class="op">=</span> <span class="st">"AOhGK"</span>,</span>
+<span>    attendance_reason <span class="op">=</span> <span class="st">"9Ru4v"</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  geographies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAT|id|dP0Zw"</span>, <span class="st">"LA|ID|jfhAM"</span><span class="op">)</span>,</span>
-<span>  time_periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2024|W26"</span><span class="op">)</span></span>
+<span>  geographies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAT|id|mRj9K"</span>, <span class="st">"LA|ID|arLPb"</span><span class="op">)</span>,</span>
+<span>  time_periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2024|W24"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    code period geographic_level la_name   la_code la_oldCode nat_name  nat_code</span></span>
-<span><span class="co">#&gt; 1   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 2   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 3   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 4   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 5   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 6   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 7   W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
-<span><span class="co">#&gt; 8   W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
-<span><span class="co">#&gt; 9   W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
-<span><span class="co">#&gt; 10  W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
-<span><span class="co">#&gt; 11  W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
-<span><span class="co">#&gt; 12  W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
-<span><span class="co">#&gt; 13  W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
-<span><span class="co">#&gt; 14  W26   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 1   W24   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 2   W24   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 3   W24   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 4   W24   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 5   W24   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 6   W24   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 7   W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 8   W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 9   W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 10  W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 11  W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 12  W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 13  W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
+<span><span class="co">#&gt; 14  W24   2024              NAT    &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  England E92000001</span></span>
 <span><span class="co">#&gt;                    reg_name  reg_code attendance_status attendance_type</span></span>
 <span><span class="co">#&gt; 1  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
 <span><span class="co">#&gt; 2  Yorkshire and The Humber E12000003           Absence    Unauthorised</span></span>
@@ -383,21 +385,21 @@ then we can create a query to return session count data for only
 <span><span class="co">#&gt; 12                     &lt;NA&gt;      &lt;NA&gt;           Absence    Unauthorised</span></span>
 <span><span class="co">#&gt; 13                     &lt;NA&gt;      &lt;NA&gt;           Absence      Authorised</span></span>
 <span><span class="co">#&gt; 14                     &lt;NA&gt;      &lt;NA&gt;           Absence    Unauthorised</span></span>
-<span><span class="co">#&gt;    day_number establishment_phase reason session_count</span></span>
-<span><span class="co">#&gt; 1       Total             Special  Total           199</span></span>
-<span><span class="co">#&gt; 2       Total             Special  Total            83</span></span>
-<span><span class="co">#&gt; 3       Total           Secondary  Total          4084</span></span>
-<span><span class="co">#&gt; 4       Total           Secondary  Total          3338</span></span>
-<span><span class="co">#&gt; 5       Total             Primary  Total          4103</span></span>
-<span><span class="co">#&gt; 6       Total             Primary  Total          2500</span></span>
-<span><span class="co">#&gt; 7       Total             Primary  Total       1265134</span></span>
-<span><span class="co">#&gt; 8       Total             Primary  Total        751444</span></span>
-<span><span class="co">#&gt; 9       Total             Special  Total         95181</span></span>
-<span><span class="co">#&gt; 10      Total             Special  Total         38411</span></span>
-<span><span class="co">#&gt; 11      Total           Secondary  Total       1110696</span></span>
-<span><span class="co">#&gt; 12      Total           Secondary  Total        915161</span></span>
-<span><span class="co">#&gt; 13      Total               Total  Total       2471011</span></span>
-<span><span class="co">#&gt; 14      Total               Total  Total       1705016</span></span></code></pre></div>
+<span><span class="co">#&gt;    day_number education_phase attendance_reason session_count</span></span>
+<span><span class="co">#&gt; 1       Total         Primary             Total          4221</span></span>
+<span><span class="co">#&gt; 2       Total         Primary             Total          2292</span></span>
+<span><span class="co">#&gt; 3       Total       Secondary             Total          4244</span></span>
+<span><span class="co">#&gt; 4       Total       Secondary             Total          3290</span></span>
+<span><span class="co">#&gt; 5       Total         Special             Total           113</span></span>
+<span><span class="co">#&gt; 6       Total         Special             Total            80</span></span>
+<span><span class="co">#&gt; 7       Total       Secondary             Total       1110294</span></span>
+<span><span class="co">#&gt; 8       Total       Secondary             Total        881437</span></span>
+<span><span class="co">#&gt; 9       Total         Primary             Total       1207541</span></span>
+<span><span class="co">#&gt; 10      Total         Primary             Total        726508</span></span>
+<span><span class="co">#&gt; 11      Total         Special             Total         94459</span></span>
+<span><span class="co">#&gt; 12      Total         Special             Total         37099</span></span>
+<span><span class="co">#&gt; 13      Total           Total             Total       2412294</span></span>
+<span><span class="co">#&gt; 14      Total           Total             Total       1645044</span></span></code></pre></div>
 <p>Some notes on the above:</p>
 <ul>
 <li>
@@ -429,74 +431,74 @@ the <code>json_query</code> parameter as follows:</p>
 <span><span class="st">    \"and\": [</span></span>
 <span><span class="st">      {</span></span>
 <span><span class="st">        \"filters\": {</span></span>
-<span><span class="st">          \"eq\": \"7SdXo\"</span></span>
+<span><span class="st">          \"eq\": \"9Ru4v\"</span></span>
 <span><span class="st">        }</span></span>
 <span><span class="st">      },</span></span>
 <span><span class="st">      {</span></span>
 <span><span class="st">        \"locations\": {</span></span>
 <span><span class="st">          \"eq\": {</span></span>
 <span><span class="st">            \"level\": \"LA\",</span></span>
-<span><span class="st">            \"id\": \"jfhAM\"</span></span>
+<span><span class="st">            \"id\": \"arLPb\"</span></span>
 <span><span class="st">          }</span></span>
 <span><span class="st">        }</span></span>
 <span><span class="st">      }</span></span>
 <span><span class="st">    ]</span></span>
 <span><span class="st">  },</span></span>
 <span><span class="st">  \"indicators\": [</span></span>
-<span><span class="st">    \"bqZtT\"</span></span>
+<span><span class="st">    \"tj0Em\"</span></span>
 <span><span class="st">  ],</span></span>
 <span><span class="st">  \"debug\": false,</span></span>
 <span><span class="st">  \"page\": 1,</span></span>
 <span><span class="st">  \"pageSize\": 10</span></span>
 <span><span class="st">}"</span></span>
 <span><span class="fu">eesyapi</span><span class="fu">::</span><span class="fu"><a href="../reference/query_dataset.html">query_dataset</a></span><span class="op">(</span></span>
-<span>  dataset_id <span class="op">=</span> <span class="st">"7c0e9201-c7c0-ff73-bee4-304e731ec0e6"</span>,</span>
+<span>  dataset_id <span class="op">=</span> <span class="st">"57b69201-033a-2c77-a19f-abcce2b11341"</span>,</span>
 <span>  json_query <span class="op">=</span> <span class="va">json_query</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    code period geographic_level la_name   la_code la_oldCode nat_name  nat_code</span></span>
-<span><span class="co">#&gt; 1   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 2   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 3   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 4   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 5   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 6   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 7   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 8   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 9   W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt; 10  W26   2024               LA    York E06000014        816  England E92000001</span></span>
-<span><span class="co">#&gt;                    reg_name  reg_code attendance_status attendance_type</span></span>
-<span><span class="co">#&gt; 1  Yorkshire and The Humber E12000003           Absence  Not determined</span></span>
-<span><span class="co">#&gt; 2  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt; 3  Yorkshire and The Humber E12000003           Absence    Unauthorised</span></span>
-<span><span class="co">#&gt; 4  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt; 5  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt; 6  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt; 7  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt; 8  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt; 9  Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt; 10 Yorkshire and The Humber E12000003           Absence      Authorised</span></span>
-<span><span class="co">#&gt;    day_number establishment_phase                            reason</span></span>
-<span><span class="co">#&gt; 1           1             Special                             Total</span></span>
-<span><span class="co">#&gt; 2           1             Special                             Total</span></span>
-<span><span class="co">#&gt; 3           1             Special                             Total</span></span>
-<span><span class="co">#&gt; 4           1             Special              I authorised illness</span></span>
-<span><span class="co">#&gt; 5           1             Special       M authorised medical dental</span></span>
-<span><span class="co">#&gt; 6           1             Special R authorised religious observance</span></span>
-<span><span class="co">#&gt; 7           1             Special          S authorised study leave</span></span>
-<span><span class="co">#&gt; 8           1             Special          T authorised grt absence</span></span>
-<span><span class="co">#&gt; 9           1             Special              H authorised holiday</span></span>
-<span><span class="co">#&gt; 10          1             Special             E authorised excluded</span></span>
+<span><span class="co">#&gt; 1   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 2   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 3   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 4   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 5   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 6   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 7   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 8   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 9   W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt; 10  W25   2024               LA    York E06000014        816  England E92000001</span></span>
+<span><span class="co">#&gt;                    reg_name  reg_code attendance_status</span></span>
+<span><span class="co">#&gt; 1  Yorkshire and The Humber E12000003        Attendance</span></span>
+<span><span class="co">#&gt; 2  Yorkshire and The Humber E12000003        Attendance</span></span>
+<span><span class="co">#&gt; 3  Yorkshire and The Humber E12000003        Attendance</span></span>
+<span><span class="co">#&gt; 4  Yorkshire and The Humber E12000003           Absence</span></span>
+<span><span class="co">#&gt; 5  Yorkshire and The Humber E12000003           Absence</span></span>
+<span><span class="co">#&gt; 6  Yorkshire and The Humber E12000003           Absence</span></span>
+<span><span class="co">#&gt; 7  Yorkshire and The Humber E12000003     Late sessions</span></span>
+<span><span class="co">#&gt; 8  Yorkshire and The Humber E12000003 Possible sessions</span></span>
+<span><span class="co">#&gt; 9  Yorkshire and The Humber E12000003        Attendance</span></span>
+<span><span class="co">#&gt; 10 Yorkshire and The Humber E12000003        Attendance</span></span>
+<span><span class="co">#&gt;                  attendance_type day_number education_phase attendance_reason</span></span>
+<span><span class="co">#&gt; 1                        Present          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 2  Approved educational activity          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 3                          Total          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 4                          Total          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 5                     Authorised          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 6                   Unauthorised          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 7                          Total          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 8                          Total          1       Secondary             Total</span></span>
+<span><span class="co">#&gt; 9                        Present          1         Primary             Total</span></span>
+<span><span class="co">#&gt; 10 Approved educational activity          1         Primary             Total</span></span>
 <span><span class="co">#&gt;    session_count</span></span>
-<span><span class="co">#&gt; 1             63</span></span>
-<span><span class="co">#&gt; 2             44</span></span>
-<span><span class="co">#&gt; 3             19</span></span>
-<span><span class="co">#&gt; 4             30</span></span>
-<span><span class="co">#&gt; 5              4</span></span>
-<span><span class="co">#&gt; 6              0</span></span>
-<span><span class="co">#&gt; 7              0</span></span>
-<span><span class="co">#&gt; 8              0</span></span>
-<span><span class="co">#&gt; 9              8</span></span>
-<span><span class="co">#&gt; 10             0</span></span></code></pre></div>
+<span><span class="co">#&gt; 1          13372</span></span>
+<span><span class="co">#&gt; 2            407</span></span>
+<span><span class="co">#&gt; 3          13779</span></span>
+<span><span class="co">#&gt; 4           1806</span></span>
+<span><span class="co">#&gt; 5           1080</span></span>
+<span><span class="co">#&gt; 6            726</span></span>
+<span><span class="co">#&gt; 7            487</span></span>
+<span><span class="co">#&gt; 8          15585</span></span>
+<span><span class="co">#&gt; 9          19472</span></span>
+<span><span class="co">#&gt; 10           503</span></span></code></pre></div>
 </div>
 </div>
 </div>

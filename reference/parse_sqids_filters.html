@@ -76,72 +76,72 @@ stored on the API for the data set.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="example_data_raw.html">example_data_raw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">use_series</a></span><span class="op">(</span><span class="st">"filters"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">parse_sqids_filters</span><span class="op">(</span><span class="fu"><a href="get_meta.html">get_meta</a></span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"attendance"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    attendance_status               attendance_type day_number</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         Attendance                       Present          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         Attendance Approved educational activity          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         Attendance                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4            Absence                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5            Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6            Absence                  Unauthorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      Late sessions                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  Possible sessions                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         Attendance                       Present          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        Attendance                       Present          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        Attendance                       Present          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        Attendance                       Present          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20           Absence                    Authorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21        Attendance Approved educational activity          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22        Attendance Approved educational activity          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23        Attendance Approved educational activity          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24        Attendance Approved educational activity          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25        Attendance Approved educational activity          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26           Absence                  Unauthorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27           Absence                  Unauthorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28           Absence                  Unauthorised          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29    Not determined                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30    Not determined                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31    Not determined                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32    Not determined                Not determined          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    establishment_phase                                     reason</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              Primary                                      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              Primary                                 Present am</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10             Primary                                 Present pm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11             Primary                                    Present</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12             Primary     L present late before registers closed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13             Primary                       I authorised illness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14             Primary                M authorised medical dental</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             Primary          R authorised religious observance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16             Primary                   S authorised study leave</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17             Primary                   T authorised grt absence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18             Primary                       H authorised holiday</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19             Primary                      E authorised excluded</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20             Primary                         C authorised other</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21             Primary                       B education off site</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22             Primary                        D dual registration</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23             Primary               P approved sporting activity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24             Primary                   V educational visit trip</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25             Primary                          W work experience</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26             Primary                     G unauthorised holiday</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27             Primary U unauthorised late after registers closed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28             Primary                       O other unauthorised</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29             Primary                            N no reason yet</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30             Primary               Not attending planned closed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31             Primary           Y not attending enforced closure</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32             Primary                Z not attending not on roll</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         attendance_status               attendance_type day_number</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              Attendance                         Total          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                 Absence                         Total          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                 Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                 Absence                  Unauthorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7           Late sessions                         Total          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       Possible sessions                         Total          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9              Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10             Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11             Attendance                       Present          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12             Attendance                          Late          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                Absence                    Authorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21             Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 Not a possible session                         Total          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23             Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24             Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25             Attendance Approved educational activity          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                Absence                  Unauthorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                Absence                  Unauthorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28                Absence                  Unauthorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29                Absence                  Unauthorised          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30    Administrative code           Administrative code          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 Not a possible session                         Total          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32    Administrative code           Administrative code          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    education_phase                          attendance_reason</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8          Special                                      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9          Special                                 Present am</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10         Special                                 Present pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11         Special                                    Present</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12         Special     L present late before registers closed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13         Special                       I authorised illness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14         Special                M authorised medical dental</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15         Special          R authorised religious observance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16         Special                   S authorised study leave</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17         Special                   T authorised grt absence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18         Special                       H authorised holiday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19         Special                      E authorised excluded</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20         Special                         C authorised other</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21         Special                       B education off site</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22         Special                        D dual registration</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23         Special               P approved sporting activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24         Special                   V educational visit trip</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25         Special                          W work experience</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26         Special                     G unauthorised holiday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27         Special U unauthorised late after registers closed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28         Special                       O other unauthorised</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29         Special                            N no reason yet</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30         Special               Not attending planned closed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31         Special           Y not attending enforced closure</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32         Special                Z not attending not on roll</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

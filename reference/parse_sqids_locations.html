@@ -76,39 +76,72 @@ for the data set.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="example_data_raw.html">example_data_raw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html" class="external-link">use_series</a></span><span class="op">(</span><span class="st">"locations"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">parse_sqids_locations</span><span class="op">(</span><span class="fu"><a href="get_meta.html">get_meta</a></span><span class="op">(</span><span class="fu"><a href="example_id.html">example_id</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"attendance"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     la_name   la_code la_oldCode nat_name  nat_code reg_name  reg_code</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31 Havering E09000016        311  England E92000001   London E12000007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32 Havering E09000016        311  England E92000001   London E12000007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         la_name   la_code la_oldCode nat_name  nat_code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32 Bath and North East Somerset E06000022        800  England E92000001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      reg_name  reg_code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 South West E12000009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32 South West E12000009</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

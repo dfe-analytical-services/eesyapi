@@ -41,24 +41,37 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_publications</span><span class="op">(</span>page_size <span class="op">=</span> <span class="fl">40</span>, page <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_publications</span><span class="op">(</span></span>
+<span>  ees_environment <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  api_version <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  page_size <span class="op">=</span> <span class="fl">40</span>,</span>
+<span>  page <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-page-size">page_size<a class="anchor" aria-label="anchor" href="#arg-page-size"></a></dt>
-<dd><p>Number of results to collect in a single query to the API (max 40)</p></dd>
+<dl><dt id="arg-ees-environment">ees_environment<a class="anchor" aria-label="anchor" href="#arg-ees-environment"></a></dt>
+<dd><p>EES ees_environment to connect to: "dev", "test", "preprod" or "prod"</p></dd>
+
+
+<dt id="arg-api-version">api_version<a class="anchor" aria-label="anchor" href="#arg-api-version"></a></dt>
+<dd><p>EES API version</p></dd>
+
+
+<dt id="arg-page-size">page_size<a class="anchor" aria-label="anchor" href="#arg-page-size"></a></dt>
+<dd><p>Number of results to return in a single query</p></dd>
 
 
 <dt id="arg-page">page<a class="anchor" aria-label="anchor" href="#arg-page"></a></dt>
-<dd><p>Page number to return (Default is NULL which will loop through until all
-pages of the query are collated).</p></dd>
+<dd><p>Page number of query results to return</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>Add extra contextual information whilst running</p></dd>
+<dd><p>Run with additional contextual messaging. Logical, default = FALSE</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -69,61 +82,22 @@ pages of the query are collated).</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_publications</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                      id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  b6d9ed96-be68-4791-abc3-08dcaba68c04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  82c3b19e-1060-4f5e-3410-08dc0b96cfea</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  8b657684-3b15-48d1-153b-08d9fa80c621</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0427bade-6d68-46bf-eadd-08dcd89c0dc5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  d823e4df-626f-4450-9b21-08dc8b95fc02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2a1a743c-9da5-49e2-fb97-08dce75f2dbb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  15f4cefb-7d43-4bc0-507e-08dceda89d2d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  d12cb4ed-6d68-4b2d-50aa-08dceda89d2d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  3de97aa6-8f78-4e5f-50ce-08dceda89d2d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 fe1f9c47-715f-451c-50e3-08dceda89d2d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                             title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                             Attendance API data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                            CSV filename validation test-Updated</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                         Nick's Test Publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                    Public API 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        Public API dataset testing-Updated title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                 sv api test new</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  UI tests - Public API - preview token 20241016-061014-u0tsh4-0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  UI tests - Public API - preview token 20241016-061014-u0tsh4-1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  UI tests - Public API - preview token 20241016-061014-u0tsh4-2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 UI tests - Public API - preview token 20241016-061014-u0tsh4-3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                          slug</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                         attendance-api-data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        csv-filename-validation-test-updated</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                     nick-s-test-publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                public-api-2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                    public-api-dataset-testing-updated-title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                             sv-api-test-new</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  ui-tests-public-api-preview-token-20241016-061014-u0tsh4-0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  ui-tests-public-api-preview-token-20241016-061014-u0tsh4-1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  ui-tests-public-api-preview-token-20241016-061014-u0tsh4-2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 ui-tests-public-api-preview-token-20241016-061014-u0tsh4-3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                   summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         A place to demo tidy attendance data on the API</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                    TEST</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                    asdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                    test</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                    test</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  UI tests - Public API - preview token 20241016-061014-u0tsh4-0 summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  UI tests - Public API - preview token 20241016-061014-u0tsh4-1 summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  UI tests - Public API - preview token 20241016-061014-u0tsh4-2 summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 UI tests - Public API - preview token 20241016-061014-u0tsh4-3 summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        lastPublished</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  2024-09-17T11:13:41.8711175+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2024-10-14T11:57:51.3142157+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  2022-11-08T22:47:26.2316722+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  2024-09-19T15:48:16.1376152+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2024-10-09T12:00:43.9538526+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2024-10-15T10:42:43.7291296+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  2024-10-16T06:14:15.1475552+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  2024-10-16T06:23:32.9953579+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  2024-10-16T06:32:27.4237216+00:00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 2024-10-16T06:41:00.8197776+00:00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                     id                           title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2c75dd3d-03e8-4f23-eeb2-08dce39219d4          API data sets' Testing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 25d0e40b-643a-4f73-3ae5-08dcf1c4d57f       Data sets for API testing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 f715cb51-1f0a-4fa0-0df9-08dce77dad59 Task 2 - second time publishing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            slug</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         api-data-sets-testing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     data-sets-for-api-testing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 task-2-second-time-publishing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                     summary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                        Testing for the first time on Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 A collection of example data sets for testing the public facing API with.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                           Task 2 - second time publishing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       lastPublished</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2024-10-15T10:30:30.9450847+00:00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2024-10-22T22:34:23.2140687+00:00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2024-10-08T10:21:06.9135415+00:00</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
