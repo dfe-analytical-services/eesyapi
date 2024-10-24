@@ -62,6 +62,6 @@ test_that("returns all rows", {
   # what it's supposed to be right now.
   expect_equal(
     preview_dataset(example_id("dataset"), n_max = Inf) |> nrow(),
-    query_dataset(example_id("dataset")) |> nrow()
+    query_dataset(example_id("dataset"), indicators = example_id("indicator")) |> nrow()
   )
 })

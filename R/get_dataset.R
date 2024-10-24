@@ -67,16 +67,15 @@ get_dataset <- function(
   # recursively run the query.
   if (is.null(page)) {
     if (response_json$paging$totalPages > 1) {
-      if (response_json$paging$totalPages * page_size > 100000) {
-        message(
-          paste(
-            "Downloading up to", response_json$paging$totalPages * page_size, "rows.",
-            "This may take a while.",
-            "We recommend downloading the full data set using download_dataset()",
-            "for large volumes of data"
-          )
-        )
-      }
+      toggle_message(
+        paste(
+          "Downloading up to", response_json$paging$totalPages * page_size, "rows.",
+          "This may take a while.",
+          "We recommend downloading the full data set using download_dataset()",
+          "for large volumes of data"
+        ),
+        verbose = response_json$paging$totalPages * page_size > 100000
+      )
       for (page in c(2:response_json$paging$totalPages)) {
         response_page <- eesyapi::api_url(
           "get-data",

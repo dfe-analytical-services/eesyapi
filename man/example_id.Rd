@@ -38,8 +38,9 @@ This function returns examples of working IDs that can be used with the eesyapi 
 as query_dataset().
 }
 \examples{
-example_id("all")
 example_id()
+example_id("all")
+example_id("all", ees_environment = "dev")
 example_id("publication")
 example_id("publication", group = "attendance")
 example_id("time_period", group = "attendance")
