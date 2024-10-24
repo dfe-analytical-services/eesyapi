@@ -6,20 +6,26 @@
 \usage{
 get_data_catalogue(
   publication_id,
+  ees_environment = NULL,
+  api_version = NULL,
   page_size = NULL,
   page = NULL,
   verbose = FALSE
 )
 }
 \arguments{
-\item{publication_id}{The publication ID as used by the API}
+\item{publication_id}{ID of the publication to be connected to. This is required if the
+endpoint is "get-data-catalogue"}
 
-\item{page_size}{Number of results to collect in a single query to the API (max 40)}
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
-\item{page}{Page number to return (Default is NULL which will loop through until all
-pages of the query are collated).}
+\item{api_version}{EES API version}
 
-\item{verbose}{Add extra contextual information whilst running}
+\item{page_size}{Number of results to return in a single query}
+
+\item{page}{Page number of query results to return}
+
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 Data frame listing the data sets contained within a single publication

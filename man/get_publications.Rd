@@ -4,15 +4,24 @@
 \alias{get_publications}
 \title{Get publications}
 \usage{
-get_publications(page_size = 40, page = NULL, verbose = FALSE)
+get_publications(
+  ees_environment = NULL,
+  api_version = NULL,
+  page_size = 40,
+  page = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
-\item{page_size}{Number of results to collect in a single query to the API (max 40)}
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
-\item{page}{Page number to return (Default is NULL which will loop through until all
-pages of the query are collated).}
+\item{api_version}{EES API version}
 
-\item{verbose}{Add extra contextual information whilst running}
+\item{page_size}{Number of results to return in a single query}
+
+\item{page}{Page number of query results to return}
+
+\item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }
 \value{
 Data frame listing all available publications

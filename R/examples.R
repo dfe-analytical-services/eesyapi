@@ -15,7 +15,7 @@
 #'   - "filter_item" / "filter_items_short" / "filter_items_long": Return example filter ID or
 #'     example short / long filter query list.
 #'   - "indicator": Return example indicator ID
-#' @param environment Environment to return a working example for: "dev" or "test"
+#' @param ees_environment Environment to return a working example for: "dev" or "test"
 #' @param group Choose the publication group of examples to use. Options are:
 #'   - "attendance": Large example data set, careful what you ask for
 #'   - "public-api-testing": Smaller example data set
@@ -24,8 +24,9 @@
 #' @export
 #'
 #' @examples
-#' example_id("all")
 #' example_id()
+#' example_id("all")
+#' example_id("all", ees_environment = "dev")
 #' example_id("publication")
 #' example_id("publication", group = "attendance")
 #' example_id("time_period", group = "attendance")
@@ -34,8 +35,8 @@
 #' example_id("indicator", group = "attendance")
 example_id <- function(
     level = "dataset",
-    environment = "dev",
-    group = "public-api-testing") {
+    ees_environment = "test",
+    group = "absence") {
   example_id_list <- list(
     attendance = list(
       dev = list(
@@ -64,9 +65,37 @@ example_id <- function(
           reason = c("bBrtT")
         ),
         indicator = "bqZtT"
+      ),
+      test = list(
+        publication = "25d0e40b-643a-4f73-3ae5-08dcf1c4d57f",
+        dataset = "57b69201-033a-2c77-a19f-abcce2b11341",
+        time_period = "2024|W23",
+        time_periods = c("2024|W24", "2024|W25"),
+        location_id = "NAT|id|mRj9K",
+        location_ids = c("LA|id|arLPb", "REG|id|zecFQ"),
+        location_code = "NAT|code|E92000001",
+        location_codes = c("REG|code|E12000001", "REG|code|E12000002"),
+        filter = "5Zdi9",
+        filter_item = "rQkNj",
+        filter_items_long = list(
+          attendance_status = c("BfP7J", "zvUFQ"),
+          attendance_type = c("TuxPJ", "tj0Em", "5Tsdi", "fzaYF"),
+          education_phase = c("Poqeb", "dPE0Z"),
+          day_number = c("AOhGK"),
+          reason = c("9Ru4v")
+        ),
+        filter_items_short = list(
+          attendance_status = c("qGJjG"),
+          attendance_type = c("cZO31", "jgoAM"),
+          education_phase = c("Poqeb", "dPE0Z"),
+          day_number = c("AOhGK"),
+          reason = c("9Ru4v")
+        ),
+        indicator = "tj0Em",
+        indicators = c("tj0Em", "fzaYF")
       )
     ),
-    `public-api-testing` = list(
+    absence = list(
       dev = list(
         publication = "d823e4df-626f-4450-9b21-08dc8b95fc02",
         dataset = "830f9201-9e11-ad75-8dcd-d2efe2834457",
@@ -76,19 +105,30 @@ example_id <- function(
         filter = "01tT5",
         filter_item = "wEZcb",
         indicator = "PbNeb"
+      ),
+      test = list(
+        publication = "25d0e40b-643a-4f73-3ae5-08dcf1c4d57f",
+        dataset = "e1ae9201-2fff-d376-8fa3-bd3c3660d4c8",
+        location_id = "NAT|id|mRj9K",
+        location_code = "NAT|code|E92000001",
+        filter = "arLPb",
+        filter_item = "VN5XE",
+        filter_items = c("VN5XE", "PEebW"),
+        indicator = "dPe0Z",
+        indicators = c("OBXCL", "7YFXo")
       )
     )
   )
   if (!(group %in% names(example_id_list))) {
     stop(paste0("Chosen group (", group, ") not found in examples list."))
   }
-  if (!(environment %in% c("dev"))) {
-    stop(paste0("Chosen environment (", environment, ") should be one of: \"dev\"."))
+  if (!(ees_environment %in% c("dev", "test"))) {
+    stop(paste0("Chosen ees_environment (", ees_environment, ") should be one of: dev or test."))
   }
 
   group_examples <- example_id_list |>
     magrittr::extract2(group) |>
-    magrittr::extract2(environment)
+    magrittr::extract2(ees_environment)
 
   if (any(level == "all")) {
     return(group_examples)
@@ -158,15 +198,9 @@ example_data_raw <- function(
 example_json_query <- function() {
   eesyapi::parse_tojson_params(
     indicators = example_id("indicator", group = "attendance"),
-    time_periods = "2024|W23",
-    geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-    filter_items = list(
-      attendance_status = c("pmRSo"),
-      attendance_type = c("CvuId", "6AXrf"),
-      education_phase = c("ThDPJ", "crH31"),
-      day_number = c("uLQo4"),
-      reason = c("bBrtT")
-    )
+    time_periods = example_id("time_period", group = "attendance"),
+    geographies = example_id("location_codes", group = "attendance"),
+    filter_items = example_id("filter_items_short", group = "attendance")
   )
 }
 

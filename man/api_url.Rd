@@ -14,10 +14,10 @@ api_url(
   locations = NULL,
   filter_items = NULL,
   dataset_version = NULL,
+  ees_environment = NULL,
+  api_version = NULL,
   page_size = NULL,
   page = NULL,
-  api_version = "1.0",
-  environment = "dev",
   verbose = FALSE
 )
 }
@@ -43,13 +43,13 @@ of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
 
 \item{dataset_version}{Version of data set to be connected to}
 
-\item{page_size}{Number of results to return in a single query}
-
-\item{page}{Page number of query results to return}
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
 \item{api_version}{EES API version}
 
-\item{environment}{EES environment to connect to: "dev", "test", "preprod" or "prod"}
+\item{page_size}{Number of results to return in a single query}
+
+\item{page}{Page number of query results to return}
 
 \item{verbose}{Run with additional contextual messaging. Logical, default = FALSE}
 }

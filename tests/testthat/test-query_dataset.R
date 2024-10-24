@@ -60,7 +60,7 @@ test_that("Time period query returns expected time periods", {
       dplyr::distinct() |>
       dplyr::arrange(code, period),
     data.frame(
-      code = c("W21", "W23"),
+      code = c("W24", "W25"),
       period = c("2024", "2024")
     )
   )
@@ -88,13 +88,14 @@ test_that("Geography query returns expected geographies", {
       geographies = eesyapi::example_id("location_ids", group = "attendance"),
       filter_items = eesyapi::example_id("filter_item", group = "attendance")
     ) |>
-      dplyr::select("geographic_level", "nat_code", "reg_code") |>
+      dplyr::select("geographic_level", "nat_code", "reg_code", "la_code") |>
       dplyr::distinct() |>
       dplyr::arrange(geographic_level),
     data.frame(
-      geographic_level = c("NAT", "REG"),
+      geographic_level = c("LA", "REG"),
       nat_code = rep("E92000001", 2),
-      reg_code = c(NA, "E12000004")
+      reg_code = rep("E12000003", 2),
+      la_code = c("E06000014", NA)
     )
   )
 })
@@ -126,18 +127,18 @@ test_that("Test filter-combinations POST dataset query", {
       "attendance_status",
       "attendance_type",
       "day_number",
-      "establishment_phase",
-      "reason"
+      "education_phase",
+      "attendance_reason"
     ) |>
     dplyr::distinct()
   expect_equal(
     query_result,
     data.frame(
-      attendance_status = rep("Attendance", 4),
-      attendance_type = rep(c("Present", "Approved educational activity"), 2),
+      attendance_status = rep("Absence", 4),
+      attendance_type = rep(c("Authorised", "Unauthorised"), 2),
       day_number = rep("Total", 4),
-      establishment_phase = c(rep("Secondary", 2), rep("Special", 2)),
-      reason = rep("Total", 4)
+      education_phase = c(rep("Secondary", 2), rep("Total", 2)),
+      attendance_reason = rep("Total", 4)
     )
   )
 })
@@ -146,5 +147,45 @@ test_that("Indicators not found in data set", {
   expect_error(
     query_dataset(example_id(), indicators = c("uywet", "uywed")),
     "\nHTTP connection error: 400\nOne or more indicators could not be found.\n     uywet, uywed"
+  )
+})
+
+test_that("Query data set runs on dev!", {
+  expect_equal(
+    query_dataset(
+      example_id(group = "attendance", ees_environment = "dev"),
+      indicators = example_id("indicator", group = "attendance", ees_environment = "dev"),
+      time_periods = example_id("time_periods", group = "attendance", ees_environment = "dev"),
+      geographies = example_id("location_codes", group = "attendance", ees_environment = "dev"),
+      filter_items = example_id(
+        "filter_items_short",
+        group = "attendance",
+        ees_environment = "dev"
+      ),
+      page = 1,
+      page_size = 12,
+      ees_environment = "dev"
+    ) |> nrow(),
+    12
+  )
+})
+
+test_that("Query data set runs on test!", {
+  expect_equal(
+    query_dataset(
+      example_id(group = "attendance", ees_environment = "test"),
+      indicators = example_id("indicator", group = "attendance", ees_environment = "test"),
+      time_periods = example_id("time_periods", group = "attendance", ees_environment = "test"),
+      geographies = example_id("location_codes", group = "attendance", ees_environment = "test"),
+      filter_items = example_id(
+        "filter_items_short",
+        group = "attendance",
+        ees_environment = "test"
+      ),
+      page = 1,
+      page_size = 12,
+      ees_environment = "test"
+    ) |> nrow(),
+    12
   )
 })

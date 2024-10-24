@@ -4,11 +4,7 @@
 \alias{example_id}
 \title{Example ID}
 \usage{
-example_id(
-  level = "dataset",
-  environment = "dev",
-  group = "public-api-testing"
-)
+example_id(level = "dataset", ees_environment = "test", group = "absence")
 }
 \arguments{
 \item{level}{Level of ID example to return. A range are available, although not every example
@@ -26,7 +22,7 @@ example short / long filter query list.
 \item "indicator": Return example indicator ID
 }}
 
-\item{environment}{Environment to return a working example for: "dev" or "test"}
+\item{ees_environment}{Environment to return a working example for: "dev" or "test"}
 
 \item{group}{Choose the publication group of examples to use. Options are:
 \itemize{
@@ -42,8 +38,9 @@ This function returns examples of working IDs that can be used with the eesyapi 
 as query_dataset().
 }
 \examples{
-example_id("all")
 example_id()
+example_id("all")
+example_id("all", ees_environment = "dev")
 example_id("publication")
 example_id("publication", group = "attendance")
 example_id("time_period", group = "attendance")

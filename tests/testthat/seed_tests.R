@@ -1,5 +1,5 @@
 # This script contains a set of functions to update test data from the current state of the API
-# (i.e. when new publications / datasets get added).
+# (i.e. when new publications / data sets get added).
 #
 # Refreshing test data
 # ====================

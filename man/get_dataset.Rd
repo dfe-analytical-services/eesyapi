@@ -12,6 +12,7 @@ get_dataset(
   locations = NULL,
   filter_items = NULL,
   dataset_version = NULL,
+  ees_environment = NULL,
   api_version = NULL,
   page = NULL,
   page_size = 10000,
@@ -34,6 +35,8 @@ of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
 \item{filter_items}{Filter items required as a string or vector of strings}
 
 \item{dataset_version}{Version of data set to be connected to}
+
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
 \item{api_version}{EES API version}
 
@@ -60,7 +63,7 @@ any of those items.
 \examples{
 get_dataset(
   example_id(),
-  geographic_levels = c("SCH"),
+  geographic_levels = c("NAT"),
   filter_items = example_id("filter_item"),
   indicators = example_id("indicator")
 )

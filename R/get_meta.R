@@ -12,11 +12,16 @@
 #'
 #' @examples
 #' get_meta(example_id())
-get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL,
-                     verbose = FALSE) {
+get_meta <- function(
+    dataset_id,
+    dataset_version = NULL,
+    ees_environment = NULL,
+    api_version = NULL,
+    verbose = FALSE) {
   meta_data_response <- get_meta_response(
     dataset_id,
     dataset_version = dataset_version,
+    ees_environment = ees_environment,
     api_version = api_version,
     parse = TRUE,
     verbose = verbose
@@ -47,6 +52,7 @@ get_meta <- function(dataset_id, dataset_version = NULL, api_version = NULL,
 get_meta_response <- function(
     dataset_id,
     dataset_version = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     parse = TRUE,
     verbose = FALSE) {
@@ -63,7 +69,9 @@ get_meta_response <- function(
   meta_url <- eesyapi::api_url(
     endpoint = "get-meta",
     dataset_id = dataset_id,
-    dataset_version = dataset_version
+    dataset_version = dataset_version,
+    ees_environment = ees_environment,
+    api_version = api_version
   )
 
   response <- httr::GET(meta_url)

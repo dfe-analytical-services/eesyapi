@@ -1,10 +1,6 @@
 #' Get publication specific data set catalogue
 #'
-#' @param publication_id The publication ID as used by the API
-#' @param page_size Number of results to collect in a single query to the API (max 40)
-#' @param page Page number to return (Default is NULL which will loop through until all
-#' pages of the query are collated).
-#' @param verbose Add extra contextual information whilst running
+#' @inheritParams api_url
 #'
 #' @return Data frame listing the data sets contained within a single publication
 #' @export
@@ -13,6 +9,8 @@
 #' get_data_catalogue(example_id("publication"))
 get_data_catalogue <- function(
     publication_id,
+    ees_environment = NULL,
+    api_version = NULL,
     page_size = NULL,
     page = NULL,
     verbose = FALSE) {
@@ -24,6 +22,8 @@ get_data_catalogue <- function(
     eesyapi::api_url(
       endpoint = "get-data-catalogue",
       publication_id = publication_id,
+      ees_environment = ees_environment,
+      api_version = api_version,
       page_size = page_size,
       page = page,
       verbose = verbose
@@ -39,6 +39,8 @@ get_data_catalogue <- function(
           eesyapi::api_url(
             endpoint = "get-data-catalogue",
             publication_id = publication_id,
+            ees_environment = ees_environment,
+            api_version = api_version,
             page_size = page_size,
             page = page,
             verbose = verbose

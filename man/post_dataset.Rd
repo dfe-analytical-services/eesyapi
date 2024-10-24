@@ -12,6 +12,7 @@ post_dataset(
   filter_items = NULL,
   json_query = NULL,
   dataset_version = NULL,
+  ees_environment = NULL,
   api_version = NULL,
   page = NULL,
   page_size = 10000,
@@ -36,6 +37,8 @@ locations to be queried.}
 \item{json_query}{Optional path to a json file containing the query parameters}
 
 \item{dataset_version}{Version of data set to be connected to}
+
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
 \item{api_version}{EES API version}
 
@@ -63,30 +66,16 @@ post_dataset(
   json_query = example_json_query()
 )
 
-# Run post_dataset() to select rows containing either of two geographic locations and either of
-# two filter items.
+# Run post_dataset() to select rows containing either of two geographic locations and a single
+# filter item.
 post_dataset(
   example_id(group = "attendance"),
   indicators = example_id("indicator", group = "attendance"),
-  time_periods = "2024|W23",
-  geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-  filter_items = c("CvuId", "6AXrf"),
+  time_periods = example_id("time_period", group = "attendance"),
+  geographies = example_id("location_code", group = "attendance"),
+  filter_items = example_id("filter_item", group = "attendance"),
   page = 1,
   page_size = 32
 )
 
-# Run post_dataset() using set parameters giving a combination of filter options
-post_dataset(
-  example_id(group = "attendance"),
-  indicators = example_id("indicator", group = "attendance"),
-  time_periods = "2024|W23",
-  geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-  filter_items = list(
-    attendance_status = c("pmRSo", "7SdXo"),
-    attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
-    education_phase = c("ThDPJ", "crH31"),
-    day_number = c("uLQo4"),
-    reason = c("bBrtT")
-  )
-)
 }

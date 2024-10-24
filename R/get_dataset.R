@@ -18,7 +18,7 @@
 #' @examples
 #' get_dataset(
 #'   example_id(),
-#'   geographic_levels = c("SCH"),
+#'   geographic_levels = c("NAT"),
 #'   filter_items = example_id("filter_item"),
 #'   indicators = example_id("indicator")
 #' )
@@ -30,12 +30,13 @@ get_dataset <- function(
     locations = NULL,
     filter_items = NULL,
     dataset_version = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     page = NULL,
     page_size = 10000,
     parse = TRUE,
     verbose = FALSE) {
-  response <- eesyapi::api_url(
+  api_call <- eesyapi::api_url(
     "get-data",
     dataset_id = dataset_id,
     indicators = indicators,
@@ -43,10 +44,14 @@ get_dataset <- function(
     geographic_levels = geographic_levels,
     locations = locations,
     filter_items = filter_items,
+    dataset_version = dataset_version,
+    ees_environment = ees_environment,
+    api_version = api_version,
     page_size = page_size,
     page = page,
     verbose = verbose
-  ) |>
+  )
+  response <- api_call |>
     httr::GET()
   eesyapi::http_request_error(response)
   # Unless the user specifies a specific page of results to get, loop through all available pages.
@@ -54,7 +59,7 @@ get_dataset <- function(
     httr::content("text") |>
     jsonlite::fromJSON()
   if (verbose) {
-    message(paste("Total number of pages: ", response_json$paging$totalPages))
+    message(paste("Total number of pages retrieved: ", response_json$paging$totalPages))
   }
   dfresults <- response_json |>
     magrittr::extract2("results")
@@ -62,16 +67,15 @@ get_dataset <- function(
   # recursively run the query.
   if (is.null(page)) {
     if (response_json$paging$totalPages > 1) {
-      if (response_json$paging$totalPages * page_size > 100000) {
-        message(
-          paste(
-            "Downloading up to", response_json$paging$totalPages * page_size, "rows.",
-            "This may take a while.",
-            "We recommend downloading the full data set using download_dataset()",
-            "for large volumes of data"
-          )
-        )
-      }
+      toggle_message(
+        paste(
+          "Downloading up to", response_json$paging$totalPages * page_size, "rows.",
+          "This may take a while.",
+          "We recommend downloading the full data set using download_dataset()",
+          "for large volumes of data"
+        ),
+        verbose = response_json$paging$totalPages * page_size > 100000
+      )
       for (page in c(2:response_json$paging$totalPages)) {
         response_page <- eesyapi::api_url(
           "get-data",
@@ -81,6 +85,9 @@ get_dataset <- function(
           geographic_levels = geographic_levels,
           locations = locations,
           filter_items = filter_items,
+          dataset_version = dataset_version,
+          ees_environment = ees_environment,
+          api_version = api_version,
           page_size = page_size,
           page = page,
           verbose = verbose
@@ -89,6 +96,10 @@ get_dataset <- function(
           httr::content("text") |>
           jsonlite::fromJSON()
         response_page |> eesyapi::warning_max_pages()
+        toggle_message(
+          paste0("Retrieved page ", page, " of ", response_json$paging$totalPages),
+          verbose = verbose
+        )
         dfresults <- dfresults |>
           dplyr::bind_rows(
             response_page |>
@@ -99,7 +110,11 @@ get_dataset <- function(
   }
   if (parse) {
     dfresults <- dfresults |>
-      eesyapi::parse_api_dataset(dataset_id, verbose = verbose)
+      eesyapi::parse_api_dataset(
+        dataset_id,
+        verbose = verbose,
+        ees_environment = ees_environment
+      )
   }
   return(dfresults)
 }

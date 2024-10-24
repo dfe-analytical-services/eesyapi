@@ -23,6 +23,7 @@ parse_api_dataset <- function(
     api_data_result,
     dataset_id,
     dataset_version = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     verbose = FALSE) {
   if (!is.null(dataset_id)) {
@@ -39,6 +40,7 @@ parse_api_dataset <- function(
   meta <- eesyapi::get_meta(
     dataset_id,
     dataset_version = dataset_version,
+    ees_environment = ees_environment,
     api_version = api_version
   )
   dplyr::bind_cols(

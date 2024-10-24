@@ -54,11 +54,11 @@ From this list, you can find the title of the publication that you're interested
 associated publication ID.
 
 For example from the test list, we can pick out **"Attendance API data"**, which has an ID of 
-**"b6d9ed96-be68-4791-abc3-08dcaba68c04"**. We can now use this in the function 
+**`r eesyapi::example_id("publication", group = "attendance")`**. We can now use this in the function 
 `eesyapi::get_data_catalogue()` to find all the data sets within that publication:
 
 ```
-eesyapi::get_data_catalogue("b6d9ed96-be68-4791-abc3-08dcaba68c04")
+eesyapi::get_data_catalogue("25d0e40b-643a-4f73-3ae5-08dcf1c4d57f")
 ```
 
 This returns a data frame containing data set IDs and titles (along with a summary, the status and information on what's in the latest version). The data set IDs can be used as shown in the following sections to get a given data set's summary and meta data, and to query the data set itself.
@@ -84,7 +84,7 @@ Using `eesyapi`, you can preview a data set using `preview_dataset()` and provid
 ID as follows:
 
 ```
-eesyapi::preview_dataset("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
+eesyapi::preview_dataset("57b69201-033a-2c77-a19f-abcce2b11341")
 ```
 
 This will return a data frame containing the first 10 rows of the data in the form that DfE 
@@ -112,10 +112,10 @@ what time periods and geographic levels and locations are available in a given
 data set, you can use the function `eesyapi::get_meta()`, providing it with your 
 data set's ID. For example, to get the "attendance in schools" data from the example
 attendance API data publication, you can take the data set ID 
-`7c0e9201-c7c0-ff73-bee4-304e731ec0e6` and provide it as a parameter to `get_meta`:
+**`r eesyapi::example_id(group = "attendance")`** and provide it as a parameter to `get_meta`:
 
 ```
-eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6")
+eesyapi::get_meta(dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341")
 ```
 
 This function returns a list of 5 data frames:
@@ -130,24 +130,58 @@ The item_id values provided in `$locations` and `$filter_items` are required to
 construct queries for filtering a given data set, whilst time periods can be 
 filtered on the values in the `$time_period` code column.
 
-In this example, let's say we've run `eesyapi::get_meta("7c0e9201-c7c0-ff73-bee4-304e731ec0e6")`
+In this example, let's say we've run `eesyapi::get_meta("57b69201-033a-2c77-a19f-abcce2b11341")`
 and we want to filter our data set to obtain data for:
 
-- the "Week 26" time period in "2024", 
+- the "Week 24" time period in "2024", 
 - "York" and "England" from the geographies,
 - "Absence" from Attendance status
 - "Approved educational activity", "Authorised" and "Unauthorised" from Attendance type
-- Just the "Total" entries for "reason" and "day_number"
+- Just the "Total" entries for "attendance_reason" and "day_number"
 - And we want to see "Number of sessions" data values.
+
+```{r echo=FALSE}
+meta_data <- eesyapi::get_meta(dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341")
+time_period_example <- meta_data |>
+  magrittr::extract2("time_periods") |>
+  dplyr::filter(
+    label %in% c("2024 Week 24")
+  ) |>
+  dplyr::select(code, period) |>
+  paste(collapse = " ")
+geography_example <- meta_data |>
+  magrittr::extract2("locations") |>
+  dplyr::filter(label %in% c("York", "England")) |>
+  dplyr::pull(item_id) |>
+  paste(collapse = "\" and \"")
+filter_example_1 <- meta_data |>
+  magrittr::extract2("filter_items") |>
+  dplyr::filter(item_label %in% c("Absence")) |>
+  dplyr::pull("item_id")
+filter_example_2 <- meta_data |>
+  magrittr::extract2("filter_items") |>
+  dplyr::filter(item_label %in% c("Approved educational activity", "Authorised", "Unauthorised")) |>
+  dplyr::pull("item_id") |>
+  paste(collapse = "\", \"")
+filter_columns_3 <- meta_data |>
+  magrittr::extract2("filter_columns") |>
+  dplyr::filter(col_name %in% c("attendance_reason", "day_number")) |>
+  dplyr::pull("col_id")
+filter_example_3 <- meta_data |>
+  magrittr::extract2("filter_items") |>
+  dplyr::filter(item_label == "Total", col_id %in% c(filter_columns_3)) |>
+  dplyr::pull("item_id") |>
+  paste(collapse = "\" and \"")
+```
 
 For this we would need the following codes / item_ids:
 
-- "2024 W26"
-- "jfhAM" and "dP0Zw"
-- "7SdXo"
-- "6AXrf", "0k3T5" and "YdkHK"
-- "uLQo4" and "bBrtT"
-- "bqZtT"
+- "`r time_period_example`"
+- "`r geography_example`"
+- "`r filter_example_1`"
+- "`r filter_example_2`"
+- "`r filter_example_3`"
+- "`r eesyapi::example_id("indicator",group = "attendance")`"
 
 Note that whilst the above IDs are unique within a given item type (e.g. `filter_item`), they are
 not necessarily unique between types. For example, a given `indicator` could be assigned the same 
@@ -159,17 +193,17 @@ following example pieces of query code.
 ### Time periods
 
 ``` {r}
-eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+eesyapi::get_meta(dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341") |>
   magrittr::extract2("time_periods") |>
   dplyr::filter(
-    label %in% c("2024 Week 26")
+    label %in% c("2024 Week 24")
   )
 ```
 
 ### Geographies
 
 ``` {r}
-eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+eesyapi::get_meta(dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341") |>
   magrittr::extract2("locations") |>
   dplyr::filter(label %in% c("York", "England"))
 ```
@@ -179,14 +213,14 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 Note that the col_id values here correspond to the col_id values in the filter items, which shows which column each item is availble in.
 
 ``` {r}
-eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+eesyapi::get_meta(dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341") |>
   magrittr::extract2("filter_columns")
 ```
 
 ### Filter items
 
 ``` {r}
-eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+eesyapi::get_meta(dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341") |>
   magrittr::extract2("filter_items") |>
   dplyr::filter(
     item_label %in% c(
@@ -198,7 +232,7 @@ eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
 ### Indicators
 
 ``` {r}
-eesyapi::get_meta(dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6") |>
+eesyapi::get_meta(dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341") |>
   magrittr::extract2("indicators") |>
   dplyr::filter(
     label %in% c("Session count")
@@ -233,21 +267,21 @@ You don't generally need to use the IDs for filter columns as the query only nee
 
 Using the parameters we obtained from `get-meta` above, then we can create a query to return 
 session count data for only **Approved educational activity**, **Authorised** and **Unauthorised** 
-in the **Absences** category, **Nationally** for **York** in **Week 26** in **2024**, we would 
+in the **Absences** category, **Nationally** for **York** in **Week 24** in **2024**, we would 
 supply the following:
 
 ``` {r example-parameter-query}
 eesyapi::query_dataset(
-  dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
-  indicators = "bqZtT",
+  dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341",
+  indicators = "tj0Em",
   filter_items = list(
-    attendance_status = c("7SdXo"),
-    attendance_type = c("6AXrf", "0k3T5", "YdkHK"),
-    day_number = "uLQo4",
-    reason = "bBrtT"
+    attendance_status = c("qGJjG"),
+    attendance_type = c("TuxPJ", "cZO31", "jgoAM"),
+    day_number = "AOhGK",
+    attendance_reason = "9Ru4v"
   ),
-  geographies = c("NAT|id|dP0Zw", "LA|ID|jfhAM"),
-  time_periods = c("2024|W26")
+  geographies = c("NAT|id|mRj9K", "LA|ID|arLPb"),
+  time_periods = c("2024|W24")
 )
 ```
 
@@ -273,28 +307,28 @@ json_query <- "{
     \"and\": [
       {
         \"filters\": {
-          \"eq\": \"7SdXo\"
+          \"eq\": \"9Ru4v\"
         }
       },
       {
         \"locations\": {
           \"eq\": {
             \"level\": \"LA\",
-            \"id\": \"jfhAM\"
+            \"id\": \"arLPb\"
           }
         }
       }
     ]
   },
   \"indicators\": [
-    \"bqZtT\"
+    \"tj0Em\"
   ],
   \"debug\": false,
   \"page\": 1,
   \"pageSize\": 10
 }"
 eesyapi::query_dataset(
-  dataset_id = "7c0e9201-c7c0-ff73-bee4-304e731ec0e6",
+  dataset_id = "57b69201-033a-2c77-a19f-abcce2b11341",
   json_query = json_query
 )
 ```

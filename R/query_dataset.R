@@ -109,7 +109,7 @@
 #'   json_query = example_json_query()
 #' )
 #'
-#' # If you don't want to have tio write your own json query, the rest of the examples illustrate
+#' # If you don't want to have to write your own json query, the rest of the examples illustrate
 #' # how to use query_dataset() with parameters to construct queries in R.
 #'
 #' # Run query_dataset() to select rows containing either of two geographic locations and either of
@@ -117,26 +117,21 @@
 #' query_dataset(
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator", group = "attendance"),
-#'   time_periods = "2024|W23",
-#'   geographies = c("NAT|id|dP0Zw", "REG|id|rg3Nj"),
-#'   filter_items = c("CvuId", "6AXrf"),
+#'   time_periods = example_id("time_period", group = "attendance"),
+#'   geographies = example_id("location_code", group = "attendance"),
+#'   filter_items = example_id("filter_item", group = "attendance"),
 #'   page = 1,
 #'   page_size = 32
 #' )
 #'
 #' # Run query_dataset() using set parameters giving a combination of filter options
+#' example_id("filter_items_short", group = "attendance")
 #' query_dataset(
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator", group = "attendance"),
-#'   time_periods = "2024|W23",
+#'   time_periods = example_id("time_period", group = "attendance"),
 #'   geographies = c("NAT"),
-#'   filter_items = list(
-#'     attendance_status = c("pmRSo", "7SdXo"),
-#'     attendance_type = c("CvuId", "6AXrf", "0k3T5", "YdkHK"),
-#'     education_phase = c("ThDPJ", "crH31"),
-#'     day_number = c("uLQo4"),
-#'     reason = c("bBrtT")
-#'   )
+#'   filter_items = example_id("filter_items_short", group = "attendance")
 #' )
 #'
 #' # Run a query with a more complex geography selection. Return data for all of:
@@ -147,22 +142,16 @@
 #' query_dataset(
 #'   example_id(group = "attendance"),
 #'   indicators = example_id("indicator", group = "attendance"),
-#'   time_periods = "2024|W23",
+#'   time_periods = example_id("time_period", group = "attendance"),
 #'   geographies = example_geography_query("nat_yorks_yorkslas"),
-#'   filter_items = list(
-#'     attendance_status = c("pmRSo"),
-#'     attendance_type = c("CvuId"),
-#'     education_phase = c("ThDPJ"),
-#'     day_number = c("uLQo4"),
-#'     reason = c("bBrtT")
-#'   )
+#'   filter_items = example_id("filter_item", group = "attendance")
 #' )
 #'
 #' # Run a basic query using GET instead of POST
 #' query_dataset(
 #'   example_id(),
 #'   method = "GET",
-#'   geographic_levels = c("SCH"),
+#'   geographic_levels = c("NAT"),
 #'   filter_items = example_id("filter_item"),
 #'   indicators = example_id("indicator"),
 #'   page = 1,
@@ -180,6 +169,7 @@ query_dataset <- function(
     json_query = NULL,
     method = "POST",
     dataset_version = NULL,
+    ees_environment = NULL,
     api_version = NULL,
     page_size = 10000,
     page = NULL,
@@ -208,6 +198,7 @@ query_dataset <- function(
       filter_items = filter_items,
       json_query = json_query,
       dataset_version = dataset_version,
+      ees_environment = ees_environment,
       api_version = api_version,
       page_size = page_size,
       page = page,
@@ -230,6 +221,7 @@ query_dataset <- function(
       locations = locations,
       filter_items = filter_items,
       dataset_version = dataset_version,
+      ees_environment = ees_environment,
       api_version = api_version,
       page_size = page_size,
       page = page,

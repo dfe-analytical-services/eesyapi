@@ -8,6 +8,7 @@ parse_api_dataset(
   api_data_result,
   dataset_id,
   dataset_version = NULL,
+  ees_environment = NULL,
   api_version = NULL,
   verbose = FALSE
 )
@@ -19,6 +20,8 @@ parse_api_dataset(
 of "get-summary", "get-meta", "get-csv", "get-data" or "post-data"}
 
 \item{dataset_version}{Version of data set to be connected to}
+
+\item{ees_environment}{EES ees_environment to connect to: "dev", "test", "preprod" or "prod"}
 
 \item{api_version}{EES API version}
 
