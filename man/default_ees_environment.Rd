@@ -6,9 +6,6 @@
 \usage{
 default_ees_environment()
 }
-\value{
-String containing default EES environment
-}
 \description{
 Set current default EES environment
 }

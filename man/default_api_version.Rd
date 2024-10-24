@@ -6,9 +6,6 @@
 \usage{
 default_api_version()
 }
-\value{
-String containing default API version
-}
 \description{
 Set current default API version
 }

@@ -1,3 +1,15 @@
+#' Example environment
+#'
+#' @return String containing default environment
+#' @export
+#'
+#' @examples
+#' example_environment()
+example_environment <- function() {
+  default_ees_environment()
+}
+
+
 #' Example ID
 #' @description
 #' This function returns examples of working IDs that can be used with the eesyapi functions, such

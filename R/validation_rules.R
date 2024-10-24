@@ -1,3 +1,24 @@
+#' Validate EES environment
+#'
+#' @param ees_environment String containing the ees_environment name: "dev", "test", "preprod" or
+#' "prod"
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' validate_ees_environment("prod")
+validate_ees_environment <- function(ees_environment) {
+  if (!(ees_environment %in% c("dev", "test", "preprod", "prod"))) {
+    stop(
+      paste(
+        "You have entered invalid EES environment. The environment should be one of:\n",
+        "   - dev, test, preprod or prod"
+      )
+    )
+  }
+}
+
 #' Validate page size
 #'
 #' @param page_size Chosen page size

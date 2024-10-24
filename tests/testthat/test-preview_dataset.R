@@ -64,4 +64,4 @@ test_that("returns all rows", {
     preview_dataset(example_id("dataset"), n_max = Inf) |> nrow(),
     query_dataset(example_id("dataset")) |> nrow()
   )
-  })
+})

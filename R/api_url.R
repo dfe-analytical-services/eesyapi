@@ -135,15 +135,8 @@ api_url <- function(
   if (is.null(ees_environment)) {
     ees_environment <- default_ees_environment()
   }
+  validate_ees_environment(ees_environment)
   # Check the ees_environment param is valid
-  if (!(ees_environment %in% c("dev", "test", "preprod", "prod"))) {
-    stop(
-      paste(
-        "You have entered invalid EES environment. The environment should be one of:\n",
-        "   - dev, test, preprod or prod"
-      )
-    )
-  }
   # End of validation
 
   endpoint_base <- list(

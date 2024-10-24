@@ -51,7 +51,6 @@ get_dataset <- function(
     page = page,
     verbose = verbose
   )
-  toggle_message(api_call, verbose = verbose)
   response <- api_call |>
     httr::GET()
   eesyapi::http_request_error(response)
