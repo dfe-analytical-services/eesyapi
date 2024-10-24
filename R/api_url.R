@@ -63,6 +63,17 @@ api_url <- function(
     page_size = NULL,
     page = NULL,
     verbose = FALSE) {
+  # Creating a master switch here for ees_environment, so that when we switch from dev to test and
+  # then subsequently from test to prod, we can just change it here and everything should follow
+  # from here. ees_environment should default to NULL for most other functions. Probably not a
+  # "proper" way to do this as it's not clear from the primary user-facing functions themselves
+  # what it's going to default to, so probably want to remove this and do something better once
+  # we're through development.
+  if (is.null(ees_environment)) {
+    ees_environment <- default_ees_environment()
+  }
+  validate_ees_environment(ees_environment)
+
   # Creating a master switch here for api_version. The default for this param should be set to NULL
   # for most other functions, but can be set to the latest version here. We'll want to automate
   # this once we know how to find out the latest api version from the api itself.
@@ -70,40 +81,9 @@ api_url <- function(
     api_version <- default_api_version()
   }
   # Check that the API version is valid
-  is_valid_api_version <- function(vapi) {
-    !grepl(
-      "[a-z_%+-]",
-      as.character(vapi),
-      ignore.case = TRUE
-    )
-  }
-  if (is_valid_api_version(api_version) == FALSE) {
-    stop(
-      "You have entered an invalid API version in the api_version argument.
-      This should be numerical values only."
-    )
-  }
-
+  validate_api_version(api_version)
   # Check that the endpoint is either NULL or valid
-  is_valid_endpoint <- function(endpoint) {
-    endpoint %in% c(
-      "get-publications", "get-data-catalogue",
-      "get-summary", "get-meta",
-      "get-csv", "get-data", "post-data"
-    )
-  }
-
-  if (!is.null(endpoint)) {
-    if (is_valid_endpoint(endpoint) == FALSE) {
-      stop(
-        paste(
-          "You have entered an invalid endpoint, this should one of:",
-          "get-publications, get-data-catalogue, get-summary, get-meta,",
-          "get-csv, get-data or post-data"
-        )
-      )
-    }
-  }
+  validate_endpoint(endpoint)
 
   is_valid_dataset_info <- function(dataset_id, dataset_version) {
     !is.null(dataset_id) & (is.numeric(dataset_version) | is.null(dataset_version))
@@ -126,17 +106,6 @@ api_url <- function(
     }
   }
 
-  # Creating a master switch here for ees_environment, so that when we switch from dev to test and
-  # then subsequently from test to prod, we can just change it here and everything should follow
-  # from here. ees_environment should default to NULL for most other functions. Probably not a
-  # "proper" way to do this as it's not clear from the primary user-facing functions themselves
-  # what it's going to default to, so probably want to remove this and do something better once
-  # we're through development.
-  if (is.null(ees_environment)) {
-    ees_environment <- default_ees_environment()
-  }
-  validate_ees_environment(ees_environment)
-  # Check the ees_environment param is valid
   # End of validation
 
   endpoint_base <- list(

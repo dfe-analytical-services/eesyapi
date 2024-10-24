@@ -19,31 +19,46 @@ validate_ees_environment <- function(ees_environment) {
   }
 }
 
-#' Validate page size
+#' Validate API version
 #'
-#' @param page_size Chosen page size
-#' @param min Minimum valid page_size for EES API
-#' @param max Maximum valid page_size for EES API
+#' @param api_version Variable containing the api_version
 #'
-#' @return Logic
+#' @return NULL
 #' @export
 #'
 #' @examples
-#' validate_page_size(20)
-validate_page_size <- function(page_size, min = 1, max = 40) {
-  if (!is.null(page_size)) {
-    if (is.numeric(page_size)) {
-      valid <- dplyr::between(page_size, 1, 40)
-    } else {
-      valid <- FALSE
-    }
-    if (!valid) {
-      stop(
-        "The page size can only be a numeric value within the range 1 <= page_size <= 40."
-      )
-    }
+#' validate_api_version(1.0)
+validate_api_version <- function(api_version) {
+  if (grepl("[a-z_%+-]", as.character(api_version), ignore.case = TRUE)) {
+    stop(
+      "You have entered an invalid API version in the api_version argument.
+      This should be numerical values only."
+    )
   }
 }
+
+validate_endpoint <- function(endpoint) {
+  if (is.null(endpoint)) {
+    stop("Endpoint must be set, can not be NULL")
+  }
+  if (
+    !(endpoint %in% c(
+      "get-publications", "get-data-catalogue",
+      "get-summary", "get-meta",
+      "get-csv", "get-data", "post-data"
+    )
+    )
+  ) {
+    stop(
+      paste(
+        "You have entered an invalid endpoint, this should one of:",
+        "get-publications, get-data-catalogue, get-summary, get-meta,",
+        "get-csv, get-data or post-data"
+      )
+    )
+  }
+}
+
 
 #' Validate time periods
 #'
@@ -195,5 +210,31 @@ validate_ees_filter_type <- function(filter_type) {
         "\"locations\" or \"filter_items\""
       )
     )
+  }
+}
+
+#' Validate page size
+#'
+#' @param page_size Chosen page size
+#' @param min Minimum valid page_size for EES API
+#' @param max Maximum valid page_size for EES API
+#'
+#' @return Logic
+#' @export
+#'
+#' @examples
+#' validate_page_size(20)
+validate_page_size <- function(page_size, min = 1, max = 40) {
+  if (!is.null(page_size)) {
+    if (is.numeric(page_size)) {
+      valid <- dplyr::between(page_size, 1, 40)
+    } else {
+      valid <- FALSE
+    }
+    if (!valid) {
+      stop(
+        "The page size can only be a numeric value within the range 1 <= page_size <= 40."
+      )
+    }
   }
 }

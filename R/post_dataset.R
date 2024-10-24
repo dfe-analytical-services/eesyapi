@@ -31,15 +31,6 @@
 #'   page_size = 32
 #' )
 #'
-#' # Run post_dataset() using set parameters giving a combination of filter options
-#' example_id("filter_items_short", group = "attendance")
-#' post_dataset(
-#'   example_id(group = "attendance"),
-#'   indicators = example_id("indicator", group = "attendance"),
-#'   time_periods = example_id("time_period", group = "attendance"),
-#'   geographies = example_id("location_code", group = "attendance"),
-#'   filter_items = example_id("filter_items_short", group = "attendance"),
-#' )
 post_dataset <- function(
     dataset_id,
     indicators = NULL,

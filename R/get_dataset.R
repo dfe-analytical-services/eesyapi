@@ -54,13 +54,12 @@ get_dataset <- function(
   response <- api_call |>
     httr::GET()
   eesyapi::http_request_error(response)
-  toggle_message("Retrieved data", verbose = verbose)
   # Unless the user specifies a specific page of results to get, loop through all available pages.
   response_json <- response |>
     httr::content("text") |>
     jsonlite::fromJSON()
   if (verbose) {
-    message(paste("Total number of pages: ", response_json$paging$totalPages))
+    message(paste("Total number of pages retrieved: ", response_json$paging$totalPages))
   }
   dfresults <- response_json |>
     magrittr::extract2("results")
