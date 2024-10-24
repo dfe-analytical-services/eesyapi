@@ -1,3 +1,21 @@
+#' Set current default API version
+#'
+#' @return String containing default API version
+#'
+#' @keywords internal
+default_api_version <- function(){
+  return("1.0")
+}
+
+#' Set current default EES environment
+#'
+#' @return String containing default EES environment
+#'
+#' @keywords internal
+default_ees_environment <- function(){
+  return("test")
+}
+
 #' Controllable console messages
 #'
 #' Quick expansion to the `message()` function aimed for use in functions for

@@ -67,7 +67,7 @@ api_url <- function(
   # for most other functions, but can be set to the latest version here. We'll want to automate
   # this once we know how to find out the latest api version from the api itself.
   if (is.null(api_version)) {
-    api_version <- "1.0"
+    api_version <- default_api_version()
   }
   # Check that the API version is valid
   is_valid_api_version <- function(vapi) {
@@ -133,7 +133,7 @@ api_url <- function(
   # what it's going to default to, so probably want to remove this and do something better once
   # we're through development.
   if (is.null(ees_environment)) {
-    ees_environment <- "test"
+    ees_environment <- default_ees_environment()
   }
   # Check the ees_environment param is valid
   if (!(ees_environment %in% c("dev", "test", "preprod", "prod"))) {

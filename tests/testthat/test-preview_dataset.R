@@ -60,9 +60,8 @@ test_that("returns all rows", {
   # default
   # The test data this was pointing to now only seems to be 12 rows long... Checking if this is
   # what it's supposed to be right now.
-  expect_gt(
-    preview_dataset(example_id("dataset"), n_max = Inf) |>
-      nrow(),
-    10
+  expect_equal(
+    preview_dataset(example_id("dataset"), n_max = Inf) |> nrow(),
+    query_dataset(example_id("dataset")) |> nrow()
   )
-})
+  })
