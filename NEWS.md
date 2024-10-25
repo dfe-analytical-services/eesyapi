@@ -1,9 +1,14 @@
-# eesyapi (development version)
+# eesyapi 0.4.0
+
+* Optimisation to parsing of JSON responses in `query_dataset()`
+* Rename `download_dataset()` to `preview_dataset()` and set default n_max to 10
+* Move test data and examples across to the EES test environment data sets
+* Minor tweaks and improvements to the documentation
 
 # eesyapi 0.3.1
 
 * Added parsing of SQIDs in retrieved data to provide human readable content
-* Created function, `preview_dataset()`, to connect to csv endpoint for downloading data set csv file
+* Created function, `download_dataset()`, to connect to csv endpoint for downloading data set csv file
 * Added first draft of example workflow for querying a data set
 
 # eesyapi 0.3.0
