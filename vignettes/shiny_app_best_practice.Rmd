@@ -1,0 +1,65 @@
+---
+title: "R Shiny app best practice"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{shiny_app_best_practice}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+When using the explore education statistics API in a Shiny app, there's a number of extra considerations to keep in mind:
+- How much data to query (all at once or in chunks)
+- Where to place your API query (is it best in the global.R script, the server.R script, or somewhere else)
+- How to apply caching (to prevent unnecessary queries)
+
+## An example shiny app
+
+For this vignette we'll use a simple example Shiny app that reads in a static CSV file, and then convert it to using the EES API.
+
+```{r example-shiny-app, eval = FALSE}
+library(shiny)
+library(readr)
+
+```
+
+
+## How much data to query
+
+Querying too much data can lead to a slow query and increased demands on the R Shiny app itself, however querying too little can mean you need to make lots of repeated queries to the API that may be unnecessary. There is single answer for what is right, though for our example, we're going to start by building a query that gets all of the data for the table after the user selection, meaning that we will requery the API every time the user changes a selection, only fetching the data we need into memory.
+
+In some instances if the overall data you need is small enough (< 10,000 rows), it may be just as efficient to query all of the data at once and then filter it down in the app. There is a limit of 10,000 rows per page in the API, so for every 10,000 rows the eesyapi.R package will be making additional queries, which adds significant overhead.
+
+### Example query
+
+In the initial example app, we read in a static CSV file containing all of the possible data. When querying the API, we can instead selectively only query the data that we need for the app. Taking that example app above, we know that the user will be selecting the location that they are 
+
+
+## Where to place your API query
+
+Often, when reading static files like a CSV, you would place the read_csv() function in the global.R script. This means that the data is read in once when the app starts, and is always available to both the UI and server components of the app. This saves you reading the data in multiple times, which can be slow and inefficient. This is what we showed in the initial example app at the top of this page.
+
+However, when querying the API, it's often best to place the query in the server.R script, inside a reactive function. This allows us to make the query only when we need to, and also to make the query dependent on user input. For example, if the user selects a different year or location, we can make a new query to get the data for that selection, rather than needing to read in all the data at once. 
+
+
+
+
+## Caching
+
+By placing our API query in the server.R script, we can also easily make use of caching and only pull in the data that is genuinely needed for the app.
+
+Caching an API query is effectively the data equivalent of [Blue Peter's](https://www.imdb.com/title/tt0051257/) "here's one I made earlier". A cache is a store, and once you've made a query to the API, you can save the results and tell R to reuse those results instead of making a new query. This reduces the time taken to get the data, and also reduces the load on the API itself.
+
+You can then set values to watch, so if a value has changed or is new, then a new query is made. For example, you store the data set version as v1, as long as the latest version is still v1 you use the cached data, but if the latest version is v2, you make a new query and update the cache.
+
+We recommend using the metadata endpoint to check for updates to the data, as this is a very small and fast query. So to expand on the query above, you can do a two part query to check the latest version, and then only run the full data query if the version has changed.
+
+```{r caching-shiny-app, eval = FALSE}
+
+```
